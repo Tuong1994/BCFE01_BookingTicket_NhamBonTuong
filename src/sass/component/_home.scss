@@ -1,0 +1,15 @@
+.home-wrapper {
+    width: $w-100 - 30;
+    @include respond(laptop) {
+        min-width: $w-100;
+    }
+    @include respond(extraTablet) {
+        min-width: $w-100;
+    }
+    @include respond(tablet) {
+        min-width: $w-100;
+    }
+    @include respond(phone) {
+        min-width: $w-100;
+    }
+}

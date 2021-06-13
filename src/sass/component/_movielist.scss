@@ -1,0 +1,287 @@
+.movielist__container {
+  margin-bottom: $m-5 * 2;
+  border-radius: 5px;
+  position: relative;
+  .nav {
+    display: flex;
+    height: $h-8;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    font-size: $h3;
+    margin-bottom: $m-3;
+    .nav-link {
+      text-decoration: none;
+      color: $tPrimary;
+      margin: $m-2;
+      transition: all 0.3s;
+      outline: 0;
+      &:hover {
+        border: 0;
+        font-size: $h2;
+      }
+    }
+  }
+  .nav-pills .nav-link.active, 
+  .nav-pills .show>.nav-link {
+    background: transparent;
+    color: $tSecondary;
+    font-size: $h2;
+  }
+
+  .slick-next,
+  .slick-prev {
+    &::before {
+      font-size: $h1 + 30;
+      color: $tGrey-2;
+      background: transparent;
+      position: absolute;
+      z-index: 10000;
+      top: -50px;
+    }
+    @include respond(extraTablet) {
+      display: none !important;
+    }
+    @include respond(tablet) {
+      display: none !important;
+    }
+    @include respond(phone) {
+      display: none !important;
+    }
+  }
+  .slick-prev {
+    &::before {
+      content: "<";
+      left: -50px;
+    }
+  }
+  .slick-next {
+    &::before {
+      content: ">";
+      right: -50px;
+    }
+  }
+
+  .slides {
+    overflow-x: visible;
+    padding: $p-1;
+    .card__wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: $w-100;
+      .card__item {
+        position: relative;
+        margin: $m-1 - 5 0;
+        padding: $p-1 - 5;
+        border-radius: 5px;
+        &:hover .card__img img {
+          transform: scale(1.5,1.5);
+        }
+        &:hover .card__booking,
+        &:hover .card__img::after {
+          opacity: 1;
+          visibility: visible;
+        }
+        &:hover .fade {
+          opacity: 0;
+        }
+        .card__img {
+          width: $w-10 * 2;
+          height: $h-10 * 2.8;
+          margin-bottom: $m-2;
+          position: relative;
+          border-radius: 5px;
+          box-shadow: 0 0 5px $dark-2;
+          overflow: hidden;
+          img {
+            width: $w-100;
+            height: $h-100;
+            border-radius: 5px;
+            transition: all 0.4s;
+            transform: scale(1,1);
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 5px;
+            width: $w-100;
+            height: $h-100;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: visible;
+            z-index: 10;
+            transition: all 0.3s;
+          }
+          @include respond(laptop) {
+            width: $w-100;
+            height: $h-10 * 2.8;
+          }
+          @include respond(extraTablet) {
+            width: $w-100;
+            height: $h-10 * 2.5;
+          }
+          @include respond(tablet) {
+            width: $w-100;
+            height: $h-10 * 3;
+          }
+          @include respond(phone) {
+            width: $w-100;
+            height: $h-10 * 2.5;
+          }
+        }
+        .card__content {
+          opacity: 1;
+          transition: all 0.3s;
+          font-size: $body-1;
+          letter-spacing: 1px;
+          text-align: center;
+          span {
+            text-transform: uppercase;
+            font-weight: $medium;
+            font-size: $body-1 + 2;
+          }
+          p {
+            margin: 0
+          }
+        }
+        .card__booking {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: $w-100;
+          height: $h-100;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          z-index: 1000;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s;
+          .btn__play {
+            width: $w-5;
+            height: $h-5;
+            border: 1px solid $primary;
+            border-radius: 50%;
+            font-size: $body-2;
+            text-align: center;
+            line-height: $h-5;
+            color: $tWhite;
+            background: rgba(0, 0, 0, 0.5);
+            outline: 0;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.3s;
+            &:hover {
+              border: 1px solid $grey-2;
+              color: $tGrey-1;
+            }
+          }
+          .button {
+            text-decoration: none;
+            color: $tWhite;
+            text-align: center;
+            width: $w-100;
+            position: absolute;
+            bottom: 2%;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 5px $dark-2;
+            @include respond (laptop) {
+              width: $w-100 - 5;
+            }
+            @include respond (extraTablet) {
+              width: $w-100 - 5;
+            }
+            @include respond (tablet) {
+              width: $w-100 - 5;
+            }
+          }
+        }
+        @include respond (laptop) {
+          width: $w-100 - 75;
+          padding: 0 $p-1;
+        }
+        @include respond (extraTablet) {
+          width: $w-100 - 75;
+          padding: 0 $p-1;
+        }
+        @include respond (tablet) {
+          width: $w-100 - 50;
+          padding: 0 $p-1;
+        }
+        @include respond(phone) {
+          width: $w-100;
+        }
+      }
+    }
+  }
+
+  .popup-wrapper {
+    width: $w-100;
+    height: $h-100;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    .popup__inner {
+      width: $w-100;
+      height: $h-100;
+      position: relative;
+      .popup__item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        .btn-close {
+          width: $w-4;
+          height: $h-4;
+          font-size: $h3;
+          background: transparent;
+          text-align: center;
+          line-height: $h-4;
+          border: 0;
+          border-radius: 50%;
+          outline: 0;
+          i {
+            color: $tSecondary;
+          }
+        }
+        .videos-wrapper {
+          width: $w-10 * 7;
+          height: $h-10 * 4;
+          border-radius: 5px;
+          @include respond(tablet) {
+            width: $w-100 - 5;
+          }
+          @include respond(phone) {
+            width: $w-100 - 2;
+          }
+        }
+        @include respond(tablet) {
+          width: $w-100 - 5;
+        }
+        @include respond(phone) {
+          width: $w-100 - 2;
+        }
+      }
+    }
+  }
+
+  @include respond(extraTablet) {
+    margin-top: 0;
+  }
+  @include respond(tablet) {
+    margin-top: $m-5 * 2;
+  }
+  @include respond(phone) {
+    margin-top: $m-5 * 2;
+  }
+} 

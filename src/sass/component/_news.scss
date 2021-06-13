@@ -1,0 +1,191 @@
+.news-container {
+  margin-bottom: $m-5;
+  .news__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $h-7;
+    .nav-link {
+      color: $tPrimary;
+      font-size: $h3;
+      transition: all 0.3s;
+      &:hover {
+        font-size: $h2;
+      }
+    }
+  }
+
+  .news__list {
+    img {
+      border-radius: 5px;
+      margin-bottom: $m-1 * 0.5;
+      box-shadow: 0 0 5px $dark-2;
+    }
+    p {
+        font-size: $body-1;
+        text-align: justify;
+    }
+    h6 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        &:hover {
+          color: $tSecondary;
+        }
+    }
+    .link {
+        text-decoration: none;
+        color: $tPrimary;
+    }
+
+    .news__content {
+      display: flex;
+      justify-content: space-between;
+      .news__item {
+        width: $w-10 * 4.5;
+        height: $h-10 * 3.5;
+        margin-bottom: $m-1;
+        @include respond(laptop) {
+          width: $w-100 - 45;
+          margin-bottom: $m-1;
+          padding: 0 $p-1 - 5;
+        }
+        @include respond(extraTablet) {
+          width: $w-100 - 45;
+          margin-bottom: $m-5 + 5;
+          padding: 0 $p-1 - 5;
+        }
+        @include respond(tablet) {
+          width: $w-100;
+          margin-bottom: $m-5 + 5;
+        }
+        @include respond(phone) {
+          width: $w-100;
+          margin-bottom: $m-5 + 5;
+        }
+        .news__img {
+          width: $w-100;
+          height: $h-10 * 2.5;
+          @include respond(extraTablet) {
+            height: $h-10 * 3;
+          }
+          @include respond(tablet) {
+            height: $h-10 * 3;
+          }
+          @include respond(phone) {
+            height: $h-10 * 3;
+          }
+        }
+      }
+      @include respond(tablet) {
+        flex-direction: column;
+        width: $w-100;
+        padding: 0 $p-1 - 5;
+      }
+      @include respond(phone) {
+        flex-direction: column;
+        width: $w-100;
+      }
+    }
+    
+    .subnews__list {
+      width: $w-100;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      .subnews__item {
+        width: $w-10 * 3;
+        height: $h-10 * 3;
+        @include respond(laptop) {
+          width: $w-100 - 50;
+          height: $h-100;
+          padding: 0 $p-1 - 5;
+        }
+        @include respond(extraTablet) {
+          width: $w-100 - 50;
+          height: $h-100;
+          padding: 0 $p-1 - 5;
+        }
+        @include respond(tablet) {
+          width: $w-100;
+          height: $h-100;
+          padding: 0 $p-1 - 5;
+        }
+        @include respond(phone) {
+          width: $w-100;
+          height: $h-100;
+        }
+        .subnews__img {
+          width: $w-100;
+          height: $h-10 * 1.5;
+          @include respond(laptop) {
+            height: $h-10 * 2.5;
+          }
+          @include respond(extraTablet) {
+            height: $h-10 * 2.2;
+          }
+          @include respond(tablet) {
+            height: $h-10 * 2.5;
+          }
+          @include respond(phone) {
+            height: $h-10 * 3;
+          }
+        }
+      }
+
+      .list {
+        width: $w-100 - 70;
+        .list__item {
+          width: $w-100;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: $m-1;
+          .list__img {
+            width: $w-7;
+            height: $h-5;
+            margin-right: $m-1;
+          }
+          p {
+              font-size: $body-1;
+              font-weight: $medium;
+              text-transform: uppercase;
+              color: $tGrey-1;
+              transition: all 0.3s;
+              &:hover {
+                color: $tSecondary;
+              }
+          }
+          @include respond(extraTablet) {
+            margin-bottom: $m-2;
+          }
+        }
+        @include respond(extraTablet) {
+          padding-left: $p-1 - 5;
+        }
+        @include respond(tablet) {
+          display: none;
+        }
+        @include respond(phone) {
+          display: none;
+        }
+      }
+      @include respond(phone) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link {
+    background: transparent;
+    color: $tSecondary;
+    font-size: $h2;
+  }
+  @include respond(tablet) {
+    padding: 0;
+  }
+  @include respond(phone) {
+    padding: 0;
+  }
+}

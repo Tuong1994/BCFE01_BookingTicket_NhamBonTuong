@@ -1,0 +1,155 @@
+.tab-wrapper {
+  margin-bottom: $m-5 * 2;
+  box-shadow: 0 0 5px $dark-2;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  height: $h-10 * 5;
+  overflow: hidden;
+  .tabs__list {
+    width: $w-100 - 85;
+    .tab {
+      margin: $m-1;
+      padding: $p-1 $p-2;
+      border-radius: 5px;
+      transition: all 0.4s;
+      cursor: pointer;
+      opacity: 0.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: $w-5;
+        height: $h-5;
+      }
+    }
+  }
+  .tabs__contents {
+    width: $w-100 - 15;
+    padding: $p-1;
+    position: relative;
+    .content {
+      width: $w-100;
+      padding: $p-1 $p-2;
+      text-align: justify;
+      transition: all 0.4s;
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      .subtabs-wrapper {
+        width: $w-100;
+        display: flex;
+        .subtabs__list {
+          width: $w-100 - 45;
+          margin-right: $m-2;
+          .subtab {
+            width: $w-100;
+            padding: $p-1 - 5;
+            margin-bottom: $m-1;
+            display: flex;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.4s;
+            opacity: 0.5;
+            img {
+              width: $w-5;
+              height: $h-5;
+              border-radius: 5px;
+              margin-right: $m-1;
+            }
+            .subtab__body {
+              p {
+                margin: 0;
+                font-weight: $medium;
+                &:nth-child(2) {
+                  font-size: $body-1;
+                  font-weight: $regular;
+                }
+              }
+            }
+          }
+        }
+        .subtabs__contents {
+          width: $w-100 - 35;
+          height: $h-100;
+          position: relative;
+          .subtabs__items {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+            z-index: 100;
+            .subcontent {
+              width: $w-100;
+              display: flex;
+              margin-bottom: $m-1 + 5;
+              transition: all 0.4s;
+              img {
+                width: $w-5 + 5;
+                height: $h-5 + 5;
+                border-radius: 5px;
+                margin-right: $m-1;
+              }
+              .subcontent__body {
+                p {
+                  margin-bottom: 2px;
+                  font-size: $body-1;
+                  font-weight: $medium;
+                  text-transform: uppercase;
+                }
+                .subcontent__link {
+                  display: flex;
+                  .button {
+                    display: inline-block;
+                    text-decoration: none;
+                    color: $tWhite;
+                    margin-right: $m-1 - 5;
+                    padding: $p-1 - 5 $p-2 - 5;
+                    font-size: $body-2;
+                    box-shadow: 0 0 5px $dark-2;
+                    @include respond(laptop) {
+                      margin-bottom: $m-1 - 5;
+                    }
+                    @include respond(extraTablet) {
+                      margin-bottom: $m-1 - 5;
+                    }
+                  }
+                  @include respond(laptop) {
+                    flex-wrap: wrap;
+                  }
+                  @include respond(extraTablet) {
+                    flex-wrap: wrap;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .active-tabs {
+    background: $grey-2;
+    opacity: 1 !important;
+  }
+  .show-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  @include respond(laptop) {
+    height: $h-10 * 6.5;
+  }
+  @include respond(extraTablet) {
+    height: $h-10 * 7;
+  }
+  @include respond(tablet) {
+    display: none;
+  }
+  @include respond(phone) {
+    display: none;
+  }
+}

@@ -1,0 +1,167 @@
+.register-container {
+  padding: $p-5 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../assets/img/posterBG.jpg");
+  background-attachment: fixed;
+  position: relative;
+  &::after {
+    content: "";
+    width: $w-100;
+    height: $h-100;
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .register__form {
+    width: $w-100 - 60;
+    padding: $p-5 $p-3;
+    background: $primary;
+    border-radius: 5px;
+    box-shadow: 0 0 5px $dark-1;
+    position: relative;
+    z-index: 10;
+    @include respond(extraTablet) {
+      width: $w-100 - 40;
+    }
+    @include respond(tablet) {
+      width: $w-100;
+      height: $h-100;
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    @include respond(phone) {
+      width: $w-100;
+      height: $h-100;
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    h3 {
+      text-align: center;
+      font-size: $h2;
+      text-transform: uppercase;
+      margin-bottom: $m-3;
+      @include respond(tablet) {
+        color: $tWhite;
+      }
+      @include respond(phone) {
+        color: $tWhite;
+      }
+    }
+    .form__item {
+      width: $w-100;
+      height: $h-4;
+      margin-bottom: $m-3;
+      font-size: $body-1;
+      font-weight: $medium;
+      border: 2px solid $red-1;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      label {
+        width: $w-4;
+        height: $h-100;
+        font-size: $body-1;
+        background: $red-1;
+        text-align: center;
+        line-height: $h-4;
+        color: $tWhite;
+        @include respond(tablet) {
+          color: $tWhite;
+        }
+        @include respond(phone) {
+          color: $tWhite;
+        }
+      }
+      .form__group {
+        width: $w-100 - 5;
+        .form__input {
+          width: $w-100;
+          height: $h-100;
+          padding: $p-1 - 3;
+          background: $primary;
+          display: flex;
+          align-items: center;
+          margin-bottom: $m-1 - 5;
+          input {
+            background: transparent;
+            color: $tPrimary;
+            border: 0;
+            width: $w-100;
+            outline: 0;
+          }
+          .error-icon {
+            display: none;
+            i {
+              color: $red-1;
+              font-size: $h3 - 2;
+              margin-right: $m-1;
+            }
+          }
+          @include respond(tablet) {
+            border: 1px solid $primary;
+          }
+          @include respond(phone) {
+            border: 1px solid $primary;
+          }
+        }
+      }
+    }
+    .button {
+      width: $w-100;
+    }
+    p {
+      text-align: center;
+      color: $tGrey-1;
+      .form__link {
+        text-decoration: underline;
+        font-weight: $medium;
+        color: $tPrimary;
+        transition: all 0.3s;
+        &:hover {
+          color: $tSecondary;
+        }
+        @include respond(tablet) {
+          color: $tWhite;
+        }
+        @include respond(phone) {
+          color: $tWhite;
+        }
+      }
+    }
+  }
+  .return-button {
+    text-decoration: none;
+    color: $tPrimary;
+    width: $w-4;
+    height: $h-4;
+    font-size: $h3;
+    text-align: center;
+    line-height: $h-4;
+    border: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    outline: 0;
+    z-index: 10;
+    @include respond(tablet) {
+      color: $tWhite;
+      font-size: $h2;
+    }
+    @include respond(phone) {
+      color: $tWhite;
+      font-size: $h2;
+    }
+  }
+  @include respond(extraTablet) {
+    padding: $p-2 0;
+  }
+  @include respond(tablet) {
+    padding: 0;
+  }
+  @include respond(phone) {
+    padding: 0;
+  }
+}

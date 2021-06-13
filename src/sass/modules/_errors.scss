@@ -1,0 +1,12 @@
+.error__message {
+  color: $tSecondary;
+  font-weight: $medium;
+  font-size: $body-1;
+}
+
+.show-icon {
+  display: block !important;
+}
+.animation {
+  animation: err 0.2s linear 1;
+}

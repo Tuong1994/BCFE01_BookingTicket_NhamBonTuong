@@ -1,0 +1,222 @@
+.nav__container {
+  width: $w-100;
+  height: $h-7;
+  padding: $p-1;
+  box-shadow: 0 0 5px $dark-1;
+  background: $primary;
+  display: flex;
+  justify-content: space-between;
+  font-size: $body-1;
+  position: fixed;
+  z-index: 1000;
+  .nav__link {
+    display: block;
+    border: 0;
+    background: transparent;
+    outline: 0;
+    text-decoration: none;
+    font-weight: $medium;
+    color: $tPrimary;
+    transition: all 0.4s;
+    cursor: pointer;
+    @include respond(tablet) {
+      font-size: $body-1 + 4;
+    }
+    @include respond(phone) {
+      font-size: $body-1 + 4;
+    }
+  }
+
+  .nav__logo {
+    margin-left: $m-2;
+    .logo__img {
+      width: $w-5;
+      height: $h-5;
+    }
+  }
+
+  .nav__collapse {
+    min-width: $w-100 - 35;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    .nav__bar {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      margin-right: $m-5 * 4;
+      .nav__link {
+        @include respond(tablet) {
+          margin: $m-1;
+          font-size: $body-1 + 3;
+        }
+        @include respond(phone) {
+          margin: $m-1;
+          font-size: $body-1 + 3;
+        }
+      }
+      @include respond(extraTablet) {
+        width: $w-100 - 40;
+      }
+      @include respond(tablet) {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+      }
+      @include respond(phone) {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+      }
+      .nav__list {
+        list-style: none;
+        margin: 0 $m-1;
+        &:hover .nav__link {
+          color: $tSecondary;
+        }
+      }
+    }
+    .nav__login {
+      .link {
+        display: flex;
+        align-items: center;
+        color: $tGrey-1;
+        i {
+          font-size: $h2;
+          margin-right: $m-1;
+        }
+      }
+      .user__login {
+        display: flex;
+        align-items: center;
+        position: relative;
+        i {
+          font-size: $h2;
+          margin-right: $m-1;
+        }
+        span {
+          padding-right: $p-2;
+          border-right: 1px solid $grey-2;
+        }
+        .btn-show {
+          margin-left: $m-2;
+          border: 0;
+          font-size: $h3;
+          background: transparent;
+          text-align: center;
+          outline: 0;
+        }
+        .user__info {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          width: $w-10 * 1.5;
+          height: $h-10;
+          background: $grey-1;
+          border-radius: 5px;
+          text-align: center;
+          display: flex;
+          justify-content: space-evenly;
+          flex-direction: column;
+          transition: all 0.4s;
+          box-shadow: 0 0 5px $dark-1;
+          opacity: 0;
+          visibility: hidden;
+          z-index: 100;
+          .user__link {
+            text-decoration: none;
+            color: $tPrimary;
+          }
+          .btn-logout {
+            border: 0;
+            background: transparent;
+            outline: 0;
+          }
+          .bg-link {
+            padding: $p-1 - 5 0;
+            transition: all 0.4s;
+            &:hover {
+              background: $red-1;
+            }
+          }
+        }
+      }
+      @include respond(phone) {
+        padding: 0;
+        border: 0;
+        margin-bottom: $m-1;
+      }
+      @include respond(tablet) {
+        padding: 0;
+        border: 0;
+        margin-bottom: $m-1;
+      }
+    }
+    @include respond(tablet) {
+      position: absolute;
+      top: 70px;
+      right: -100%;
+      width: $w-100;
+      height: $h-10 * 3;
+      background: $grey-1;
+      padding: $p-1;
+      flex-direction: column-reverse;
+      justify-content: space-around;
+      align-items: center;
+      transition: all 0.5s;
+    }
+    @include respond(phone) {
+      position: absolute;
+      top: 70px;
+      right: -100%;
+      width: $w-100;
+      height: $h-10 * 3;
+      background: $grey-1;
+      padding: $p-1;
+      flex-direction: column-reverse;
+      align-items: center;
+      transition: all 0.5s;
+    }
+  }
+
+  .nav__button {
+    width: $w-5;
+    height: $h-5;
+    background: transparent;
+    text-align: center;
+    line-height: $h-5;
+    font-size: $h3;
+    border: 0;
+    outline: 0;
+    display: none;
+    transition: all 0.4s;
+    &:hover {
+      color: $tSecondary;
+    }
+    @include respond(tablet) {
+      display: block;
+    }
+    @include respond(phone) {
+      display: block;
+    }
+  }
+
+  .active {
+    right: 0;
+  }
+  .show {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  @include respond(extraTablet) {
+    justify-content: space-between;
+  }
+  @include respond(tablet) {
+    top: 0;
+  }
+  @include respond(phone) {
+    top: 0;
+  }
+}
+

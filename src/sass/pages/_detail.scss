@@ -1,0 +1,564 @@
+.detail__container {
+  padding: $p-5 * 2 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  &::after {
+    content: "";
+    width: $w-100;
+    height: $h-100;
+    background: linear-gradient(
+      to bottom,
+      transparent 20%,
+      rgba(0, 0, 0, 0.9) 50%
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
+  }
+
+  .detail__film {
+    width: $w-100 - 35;
+    margin: 0 auto;
+    padding: $p-1;
+    .detail__body {
+      display: flex;
+      justify-content: space-between;
+      padding: $p-1;
+      box-shadow: 0 0 10px $dark-1;
+      border-radius: 5px;
+      align-items: center;
+      margin: $m-5 + 10 0;
+      color: $tWhite;
+      position: relative;
+      z-index: 10;
+      .film__info {
+        display: flex;
+        align-items: center;
+        position: relative;
+        .film__img {
+          width: $w-10 * 2;
+          height: $h-10 * 3;
+          margin-right: $m-2;
+          position: relative;
+          cursor: pointer;
+          &:hover .play__trailer {
+            opacity: 1;
+            visibility: visible;
+          }
+          img {
+            width: $w-100;
+            height: $h-100;
+            border-radius: 5px;
+            box-shadow: 0 0 5px $dark-1;
+          }
+          .play__trailer {
+            width: $w-100;
+            height: $h-100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s;
+            .play__button {
+              width: $w-5;
+              height: $h-5;
+              border: 1px solid $primary;
+              border-radius: 50%;
+              background: transparent;
+              color: $tWhite;
+              outline: 0;
+              transition: all 0.4s;
+              &:hover {
+                opacity: 0.5;
+              }
+              .fa-play {
+                text-align: center;
+                line-height: $h-5;
+              }
+            }
+          }
+          @include respond(extraTablet) {
+            opacity: 0;
+            min-width: $w-100;
+            margin-right: 0;
+          }
+          @include respond(tablet) {
+            opacity: 0;
+            min-width: $w-100;
+            margin-right: 0;
+          }
+          @include respond(phone) {
+            opacity: 0;
+            min-width: $w-100;
+            margin-right: 0;
+          }
+        }
+        .film__trailer {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: $w-100;
+          height: $h-10 * 3;
+          box-shadow: 0 0 5px $dark-1;
+          display: none;
+          @include respond(extraTablet) {
+            display: block;
+          }
+          @include respond(tablet) {
+            display: block;
+          }
+          @include respond(phone) {
+            display: block;
+          }
+        }
+        .film__desc {
+          font-size: $body-1;
+          font-weight: $medium;
+          p {
+            margin: 0;
+            &:nth-child(2) {
+              font-size: $h3;
+              margin-bottom: $m-2;
+            }
+            span {
+              color: $tSecondary;
+            }
+            @include respond(extraTablet) {
+              margin-bottom: $m-2;
+            }
+            @include respond(tablet) {
+              margin-bottom: $m-2;
+            }
+            @include respond(phone) {
+              margin-bottom: $m-2;
+            }
+          }
+          @include respond(extraTablet) {
+            margin-top: $m-2;
+          }
+          @include respond(tablet) {
+            margin-top: $m-2;
+          }
+          @include respond(phone) {
+            margin-top: $m-2;
+          }
+        }
+        .button {
+          @include respond(extraTablet) {
+            display: none;
+          }
+          @include respond(tablet) {
+            display: none;
+          }
+          @include respond(phone) {
+            display: none;
+          }
+        }
+        @include respond(extraTablet) {
+          flex-direction: column;
+          align-items: flex-start;
+          min-width: $w-100;
+          padding: 0;
+        }
+        @include respond(tablet) {
+          flex-direction: column;
+          align-items: flex-start;
+          min-width: $w-100;
+          padding: 0;
+        }
+        @include respond(phone) {
+          flex-direction: column;
+          align-items: flex-start;
+          min-width: $w-100;
+          padding: 0;
+        }
+      }
+      .detail__review {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: $body-1;
+        margin-right: $m-3;
+        .review__point {
+          width: $w-10 + 20;
+          height: $h-10 + 20;
+          margin-bottom: $m-1;
+          border: 7px solid $red-1;
+          border-radius: 50%;
+          font-size: $h1;
+          text-align: center;
+          line-height: $h-10 + 20;
+          @include respond(laptop) {
+            width: $w-10;
+            height: $h-10;
+            line-height: $h-10;
+            font-size: $h1;
+            border: 4px solid $red-1;
+          }
+          @include respond(extraTablet) {
+            width: $w-6;
+            height: $h-2;
+            line-height: $h-2 + 10;
+            font-size: $body-2;
+            text-align: center;
+            border: 0;
+            border-radius: 5px;
+            margin: $m-1 - 5 0;
+          }
+          @include respond(tablet) {
+            width: $w-6;
+            height: $h-2;
+            line-height: $h-2 + 10;
+            font-size: $body-2;
+            text-align: center;
+            border: 0;
+            border-radius: 5px;
+            margin: $m-1 - 5 0;
+          }
+          @include respond(phone) {
+            width: $w-6;
+            height: $h-2;
+            line-height: $h-2 + 10;
+            font-size: $body-2;
+            text-align: center;
+            border: 0;
+            border-radius: 5px;
+            margin: $m-1 - 5 0;
+          }
+        }
+        .review__star {
+          margin-bottom: $m-1;
+          color: $red-1;
+          font-size: $h3;
+          @include respond(extraTablet) {
+            font-size: $body-2 - 5;
+          }
+          @include respond(tablet) {
+            font-size: $body-2 - 5;
+          }
+          @include respond(phone) {
+            font-size: $body-2 - 5;
+          }
+        }
+        @include respond(extraTablet) {
+          position: absolute;
+          top: 15px;
+          right: 5%;
+          background: rgba(0, 0, 0, 0.8);
+          border-radius: 5px;
+        }
+        @include respond(tablet) {
+          position: absolute;
+          top: 15px;
+          right: 5%;
+          background: rgba(0, 0, 0, 0.8);
+          border-radius: 5px;
+        }
+        @include respond(phone) {
+          position: absolute;
+          top: 15px;
+          right: 5%;
+          background: rgba(0, 0, 0, 0.8);
+          border-radius: 5px;
+        }
+      }
+      @include respond(extraTablet) {
+        padding: 0;
+        margin: 0;
+        background: transparent;
+      }
+      @include respond(tablet) {
+        padding: 0;
+        margin: 0;
+        background: transparent;
+      }
+      @include respond(phone) {
+        padding: 0;
+        margin: 0;
+        background: transparent;
+      }
+    }
+    @include respond(laptop) {
+      padding: 0;
+      min-width: $w-100 - 15;
+    }
+    @include respond(extraTablet) {
+      padding: 0;
+      min-width: $w-100;
+    }
+    @include respond(tablet) {
+      padding: 0;
+      min-width: $w-100;
+    }
+    @include respond(phone) {
+      padding: 0;
+      min-width: $w-100;
+    }
+  }
+
+  .detail__cinema {
+    width: $w-100 - 35;
+    margin: 0 auto;
+    padding: $p-5 + 20 $p-1;
+    position: relative;
+    z-index: 10;
+    .detail__title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: $h-7;
+      .nav-link {
+        color: $tWhite;
+        font-size: $body-1 + 4;
+        transition: all 0.3s;
+        &:hover {
+          font-size: $h3;
+        }
+      }
+    }
+
+    .cinema__info {
+      background: $primary;
+      box-shadow: 0 0 10px $dark-1;
+      padding: $p-1 * 0.5;
+      border-radius: 5px;
+      .cinema__link {
+        color: $tPrimary;
+        opacity: 0.5;
+        transition: all 0.3s;
+        border-bottom: 1px solid $grey-1;
+        border-radius: 0;
+        .cinema__logo {
+          width: $w-5;
+          height: $h-5;
+          margin-right: $m-2;
+          @include respond(extraTablet) {
+            margin-right: 0;
+          }
+          @include respond(tablet) {
+            margin-right: 0;
+          }
+          @include respond(phone) {
+            margin-right: 0;
+          }
+        }
+        @include respond(extraTablet) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        @include respond(tablet) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        @include respond(phone) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+      }
+      .showtime__container {
+        background: $primary;
+        padding: $p-1;
+        height: $h-10 * 4;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          width: $w-1 * 0.5;
+          background: $primary;
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: $grey-2;
+          border-radius: 2px;
+        }
+        .showtime__detail {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          margin-bottom: $m-1;
+          .showtime__cinema {
+            display: flex;
+            margin-bottom: $m-1;
+            img {
+              width: $w-6;
+              height: $h-6;
+              margin-right: $m-1;
+            }
+            .cinema__item {
+              font-weight: $medium;
+              p {
+                margin-bottom: $m-1 - 5;
+              }
+              span {
+                margin-right: $m-1;
+                font-size: $body-1;
+                color: $tGrey-2;
+              }
+            }
+          }
+          .showtime__list {
+            p {
+              font-size: $h3;
+              text-shadow: 0 0 2px $dark-2;
+            }
+            .button {
+              display: inline-block;
+              text-decoration: none;
+              color: $tWhite;
+              font-size: $body-2;
+              padding: $p-1 - 5 $p-1;
+              margin-right: $m-1;
+              margin-bottom: $m-1;
+              @include respond(laptop) {
+                font-size: $body-1;
+              }
+              @include respond(extraTablet) {
+                font-size: $body-2;
+              }
+              @include respond(tablet) {
+                font-size: $body-2;
+              }
+              @include respond(phone) {
+                font-size: $body-2;
+              }
+            }
+          }
+          @include respond(laptop) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          @include respond(extraTablet) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          @include respond(tablet) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          @include respond(phone) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+        }
+      }
+      .film__info {
+        padding: $p-2;
+        text-align: justify;
+        font-weight: $medium;
+        span {
+          color: $tSecondary;
+        }
+      }
+      @include respond(tablet) {
+        border-radius: 0;
+      }
+      @include respond(phone) {
+        border-radius: 0;
+      }
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+      opacity: 1;
+      background: transparent;
+    }
+
+    @include respond(laptop) {
+      padding: 0;
+      min-width: $w-100 - 15;
+    }
+    @include respond(extraTablet) {
+      min-width: $w-100;
+      padding: 0 $p-2;
+    }
+    @include respond(tablet) {
+      min-width: $w-100;
+      padding: 0;
+    }
+    @include respond(phone) {
+      min-width: $w-100;
+      padding: 0;
+    }
+  }
+
+  @include respond(extraTablet) {
+    padding-top: $p-5 + 20;
+    padding-bottom: 0;
+  }
+  @include respond(tablet) {
+    padding-top: $p-5 + 20;
+    padding-bottom: 0;
+  }
+  @include respond(phone) {
+    padding-top: $p-5 + 20;
+    padding-bottom: 0;
+  }
+
+  .popup-wrapper {
+    width: $w-100;
+    height: $h-100;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    .popup__inner {
+      width: $w-100;
+      height: $h-100;
+      position: relative;
+      .popup__item {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        .btn-close {
+          width: $w-4;
+          height: $h-4;
+          font-size: $h3;
+          background: transparent;
+          text-align: center;
+          line-height: $h-4;
+          border: 0;
+          border-radius: 50%;
+          outline: 0;
+          i {
+            color: $tSecondary;
+          }
+        }
+        .videos-wrapper {
+          width: $w-10 * 7;
+          height: $h-10 * 4;
+          border-radius: 5px;
+        }
+      }
+    }
+    @include respond(extraTablet) {
+      display: none;
+    }
+    @include respond(tablet) {
+      display: none;
+    }
+    @include respond(phone) {
+      display: none;
+    }
+  }
+}

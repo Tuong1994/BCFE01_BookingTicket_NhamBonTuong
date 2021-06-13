@@ -1,0 +1,109 @@
+.apps-container {
+    padding: $p-5 * 2 0;
+    background-image: url('../../assets/img/posterBG.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $w-100;
+        height: $h-100;
+        background-image: radial-gradient(rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.8) 60%);
+    }
+    .apps__content {
+        position: relative;
+        width: $w-100;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        z-index: 10;
+        .apps__info {
+            width: $w-100 - 65;
+            color: $tWhite;
+            h3, p {
+                margin: $m-4 0;
+                @include respond(tablet) {
+                    margin: $m-1 0;
+                }
+                @include respond(phone) {
+                    margin: $m-1 0;
+                }
+            }
+            h3 {
+                font-size: $h1;
+            }
+            p, .button {
+                font-weight: $medium;
+                &:nth-child(4) {
+                    margin: $m-1 0;
+                    font-size: $body-1;
+                }
+                a {
+                    color: $tWhite;
+                    text-decoration: underline;
+                }
+            }
+            @include respond(extraTablet) {
+                width: $w-100 - 60;
+            }
+            @include respond(tablet) {
+                width: $w-100 - 10;
+                text-align: center;
+            }
+            @include respond(phone) {
+                width: $w-100 - 10;
+                text-align: center;
+            }
+        }
+        .apps__phone {
+            width: $w-100 - 84;
+            height: $h-10 + 350;
+            border: 7px solid $dark-2;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 5px $dark-2;
+            .apps__slide {
+                height: $h-100;
+                img {
+                    margin: 0;
+                    border-radius: 5px;
+                    width: $w-100;
+                    height: $h-100;
+                    @include respond(extraTablet) {
+                        height: $h-10 + 300;
+                    }
+                    @include respond(tablet) {
+                        height: $h-10 + 450;
+                    }
+                    @include respond(phone) {
+                        height: $h-10 + 600;
+                    }
+                }
+            }
+            @include respond(extraTablet) {
+                width: $w-100 - 80;
+                height: $h-10 + 312;
+            }
+            @include respond(tablet) {
+                width: $w-100 - 60;
+                height: $h-10 + 460;
+            }
+            @include respond(phone) {
+                width: $w-100 - 40;
+                height: $h-10 + 610;
+            }
+        }
+        @include respond(tablet) {
+            flex-direction: column;
+        }
+        @include respond(phone) {
+            flex-direction: column;
+        }
+    }
+}

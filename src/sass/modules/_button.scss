@@ -1,0 +1,16 @@
+.button {
+    border: 1px solid $red-1;
+    border-radius: 5px;
+    padding: $p-1 * 0.8 $p-3;
+    background: linear-gradient(to right, $red-2, $red-1);
+    box-shadow: 0 0 5px $dark-1;
+    color: $tWhite;
+    outline: 0 !important;
+    cursor: pointer;
+    transition: all 0.4s;
+    &:hover {
+        background: transparent;
+        border: 1px solid $red-1;
+        color: $tSecondary !important;
+    }
+}
