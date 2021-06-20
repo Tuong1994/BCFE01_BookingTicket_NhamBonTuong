@@ -9,7 +9,7 @@ import Popup from '../../../component/Popup/Popup';
 import Schedule from '../../Admin/FilmManage/Schedule';
 
 function FilmManage(props) {
-    let { danhSachPhim } = useSelector(state => state.PhimReducer);
+    const { danhSachPhim } = useSelector(state => state.PhimReducer);
     const [popup, setPopup] = useState(false);
     const [searchFilm, setSearchFilm] = useState("");
     let dispatch = useDispatch()
@@ -30,16 +30,22 @@ function FilmManage(props) {
                 <div className="list__col-3 item__film">
                     <img src={film.hinhAnh} alt={film.tenPhim} />
                     <div className="film__info">
-                        <p>Tên phim : {film.tenPhim.length > 20 ? <span>{film.tenPhim.substr(0,20)}...</span> : <span>{film.tenPhim}</span>}</p>
+                        <p>Tên phim : {film.tenPhim.length > 20 ? <span>{film.tenPhim.substr(0, 20)}...</span> : <span>{film.tenPhim}</span>}</p>
                         <p>Mô tả : {film.moTa.length > 80 ? <span>{film.moTa.substr(0, 80)}...</span> : <span>{film.moTa}</span>}</p>
                         <p>Lịch chiếu : <span>{moment(film.ngayKhoiChieu).format("dddd hh:mm:A")}</span></p>
                     </div>
                 </div>
                 <div className="list__col-4"><p>{film.maNhom}</p></div>
-                <div className="list__col-5 btn-del">
+                <div className="list__col-5 btn-edit">
                     <button className="button" onClick={() => {
+                        dispatch({
+                            type: "GET_FILM_DETAIL",
+                            film
+                        })
                         setPopup(true)
-                    }}>Tạo lịch chiếu</button>
+                    }}>
+                        <i class="fab fa-safari"></i>
+                        <span>Lịch chiếu</span></button>
                     <NavLink className="button" to="/update_movie" onClick={() => {
                         dispatch({
                             type: "GET_FILM_DETAIL",
@@ -54,32 +60,39 @@ function FilmManage(props) {
                                 biDanh: film.biDanh
                             }
                         })
-                    }}>Sửa</NavLink>
+                    }}>
+                        <i class="fa fa-edit"></i>
+                        <span>Sửa</span>
+                    </NavLink>
                     <button className="button" onClick={() => {
-                        console.log(film.maPhim);
-                         Swal.fire({
+                        Swal.fire({
                             title: "Bạn có muốn xóa phim này ?",
                             icon: "warning",
                             showCancelButton: true,
                             confirmButtonColor: "#3085d6",
                             cancelButtonColor: "#d33",
                             confirmButtonText: "Đúng",
-                          }).then((result) => {
+                        }).then((result) => {
                             if (result.isConfirmed) {
-                              Swal.fire({
-                                icon: "success",
-                                title: "Phim đã được xóa",
-                              });
-                              dispatch(delMovieAction(film.maPhim));
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Phim đã được xóa",
+                                });
+                                dispatch(delMovieAction(film.maPhim));
                             }
-                          });
-                    }}>Xóa</button>
+                        });
+                    }}>
+                        <i class="fa fa-trash-alt"></i>
+                        <span>Xóa</span>
+                    </button>
                 </div>
             </div>
         })
     }
     return (
         <div className="filmManage-wrapper">
+            <h2>Quản lý phim</h2>
+            <hr />
             <div className="filmManage__form">
                 <NavLink to="/add_movie" className="form__link">
                     <i class="fa fa-plus"></i>

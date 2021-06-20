@@ -44,9 +44,7 @@ function AddMovie(props) {
             let data = new FormData();
             for (let key in values) {
                 data.append(key, values[key]);
-                // console.log("data", data.get(key));
             }
-            console.log("data",typeof data.get("maPhim"));
             dispatch(addMovieAction(data));
             resetForm();
         }

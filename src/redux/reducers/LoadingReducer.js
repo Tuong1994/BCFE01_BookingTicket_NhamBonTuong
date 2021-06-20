@@ -4,7 +4,7 @@ const stateDefault = {
 
 export const LoadingReducer = (state = stateDefault, action) => {
     switch(action.type) {
-        case "openLoaidng" : {
+        case "openLoading" : {
             state.loading = true;
             return {...state};
         }

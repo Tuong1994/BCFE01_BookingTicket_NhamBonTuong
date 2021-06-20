@@ -3,6 +3,7 @@
   background-attachment: fixed;
   padding: $p-5 * 2 0;
   position: relative;
+  overflow: hidden;
   &::after {
     content: "";
     width: $w-100;
@@ -10,13 +11,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(225,225,225,0.3);
+    background: rgba(225, 225, 225, 0.3);
     backdrop-filter: blur(2px);
   }
   .checkout__container {
     display: flex;
     justify-content: space-between;
-    width: $w-100 - 15;
+    width: $w-100 - 10;
     margin: 0 auto;
     position: relative;
     z-index: 100;
@@ -142,6 +143,34 @@
           }
         }
       }
+      .checkout__detail {
+        background: $primary;
+        margin-top: $m-2;
+        padding: $p-1;
+        border-radius: 5px;
+        box-shadow: 0 0 5px $dark-1;
+        display: none;
+        p {
+          margin: 0;
+          color: $tGreen;
+          font-weight: $medium;
+        }
+        .button {
+          padding: $p-1 - 5 $p-2;
+        }
+        @include respond(tablet) {
+          display: block;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
+        @include respond(phone) {
+          display: block;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
+      }
       @include respond(extraTablet) {
         min-width: $w-100;
         margin-bottom: $m-3;
@@ -161,6 +190,7 @@
       padding: $p-1;
       border-radius: 5px;
       box-shadow: 0 0 5px $dark-1;
+      transition: all 0.4s;
       .movie__img {
         img {
           width: $w-100;
@@ -174,13 +204,12 @@
             margin-right: $m-1;
           }
           @include respond(tablet) {
-            width: $w-10 * 3;
-            height: $h-10 * 3.2;
-            margin-right: $m-1;
+            width: $w-100;
+            height: $h-10 * 3.8;
           }
           @include respond(phone) {
             width: $w-100;
-            height: $h-10 * 4;
+            height: $h-10 * 3;
           }
         }
       }
@@ -208,21 +237,70 @@
             }
           }
         }
-        .button {
-          width: $w-100;
-          box-shadow: 0 0 5px $dark-1;
+        .checkout__button {
+          .button {
+            width: $w-100;
+            box-shadow: 0 0 5px $dark-1;
+            @include respond(tablet) {
+              width: $w-100 - 50;
+            }
+            @include respond(phone) {
+              width: $w-100 - 50;
+            }
+          }
+          .btn-close {
+            border: 1px solid $blue;
+            border-radius: 5px;
+            background: linear-gradient(to right, $blue, $deepBlue);
+            box-shadow: 0 0 5px $dark-1;
+            padding: $p-1 $p-5;
+            color: $tWhite;
+            font-size: $h3;
+            font-weight: $medium;
+            display: none;
+            transition: all 0.4s;
+            &:hover {
+              background: transparent;
+            color: $tBlue;
+            }
+            @include respond(tablet) {
+              display: inline-block;
+            }
+            @include respond(phone) {
+              display: inline-block;
+            }
+          }
+          @include respond(tablet) {
+            display: flex;
+            justify-content: space-evenly;
+          }
+          @include respond(phone) {
+            display: flex;
+            justify-content: space-evenly;
+          }
         }
-      }    
+      }
       @include respond(extraTablet) {
         min-width: $w-100;
         display: flex;
+        justify-content: space-around;
       }
       @include respond(tablet) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(120%);
         min-width: $w-100;
-        display: flex;
+        height: $h-100;
+        flex-direction: column;
       }
       @include respond(phone) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(120%);
         min-width: $w-100;
+        height: $h-100;
         flex-direction: column;
       }
     }
@@ -254,5 +332,8 @@
   .booked-chair {
     background: $red-2 !important;
     color: $tWhite;
+  }
+  .show-detail {
+    transform: translateX(0) !important;
   }
 }

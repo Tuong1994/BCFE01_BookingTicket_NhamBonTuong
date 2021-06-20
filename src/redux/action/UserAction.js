@@ -11,19 +11,18 @@ export const signInAction = (user) => {
         method: "POST",
         data: user,
       });
-      console.log("signIn", result.data);
       localStorage.setItem(accessToken, result.data.accessToken);
       localStorage.setItem(taiKhoan, JSON.stringify(result.data));
       history.push("/");
       dispatch({
         type: "SIGN_IN",
-        taiKhoan,
+        taiKhoan: taiKhoan,
       });
     } catch (error) {
       Swal.fire({
         icon: "error",
-        text: error.response.data
-      })
+        text: error.response.data,
+      });
       console.log(error);
     }
   };
@@ -42,7 +41,7 @@ export const signUpAction = (user) => {
       Swal.fire({
         icon: "error",
         title: error.response.data,
-      })
+      });
       console.log(error.response.data);
     }
   };
@@ -55,24 +54,26 @@ export const updateAction = (user) => {
         url: `${domain}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
         method: "PUT",
         data: user,
-        headers: {"Authorization": "Bearer " + localStorage.getItem(accessToken)}
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem(accessToken),
+        },
       });
       console.log(result.data);
       localStorage.setItem(taiKhoan, result.data);
       Swal.fire({
         icon: "success",
-        title: "Cập nhật thành công"
-      })
-      history.push("/userinfo")
+        title: "Cập nhật thành công",
+      });
+      history.push("/userinfo");
       dispatch({
         type: "UPDATE_ACC",
-        taiKhoan: result.data
+        taiKhoan: result.data,
       });
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
-      })
+        title: error.response.data,
+      });
       console.log("update", error);
     }
   };
@@ -85,19 +86,21 @@ export const bookHistoryAction = (user) => {
         url: `${domain}/api/QuanLyNguoiDung/ThongTinTaiKhoan`,
         method: "POST",
         data: user,
-        headers: {"Authorization": "Bearer " + localStorage.getItem(accessToken)}
-      })
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem(accessToken),
+        },
+      });
       console.log(result.data);
       dispatch({
         type: "BOOK_HISTORY",
         taiKhoan: result.data,
-      })
+      });
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: error
-      })
+        title: error,
+      });
       console.log(error);
     }
-  }
-}
+  };
+};

@@ -13,15 +13,14 @@ export const AdminTemplate = (props) => {
             <div className="admin__info">
                 <div className="admin__login">
                     <span>Hello, {account}</span>
-                    <button className="btn-show" onClick={showAcitve}><i class="fa fa-user"></i></button>
-                    <div className={show ? "admin__submenu show" : "admin__submenu"}>
-                        <NavLink className="info__link" to="/admin_info">
-                            Thông tin tài khoản
-                        </NavLink>
-                    </div>
+                    <span><i class="fa fa-user"></i></span>
                 </div>
 
-                <div className="admin__menu">
+                <div className={show ? "admin__menu show" : "admin__menu"}>
+                    <NavLink className="admin__link" to="/dashboard">
+                        <i class="fa fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </NavLink>
                     <NavLink className="admin__link" to="/film_manage">
                         <i class="fa fa-film"></i>
                         <span>Quản lý Phim</span>
@@ -29,6 +28,10 @@ export const AdminTemplate = (props) => {
                     <NavLink className="admin__link" to="/user_manage">
                         <i class="fa fa-users"></i>
                         <span>Quản lý người dùng</span>
+                    </NavLink>
+                    <NavLink className="admin__link sub-btn" to="/">
+                        <i class="fa fa-angle-double-left"></i>
+                        <span>Về trang chủ</span>
                     </NavLink>
                 </div>
 
@@ -41,10 +44,10 @@ export const AdminTemplate = (props) => {
                     </NavLink>
                 </div>
 
-                <NavLink className="sub-btn" to="/">
-                    <i class="fa fa-angle-double-left"></i>
-                </NavLink>
-                
+                <button className="btn-show" onClick={showAcitve}>
+                    {show ? <i class="fa fa-times"></i> : <i class="fa fa-align-right"></i>}
+                </button>
+
             </div>
             <div className="admin__content">
                 <Component {...propsRoute} />

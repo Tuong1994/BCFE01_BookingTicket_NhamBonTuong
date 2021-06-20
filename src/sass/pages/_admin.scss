@@ -7,10 +7,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: $w-100 - 80;
+    width: $w-100 - 83;
     height: $h-100;
     box-shadow: 0 0 5px $dark-1;
-    background: linear-gradient(to bottom, $primary 80%, $grey-1);
+    background: linear-gradient(to top, $primary, $grey-2);
+    background-position: center;
     padding: $p-1;
     color: $tPrimary;
     font-weight: $medium;
@@ -20,52 +21,8 @@
       justify-content: space-evenly;
       padding: $p-1 0;
       border-bottom: 1px solid $dark-1;
-      font-size: $h3;
+      font-size: $h3 - 2;
       position: relative;
-      .btn-show {
-        border: 0;
-        text-align: center;
-        background: transparent;
-        color: $tPrimary;
-        outline: 0;
-        @include respond(extraTablet) {
-          margin: 0 $m-1;
-        }
-        @include respond(tablet) {
-          margin: 0 $m-1;
-        }
-        @include respond(phone) {
-          margin: 0 $m-1;
-        }
-      }
-      .admin__submenu {
-        position: absolute;
-        top: 80%;
-        right: 15%;
-        width: $w-10 * 1.5;
-        background: $grey-2;
-        font-size: $body-1;
-        text-align: center;
-        border-radius: 5px;
-        padding: $p-1 0;
-        display: flex;
-        flex-direction: column;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.4s;
-        .info__link {
-          text-decoration: none;
-          color: $tPrimary;
-          padding: $p-1 - 7 0;
-          transition: all 0.4s;
-          &:hover {
-            background: $grey-1;
-          }
-          i {
-            margin-right: $m-1;
-          }
-        }
-      }
       .show {
         opacity: 1;
         visibility: visible;
@@ -73,25 +30,28 @@
       @include respond(extraTablet) {
         font-size: $body-1 + 2;
         border: 0;
+        width: $w-100 - 80;
       }
       @include respond(tablet) {
         font-size: $body-1 + 2;
         border: 0;
+        width: $w-100 - 70;
       }
       @include respond(phone) {
         font-size: $body-1 + 2;
         border: 0;
+        width: $w-100 - 70;
       }
     }
     .admin__menu {
       display: flex;
       flex-direction: column;
       margin-top: $m-5;
-      font-size: $body-1 + 4;
+      transition: all 0.4s;
       .admin__link {
         text-decoration: none;
         color: $tPrimary;
-        margin: $m-2;
+        margin: $m-1;
         transition: all 0.4s;
         &:hover {
           color: $tSecondary;
@@ -99,18 +59,9 @@
         }
         i {
           margin-right: $m-1;
-          @include respond(extraTablet) {
-            display: none;
-          }
-          @include respond(tablet) {
-            display: none;
-          }
-          @include respond(phone) {
-            display: none;
-          }
         }
         @include respond(extraTablet) {
-          margin: 0 $m-1;
+          margin: $m-2 $m-1;
         }
         @include respond(tablet) {
           margin: 0 $m-1;
@@ -119,23 +70,64 @@
           margin: 0 $m-1;
         }
       }
+      .sub-btn {
+        text-decoration: none;
+        color: $tPrimary;
+        display: none;
+        @include respond(extraTablet) {
+          display: block;
+        }
+        @include respond(tablet) {
+          display: block;
+        }
+        @include respond(phone) {
+          display: block;
+        }
+      }
       @include respond(extraTablet) {
-        font-size: $body-1 + 2;
-        margin: 0;
-        flex-direction: row;
-        align-items: center;
+        padding: $p-1 $p-5;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: $w-100 - 60;
+        height: $h-100;
+        font-size: $body-1 + 5;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        background: $primary;
+        box-shadow: 0 5px 5px $grey-2;
+        z-index: 1000;
       }
       @include respond(tablet) {
-        font-size: $body-1 + 2;
-        margin: 0;
-        flex-direction: row;
-        align-items: center;
+        padding: $p-1 $p-4;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: $w-100;
+        height: $h-10 + 80;
+        font-size: $body-1 + 3;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        background: $primary;
+        box-shadow: 0 5px 5px $grey-2;
+        z-index: 1000;
       }
       @include respond(phone) {
-        font-size: $body-1 + 2;
-        margin: 0;
-        flex-direction: row;
-        align-items: center;
+        padding: $p-1 $p-4;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: $w-100;
+        height: $h-10 + 50;
+        font-size: $body-1;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        background: $primary;
+        box-shadow: 0 5px 5px $grey-2;
+        z-index: 1000;
       }
     }
     .admin__return {
@@ -154,6 +146,9 @@
         text-decoration: none;
         color: $tPrimary;
         display: block;
+        @include respond(laptop) {
+          font-size: $body-1;
+        }
       }
       .btn-return-1 {
         width: $w-4;
@@ -180,10 +175,20 @@
         display: none;
       }
     }
-    .sub-btn {
-      text-decoration: none;
-      color: $tPrimary;
+    .btn-show {
+      width: $w-4;
+      height: $h-4;
+      font-size: $body-1 + 5;
       display: none;
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      outline: 0;
+      transition: all 0.4s;
+      &:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        color: $tSecondary;
+      }
       @include respond(extraTablet) {
         display: block;
       }
@@ -194,22 +199,28 @@
         display: block;
       }
     }
+    .show {
+      left: 0;
+    }
+    @include respond(laptop) {
+      width: $w-100 - 80;
+    }
     @include respond(extraTablet) {
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
       flex-direction: row-reverse;
       width: $w-100;
       height: $h-5;
     }
     @include respond(tablet) {
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
       flex-direction: row-reverse;
       width: $w-100;
       height: $h-5;
     }
     @include respond(phone) {
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
       flex-direction: row-reverse;
       width: $w-100;
@@ -218,7 +229,7 @@
   }
   .admin__content {
     position: relative;
-    width: $w-100 - 20;
+    width: $w-100 - 17;
     height: $h-100;
     overflow-y: auto;
     @include respond(extraTablet) {
@@ -239,6 +250,80 @@
   }
   @include respond(phone) {
     flex-direction: column;
+  }
+}
+
+// DASHBOARD
+.dashboard-wrapper {
+  padding: $p-3;
+  .feature-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $m-5;
+    .feature__card {
+      width: $w-100 - 75;
+      padding: $p-2;
+      border: 2px solid $grey-1;
+      .feature__rate {
+        color: $tGreen;
+        i {
+          margin-right: $m-2;
+        }
+      }
+      .rate__down {
+        color: $tSecondary;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+        margin-bottom: $m-2;
+      }
+      @include respond(phone) {
+        width: $w-100;
+        margin-bottom: $m-2;
+      }
+    }
+    @include respond(tablet) {
+      flex-direction: column;
+    }
+    @include respond(phone) {
+      flex-direction: column;
+    }
+  }
+  .revanue-chart,
+  .cinema-chart {
+    padding: $p-1;
+    border: 2px solid $grey-1;
+    margin-bottom: $m-5;
+    h4 {
+      margin-bottom: $m-3;
+    }
+  }
+  .chart-wrapper {
+    width: $w-100;
+    display: flex;
+    justify-content: space-between;
+    .cinema-chart,
+    .user-chart {
+      width: $w-100 - 51;
+      padding: $p-1;
+      border: 2px solid $grey-1;
+      margin-bottom: $m-5;
+      h4 {
+        margin-bottom: $m-3;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+      }
+      @include respond(phone) {
+        width: $w-100;
+      }
+    }
+    @include respond(tablet) {
+      flex-direction: column;
+    }
+    @include respond(phone) {
+      flex-direction: column;
+    }
   }
 }
 
@@ -269,6 +354,18 @@
       }
       i {
         margin-right: $m-1;
+        font-size: $body-1;
+        @include respond(tablet) {
+          font-size: $body-1;
+        }
+        @include respond(phone) {
+          font-size: $body-1;
+        }
+      }
+      @include respond(tablet) {
+        font-size: $body-1;
+      }
+      @include respond(phone) {
         font-size: $body-1;
       }
     }
@@ -322,6 +419,15 @@
         p {
           margin: 0;
         }
+        @include respond(extraTablet) {
+          font-size: $body-1;
+        }
+        @include respond(tablet) {
+          font-size: $body-1;
+        }
+        @include respond(phone) {
+          font-size: $body-1;
+        }
       }
       .list__body {
         height: $h-10 * 3.8;
@@ -356,6 +462,19 @@
               height: $h-10;
               border-radius: 5px;
               margin-right: $m-1;
+              @include respond(tablet) {
+                display: block;
+                width: $w-6;
+                height: $h-6;
+              }
+              @include respond(tablet) {
+                display: block;
+                width: $w-6;
+                height: $h-6;
+              }
+              @include respond(phone) {
+                display: none;
+              }
             }
             .film__info {
               width: $w-100 - 20;
@@ -365,7 +484,27 @@
                 &:first-child {
                   margin-bottom: $m-1;
                   border-bottom: 1px solid $grey-2;
-                  font-size: $body-1 + 6;
+                  font-size: $body-1 + 4;
+                  @include respond(extraTablet) {
+                    font-size: $body-1;
+                  }
+                  @include respond(tablet) {
+                    font-size: $body-1;
+                  }
+                  @include respond(phone) {
+                    font-size: $body-1;
+                  }
+                }
+                &:nth-child(2) {
+                  @include respond(extraTablet) {
+                    display: none;
+                  }
+                  @include respond(tablet) {
+                    display: none;
+                  }
+                  @include respond(phone) {
+                    display: none;
+                  }
                 }
                 span {
                   color: $tSecondary;
@@ -373,29 +512,79 @@
               }
             }
           }
-          .btn-del {
+          .btn-edit {
             display: flex;
             align-items: center;
             flex-direction: column;
-          }
-          .button {
-            text-decoration: none;
-            color: $tWhite;
-            width: $w-100 - 25;
-            margin: $m-1 - 5 0;
-            font-size: $body-1;
-            padding: $p-1 - 5 $p-2;
-            box-shadow: 0 0 5px $dark-2;
-            &:nth-child(1),
-            &:nth-child(2) {
-              border: 1px solid $blue;
-              background: linear-gradient(to right, $deepBlue, $blue);
-              transition: all 0.4s;
-              &:hover {
-                color: $blue !important;
-                background: transparent;
+            .button {
+              text-decoration: none;
+              color: $tWhite;
+              width: $w-100 - 25;
+              margin: $m-1 - 5 0;
+              font-size: $body-2;
+              padding: $p-1 - 5 $p-2;
+              box-shadow: 0 0 5px $dark-2;
+              &:nth-child(1),
+              &:nth-child(2) {
+                border: 1px solid $blue;
+                background: linear-gradient(to right, $deepBlue, $blue);
+                transition: all 0.4s;
+                &:hover {
+                  color: $blue !important;
+                  background: transparent;
+                }
+              }
+              i {
+                margin-right: $m-1;
+                @include respond(extraTablet) {
+                  margin: 0;
+                }
+                @include respond(tablet) {
+                  margin: 0;
+                }
+                @include respond(phone) {
+                  margin: 0;
+                }
+              }
+              span {
+                @include respond(extraTablet) {
+                  display: none;
+                }
+                @include respond(tablet) {
+                  display: none;
+                }
+                @include respond(phone) {
+                  display: none;
+                }
+              }
+              @include respond(extraTablet) {
+                height: $h-3;
+                text-align: center;
+                line-height: $h-3;
+                padding: 0;
+              }
+              @include respond(tablet) {
+                height: $h-3;
+                text-align: center;
+                line-height: $h-3;
+                padding: 0;
+              }
+              @include respond(phone) {
+                height: $h-3;
+                text-align: center;
+                line-height: $h-3;
+                padding: 0;
               }
             }
+          }
+          @include respond(extraTablet) {
+            font-size: $body-1;
+          }
+          @include respond(tablet) {
+            font-size: $body-1;
+          }
+          @include respond(phone) {
+            font-size: $body-1;
           }
         }
       }
@@ -416,7 +605,7 @@
         width: $w-100 - 55;
         .form__item {
           width: $w-100;
-          margin-bottom: $m-2;
+          margin-bottom: $m-1;
           label {
             font-weight: $medium;
           }
@@ -429,16 +618,32 @@
               width: $w-100;
               border: 0;
               outline: 0;
+              display: flex;
+              align-items: center;
               input {
                 width: $w-100;
                 outline: 0;
                 border: 0;
               }
+              .error-icon {
+                color: $tSecondary;
+                display: none;
+              }
+            }
+          }
+        }
+        .form__button {
+          margin-top: $m-2;
+          .button {
+            @include respond(tablet) {
+              font-size: $body-1;
+            }
+            @include respond(phone) {
+              font-size: $body-1;
             }
           }
         }
       }
-      
     }
   }
   .popup-wrapper {
@@ -559,12 +764,24 @@
         font-weight: $medium;
       }
     }
+    @include respond(extraTablet) {
+      min-width: $w-100;
+    }
     @include respond(tablet) {
       min-width: $w-100;
     }
     @include respond(phone) {
       min-width: $w-100;
     }
+  }
+  @include respond(extraTablet) {
+    padding: $p-2 $p-1;
+  }
+  @include respond(tablet) {
+    padding: $p-2 $p-1;
+  }
+  @include respond(phone) {
+    padding: $p-2 $p-1;
   }
 }
 
@@ -647,6 +864,24 @@
         font-weight: $medium;
       }
     }
+    @include respond(extraTablet) {
+      width: $w-100;
+    }
+    @include respond(tablet) {
+      width: $w-100;
+    }
+    @include respond(phone) {
+      width: $w-100;
+    }
+  }
+  @include respond(extraTablet) {
+    padding: $p-2 $p-1;
+  }
+  @include respond(tablet) {
+    padding: $p-2 $p-1;
+  }
+  @include respond(phone) {
+    padding: $p-2 $p-1;
   }
 }
 
@@ -677,6 +912,32 @@
       i {
         margin-right: $m-1;
         font-size: $body-1;
+        @include respond(extraTablet) {
+          margin: 0;
+          font-size: $body-1 + 5;
+        }
+        @include respond(tablet) {
+          margin: 0;
+          font-size: $body-1 + 5;
+        }
+        @include respond(phone) {
+          margin: 0;
+          font-size: $body-1 + 5;
+        }
+      }
+      span {
+        @include respond(laptop) {
+          font-size: $body-1;
+        }
+        @include respond(extraTablet) {
+          display: none;
+        }
+        @include respond(tablet) {
+          display: none;
+        }
+        @include respond(phone) {
+          display: none;
+        }
       }
     }
     .form__input {
@@ -714,6 +975,17 @@
       .list__col-5 {
         width: $w-100 - 75;
       }
+      .list__col-3 {
+        @include respond(extraTablet) {
+          display: none;
+        }
+        @include respond(tablet) {
+          display: none;
+        }
+        @include respond(phone) {
+          display: none;
+        }
+      }
       .list__col-4 {
         width: $w-100 - 55;
       }
@@ -728,6 +1000,15 @@
         padding: $p-1 0;
         p {
           margin: 0;
+        }
+        @include respond(extraTablet) {
+          font-size: $body-1;
+        }
+        @include respond(tablet) {
+          font-size: $body-1;
+        }
+        @include respond(phone) {
+          font-size: $body-1;
         }
       }
       .list__body {
@@ -759,11 +1040,35 @@
             text-align: left;
             p {
               margin: 0;
-              text-indent: 20px;
+              text-indent: 15px;
               i {
                 width: $w-3;
                 font-size: $body-1;
                 margin-right: $m-2;
+                @include respond(laptop) {
+                  margin-right: $m-1;
+                }
+                @include respond(extraTablet) {
+                  display: none;
+                }
+                @include respond(tablet) {
+                  display: none;
+                }
+                @include respond(phone) {
+                  display: none;
+                }
+              }
+              @include respond(laptop) {
+                text-indent: 0;
+              }
+              @include respond(extraTablet) {
+                text-indent: 0;
+              }
+              @include respond(tablet) {
+                text-indent: 0;
+              }
+              @include respond(phone) {
+                text-indent: 0;
               }
             }
           }
@@ -771,24 +1076,65 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-          }
-          .button {
-            text-decoration: none;
-            color: $tWhite;
-            width: $w-100 - 40;
-            margin: $m-1 - 5 0;
-            font-size: $body-1;
-            padding: $p-1 - 5 $p-2;
-            box-shadow: 0 0 5px $dark-2;
-            &:nth-child(2) {
-              border: 1px solid $blue;
-              background: linear-gradient(to right, $deepBlue, $blue);
-              transition: all 0.4s;
-              &:hover {
-                color: $blue !important;
-                background: transparent;
+            .button {
+              text-decoration: none;
+              color: $tWhite;
+              width: $w-100 - 40;
+              margin: $m-1 - 5 0;
+              font-size: $body-1;
+              padding: $p-1 - 5 $p-2;
+              box-shadow: 0 0 5px $dark-2;
+              &:nth-child(2) {
+                border: 1px solid $blue;
+                background: linear-gradient(to right, $deepBlue, $blue);
+                transition: all 0.4s;
+                &:hover {
+                  color: $blue !important;
+                  background: transparent;
+                }
+              }
+              i {
+                margin-right: $m-1;
+                @include respond(extraTablet) {
+                  margin: 0;
+                }
+                @include respond(tablet) {
+                  margin: 0;
+                }
+                @include respond(phone) {
+                  margin: 0;
+                }
+              }
+              span {
+                @include respond(extraTablet) {
+                  display: none;
+                }
+                @include respond(tablet) {
+                  display: none;
+                }
+                @include respond(phone) {
+                  display: none;
+                }
+              }
+              @include respond(extraTablet) {
+                font-size: $body-2;
+              }
+              @include respond(tablet) {
+                font-size: $body-2;
+              }
+              @include respond(phone) {
+                font-size: $body-2;
               }
             }
+          }
+          @include respond(extraTablet) {
+            font-size: $body-1;
+          }
+          @include respond(tablet) {
+            font-size: $body-1;
+          }
+          @include respond(phone) {
+            font-size: $body-1;
           }
         }
       }

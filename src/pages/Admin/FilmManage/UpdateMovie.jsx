@@ -6,7 +6,6 @@ import { updateMovieAction } from '../../../redux/action/AdminAction';
 
 function UpdateMovie(props) {
     const {phim} = useSelector(state => state.PhimReducer);
-    console.log(phim);
     let dispatch = useDispatch();
     const { handleChange, handleSubmit, handleBlur, setFieldValue, touched, errors, isValid, values } = useFormik({
         initialValues: {

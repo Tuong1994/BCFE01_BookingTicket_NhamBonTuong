@@ -1,0 +1,80 @@
+.rwd-cinema__wrapper {
+  display: none;
+  .card {
+    .card-header {
+      .btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img {
+          width: $w-6;
+          height: $h-6;
+        }
+        i {
+          text-decoration: none;
+          color: $tPrimary;
+          font-size: $h3;
+        }
+      }
+    }
+    .card-body {
+      cursor: pointer;
+      padding: $p-1 - 8;
+      .cinema__info {
+        display: flex;
+        margin-bottom: $m-1;
+        img {
+          width: $w-5 + 5;
+          height: $h-5 + 5;
+          margin-right: $m-1;
+          border-radius: 5px;
+          box-shadow: 0 0 5px $dark-1;
+        }
+        .cinema__name {
+          p {
+            margin-bottom: $m-1 - 5;
+            font-weight: $medium;
+            &:nth-child(2) {
+              font-size: $body-1;
+              font-weight: $regular;
+            }
+          }
+        }
+      }
+      .film__body {
+        margin: 0;
+        padding: $p-1 - 5 $p-2;
+        .film__info {
+          display: flex;
+          img {
+            width: $w-5;
+            height: $h-5;
+            margin-right: $m-2;
+          }
+        }
+        .film__name {
+          p {
+            margin: 0;
+            font-weight: $medium;
+            text-transform: uppercase;
+          }
+          .button {
+            text-decoration: none;
+            font-size: $body-2;
+            padding: $p-1 - 5;
+            margin-right: $m-1 - 5;
+          }
+        }
+      }
+    }
+  }
+  @include respond(extraTablet) {
+    display: block;
+  }
+  @include respond(tablet) {
+    display: block;
+  }
+  @include respond(phone) {
+    display: block;
+  }
+}

@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { Link } from 'react-scroll';
 
 function Header(props) {
-    const {accountInfo} = useSelector(state => state.UserReducer);
     const dispatch = useDispatch();
     const [subMenu, setSubmenu] = useState(false);
     let showSubmenu = () => setSubmenu(!subMenu);
@@ -67,7 +66,7 @@ function Header(props) {
                             <span>{account}</span>
                             <button className="btn-show" onClick={showUserInfo}><i class="fa fa-caret-down"></i></button>
                             <div className={userInfo ? "user__info show" : "user__info"}>
-                                {accountInfo.maLoaiNguoiDung === "QuanTri" ? <NavLink className="user__link bg-link" to="/film_manage">Admin</NavLink> : ""}
+                                <NavLink className="user__link bg-link" to="/dashboard">Admin</NavLink>
                                 <NavLink className="user__link bg-link" to="/user_info">Thông tin cá nhân</NavLink>
                                 <button className="btn-logout bg-link" onClick={() => {
                                     dispatch({
@@ -83,7 +82,7 @@ function Header(props) {
                 </div>
                 
                 <button className="nav__button" onClick={showSubmenu}>
-                    <i class="fa fa-align-right"></i>
+                    {subMenu ? <i class="fa fa-times"></i> : <i class="fa fa-align-right"></i>}
                 </button>
             </nav>
         </div>

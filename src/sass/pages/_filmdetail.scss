@@ -1,4 +1,4 @@
-.detail__container {
+.filmdetail-wrapper {
   padding: $p-5 * 2 0;
   background-repeat: no-repeat;
   background-position: center;
@@ -20,11 +20,11 @@
     backdrop-filter: blur(10px);
   }
 
-  .detail__film {
+  .film__content {
     width: $w-100 - 35;
     margin: 0 auto;
     padding: $p-1;
-    .detail__body {
+    .film__body {
       display: flex;
       justify-content: space-between;
       padding: $p-1;
@@ -466,12 +466,6 @@
           color: $tSecondary;
         }
       }
-      @include respond(tablet) {
-        border-radius: 0;
-      }
-      @include respond(phone) {
-        border-radius: 0;
-      }
     }
 
     .nav-pills .nav-link.active,
@@ -489,26 +483,26 @@
       padding: 0 $p-2;
     }
     @include respond(tablet) {
-      min-width: $w-100;
+      min-width: $w-100 - 5;
       padding: 0;
     }
     @include respond(phone) {
-      min-width: $w-100;
+      min-width: $w-100 - 5;
       padding: 0;
     }
   }
 
   @include respond(extraTablet) {
     padding-top: $p-5 + 20;
-    padding-bottom: 0;
+    padding-bottom: $p-2;
   }
   @include respond(tablet) {
     padding-top: $p-5 + 20;
-    padding-bottom: 0;
+    padding-bottom: $p-2;
   }
   @include respond(phone) {
     padding-top: $p-5 + 20;
-    padding-bottom: 0;
+    padding-bottom: $p-2;
   }
 
   .popup-wrapper {

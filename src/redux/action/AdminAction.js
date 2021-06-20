@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { accessToken, domain, maNhom } from "../../configs/setting";
+import { accessToken, domain } from "../../configs/setting";
 import { getMovieAction } from "./PhimAction";
 
 export const addMovieAction = (film) => {
@@ -24,10 +24,32 @@ export const addMovieAction = (film) => {
         icon: "error",
         title: error.response.data,
       });
-      console.log(error.response.data);
     }
   };
 };
+
+export const createScheduleAction = (film) => {
+  return async (dispatch) => {
+    try {
+      const result = await axios({
+        url: `${domain}/api/QuanLyDatVe/TaoLichChieu`,
+        method: "POST",
+        data: film,
+        headers: {Authorization: "Bearer " + localStorage.getItem(accessToken)}
+      })
+      Swal.fire({
+        icon: "success",
+        title: "Tạo lịch chiếu thành công"
+      })
+      dispatch(getMovieAction());
+    } catch(error) {
+      Swal.fire({
+        icon: "error",
+        title: error.response?.data
+      })
+    }
+  }
+}
 
 export const updateMovieAction = (film) => {
   return async (dispatch) => {
@@ -44,12 +66,12 @@ export const updateMovieAction = (film) => {
         icon: "success",
         title: "Cập nhật thành công"
       })
+      dispatch(getMovieAction())
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: error.response?.data
       })
-      console.log(error.response?.data);
     }
   };
 };
@@ -65,8 +87,6 @@ export const delMovieAction = (maPhim) => {
           Authorization: "Bearer " + localStorage.getItem(accessToken),
         },
       });
-      console.log(result.data);
-
       dispatch(getMovieAction());
     } catch (error) {
       Swal.fire({
@@ -106,7 +126,6 @@ export const addUserAction = (user) => {
           Authorization: "Bearer " + localStorage.getItem(accessToken),
         },
       });
-      console.log(result.data);
       Swal.fire({
         icon: "success",
         title: "Thêm thành công",
@@ -117,7 +136,6 @@ export const addUserAction = (user) => {
         icon: "error",
         title: error.response.data,
       });
-      console.log(error.response.data);
     }
   };
 };
@@ -143,7 +161,6 @@ export const updateUserAction = (user) => {
         icon: "error",
         title: error.response?.data,
       });
-      console.log(error.response.data);
     }
   };
 };
@@ -165,7 +182,6 @@ export const delUserAction = (user) => {
         icon: "error",
         title: error.response?.data,
       });
-      console.log(error);
     }
   };
 };

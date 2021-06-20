@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 function History(props) {
     let { accountInfo } = useSelector(state => state.UserReducer);
-    console.log(accountInfo);
     let renderLichSuDatVe = () => {
         return  accountInfo.thongTinDatVe?.map((film, index) => {
             return <tr key={index}>

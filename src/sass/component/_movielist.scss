@@ -8,12 +8,12 @@
     justify-content: center;
     align-items: center;
     border: 0;
-    font-size: $h3;
+    font-size: $h3; 
     margin-bottom: $m-3;
     .nav-link {
       text-decoration: none;
       color: $tPrimary;
-      margin: $m-2;
+      margin: $m-1;
       transition: all 0.3s;
       outline: 0;
       &:hover {
@@ -72,7 +72,7 @@
       width: $w-100;
       .card__item {
         position: relative;
-        margin: $m-1 - 5 0;
+        margin: $m-1 0;
         padding: $p-1 - 5;
         border-radius: 5px;
         &:hover .card__img img {
@@ -100,6 +100,35 @@
             border-radius: 5px;
             transition: all 0.4s;
             transform: scale(1,1);
+          }
+          .card__review {
+            position: absolute;
+            top: 2%;
+            right: 2%;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            width: $w-5;
+            height: $h-4;
+            font-size: $body-1;
+            font-weight: $medium;
+            padding: $p-1 - 5;
+            border-radius: 5px;
+            color: $tSecondary;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            p {
+              margin: 0;
+            }
+            .card__star {
+              width: $w-100;
+              display: flex;
+              justify-content: center;
+              i {
+                font-size: $body-2 - 5;
+              }
+            }
           }
           &::after {
             content: "";
@@ -129,7 +158,7 @@
           }
           @include respond(phone) {
             width: $w-100;
-            height: $h-10 * 2.5;
+            height: $h-10 * 2;
           }
         }
         .card__content {
@@ -141,9 +170,10 @@
           span {
             text-transform: uppercase;
             font-weight: $medium;
-            font-size: $body-1 + 2;
+            font-size: $body-1;
           }
           p {
+            color: $tSecondary;
             margin: 0
           }
         }
@@ -187,7 +217,7 @@
             text-align: center;
             width: $w-100;
             position: absolute;
-            bottom: 2%;
+            bottom: -3%;
             left: 50%;
             transform: translateX(-50%);
             box-shadow: 0 0 5px $dark-2;
@@ -219,8 +249,28 @@
         }
       }
     }
+    .btn-load {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: $m-2 0;
+      width: $w-100;
+      .button {
+        display: block;
+      }
+    }
   }
-
+  .movielist__desktop {
+    @include respond(phone) {
+      display: none;
+    }
+  }
+  .movielist__responsive {
+    display: none;
+    @include respond(phone) {
+      display: block;
+    }
+  }
   .popup-wrapper {
     width: $w-100;
     height: $h-100;
@@ -274,7 +324,6 @@
       }
     }
   }
-
   @include respond(extraTablet) {
     margin-top: 0;
   }

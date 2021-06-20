@@ -12,7 +12,7 @@ function Carousel(props) {
     let [showVideo, setShowVideo] = useState(false);
     let renderFilm = () => {
         return danhSachPhim?.slice(2,5).map((film, index) => {
-            return <div className="slide" key={index} style={{backgroundImage: `url(${film.hinhAnh})`}}>
+            return <div className="slide" key={index}>
                 <img className="slides__img" src={film.hinhAnh} />
                 <button className="btn__play" onClick={() => {
                     dispatch({

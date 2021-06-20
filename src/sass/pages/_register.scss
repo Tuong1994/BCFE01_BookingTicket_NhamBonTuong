@@ -23,8 +23,11 @@
     box-shadow: 0 0 5px $dark-1;
     position: relative;
     z-index: 10;
+    @include respond(laptop) {
+      width: $w-100 - 45;
+    }
     @include respond(extraTablet) {
-      width: $w-100 - 40;
+      width: $w-100 - 35;
     }
     @include respond(tablet) {
       width: $w-100;
@@ -43,6 +46,14 @@
       font-size: $h2;
       text-transform: uppercase;
       margin-bottom: $m-3;
+      @include respond(tablet) {
+        color: $tWhite;
+      }
+      @include respond(phone) {
+        color: $tWhite;
+      }
+    }
+    h6 {
       @include respond(tablet) {
         color: $tWhite;
       }

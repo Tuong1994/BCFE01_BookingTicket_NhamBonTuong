@@ -1,20 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
-import { history } from '../../App';
+import Swal from 'sweetalert2';
 import { taiKhoan } from '../../configs/setting';
 import { bookMovieAction, getTicketAction } from '../../redux/action/PhimAction';
 
 function Checkout(props) {
+    const [showDetail, setShowDetail] = useState(true);
     const { thongTinRapChieu } = useSelector(state => state.PhimReducer);
     const { DSGheDangDat } = useSelector(state => state.BookTicketReducer);
     let dispatch = useDispatch();
     useEffect(() => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         let { id } = props.match.params;
         dispatch(getTicketAction(id));
     }, [])
+
     let renderChair = () => {
         return thongTinRapChieu.danhSachGhe?.map((chair, index) => {
             let indexBook = DSGheDangDat.findIndex(bookChair => bookChair.maGhe === chair.maGhe);
@@ -87,9 +89,16 @@ function Checkout(props) {
                             <span>Ghế đã chọn</span>
                         </div>
                     </div>
+
+                    <div className="checkout__detail">
+                        <p className="price">Tổng tiền : <span>{renderTotal().toLocaleString()} VNĐ</span></p>
+                        <button className="button" onClick={() => {
+                            setShowDetail(!showDetail)
+                        }}>Đặt vé</button>
+                    </div>
                 </div>
 
-                <div className="checkout__movie">
+                <div className={showDetail ? "checkout__movie show-detail" : "checkout__movie"}>
                     <div className="movie__img">
                         <img src={thongTinRapChieu.thongTinPhim?.hinhAnh} alt={thongTinRapChieu.thongTinPhim?.tenPhim} />
                     </div>
@@ -104,21 +113,29 @@ function Checkout(props) {
                             <p className="price">Tổng tiền : <span>{renderTotal().toLocaleString()} VNĐ</span></p>
                         </div>
                         <hr />
-                        <button className="button" onClick={() => {
-                            if (localStorage.getItem(taiKhoan)) {
-                                let accLogin = JSON.parse(localStorage.getItem(taiKhoan));
-                                let thongTinVe = {
-                                    maLichChieu: props.match.params.id,
-                                    danhSachVe: DSGheDangDat,
-                                    taiKhoanNguoiDung: accLogin.taiKhoan,
-                                }   
-                                dispatch(bookMovieAction(thongTinVe));
-                            } else {
-                                props.history.push("/")
-                            }
-                        }}>
-                            Đặt vé
-                        </button>
+                        <div className="checkout__button">
+                            <button className="btn-close" onClick={() => {
+                                setShowDetail(!showDetail)
+                            }}><i class="fa fa-long-arrow-alt-left"></i></button>
+                            <button className="button" onClick={() => {
+                                if (localStorage.getItem(taiKhoan) && DSGheDangDat !== "") {
+                                    let accLogin = JSON.parse(localStorage.getItem(taiKhoan));
+                                    let thongTinVe = {
+                                        maLichChieu: props.match.params.id,
+                                        danhSachVe: DSGheDangDat,
+                                        taiKhoanNguoiDung: accLogin.taiKhoan,
+                                    };
+                                    dispatch(bookMovieAction(thongTinVe));
+                                } else {
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Bạn chưa chọn ghế"
+                                    })
+                                }
+                            }}>
+                                Đặt vé
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

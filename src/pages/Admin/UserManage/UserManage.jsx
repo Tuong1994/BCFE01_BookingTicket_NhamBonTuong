@@ -27,7 +27,7 @@ function UserManage(props) {
                 <div className="list__col-3"><p>{user.matKhau}</p></div>
                 <div className="list__col-4 item__user">
                     <p><i class="fa fa-user"></i><span>Họ tên : {user.hoTen}</span></p>
-                    <p><i class="fa fa-envelope"></i><span>Email : {user.email}</span></p>
+                    <p><i class="fa fa-envelope"></i>{user.email.length > 10 ? <span>Email : {user.email.substr(0,10)}...</span> : <span>Email : {user.email.length}</span>}</p>
                     <p><i class="fa fa-phone"></i><span>Số điện thoại : {user.soDt}</span></p>
                 </div>
                 <div className="list__col-5 btn-del">
@@ -39,16 +39,19 @@ function UserManage(props) {
                             confirmButtonColor: "#3085d6",
                             cancelButtonColor: "#d33",
                             confirmButtonText: "Đúng",
-                          }).then((result) => {
+                        }).then((result) => {
                             if (result.isConfirmed) {
-                              Swal.fire({
-                                icon: "success",
-                                title: "Người dùng đã được xóa",
-                              });
-                              dispatch(delUserAction(user.taiKhoan));
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Người dùng đã được xóa",
+                                });
+                                dispatch(delUserAction(user.taiKhoan));
                             }
-                          });
-                    }}>Xóa</button>
+                        });
+                    }}>
+                        <i class="fa fa-trash-alt"></i>
+                        <span>Xóa</span>
+                    </button>
                     <NavLink className="button" to="/update_user" onClick={() => {
                         dispatch({
                             type: "USER_DETAIL",
@@ -62,13 +65,18 @@ function UserManage(props) {
                                 maLoaiNguoiDung: user.maLoaiNguoiDung
                             }
                         })
-                    }}>Sửa</NavLink>
+                    }}>
+                        <i class="fa fa-edit"></i>
+                       <span>Sửa</span> 
+                    </NavLink>
                 </div>
             </div>
         })
     }
     return (
         <div className="userManage-wrapper">
+            <h2>Quản lý người dùng</h2>
+            <hr />
             <div className="userManage__form">
                 <NavLink to="/add_user" className="form__link">
                     <i class="fa fa-user-plus"></i>

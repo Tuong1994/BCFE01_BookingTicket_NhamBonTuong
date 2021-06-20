@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AdminInfo(props) {
+function RWD_MovieList(props) {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function AdminInfo(props) {
     );
 }
 
-export default AdminInfo;
+export default RWD_MovieList;

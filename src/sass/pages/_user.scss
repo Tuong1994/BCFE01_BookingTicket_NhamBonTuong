@@ -5,10 +5,10 @@
   display: flex;
   color: $tPrimary;
   .user__info {
-    width: $w-100 - 75;
+    width: $w-100 - 80;
     padding: $p-1;
     box-shadow: 0 0 5px $dark-1;
-    background: $primary;
+    background: linear-gradient(to top, $primary, $grey-2);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -17,6 +17,7 @@
     .user__logo {
       text-align: center;
       font-size: $h3;
+      font-weight: $medium;
       border-bottom: 1px solid $grey-2;
       img {
         width: $w-10;
@@ -25,30 +26,59 @@
         box-shadow: 0 0 5px $dark-1;
         text-shadow: 0 0 5px $dark-1;
         margin-bottom: $m-1;
+        @include respond(extraTablet) {
+          display: block;
+          width: $w-4;
+          height: $h-4;
+        }
         @include respond(tablet) {
-          display: none;
+          display: block;
+          width: $w-3;
+          height: $h-3;
         }
         @include respond(phone) {
-          display: none;
+          display: block;
+          width: $w-3;
+          height: $h-3;
+        }
+      }
+      @include respond(extraTablet) {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        font-size: $body-1 + 4;
+        border: 0;
+        p {
+          margin-bottom: 0;
+          margin-right: $m-2;
         }
       }
       @include respond(tablet) {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
         font-size: $body-1 + 2;
         border: 0;
         p {
-          margin: 0;
+          margin-bottom: 0;
+          margin-right: $m-2;
         }
       }
       @include respond(phone) {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
         font-size: $body-1 + 2;
         border: 0;
         p {
-          margin: 0;
+          margin-bottom: 0;
+          margin-right: $m-2;
         }
       }
     }
     .user__menu {
       padding: $p-3;
+      transition: all 0.4s;
       .user__link {
         display: block;
         text-decoration: none;
@@ -63,6 +93,9 @@
           color: $tSecondary;
           border-bottom: 1px solid $red-1;
           animation: move 0.8s linear infinite;
+          @include respond(extraTablet) {
+            border: 0;
+          }
           @include respond(tablet) {
             border: 0;
           }
@@ -72,32 +105,86 @@
         }
         i {
           margin-right: $m-1;
-          @include respond(tablet) {
-            display: none;
-          }
-          @include respond(phone) {
-            display: none;
-          }
+        }
+        @include respond(laptop) {
+          font-size: $body-1 + 2;
+        }
+        @include respond(extraTablet) {
+          font-size: $body-1 + 5;
+          margin: $m-1 - 5;
+          border: 0;
         }
         @include respond(tablet) {
           font-size: $body-1 + 2;
-          margin: $m-1;
+          margin: $m-1 - 5;
           border: 0;
         }
         @include respond(phone) {
           font-size: $body-1 + 2;
-          margin: $m-1;
+          margin-bottom: $m-1 - 5;
           border: 0;
         }
       }
+      .sub-btn {
+        display: none;
+        @include respond(extraTablet) {
+          text-decoration: none;
+          color: $tPrimary;
+          display: block;
+        }
+        @include respond(tablet) {
+          text-decoration: none;
+          color: $tPrimary;
+          display: block;
+        }
+        @include respond(phone) {
+          text-decoration: none;
+          color: $tPrimary;
+          display: block;
+        }
+      }
+      @include respond(extraTablet) {
+        flex-direction: column;
+        justify-content: center;
+        padding: $p-1 $p-3;
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: $w-100 - 65;
+        height: 100vh;
+        background: $primary;
+        z-index: 99999;
+        box-shadow: 0 5px 5px $dark-2;
+      }
       @include respond(tablet) {
-        display: flex;
-        padding: 0;
+        flex-direction: column;
+        justify-content: center;
+        padding: $p-1 $p-3;
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: $w-100;
+        height: $h-10 * 2;
+        background: $primary;
+        z-index: 99999;
+        box-shadow: 0 5px 5px $dark-2;
       }
       @include respond(phone) {
-        display: flex;
-        padding: 0;
+        flex-direction: column;
+        justify-content: center;
+        padding: $p-1 $p-3;
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        width: $w-100;
+        height: $h-10 * 2;
+        background: $primary;
+        z-index: 99999;
+        box-shadow: 0 5px 5px $dark-2;
       }
+    }
+    .show__menu {
+      left: 0;
     }
     .user__button {
       position: relative;
@@ -117,7 +204,7 @@
         display: block;
       }
       .btn-return-1 {
-        width: $w-100 - 89;
+        width: $w-100 - 85;
         padding: $p-1;
         border-radius: 5px;
         background: $red-1;
@@ -131,6 +218,9 @@
         visibility: hidden;
         transition: all 0.4s;
       }
+      @include respond(extraTablet) {
+        display: none;
+      }
       @include respond(tablet) {
         display: none;
       }
@@ -138,36 +228,57 @@
         display: none;
       }
     }
-    .sub-btn {
+    .btn-show {
+      outline: 0;
+      border: 0;
+      width: $w-4;
+      height: $h-4;
+      font-size: $body-1 + 5;
+      background: transparent;
+      transition: all 0.4s;
       display: none;
+      &:hover {
+        box-shadow: 0 0 5px $grey-2;
+        color: $tSecondary;
+      }
+      @include respond(extraTablet) {
+        display: block;
+        font-size: $body-1 + 8;
+      }
       @include respond(tablet) {
-        text-decoration: none;
-        color: $tPrimary;
         display: block;
       }
       @include respond(phone) {
-        text-decoration: none;
-        color: $tPrimary;
         display: block;
       }
+    }
+    @include respond(laptop) {
+      width: $w-100 - 75;
+    }
+    @include respond(extraTablet) {
+      flex-direction: row-reverse;
+      justify-content: space-around;
+      align-items: center;
+      width: $w-100;
+      box-shadow: 0 0 5px $dark-2;
     }
     @include respond(tablet) {
       flex-direction: row-reverse;
       justify-content: space-around;
       align-items: center;
       width: $w-100;
-      background: $primary;
+      box-shadow: 0 0 5px $dark-2;
     }
     @include respond(phone) {
       flex-direction: row-reverse;
       justify-content: space-around;
       align-items: center;
       width: $w-100;
-      background: $primary;
+      box-shadow: 0 0 5px $dark-2;
     }
   }
   .user__content {
-    width: $w-100 - 25;
+    width: $w-100 - 20;
     height: $h-100;
     background-image: url("../../assets/img/posterBG.jpg");
     background-position: center;
@@ -184,12 +295,18 @@
       background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(2px);
     }
+    @include respond(extraTablet) {
+      width: $w-100;
+    }
     @include respond(tablet) {
       width: $w-100;
     }
     @include respond(phone) {
       width: $w-100;
     }
+  }
+  @include respond(extraTablet) {
+    flex-direction: column;
   }
   @include respond(tablet) {
     flex-direction: column;
@@ -202,7 +319,7 @@
 .userInfo-wrapper {
   padding: $p-3;
   position: relative;
-  z-index: 100;
+  z-index: 10;
   .userInfo__content {
     width: $w-100;
     margin-bottom: $m-1;
@@ -296,6 +413,15 @@
       align-items: center;
       margin-top: $m-2;
     }
+    @include respond(extraTablet) {
+      width: $w-100 - 20;
+    }
+    @include respond(tablet) {
+      width: $w-100 - 10;
+    }
+    @include respond(phone) {
+      width: $w-100 - 10;
+    }
   }
 }
 
@@ -304,7 +430,7 @@
   text-align: center;
   padding: $p-3;
   position: relative;
-  z-index: 100;
+  z-index: 10;
   .userHistory-body {
     padding: $p-2;
     color: $tWhite;
@@ -324,6 +450,12 @@
               color: $tSecondary;
               margin-right: $m-1;
             }
+            @include respond(tablet) {
+              text-indent: 0;
+            }
+            @include respond(phone) {
+              text-indent: 0;
+            }
           }
         }
       }
@@ -336,6 +468,7 @@
   @include respond(phone) {
     overflow-y: visible !important;
     height: auto;
+    font-size: $body-1;
   }
 }
 

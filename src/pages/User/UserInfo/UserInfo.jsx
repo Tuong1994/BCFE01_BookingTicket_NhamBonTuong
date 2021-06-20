@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 function UserInfo(props) {
     let { accountInfo } = useSelector(state => state.UserReducer);
-    console.log(accountInfo);
     return (
         <div className="userInfo-wrapper">
             <div className="userInfo__content">

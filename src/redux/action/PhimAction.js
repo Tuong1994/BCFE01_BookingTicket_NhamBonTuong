@@ -3,72 +3,94 @@ import Swal from "sweetalert2";
 import { accessToken, domain, maNhom } from "../../configs/setting";
 
 export const getMovieAction = () => {
-  return async(dispatch) => {
-    try {
-      const result = await axios({
-        url: `${domain}/api/QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}`,
-        method: "GET",
-      });
-      dispatch({
-        type: "GET_MOVIE",
-        danhSachPhim: result.data,
-      });
-    } catch (error) {
-      console.log(error.response?.data);
-    }
-  };
-};
-
-export const getCinemaDetailAction = () => {
   return (dispatch) => {
+    dispatch({
+      type: "openLoading",
+    })
     setTimeout(async () => {
       try {
         const result = await axios({
-          url: `${domain}/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${maNhom}`,
+          url: `${domain}/api/QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}`,
           method: "GET",
         });
         dispatch({
-          type: "GET_CINEMA_DETAIL",
-          chiTietRapChieu: result.data,
+          type: "GET_MOVIE",
+          danhSachPhim: result.data,
         });
+        dispatch({
+          type: "closeLoading"
+        })
       } catch (error) {
-        console.log(error);
+        console.log(error.response?.data);
       }
-    }, 1000);
+    }, 1000)
+  };
+};
+
+export const getCinemaAction = () => {
+  return async (dispatch) => {
+    try {
+      const result = await axios({
+        url: `${domain}/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${maNhom}`,
+        method: "GET",
+      });
+      dispatch({
+        type: "GET_CINEMA",
+        danhSachRapChieu: result.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
 export const getShowTimeDetail = (maPhim) => {
-  return async (dispatch) => {
-    try {
-      const result = await axios({
-        url: `${domain}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
-        method: "GET",
-      });
-      dispatch({
-        type: "GET_SHOWTIME_DETAIL",
-        chiTietLichChieu: result.data,
-      });
-    } catch (error) {
-      console.log("showTime", error.response.data);
-    }
+  return (dispatch) => {
+    dispatch({
+      type: "openLoading"
+    })
+    setTimeout(async () => {
+      try {
+        const result = await axios({
+          url: `${domain}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
+          method: "GET",
+        });
+        dispatch({
+          type: "GET_SHOWTIME_DETAIL",
+          chiTietLichChieu: result.data,
+        });
+        dispatch({
+          type: "closeLoading"
+        })
+      } catch (error) {
+        console.log("showTime", error.response.data);
+      }
+    }, 1000)
   };
 };
 
 export const getTicketAction = (maLichChieu) => {
-  return async (dispatch) => {
-    try {
-      const result = await axios({
-        url: `${domain}/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
-        method: "GET",
-      });
-      dispatch({
-        type: "GET_TICKET",
-        thongTinRapChieu: result.data,
-      });
-    } catch (error) {
-      console.log("error", error.response.data);
-    }
+  return (dispatch) => {
+    dispatch({
+      type: "openLoading"
+    })
+    setTimeout(async () => {
+      try {
+        const result = await axios({
+          url: `${domain}/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
+          method: "GET",
+        });
+        dispatch({
+          type: "GET_TICKET",
+          thongTinRapChieu: result.data,
+        });
+        dispatch({
+          type: "closeLoading"
+        })
+      } catch (error) {
+        console.log("error", error.response.data);
+      }
+    }, 1000)
   };
 };
 
@@ -83,7 +105,6 @@ export const bookMovieAction = (thongTinVe) => {
           Authorization: "Bearer " + localStorage.getItem(accessToken),
         },
       });
-      console.log("book", result.data);
       Swal.fire({
         icon: "success",
         title: "Đặt vé thành công",
@@ -92,9 +113,8 @@ export const bookMovieAction = (thongTinVe) => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        text: "Đặt vé thất bại",
+        text: error.response?.data,
       });
-      console.log("DatVe", error.response.data);
     }
   };
 };

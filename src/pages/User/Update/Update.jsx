@@ -7,12 +7,10 @@ import { updateAction } from '../../../redux/action/UserAction';
 
 function Update(props) {
     let { accountInfo } = useSelector(state => state.UserReducer);
-    console.log(accountInfo);
     let dispatch = useDispatch()
     const { handleChange, handleBlur, handleSubmit, touched, errors, isValid, values } = useFormik({
         initialValues: {
             taiKhoan: accountInfo.taiKhoan,
-            matKhau: accountInfo.matKhau,
             email: accountInfo.email,
             soDt: accountInfo.soDT,
             maNhom: accountInfo.maNhom,
@@ -30,6 +28,7 @@ function Update(props) {
                 .required("Không được để trống")
         }),
         onSubmit: (values) => {
+            console.log(values);
             dispatch(updateAction(values));
         }
     })

@@ -8,7 +8,7 @@ import Popup from '../../component/Popup/Popup';
 
 
 function Detail(props) {
-    let { chiTietLichChieu } = useSelector(state => state.PhimReducer);
+    const { chiTietLichChieu } = useSelector(state => state.PhimReducer);
     let [showVideo, setShowVideo] = useState(false);
     let dispatch = useDispatch();
     useEffect(() => {
@@ -18,9 +18,9 @@ function Detail(props) {
     }, [])
 
     return (
-        <div className="detail__container" style={{ backgroundImage: `url(${chiTietLichChieu.hinhAnh})` }}>
-            <div className="detail__film">
-                <div className="detail__body">
+        <div className="filmdetail-wrapper" style={{ backgroundImage: `url(${chiTietLichChieu.hinhAnh})` }}>
+            <div className="film__content">
+                <div className="film__body">
                     <div className="film__info">
                         <div className="film__img">
                             <img src={chiTietLichChieu.hinhAnh} />

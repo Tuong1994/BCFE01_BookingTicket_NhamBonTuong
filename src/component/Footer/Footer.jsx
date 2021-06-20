@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 function Footer(props) {
-    let {chiTietRapChieu} = useSelector(state => state.PhimReducer);
+    const {danhSachRapChieu} = useSelector(state => state.PhimReducer);
 
     return (
         <div className="footer">
@@ -29,7 +29,7 @@ function Footer(props) {
                         <div className="info__partners">
                             <p className="title">Đối tác</p>
                             <div className="partners__logo">
-                                {chiTietRapChieu.map((rapChieu, index) => {
+                                {danhSachRapChieu.map((rapChieu, index) => {
                                     return <div key={index}>
                                         <a className="footer__link logo" href="#">
                                             <img src={rapChieu.logo} />

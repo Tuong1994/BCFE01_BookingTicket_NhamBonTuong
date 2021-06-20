@@ -1,5 +1,5 @@
 .checkout-bar__container {
-  width: 70%;
+  width: $w-100 - 30;
   padding: $p-2 $p-1;
   box-shadow: 0 0 10px $dark-1;
   border-radius: 5px;
@@ -23,10 +23,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      &:hover .checkout__list {
-        opacity: 1;
-        visibility: visible;
-      }
       &:first-child {
         min-width: $w-100 - 75;
       }
@@ -45,7 +41,17 @@
         }
       }
       .button {
+        text-decoration: none;
         background: $dark-2;
+        border: 1px solid $dark-2;
+        transition: all 0.5s;
+      }
+      .btn-buy {
+        background: linear-gradient(to right, $red-2, $red-1);
+        border: 1px solid $red-1;
+        &:hover {
+          background: $primary;
+        }
       }
     }
     .checkout__list {
@@ -53,7 +59,7 @@
       top: 100%;
       left: 0;
       z-index: 100;
-      width: $w-10 * 3;
+      width: $w-10 * 3.5;
       height: $h-100 * 7;
       border: 1px solid $grey-2;
       border-radius: 5px;
@@ -75,17 +81,27 @@
       .list__item {
         padding: $p-1 - 5 $p-3;
         transition: all 0.3s;
+        border-bottom: 1px solid $grey-2;
         &:hover {
           background: $blue;
         }
         .checkout__link {
           outline: 0;
           border: 0;
+          text-align: left;
           background: transparent;
           color: $tPrimary;
         }
       }
     }
+    .show__list {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  }
+  @include respond(laptop) {
+    width: $w-100 - 10;
+    bottom: -13%;
   }
   @include respond(extraTablet) {
     display: none;
