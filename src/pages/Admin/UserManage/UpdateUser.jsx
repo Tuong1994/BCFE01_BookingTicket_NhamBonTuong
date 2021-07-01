@@ -1,9 +1,10 @@
-import { Field, Form, Formik, useFormik, yupToFormErrors } from 'formik';
+import { Field, Form, Formik, useFormik } from 'formik';
 import * as yup from "yup";
 import React from 'react';
 import { phoneRegExp } from '../../../configs/setting';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserAction } from '../../../redux/action/AdminAction';
+import {NavLink} from 'react-router-dom';
 
 function UpdateUser(props) {
     const { user } = useSelector(state => state.AdminReducer);
@@ -116,6 +117,7 @@ function UpdateUser(props) {
                     </div>
 
                     <div className="form__button">
+                        <NavLink to="/user_manage" className="btn-blue"><i class="fa fa-angle-double-left"></i><span>Quay lại</span></NavLink>
                         <button className="button" type="submit" disabled={!isValid}>Cập nhật</button>
                     </div>
                 </Form>

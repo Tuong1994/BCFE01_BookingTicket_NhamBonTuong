@@ -12,7 +12,7 @@ export const UserTemplate = (props) => {
     let dispatch = useDispatch();
     let { Component, ...restProps } = props;
     return <Route {...restProps} render={(propsRoute) => {
-        return <div className="usertemplate-wrapper">
+        return <div className="userTemplate">
             <div className="user__info">
                 <div className="user__logo">
                     <img src="https://picsum.photos/200" alt="" />
@@ -32,7 +32,7 @@ export const UserTemplate = (props) => {
                         dispatch(bookHistoryAction(userObject))
                     }}>
                         <i class="fa fa-film"></i>
-                        <span>Lịch sử</span>
+                        <span>Thông tin đặt vé</span>
                     </NavLink>
                     <NavLink className="user__link sub-btn" to="/">
                         <i class="fa fa-angle-double-left"></i>

@@ -3,6 +3,7 @@ import * as yup from "yup";
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addMovieAction } from '../../../redux/action/AdminAction';
+import {NavLink} from 'react-router-dom';
 
 function AddMovie(props) {
     let dispatch = useDispatch();
@@ -50,7 +51,7 @@ function AddMovie(props) {
         }
     })
     return (
-        <div className="addmovie-wrapper">
+        <div className="addmovie">
             <h3>Thêm phim</h3>
             <Formik>
                 <Form className="addmovie__form" onSubmit={handleSubmit}>
@@ -128,6 +129,7 @@ function AddMovie(props) {
                     </div>
 
                     <div className="form__button">
+                        <NavLink to="/film_manage" className="button">Quay lại</NavLink>
                         <button className="button" type="submit" disabled={!isValid}>Thêm phim</button>
                     </div>
                 </Form>

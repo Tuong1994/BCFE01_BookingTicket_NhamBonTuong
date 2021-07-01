@@ -5,7 +5,7 @@ import { accessToken, domain, maNhom } from "../../configs/setting";
 export const getMovieAction = () => {
   return (dispatch) => {
     dispatch({
-      type: "openLoading",
+      type: "openLoading"
     })
     setTimeout(async () => {
       try {
@@ -45,52 +45,42 @@ export const getCinemaAction = () => {
 };
 
 export const getShowTimeDetail = (maPhim) => {
-  return (dispatch) => {
-    dispatch({
-      type: "openLoading"
-    })
-    setTimeout(async () => {
-      try {
-        const result = await axios({
-          url: `${domain}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
-          method: "GET",
-        });
-        dispatch({
-          type: "GET_SHOWTIME_DETAIL",
-          chiTietLichChieu: result.data,
-        });
-        dispatch({
-          type: "closeLoading"
-        })
-      } catch (error) {
-        console.log("showTime", error.response.data);
-      }
-    }, 1000)
+  return async (dispatch) => {
+    try {
+      const result = await axios({
+        url: `${domain}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`,
+        method: "GET",
+      });
+      dispatch({
+        type: "GET_SHOWTIME_DETAIL",
+        chiTietLichChieu: result.data,
+      });
+      dispatch({
+        type: "closeLoading"
+      })
+    } catch (error) {
+      console.log("showTime", error.response.data);
+    }
   };
 };
 
 export const getTicketAction = (maLichChieu) => {
-  return (dispatch) => {
-    dispatch({
-      type: "openLoading"
-    })
-    setTimeout(async () => {
-      try {
-        const result = await axios({
-          url: `${domain}/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
-          method: "GET",
-        });
-        dispatch({
-          type: "GET_TICKET",
-          thongTinRapChieu: result.data,
-        });
-        dispatch({
-          type: "closeLoading"
-        })
-      } catch (error) {
-        console.log("error", error.response.data);
-      }
-    }, 1000)
+  return async (dispatch) => {
+    try {
+      const result = await axios({
+        url: `${domain}/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
+        method: "GET",
+      });
+      dispatch({
+        type: "GET_TICKET",
+        thongTinRapChieu: result.data,
+      });
+      dispatch({
+        type: "closeLoading"
+      })
+    } catch (error) {
+      console.log("error", error.response.data);
+    }
   };
 };
 

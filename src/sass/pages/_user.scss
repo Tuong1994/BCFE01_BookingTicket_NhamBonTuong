@@ -1,4 +1,4 @@
-.usertemplate-wrapper {
+.userTemplate{
   width: $w-100;
   height: $h-100;
   position: fixed;
@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    z-index: 100;
+    z-index: 1000;
     .user__logo {
       text-align: center;
       font-size: $h3;
@@ -316,7 +316,7 @@
   }
 }
 
-.userInfo-wrapper {
+.userInfo {
   padding: $p-3;
   position: relative;
   z-index: 10;
@@ -324,7 +324,7 @@
     width: $w-100;
     margin-bottom: $m-1;
     padding: $p-2;
-    box-shadow: 0 0 5px $dark-1;
+    box-shadow: 0 0 5px $grey-1;
     border-radius: 5px;
     // background: rgba(0, 0, 0, 0.8);
     color: $tWhite;
@@ -355,21 +355,22 @@
     min-width: $w-100;
   }
   @include respond(phone) {
+    padding: $p-1;
     min-width: $w-100;
   }
 }
 
-.userUpdate-wrapper {
+.userUpdate {
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  .form {
+  .userUpdate__form {
     width: $w-100 - 30;
     margin: $m-1 auto;
     padding: $p-2;
-    border: 1px solid $red-1;
+    box-shadow: 0 0 5px $grey-1;
     border-radius: 5px;
     color: $tWhite;
     h3 {
@@ -381,14 +382,14 @@
       .form__input {
         width: $w-100;
         margin-bottom: $m-1 - 5;
-        border: 1px solid $red-1;
+        border: 1px solid $grey-1;
         padding: $p-1 - 5;
         border-radius: 5px;
         display: flex;
         align-items: center;
         input {
           width: $w-100;
-          color: $tWhite;
+          color: $tSecondary;
           background: transparent;
           border: 0;
           outline: 0;
@@ -425,18 +426,22 @@
   }
 }
 
-.userHistory-wrapper {
+.userBooking{
   height: $h-100;
   text-align: center;
   padding: $p-3;
   position: relative;
   z-index: 10;
-  .userHistory-body {
+  .userBooking__body {
     padding: $p-2;
     color: $tWhite;
     border-radius: 5px;
+    box-shadow: 0 0 5px $grey-1;
     h3 {
       color: $tSecondary;
+      @include respond(extraSmallPhone) {
+        font-size: $h3;
+      }
     }
     .table {
       color: $tWhite;
@@ -464,11 +469,25 @@
   @include respond(tablet) {
     overflow-y: visible !important;
     height: auto;
+    padding: $p-2;
   }
   @include respond(phone) {
     overflow-y: visible !important;
     height: auto;
     font-size: $body-1;
+    padding: $p-1;
+  }
+  @include respond(smallPhone) {
+    overflow-y: visible !important;
+    height: auto;
+    font-size: $body-1;
+    padding: $p-1;
+  }
+  @include respond(extraSmallPhone) {
+    overflow-y: visible !important;
+    height: auto;
+    font-size: $body-1;
+    padding: $p-1;
   }
 }
 

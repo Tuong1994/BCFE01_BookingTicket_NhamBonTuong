@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-function History(props) {
+function UserBooking(props) {
     let { accountInfo } = useSelector(state => state.UserReducer);
     let renderLichSuDatVe = () => {
         return  accountInfo.thongTinDatVe?.map((film, index) => {
@@ -27,9 +27,9 @@ function History(props) {
         renderLichSuDatVe();
     }, [])
     return (
-        <div className="userHistory-wrapper" >
-            <div className="userHistory-body">
-                <h3>Lịch sử đặt vé</h3>
+        <div className="userBooking" >
+            <div className="userBooking__body">
+                <h3>Thông tin đặt vé</h3>
                 <table className="table">
                     <thead>
                         <tr>
@@ -47,4 +47,4 @@ function History(props) {
     );
 }
 
-export default History;
+export default UserBooking;

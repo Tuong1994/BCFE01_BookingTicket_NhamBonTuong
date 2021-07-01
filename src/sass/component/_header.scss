@@ -6,9 +6,11 @@
   background: $primary;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: $body-1;
   position: fixed;
   z-index: 10000;
+  // NAVBAR-COMMON-CSS
   .nav__link {
     display: block;
     border: 0;
@@ -26,13 +28,23 @@
       font-size: $body-1 + 4;
     }
   }
+  // LOGO
   .nav__logo {
     margin-left: $m-2;
     .logo__img {
       width: $w-5;
       height: $h-5;
+      @include respond(phone) {
+        width: $w-3 + 5;
+        height: $h-3 + 5;
+      }
+      @include respond(smallPhone) {
+        width: $w-3 + 5;
+        height: $h-3 + 5;
+      }
     }
   }
+  // NAVBAR
   .nav__collapse {
     min-width: $w-100 - 35;
     display: flex;
@@ -96,6 +108,13 @@
         display: flex;
         align-items: center;
         position: relative;
+        img {
+          width: $w-4;
+          height: $h-4;
+          border-radius: 50%;
+          margin-right: $m-1;
+          box-shadow: 0 0 5px $dark-2;
+        }
         i {
           font-size: $h2;
           margin-right: $m-1;
@@ -105,6 +124,7 @@
           }
         }
         span {
+          font-weight: $medium;
           padding-right: $p-2;
           border-right: 1px solid $grey-2;
         }
@@ -177,7 +197,19 @@
     }
     @include respond(phone) {
       position: absolute;
-      top: 70px;
+      top: 50px;
+      right: -100%;
+      width: $w-100;
+      height: $h-10 * 3;
+      background: $grey-1;
+      padding: $p-1;
+      flex-direction: column-reverse;
+      align-items: center;
+      transition: all 0.5s;
+    }
+    @include respond(smallPhone) {
+      position: absolute;
+      top: 50px;
       right: -100%;
       width: $w-100;
       height: $h-10 * 3;
@@ -188,6 +220,7 @@
       transition: all 0.5s;
     }
   }
+  // RESPONSIVE-NAV-BUTTON
   .nav__button {
     width: $w-5;
     height: $h-5;
@@ -209,6 +242,7 @@
       display: block;
     }
   }
+  // ACTIVE-CLASS
   .active {
     right: 0;
   }
@@ -224,6 +258,11 @@
   }
   @include respond(phone) {
     top: 0;
+    height: $h-5;
+  }
+  @include respond(smallPhone) {
+    top: 0;
+    height: $h-5;
   }
 }
 

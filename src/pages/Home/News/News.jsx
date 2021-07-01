@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 function News(props) {
     let { danhSachPhim } = useSelector(state => state.PhimReducer);
     return (
-        <div className="news-container" id="news">
+        <div className="news" id="news">
             <ul className="nav nav-pills mb-3 news__title" id="pills-tab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#dienAnh" role="tab" aria-controls="pills-home" aria-selected="true">Điện ảnh 24h</a>

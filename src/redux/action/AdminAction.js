@@ -35,28 +35,30 @@ export const createScheduleAction = (film) => {
         url: `${domain}/api/QuanLyDatVe/TaoLichChieu`,
         method: "POST",
         data: film,
-        headers: {Authorization: "Bearer " + localStorage.getItem(accessToken)}
-      })
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem(accessToken),
+        },
+      });
       Swal.fire({
         icon: "success",
-        title: "Tạo lịch chiếu thành công"
-      })
+        title: "Tạo lịch chiếu thành công",
+      });
       dispatch(getMovieAction());
-    } catch(error) {
+    } catch (error) {
       Swal.fire({
         icon: "error",
-        title: error.response?.data
-      })
+        title: error.response?.data,
+      });
     }
-  }
-}
+  };
+};
 
 export const updateMovieAction = (film) => {
   return async (dispatch) => {
     try {
       const result = await axios({
         url: `${domain}/api/QuanLyPhim/CapNhatPhimUpload`,
-        method: "PUT",
+        method: "POST",
         data: film,
         headers: {
           Authorization: "Bearer " + localStorage.getItem(accessToken),
@@ -64,14 +66,14 @@ export const updateMovieAction = (film) => {
       });
       Swal.fire({
         icon: "success",
-        title: "Cập nhật thành công"
-      })
-      dispatch(getMovieAction())
+        title: "Cập nhật thành công",
+      });
+      dispatch(getMovieAction());
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: error.response?.data
-      })
+        title: error.response?.data,
+      });
     }
   };
 };

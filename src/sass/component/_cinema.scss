@@ -1,4 +1,4 @@
-.tab-wrapper {
+.cinema-tab {
   margin-bottom: $m-5 * 2;
   box-shadow: 0 0 5px $dark-2;
   border-radius: 5px;
@@ -6,10 +6,11 @@
     display: flex;
     justify-content: space-between;
     height: $h-10 * 5;
-    // overflow: hidden;
-    .tabs__list {
+
+    // CINEMA-LOGO-LIST
+    .tab__list {
       width: $w-100 - 85;
-      .tab {
+      .tab__logo {
         margin: $m-1;
         padding: $p-1 $p-2;
         border-radius: 5px;
@@ -25,7 +26,9 @@
         }
       }
     }
-    .tabs__contents {
+
+    // CINEMA-DETAIL-LIST
+    .tab__contents {
       width: $w-100 - 15;
       padding: $p-1;
       position: relative;
@@ -39,10 +42,12 @@
         position: absolute;
         top: 0;
         left: 0;
-        .subtabs-wrapper {
+        .subtab {
           width: $w-100;
           display: flex;
-          .subtabs__list {
+
+          // CINEMA-NAME-LIST
+          .subtab__list {
             width: $w-100 - 45;
             margin-right: $m-2;
             .subtab {
@@ -72,11 +77,13 @@
               }
             }
           }
-          .subtabs__contents {
+
+          // CINEMA-MOVIE-LIST
+          .subtab__content {
             width: $w-100 - 35;
             height: $h-100;
             position: relative;
-            .subtabs__items {
+            .subtab__item {
               position: absolute;
               top: 0;
               left: 0;
@@ -143,7 +150,9 @@
       display: none;
     }
   }
-  .active-tabs {
+
+  //ACTIVE-CLASS
+  .active-tab {
     background: $grey-2;
     opacity: 1 !important;
   }
@@ -165,5 +174,10 @@
   @include respond(phone) {
     display: block;
     height: $h-100;
+  }
+  @include respond(smallPhone) {
+    display: block;
+    height: $h-100;
+    margin-bottom: $m-5;
   }
 }

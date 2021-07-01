@@ -9,12 +9,26 @@
         img {
           width: $w-6;
           height: $h-6;
+          @include respond(phone) {
+            width: $w-4 + 5;
+            height: $h-4 + 5;
+          }
+          @include respond(smallPhone) {
+            width: $w-4 + 5;
+            height: $h-4 + 5;
+          }
         }
         i {
           text-decoration: none;
           color: $tPrimary;
           font-size: $h3;
         }
+      }
+      @include respond(phone) {
+        padding: $p-1 - 5 $p-2;
+      }
+      @include respond(smallPhone) {
+        padding: $p-1 - 5;
       }
     }
     .card-body {
@@ -29,6 +43,14 @@
           margin-right: $m-1;
           border-radius: 5px;
           box-shadow: 0 0 5px $dark-1;
+          @include respond(phone) {
+            width: $w-5;
+            height: $h-5;
+          }
+          @include respond(smallPhone) {
+            width: $w-5;
+            height: $h-5;
+          }
         }
         .cinema__name {
           p {
@@ -37,8 +59,28 @@
             &:nth-child(2) {
               font-size: $body-1;
               font-weight: $regular;
+              @include respond(phone) {
+                font-size: $body-2;
+              }
+              @include respond(smallPhone) {
+                font-size: $body-2;
+              }
+            }
+            @include respond(phone) {
+              font-size: $body-1;
+              margin: 0;
+            }
+            @include respond(smallPhone) {
+              font-size: $body-1;
+              margin: 0;
             }
           }
+        }
+        @include respond(phone) {
+          margin-bottom: $m-1 - 5;
+        }
+        @include respond(smallPhone) {
+          margin-bottom: $m-1 - 5;
         }
       }
       .film__body {
@@ -50,6 +92,14 @@
             width: $w-5;
             height: $h-5;
             margin-right: $m-2;
+            @include respond(phone) {
+              width: $w-100 - 75;
+              height: $h-6;
+            }
+            @include respond(smallPhone) {
+              width: $w-100 - 70;
+              height: $h-6;
+            }
           }
         }
         .film__name {
@@ -57,12 +107,41 @@
             margin: 0;
             font-weight: $medium;
             text-transform: uppercase;
+            @include respond(phone) {
+              font-size: $body-2;
+            }
+            @include respond(smallPhone) {
+              font-size: $body-2;
+            }
           }
           .button {
             text-decoration: none;
             font-size: $body-2;
             padding: $p-1 - 5;
             margin-right: $m-1 - 5;
+            @include respond(phone) {
+              display: none;
+            }
+            @include respond(smallPhone) {
+              display: none;
+            }
+          }
+          .btn-time {
+            display: none;
+            @include respond(phone) {
+              display: inline-block;
+              font-size: $body-2 - 2;
+            }
+            @include respond(smallPhone) {
+              display: inline-block;
+              font-size: $body-2 - 2;
+            }
+          }
+          @include respond(phone) {
+            width: $w-100 - 35;
+          }
+          @include respond(smallPhone) {
+            width: $w-100 - 35;
           }
         }
       }
@@ -76,5 +155,376 @@
   }
   @include respond(phone) {
     display: block;
+  }
+}
+
+.rwd-filmdetail__wrapper {
+  width: $w-100 - 35;
+  margin: 0 auto;
+  padding: $p-5 + 20 $p-1;
+  position: relative;
+  z-index: 10;
+  .detail__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $h-7;
+    .nav-link {
+      color: $tWhite;
+      font-size: $body-1 + 4;
+      transition: all 0.3s;
+      &:hover {
+        font-size: $h3;
+      }
+    }
+  }
+  .cinema__info {
+    background: $primary;
+    box-shadow: 0 0 10px $dark-1;
+    padding: $p-1 * 0.5;
+    border-radius: 5px;
+    .cinema__inner {
+      .cinema__link {
+        color: $tPrimary;
+        opacity: 0.5;
+        transition: all 0.3s;
+        border-bottom: 1px solid $grey-1;
+        border-radius: 0;
+        .cinema__logo {
+          width: $w-5;
+          height: $h-5;
+          margin-right: $m-2;
+          @include respond(extraTablet) {
+            margin-right: 0;
+          }
+          @include respond(tablet) {
+            margin-right: 0;
+          }
+          @include respond(phone) {
+            margin-right: 0;
+          }
+        }
+        @include respond(extraTablet) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        @include respond(tablet) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        @include respond(phone) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+      }
+      .showtime__container {
+        background: $primary;
+        padding: $p-1;
+        height: $h-10 * 4;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          width: $w-1 * 0.5;
+          background: $primary;
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: $grey-2;
+          border-radius: 2px;
+        }
+        .showtime__detail {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          margin-bottom: $m-1;
+          .showtime__cinema {
+            display: flex;
+            margin-bottom: $m-1;
+            img {
+              width: $w-6;
+              height: $h-6;
+              margin-right: $m-1;
+            }
+            .cinema__item {
+              font-weight: $medium;
+              p {
+                margin-bottom: $m-1 - 5;
+              }
+              span {
+                margin-right: $m-1;
+                font-size: $body-1;
+                color: $tGrey-2;
+              }
+            }
+          }
+          .showtime__list {
+            p {
+              font-size: $h3;
+              text-shadow: 0 0 2px $dark-2;
+            }
+            .button {
+              display: inline-block;
+              text-decoration: none;
+              color: $tWhite;
+              font-size: $body-2;
+              padding: $p-1 - 5 $p-1;
+              margin-right: $m-1;
+              margin-bottom: $m-1;
+              @include respond(laptop) {
+                font-size: $body-1;
+              }
+              @include respond(extraTablet) {
+                font-size: $body-2;
+              }
+              @include respond(tablet) {
+                font-size: $body-2;
+              }
+              @include respond(phone) {
+                font-size: $body-2;
+              }
+            }
+          }
+          @include respond(laptop) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          @include respond(extraTablet) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          @include respond(tablet) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          @include respond(phone) {
+            display: flex;
+            flex-wrap: wrap;
+          }
+        }
+      }
+      .film__info {
+        padding: $p-2;
+        text-align: justify;
+        font-weight: $medium;
+        span {
+          color: $tSecondary;
+        }
+      }
+    }
+  }
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link {
+    opacity: 1;
+    background: transparent;
+  }
+  @include respond(laptop) {
+    padding: 0;
+    min-width: $w-100 - 15;
+  }
+  @include respond(extraTablet) {
+    min-width: $w-100;
+    padding: 0 $p-2;
+  }
+  @include respond(tablet) {
+    min-width: $w-100 - 5;
+    padding: 0;
+  }
+  @include respond(phone) {
+    min-width: $w-100 - 5;
+    padding: 0;
+  }
+  @include respond(smallPhone) {
+    min-width: $w-100 - 5;
+    padding: 0;
+  }
+  @include respond(extraSmallPhone) {
+    min-width: $w-100 - 5;
+    padding: 0;
+    display: none;
+  }
+}
+
+.rwd-checkout__wrapper {
+  .rwd-checkout__info {
+    width: $w-100;
+    height: $h-100;
+    background: $primary;
+    box-shadow: 0 0 5px $dark-1;
+    transition: all 0.4s;
+    position: fixed;
+    top: 0;
+    left: -105%;
+    z-index: 10000;
+    display: none;
+    overflow-y: auto;
+    .movie__img {
+      img {
+        width: $w-100;
+        height: $h-10 * 2.5;
+        border-radius: 5px;
+        margin-bottom: $m-2;
+        box-shadow: 0 0 5px $dark-1;
+        @include respond(extraTablet) {
+          width: $w-10 * 3;
+          height: $h-10 * 3.2;
+          margin-right: $m-1;
+        }
+        @include respond(tablet) {
+          width: $w-100;
+          height: $h-10 * 4;
+        }
+        @include respond(phone) {
+          width: $w-100;
+          height: $h-10 * 3;
+        }
+        @include respond(smallPhone) {
+          width: $w-100;
+          height: $h-10 * 3;
+          margin-bottom: $m-1;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100;
+          height: $h-10 * 2.8;
+          margin-bottom: $m-1 - 5;
+        }
+      }
+    }
+    .movie__info {
+      .info {
+        h5 {
+          text-transform: uppercase;
+          text-align: center;
+          letter-spacing: 1px;
+          @include respond(phone) {
+            font-size: $h3 - 4;
+          }
+          @include respond(smallPhone) {
+            font-size: $h3 - 4;
+          }
+          @include respond(extraSmallPhone) {
+            font-size: $h3 - 4;
+          }
+        }
+        p {
+          span {
+            font-weight: $medium;
+            color: $tSecondary;
+          }
+          @include respond(tablet) {
+            font-size: $h3 - 2;
+            margin: 0;
+          }
+          @include respond(phone) {
+            font-size: $h3 - 2;
+            margin: 0;
+          }
+          @include respond(smallPhone) {
+            font-size: $body-1 + 2;
+            margin: 0;
+          }
+          @include respond(extraSmallPhone) {
+            font-size: $body-1;
+            margin: 0;
+          }
+        }
+        .booking-chairs {
+          span {
+            color: $tGreen;
+            font-size: $h3 - 2;
+          }
+        }
+        .price {
+          font-size: $h3;
+          span {
+            color: $tGreen;
+          }
+          @include respond(phone) {
+            font-size: $h3 - 4;
+          }
+          @include respond(smallPhone) {
+            font-size: $h3 - 4;
+          }
+          @include respond(extraSmallPhone) {
+            font-size: $h3 - 4;
+          }
+        }
+      }
+      .checkout__button {
+        .button {
+          width: $w-100;
+          box-shadow: 0 0 5px $dark-1;
+          @include respond(tablet) {
+            width: $w-100 - 50;
+          }
+          @include respond(phone) {
+            width: $w-100 - 50;
+          }
+        }
+        .btn-close {
+          border: 1px solid $blue;
+          border-radius: 5px;
+          background: linear-gradient(to right, $blue, $deepBlue);
+          box-shadow: 0 0 5px $dark-1;
+          padding: $p-1 - 5 $p-3;
+          color: $tWhite;
+          font-size: $h3;
+          font-weight: $medium;
+          display: none;
+          transition: all 0.4s;
+          &:hover {
+            background: transparent;
+            color: $tBlue;
+          }
+          @include respond(tablet) {
+            display: inline-block;
+          }
+          @include respond(phone) {
+            display: inline-block;
+          }
+          @include respond(smallPhone) {
+            display: inline-block;
+          }
+          @include respond(extraSmallPhone) {
+            display: inline-block;
+            font-size: $h3 - 4;
+          }
+        }
+        @include respond(tablet) {
+          display: flex;
+          justify-content: space-evenly;
+        }
+        @include respond(phone) {
+          display: flex;
+          justify-content: space-evenly;
+        }
+      }
+    }
+    @include respond(tablet) {
+      padding: $p-3;
+      display: block;
+    }
+    @include respond(phone) {
+      padding: $p-3;
+      display: block;
+    }
+    @include respond(smallPhone) {
+      padding: $p-1;
+      display: block;
+    }
+    @include respond(extraSmallPhone) {
+      padding: $p-1;
+      display: block;
+    }
+  }
+  .show-detail {
+    left: 0;
   }
 }

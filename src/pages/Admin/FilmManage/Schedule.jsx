@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCinemaAction } from '../../../redux/action/PhimAction';
 import { createScheduleAction } from '../../../redux/action/AdminAction';
+import { NavLink } from 'react-router-dom';
 
 function Schedule(props) {
     const { danhSachRapChieu, phim } = useSelector(state => state.PhimReducer);
@@ -44,8 +45,21 @@ function Schedule(props) {
         }
     })
     return (
-        <div className="schedule-wrapper">
+        <div className="schedule">
             <h3>Tạo lịch chiếu</h3>
+            <hr />
+            <div className="schedule__film">
+                <h5>Thông tin phim</h5>
+                <div className="film__body">
+                    <img src={phim.hinhAnh} alt={phim.tenPhim} />
+                    <div className="film__info">
+                        <p>Mã phim : <span>{phim.maPhim}</span></p>
+                        <p>Mã nhóm : <span>{phim.maNhom}</span></p>
+                        <p>Tên phim : <span>{phim.tenPhim}</span></p>
+                        <p>Mô tả  : <span>{phim.moTa}</span></p>
+                    </div>
+                </div>
+            </div>
             <hr />
             <Formik>
                 <Form className="schedule__form" onSubmit={handleSubmit}>
@@ -150,6 +164,7 @@ function Schedule(props) {
                             {touched.giaVe && errors.giaVe ? <span className="error__message">{errors.giaVe}</span> : ""}
                         </div>
                         <div className="form__button">
+                            <NavLink to="/film_manage" className="button"><i class="fa fa-angle-double-left"></i><span>Quay lại</span></NavLink>
                             <button className="button" type="submit" disabled={!isValid}>Tạo lịch chiếu</button>
                         </div>
                     </div>

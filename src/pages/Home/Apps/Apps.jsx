@@ -17,7 +17,7 @@ function Apps(props) {
     }
 
     return (
-        <div className="apps-container" id="apps">
+        <div className="apps" id="apps">
             <div className="apps__content">
                 <div className="apps__info">
                     <h3>Ứng dụng tiện lợi dành cho người yêu điện ảnh</h3>

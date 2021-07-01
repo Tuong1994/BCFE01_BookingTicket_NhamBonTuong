@@ -1,7 +1,8 @@
-.news-container {
+.news {
   margin-bottom: $m-5;
   .news__title {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     height: $h-7;
@@ -11,6 +12,20 @@
       transition: all 0.3s;
       &:hover {
         font-size: $h2;
+        @include respond(phone) {
+          font-size: $body-1 + 6;
+        }
+        @include respond(smallPhone) {
+          font-size: $body-1 + 2;
+        }
+      }
+      @include respond(phone) {
+        font-size: $body-1 + 4;
+        padding: $p-1;
+      }
+      @include respond(smallPhone) {
+        font-size: $body-2 + 2;
+        padding: $p-1;
       }
     }
   }
@@ -22,20 +37,20 @@
       box-shadow: 0 0 5px $dark-2;
     }
     p {
-        font-size: $body-1;
-        text-align: justify;
+      font-size: $body-1;
+      text-align: justify;
     }
     h6 {
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s;
-        &:hover {
-          color: $tSecondary;
-        }
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      &:hover {
+        color: $tSecondary;
+      }
     }
     .link {
-        text-decoration: none;
-        color: $tPrimary;
+      text-decoration: none;
+      color: $tPrimary;
     }
 
     .news__content {
@@ -45,6 +60,22 @@
         width: $w-10 * 4.5;
         height: $h-10 * 3.5;
         margin-bottom: $m-1;
+        .news__img {
+          width: $w-100;
+          height: $h-10 * 2.5;
+          @include respond(extraTablet) {
+            height: $h-10 * 3;
+          }
+          @include respond(tablet) {
+            height: $h-10 * 3;
+          }
+          @include respond(phone) {
+            height: $h-10 * 2.5;
+          }
+          @include respond(smallPhone) {
+            height: $h-10 * 2;
+          }
+        }
         @include respond(laptop) {
           width: $w-100 - 45;
           margin-bottom: $m-1;
@@ -61,20 +92,16 @@
         }
         @include respond(phone) {
           width: $w-100;
-          margin-bottom: $m-5 + 5;
+          margin-bottom: $m-2;
         }
-        .news__img {
+        @include respond(smallPhone) {
           width: $w-100;
-          height: $h-10 * 2.5;
-          @include respond(extraTablet) {
-            height: $h-10 * 3;
-          }
-          @include respond(tablet) {
-            height: $h-10 * 3;
-          }
-          @include respond(phone) {
-            height: $h-10 * 3;
-          }
+          height: $h-10 * 3;
+          margin-bottom: $m-1 + 20;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100;
+          margin-bottom: $m-5 + 30;
         }
       }
       @include respond(tablet) {
@@ -87,7 +114,7 @@
         width: $w-100;
       }
     }
-    
+
     .subnews__list {
       width: $w-100;
       display: flex;
@@ -114,6 +141,17 @@
         @include respond(phone) {
           width: $w-100;
           height: $h-100;
+          padding: 0 $p-1 - 5;
+        }
+        @include respond(smallPhone) {
+          width: $w-100;
+          height: $h-100;
+          padding: 0 $p-1;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100;
+          height: $h-100;
+          padding: 0 $p-1;
         }
         .subnews__img {
           width: $w-100;
@@ -129,6 +167,9 @@
           }
           @include respond(phone) {
             height: $h-10 * 3;
+          }
+          @include respond(smallPhone) {
+            height: $h-10 * 2;
           }
         }
       }
@@ -147,14 +188,14 @@
             margin-right: $m-1;
           }
           p {
-              font-size: $body-1;
-              font-weight: $medium;
-              text-transform: uppercase;
-              color: $tGrey-1;
-              transition: all 0.3s;
-              &:hover {
-                color: $tSecondary;
-              }
+            font-size: $body-1;
+            font-weight: $medium;
+            text-transform: uppercase;
+            color: $tGrey-1;
+            transition: all 0.3s;
+            &:hover {
+              color: $tSecondary;
+            }
           }
           @include respond(extraTablet) {
             margin-bottom: $m-2;
@@ -181,11 +222,21 @@
     background: transparent;
     color: $tSecondary;
     font-size: $h2;
+    @include respond(phone) {
+      font-size: $body-1 + 6;
+    }
+    @include respond(smallPhone) {
+      font-size: $body-1 + 2;
+    }
   }
   @include respond(tablet) {
     padding: 0;
   }
   @include respond(phone) {
     padding: 0;
+  }
+  @include respond(smallPhone) {
+    padding: 0;
+    margin-bottom: $m-3;
   }
 }

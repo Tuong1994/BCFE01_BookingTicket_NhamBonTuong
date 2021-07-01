@@ -9,27 +9,35 @@ export const AdminTemplate = (props) => {
     let showAcitve = () => setShow(!show);
     let { Component, ...restProps } = props;
     return <Route {...restProps} render={(propsRoute) => {
-        return <div className="admin-wrapper">
-            <div className="admin__info">
+        return <div className="admin">
+            <div className="admin__sidebar">
                 <div className="admin__login">
                     <span>Hello, {account}</span>
                     <span><i class="fa fa-user"></i></span>
                 </div>
 
                 <div className={show ? "admin__menu show" : "admin__menu"}>
-                    <NavLink className="admin__link" to="/dashboard">
+                    <NavLink className="admin__link" to="/dashboard" onClick={() => {
+                        setShow(false)
+                    }}>
                         <i class="fa fa-chart-line"></i>
                         <span>Dashboard</span>
                     </NavLink>
-                    <NavLink className="admin__link" to="/film_manage">
+                    <NavLink className="admin__link" to="/film_manage" onClick={() => {
+                        setShow(false)
+                    }}>
                         <i class="fa fa-film"></i>
                         <span>Quản lý Phim</span>
                     </NavLink>
-                    <NavLink className="admin__link" to="/user_manage">
+                    <NavLink className="admin__link" to="/user_manage" onClick={() => {
+                        setShow(false)
+                    }}>
                         <i class="fa fa-users"></i>
                         <span>Quản lý người dùng</span>
                     </NavLink>
-                    <NavLink className="admin__link sub-btn" to="/">
+                    <NavLink className="admin__link sub-btn" to="/" onClick={() => {
+                        setShow(false)
+                    }}>
                         <i class="fa fa-angle-double-left"></i>
                         <span>Về trang chủ</span>
                     </NavLink>

@@ -1,11 +1,11 @@
-import { useFormik, yupToFormErrors } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from "yup";
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { phoneRegExp } from '../../../configs/setting';
 import { updateAction } from '../../../redux/action/UserAction';
 
-function Update(props) {
+function UserUpdate(props) {
     let { accountInfo } = useSelector(state => state.UserReducer);
     let dispatch = useDispatch()
     const { handleChange, handleBlur, handleSubmit, touched, errors, isValid, values } = useFormik({
@@ -33,8 +33,8 @@ function Update(props) {
         }
     })
     return (
-        <div className="userUpdate-wrapper">
-            <form className="form" onSubmit={handleSubmit}>
+        <div className="userUpdate">
+            <form className="userUpdate__form" onSubmit={handleSubmit}>
                 <h3>Cập nhật thông tin</h3>
                 <hr />
                 <div className={touched.taiKhoan && errors.taiKhoan ? "form__item animation" : "form__item"} >
@@ -81,4 +81,4 @@ function Update(props) {
     );
 }
 
-export default Update;
+export default UserUpdate;

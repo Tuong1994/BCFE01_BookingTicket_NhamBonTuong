@@ -5,7 +5,9 @@ import Swal from 'sweetalert2';
 import { delUserAction, getUserListAction } from '../../../redux/action/AdminAction';
 
 function UserManage(props) {
-    let { userList } = useSelector(state => state.AdminReducer);
+    let { userList, user } = useSelector(state => state.AdminReducer);
+    const [userDetail, setUserDetail] = useState(false);
+    let showDetail = () => setUserDetail(!userDetail)
     const [searchUser, setSearchUser] = useState("");
     let dispatch = useDispatch();
     useEffect(() => {
@@ -27,10 +29,42 @@ function UserManage(props) {
                 <div className="list__col-3"><p>{user.matKhau}</p></div>
                 <div className="list__col-4 item__user">
                     <p><i class="fa fa-user"></i><span>Họ tên : {user.hoTen}</span></p>
-                    <p><i class="fa fa-envelope"></i>{user.email.length > 10 ? <span>Email : {user.email.substr(0,10)}...</span> : <span>Email : {user.email.length}</span>}</p>
+                    <p><i class="fa fa-envelope"></i>{user.email.length > 10 ? <span>Email : {user.email.substr(0, 10)}...</span> : <span>Email : {user.email.length}</span>}</p>
                     <p><i class="fa fa-phone"></i><span>Số điện thoại : {user.soDt}</span></p>
                 </div>
                 <div className="list__col-5 btn-del">
+                    <button className="button" onClick={() => {
+                        dispatch({
+                            type: "USER_DETAIL",
+                            user: {
+                                taiKhoan: user.taiKhoan,
+                                matKhau: user.matKhau,
+                                hoTen: user.hoTen,
+                                email: user.email,
+                                soDt: user.soDt,
+                                maNhom: user.maNhom,
+                                maLoaiNguoiDung: user.maLoaiNguoiDung
+                            }
+                        })
+                        showDetail()
+                    }}><i class="fa fa-user-plus"></i></button>
+                    <NavLink className="button" to="/update_user" onClick={() => {
+                        dispatch({
+                            type: "USER_DETAIL",
+                            user: {
+                                taiKhoan: user.taiKhoan,
+                                matKhau: user.matKhau,
+                                hoTen: user.hoTen,
+                                email: user.email,
+                                soDt: user.soDt,
+                                maNhom: user.maNhom,
+                                maLoaiNguoiDung: user.maLoaiNguoiDung
+                            }
+                        })
+                    }}>
+                        <i class="fa fa-edit"></i>
+                        <span>Sửa</span>
+                    </NavLink>
                     <button className="button" onClick={() => {
                         Swal.fire({
                             title: "Bạn có muốn xóa người dùng này",
@@ -52,29 +86,12 @@ function UserManage(props) {
                         <i class="fa fa-trash-alt"></i>
                         <span>Xóa</span>
                     </button>
-                    <NavLink className="button" to="/update_user" onClick={() => {
-                        dispatch({
-                            type: "USER_DETAIL",
-                            user: {
-                                taiKhoan: user.taiKhoan,
-                                matKhau: user.matKhau,
-                                hoTen: user.hoTen,
-                                email: user.email,
-                                soDt: user.soDt,
-                                maNhom: user.maNhom,
-                                maLoaiNguoiDung: user.maLoaiNguoiDung
-                            }
-                        })
-                    }}>
-                        <i class="fa fa-edit"></i>
-                       <span>Sửa</span> 
-                    </NavLink>
                 </div>
             </div>
         })
     }
     return (
-        <div className="userManage-wrapper">
+        <div className="userManage">
             <h2>Quản lý người dùng</h2>
             <hr />
             <div className="userManage__form">
@@ -102,6 +119,21 @@ function UserManage(props) {
                     <div className="list__body">
                         {renderUserList()}
                     </div>
+                </div>
+            </div>
+            <div className={userDetail ? "rwdItem__user show__user" : "rwdItem__user"}>
+                <div className="rwdUser__info">
+                    <h3>Thông tin người dùng</h3>
+                    <p><i class="fa fa-ad"></i><span>Tài Khoản : {user.taiKhoan}</span></p>
+                    <p><i class="fa fa-key"></i><span>Mật khẩu : {user.matKhau}</span></p>
+                    <p><i class="fa fa-user"></i><span>Họ tên : {user.hoTen}</span></p>
+                    <p><i class="fa fa-envelope"></i>Email: {user.email}</p>
+                    <p><i class="fa fa-phone"></i><span>Số điện thoại : {user.soDt} </span></p>
+                    <p><i class="fa fa-users"></i><span>Mã nhóm : {user.maNhom} </span></p>
+                    <p><i class="fa fa-user-tie"></i><span>Loại người dùng : {user.maLoaiNguoiDung} </span></p>
+                    <button className="button" onClick={() => showDetail()}>
+                        <i class="fa fa-angle-double-left"></i>
+                    </button>
                 </div>
             </div>
         </div>

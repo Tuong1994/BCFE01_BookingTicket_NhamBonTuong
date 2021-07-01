@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { getShowTimeDetail } from '../../../redux/action/PhimAction';
 
 function CheckoutBar(props) {
-    const { danhSachPhim, phim, chiTietLichChieu } = useSelector(state => state.PhimReducer);
+    const { danhSachPhim, phim, chiTietLichChieu, lichChieu } = useSelector(state => state.PhimReducer);
     let dispatch = useDispatch();
     const [tenPhim, setTenPhim] = useState("Phim");
     const [rapChieu, setRapChieu] = useState("Rạp");
@@ -113,6 +113,13 @@ function CheckoutBar(props) {
                                                 <button className="checkout__link" onClick={() => {
                                                     let lichChieuFormat = moment(lichChieu.ngayChieuGioChieu).format("hh:mm:A");
                                                     setGioXem(lichChieuFormat);
+                                                    dispatch({
+                                                        type: "GET_SCHEDULE",
+                                                        lichChieu: {
+                                                            maLichChieu: lichChieu.maLichChieu
+                                                        }
+                                                    })
+                                                    console.log(lichChieu.maLichChieu);
                                                 }}>
                                                     {moment(lichChieu.ngayChieuGioChieu).format("hh:mm:A")}
                                                 </button>
@@ -126,7 +133,7 @@ function CheckoutBar(props) {
                 </div>
 
                 <div className="checkout__item">
-                    {gioXem === "Suất chiếu" ? <button class="button" disabled={true}>Mua vé ngay</button> : <NavLink to={`/film_detail/${phim.maPhim}`} className="button btn-buy">Mua vé ngay</NavLink>}
+                    {gioXem === "Suất chiếu" ? <button class="button" disabled={true}>Mua vé ngay</button> : <NavLink to={`/checkout/${lichChieu.maLichChieu}`} className="button btn-buy">Mua vé ngay</NavLink>}
                 </div>
             </div>
         </div>

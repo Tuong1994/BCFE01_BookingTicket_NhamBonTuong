@@ -6,10 +6,10 @@ import Feature from './Feature';
 
 function Dashboard(props) {
     return (
-        <div className="dashboard-wrapper">
+        <div className="dashboard">
             <Feature />
             <RevanueChart />
-            <div className="chart-wrapper">
+            <div className="sub-chart">
                 <CinemaChart />
                 <UserChart />
             </div>

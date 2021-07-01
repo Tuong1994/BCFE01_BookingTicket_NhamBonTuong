@@ -2,6 +2,7 @@
   margin-bottom: $m-5 * 2;
   border-radius: 5px;
   position: relative;
+  // SLIDE-TITLE
   .nav {
     display: flex;
     height: $h-8;
@@ -19,7 +20,15 @@
       &:hover {
         border: 0;
         font-size: $h2;
+        @include respond(smallPhone) {
+          font-size: $body-1 + 4;
+        }
       }
+    }
+    @include respond(smallPhone) {
+      font-size: $body-1 + 2;
+      margin-bottom: $m-1 + 5;
+      height: $h-4;
     }
   }
   .nav-pills .nav-link.active, 
@@ -27,8 +36,12 @@
     background: transparent;
     color: $tSecondary;
     font-size: $h2;
+    @include respond(smallPhone) {
+      font-size: $body-1 + 4;
+    }
   }
 
+  // REACT-SLICK-OWL-CAROUSEL
   .slick-next,
   .slick-prev {
     &::before {
@@ -62,6 +75,7 @@
     }
   }
 
+  // SLIDE-MOVIE-LIST
   .slides {
     overflow-x: visible;
     padding: $p-1;
@@ -120,13 +134,22 @@
             align-items: center;
             p {
               margin: 0;
+              @include respond(smallPhone) {
+                font-size: $body-2 - 2;
+              }
             }
             .card__star {
               width: $w-100;
               display: flex;
               justify-content: center;
-              i {
-                font-size: $body-2 - 5;
+              span {
+                margin: 0;
+                i {
+                  font-size: $body-2 - 5;
+                  @include respond(smallPhone) {
+                    font-size: $body-2 - 7;
+                  }
+                }
               }
             }
           }
@@ -157,6 +180,10 @@
             height: $h-10 * 3;
           }
           @include respond(phone) {
+            width: $w-100;
+            height: $h-10 * 2.5;
+          }
+          @include respond(smallPhone) {
             width: $w-100;
             height: $h-10 * 2;
           }
@@ -247,16 +274,21 @@
         @include respond(phone) {
           width: $w-100;
         }
+        @include respond(smallPhone) {
+          margin-bottom: $m-2;
+        }
       }
     }
     .btn-load {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: $m-2 0;
+      margin: $m-1 0;
       width: $w-100;
       .button {
         display: block;
+        font-size: $body-1;
+        padding: $p-1 - 5 $p-2;
       }
     }
   }
@@ -271,6 +303,8 @@
       display: block;
     }
   }
+  
+  // MOVIE-TRAILER-POPUP
   .popup-wrapper {
     width: $w-100;
     height: $h-100;
@@ -332,5 +366,9 @@
   }
   @include respond(phone) {
     margin-top: $m-5 * 2;
+  }
+  @include respond(smallPhone) {
+    margin-top: $m-5;
+    margin-bottom: $m-3;
   }
 } 

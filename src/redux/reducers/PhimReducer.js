@@ -2,6 +2,7 @@ const stateDefault = {
   danhSachPhim: [],
   danhSachRapChieu: [],
   chiTietLichChieu: {},
+  lichChieu: {},
   thongTinRapChieu: {},
   phimTrailer: {},
   phim: {},
@@ -32,6 +33,10 @@ export const PhimReducer = (state = stateDefault, action) => {
     case "GET_FILM_DETAIL": {
       state.phim = action.film;
       return { ...state };
+    }
+    case "GET_SCHEDULE": {
+      state.lichChieu = action.lichChieu;
+      return {...state}
     }
     default:
       return { ...state };

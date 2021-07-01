@@ -9,9 +9,11 @@ import Popup from '../../../component/Popup/Popup';
 import Schedule from '../../Admin/FilmManage/Schedule';
 
 function FilmManage(props) {
-    const { danhSachPhim } = useSelector(state => state.PhimReducer);
+    const { danhSachPhim, phim } = useSelector(state => state.PhimReducer);
     const [popup, setPopup] = useState(false);
     const [searchFilm, setSearchFilm] = useState("");
+    const [filmDetail, setFilmDetail] = useState(false);
+    let showFilm = () => setFilmDetail(!filmDetail)
     let dispatch = useDispatch()
     useEffect(() => {
         dispatch(getMovieAction())
@@ -40,12 +42,18 @@ function FilmManage(props) {
                     <button className="button" onClick={() => {
                         dispatch({
                             type: "GET_FILM_DETAIL",
-                            film
+                            film,
                         })
-                        setPopup(true)
+                        showFilm()
+                    }}><i class="fa fa-film"></i></button>
+                    <NavLink className="button" to="/schedule" onClick={() => {
+                        dispatch({
+                            type: "GET_FILM_DETAIL",
+                            film,
+                        })
                     }}>
                         <i class="fab fa-safari"></i>
-                        <span>Lịch chiếu</span></button>
+                        <span>Lịch chiếu</span></NavLink>
                     <NavLink className="button" to="/update_movie" onClick={() => {
                         dispatch({
                             type: "GET_FILM_DETAIL",
@@ -90,7 +98,7 @@ function FilmManage(props) {
         })
     }
     return (
-        <div className="filmManage-wrapper">
+        <div className="filmManage">
             <h2>Quản lý phim</h2>
             <hr />
             <div className="filmManage__form">
@@ -120,9 +128,19 @@ function FilmManage(props) {
                     </div>
                 </div>
             </div>
-            <Popup trigger={popup} setTrigger={setPopup}>
-                <Schedule />
-            </Popup>
+            <div className={filmDetail ? "rwdItem__film show__film" : "rwdItem__film"}>
+                <h3>Thông tin phim</h3>
+                <img src={phim.hinhAnh} alt={phim.tenPhim} />
+                <div className="rwdItem__info">
+                    <p>Mã phim : <span>{phim.maPhim}</span></p>
+                    <p>Tên phim : <span>{phim.tenPhim}</span></p>
+                    <p>Mô tả : {phim.moTa?.length > 150 ? <span>{phim.moTa?.substr(0,150)}...</span> : <span>{phim.moTa}</span>}</p>
+                    <p>Đánh giá : <span>{phim.danhGia}</span></p>
+                    <p>Ngày chiếu : <span>{phim.ngayKhoiChieu}</span></p>
+                    <p>Trailer : {phim.trailer?.length > 24 ? <span>{phim.trailer?.substr(0,24)}<br />{phim.trailer?.substr(24)}</span> : <span>{phim.trailer}</span>}</p>
+                </div>
+                <button className="button" onClick={() => showFilm()}><i class="fa fa-angle-double-left"></i></button>
+            </div>
         </div>
     );
 }

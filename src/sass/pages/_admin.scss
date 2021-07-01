@@ -1,9 +1,10 @@
-.admin-wrapper {
+// ADMIN TEMPLATE
+.admin {
   width: $w-100;
   height: $h-100;
   position: fixed;
   display: flex;
-  .admin__info {
+  .admin__sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,9 +24,8 @@
       border-bottom: 1px solid $dark-1;
       font-size: $h3 - 2;
       position: relative;
-      .show {
-        opacity: 1;
-        visibility: visible;
+      i {
+        margin-left: $m-1;
       }
       @include respond(extraTablet) {
         font-size: $body-1 + 2;
@@ -41,6 +41,16 @@
         font-size: $body-1 + 2;
         border: 0;
         width: $w-100 - 70;
+      }
+      @include respond(smallPhone) {
+        font-size: $body-1;
+        border: 0;
+        width: $w-100 - 60;
+      }
+      @include respond(extraSmallPhone) {
+        font-size: $body-1;
+        border: 0;
+        width: $w-100 - 60;
       }
     }
     .admin__menu {
@@ -64,10 +74,16 @@
           margin: $m-2 $m-1;
         }
         @include respond(tablet) {
-          margin: 0 $m-1;
+          margin: $m-1;
         }
         @include respond(phone) {
-          margin: 0 $m-1;
+          margin: $m-1;
+        }
+        @include respond(smallPhone) {
+          margin: $m-1;
+        }
+        @include respond(extraSmallPhone) {
+          margin: $m-1;
         }
       }
       .sub-btn {
@@ -105,7 +121,7 @@
         top: 0;
         left: -100%;
         width: $w-100;
-        height: $h-10 + 80;
+        height: $h-10 * 2;
         font-size: $body-1 + 3;
         flex-direction: column;
         justify-content: space-evenly;
@@ -120,8 +136,38 @@
         top: 0;
         left: -100%;
         width: $w-100;
-        height: $h-10 + 50;
-        font-size: $body-1;
+        height: $h-10 * 2;
+        font-size: $body-1 + 3;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        background: $primary;
+        box-shadow: 0 5px 5px $grey-2;
+        z-index: 1000;
+      }
+      @include respond(smallPhone) {
+        padding: $p-1 $p-4;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: $w-100;
+        height: $h-10 * 2;
+        font-size: $body-1 + 3;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        background: $primary;
+        box-shadow: 0 5px 5px $grey-2;
+        z-index: 1000;
+      }
+      @include respond(extraSmallPhone) {
+        padding: $p-1 $p-4;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: $w-100;
+        height: $h-10 * 3;
+        font-size: $body-1 + 4;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: flex-start;
@@ -251,12 +297,18 @@
   @include respond(phone) {
     flex-direction: column;
   }
+  @include respond(smallPhone) {
+    flex-direction: column;
+  }
+  @include respond(extraSmallPhone) {
+    flex-direction: column;
+  }
 }
 
 // DASHBOARD
-.dashboard-wrapper {
+.dashboard {
   padding: $p-3;
-  .feature-wrapper {
+  .feature {
     display: flex;
     justify-content: space-between;
     margin-bottom: $m-5;
@@ -297,8 +349,13 @@
     h4 {
       margin-bottom: $m-3;
     }
+    tspan {
+      @include respond(extraSmallPhone) {
+        font-size: $body-2;
+      }
+    }
   }
-  .chart-wrapper {
+  .sub-chart {
     width: $w-100;
     display: flex;
     justify-content: space-between;
@@ -325,13 +382,28 @@
       flex-direction: column;
     }
   }
+  @include respond(smallPhone) {
+    padding: $p-1;
+  }
+  @include respond(extraSmallPhone) {
+    padding: $p-1;
+  }
 }
 
-// FILM-MANAGE
-
-.filmManage-wrapper {
+// FILM-MANAGE-HOMEPAGE
+.filmManage {
   width: $w-100;
   padding: $p-2;
+  position: relative;
+  overflow: hidden;
+  h2 {
+    @include respond(smallPhone) {
+      font-size: $h2;
+    }
+    @include respond(extraSmallPhone) {
+      font-size: $h2;
+    }
+  }
   .filmManage__form {
     border-bottom: 1px solid $grey-2;
     display: flex;
@@ -368,6 +440,20 @@
       @include respond(phone) {
         font-size: $body-1;
       }
+      @include respond(smallPhone) {
+        width: $w-100 - 50;
+        margin-bottom: $m-1;
+        font-size: $body-1;
+        box-shadow: 0 0 5px $grey-2;
+        border-radius: 5px;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100 - 50;
+        margin-bottom: $m-1;
+        font-size: $body-1;
+        box-shadow: 0 0 5px $grey-2;
+        border-radius: 5px;
+      }
     }
     .form__input {
       width: $w-100 - 25;
@@ -387,16 +473,29 @@
         margin-right: $m-2;
         opacity: 0.5;
       }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+      }
+    }
+    @include respond(extraSmallPhone) {
+      flex-direction: column;
     }
   }
   .filmManage__list {
     h3 {
       text-align: center;
       margin: $m-3 0;
+      @include respond(smallPhone) {
+        font-size: $h3;
+      }
+      @include respond(extraSmallPhone) {
+        font-size: $h3;
+      }
     }
     .list__wrapper {
       width: $w-100;
       box-shadow: 0 0 5px $dark-1;
+      // MOVIE-LIST-COLUMN
       .list__col-1 {
         width: $w-100 - 90;
       }
@@ -405,8 +504,38 @@
       .list__col-5 {
         width: $w-100 - 80;
       }
+      .list__col-2 {
+        @include respond(smallPhone) {
+          display: none;
+        }
+        @include respond(extraSmallPhone) {
+          display: none;
+        }
+      }
       .list__col-3 {
         width: $w-100 - 50;
+        @include respond(smallPhone) {
+          width: $w-100 - 45;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100 - 45;
+        }
+      }
+      .list__col-4 {
+        @include respond(smallPhone) {
+          display: none;
+        }
+        @include respond(extraSmallPhone) {
+          display: none;
+        }
+      }
+      .list__col-5 {
+        @include respond(smallPhone) {
+          width: $w-100 - 75;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100 - 75;
+        }
       }
       .list__title {
         display: flex;
@@ -428,7 +557,17 @@
         @include respond(phone) {
           font-size: $body-1;
         }
+        @include respond(smallPhone) {
+          justify-content: center;
+          font-size: $body-2;
+        }
+        @include respond(extraSmallPhone) {
+          justify-content: center;
+          font-size: $body-2;
+        }
       }
+
+      // MOVIE-LIST-BODY
       .list__body {
         height: $h-10 * 3.8;
         overflow-y: auto;
@@ -454,6 +593,8 @@
           &:nth-of-type(odd) {
             background: $grey-1;
           }
+
+          // MOVIE-DETAIL
           .item__film {
             display: flex;
             text-align: left;
@@ -462,7 +603,7 @@
               height: $h-10;
               border-radius: 5px;
               margin-right: $m-1;
-              @include respond(tablet) {
+              @include respond(extraTablet) {
                 display: block;
                 width: $w-6;
                 height: $h-6;
@@ -494,6 +635,12 @@
                   @include respond(phone) {
                     font-size: $body-1;
                   }
+                  @include respond(smallPhone) {
+                    font-size: $body-2;
+                  }
+                  @include respond(extraSmallPhone) {
+                    font-size: $body-2;
+                  }
                 }
                 &:nth-child(2) {
                   @include respond(extraTablet) {
@@ -509,9 +656,25 @@
                 span {
                   color: $tSecondary;
                 }
+                @include respond(smallPhone) {
+                  font-size: $body-2 - 2;
+                }
+                @include respond(extraSmallPhone) {
+                  font-size: $body-2 - 2;
+                }
               }
             }
+            @include respond(phone) {
+              justify-content: center;
+            }
+            @include respond(smallPhone) {
+              justify-content: center;
+            }
+            @include respond(extraSmallPhone) {
+              justify-content: center;
+            }
           }
+          // MOVIE-BUTTON
           .btn-edit {
             display: flex;
             align-items: center;
@@ -525,7 +688,8 @@
               padding: $p-1 - 5 $p-2;
               box-shadow: 0 0 5px $dark-2;
               &:nth-child(1),
-              &:nth-child(2) {
+              &:nth-child(2),
+              &:nth-child(3) {
                 border: 1px solid $blue;
                 background: linear-gradient(to right, $deepBlue, $blue);
                 transition: all 0.4s;
@@ -534,6 +698,22 @@
                   background: transparent;
                 }
               }
+              &:nth-child(1) {
+                display: none;
+                @include respond(tablet) {
+                  display: block;
+                }
+                @include respond(phone) {
+                  display: block;
+                }
+                @include respond(smallPhone) {
+                  display: block;
+                }
+                @include respond(extraSmallPhone) {
+                  display: block;
+                }
+              }
+              // BUTTON-ICON
               i {
                 margin-right: $m-1;
                 @include respond(extraTablet) {
@@ -546,7 +726,11 @@
                   margin: 0;
                 }
               }
+              // BUTTON-TEXT
               span {
+                @include respond(laptop) {
+                  font-size: $body-2;
+                }
                 @include respond(extraTablet) {
                   display: none;
                 }
@@ -556,6 +740,10 @@
                 @include respond(phone) {
                   display: none;
                 }
+              }
+              @include respond(laptop) {
+                width: $w-100 - 15;
+                padding: $p-1 $p-2 - 5;
               }
               @include respond(extraTablet) {
                 height: $h-3;
@@ -575,6 +763,20 @@
                 line-height: $h-3;
                 padding: 0;
               }
+              @include respond(smallPhone) {
+                height: $h-2;
+                font-size: $body-2 - 2;
+                text-align: center;
+                line-height: $h-2;
+                padding: 0;
+              }
+              @include respond(extraSmallPhone) {
+                height: $h-2;
+                font-size: $body-2 - 2;
+                text-align: center;
+                line-height: $h-2;
+                padding: 0;
+              }
             }
           }
           @include respond(extraTablet) {
@@ -586,65 +788,85 @@
           @include respond(phone) {
             font-size: $body-1;
           }
+          @include respond(smallPhone) {
+            font-size: $body-1;
+          }
+          @include respond(extraSmallPhone) {
+            font-size: $body-1;
+          }
         }
       }
     }
   }
-  .schedule-wrapper {
-    background: $primary;
-    padding: $p-3;
-    border-radius: 5px;
+  .rwdItem__film {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: $w-100;
+    height: $h-100;
+    background: rgba(0, 0, 0, 0.8);
+    color: $tWhite;
+    transition: all 0.5s;
     h3 {
-      text-align: center;
+      padding-bottom: $p-1;
+      margin-top: $m-1;
+      border-bottom: 1px solid $primary;
     }
-    .schedule__form {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      .form__content {
-        width: $w-100 - 55;
-        .form__item {
-          width: $w-100;
-          margin-bottom: $m-1;
-          label {
-            font-weight: $medium;
-          }
-          .form__group {
-            width: $w-100;
-            padding: $p-1 - 5;
-            border: 1px solid $dark-1;
-            border-radius: 5px;
-            .form__input {
-              width: $w-100;
-              border: 0;
-              outline: 0;
-              display: flex;
-              align-items: center;
-              input {
-                width: $w-100;
-                outline: 0;
-                border: 0;
-              }
-              .error-icon {
-                color: $tSecondary;
-                display: none;
-              }
-            }
-          }
-        }
-        .form__button {
-          margin-top: $m-2;
-          .button {
-            @include respond(tablet) {
-              font-size: $body-1;
-            }
-            @include respond(phone) {
-              font-size: $body-1;
-            }
-          }
-        }
+    img {
+      border-radius: 5px;
+      display: block;
+      margin: $m-1 auto;
+      @include respond(tablet) {
+        width: $w-100 - 20;
+        height: $h-100 - 20;
+      }
+      @include respond(phone) {
+        width: $w-100 - 20;
+        height: $h-100 - 20;
+      }
+      @include respond(smallPhone) {
+        width: $w-100 - 15;
+        height: $h-100 - 40;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100 - 15;
+        height: $h-100 - 50;
       }
     }
+    .rwdItem__info {
+      font-size: $body-1;
+      p {
+        margin-bottom: $m-1 - 3;
+        span {
+          color: $tSecondary;
+        }
+      }
+      @include respond(tablet) {
+        font-size: $h3 - 4;
+      }
+      @include respond(phone) {
+        font-size: $body-1;
+      }
+    }
+    @include respond(tablet) {
+      overflow-y: scroll;
+      padding: $p-3;
+    }
+    @include respond(phone) {
+      overflow-y: scroll;
+      padding: $p-3;
+    }
+    @include respond(smallPhone) {
+      overflow-y: scroll;
+      padding: $p-1;
+    }
+    @include respond(extraSmallPhone) {
+      overflow-y: scroll;
+      padding: $p-1;
+    }
+  }
+  .show__film {
+    left: 0;
   }
   .popup-wrapper {
     width: $w-100;
@@ -683,9 +905,16 @@
       }
     }
   }
+  @include respond(smallPhone) {
+    padding: $p-1 - 5;
+  }
+  @include respond(extraSmallPhone) {
+    padding: $p-1 - 5;
+  }
 }
 
-.addmovie-wrapper {
+// ADMIN-ADD-MOVIE
+.addmovie {
   padding: $p-2;
   h3 {
     text-align: center;
@@ -731,6 +960,30 @@
             }
           }
         }
+        @include respond(phone) {
+          width: $w-100;
+          margin-bottom: $m-1;
+        }
+        @include respond(smallPhone) {
+          width: $w-100;
+          margin-bottom: $m-1;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100;
+          margin-bottom: $m-1;
+        }
+      }
+      @include respond(phone) {
+        flex-direction: column;
+        width: $w-100;
+      }
+      @include respond(smallPhone) {
+        flex-direction: column;
+        width: $w-100;
+      }
+      @include respond(extraSmallPhone) {
+        flex-direction: column;
+        width: $w-100;
       }
     }
     .form__desc {
@@ -757,11 +1010,33 @@
     }
     .form__button {
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
       .button {
-        padding: $p-1 - 5 $p-2;
+        text-decoration: none;
+        padding: $p-1 - 5 $p-3;
         font-weight: $medium;
+        &:nth-child(1) {
+          background: linear-gradient(to right, $deepBlue, $blue);
+          border: 1px solid $blue;
+          transition: all 0.5s;
+          &:hover {
+            color: $blue !important;
+            background: transparent;
+          }
+        }
+        @include respond(phone) {
+          padding: $p-1 - 5 $p-3;
+          font-size: $body-1;
+        }
+        @include respond(smallPhone) {
+          padding: $p-1 - 5 $p-2;
+          font-size: $body-1;
+        }
+        @include respond(extraSmallPhone) {
+          padding: $p-1 - 5 $p-2;
+          font-size: $body-1;
+        }
       }
     }
     @include respond(extraTablet) {
@@ -772,6 +1047,7 @@
     }
     @include respond(phone) {
       min-width: $w-100;
+      padding: $p-1;
     }
   }
   @include respond(extraTablet) {
@@ -785,7 +1061,8 @@
   }
 }
 
-.updatemovie-wrapper {
+// ADMIN-UPDATE-MOVIE
+.updatemovie {
   padding: $p-2;
   h3 {
     text-align: center;
@@ -831,6 +1108,27 @@
             }
           }
         }
+        @include respond(phone) {
+          width: $w-100;
+          margin-bottom: $m-1;
+        }
+        @include respond(smallPhone) {
+          width: $w-100;
+          margin-bottom: $m-1;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100;
+          margin-bottom: $m-1;
+        }
+      }
+      @include respond(phone) {
+        flex-direction: column;
+      }
+      @include respond(smallPhone) {
+        flex-direction: column;
+      }
+      @include respond(extraSmallPhone) {
+        flex-direction: column;
       }
     }
     .form__desc {
@@ -857,11 +1155,27 @@
     }
     .form__button {
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
       .button {
-        padding: $p-1 - 5 $p-2;
+        text-decoration: none;
+        padding: $p-1 - 5 $p-3;
         font-weight: $medium;
+        &:first-child {
+          background: linear-gradient(to right, $deepBlue, $blue);
+          border: 1px solid $blue;
+          transition: all 0.5s;
+          &:hover {
+            color: $blue !important;
+            background: transparent;
+          }
+        }
+        @include respond(smallPhone) {
+          font-size: $body-1;
+        }
+        @include respond(extraSmallPhone) {
+          font-size: $body-1;
+        }
       }
     }
     @include respond(extraTablet) {
@@ -872,6 +1186,7 @@
     }
     @include respond(phone) {
       width: $w-100;
+      padding: $p-1;
     }
   }
   @include respond(extraTablet) {
@@ -885,10 +1200,178 @@
   }
 }
 
-// USER-MANAGE
+// MOVIE-SCHEDULE
+.schedule {
+  padding: $p-5;
+  h3 {
+    text-align: center;
+  }
+  .schedule__film {
+    .film__body {
+      display: flex;
+      img {
+        border-radius: 5px;
+        box-shadow: 0 0 5px $dark-1;
+        width: $w-100 - 70;
+        height: $h-10 * 2;
+        margin-right: $m-2;
+        @include respond(tablet) {
+          width: $w-100;
+        }
+        @include respond(phone) {
+          width: $w-100;
+          height: $h-10 * 3;
+          margin: $m-1 0;
+        }
+        @include respond(smallPhone) {
+          width: $w-100;
+          margin: $m-1 0;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100;
+          margin: $m-1 0;
+        }
+      }
+      .film__info {
+        text-align: justify;
+        p {
+          margin-bottom: $m-1 - 5;
+          span {
+            color: $tSecondary;
+          }
+        }
+      }
+      @include respond(phone) {
+        flex-direction: column;
+      }
+      @include respond(smallPhone) {
+        flex-direction: column;
+      }
+      @include respond(extraSmallPhone) {
+        flex-direction: column;
+      }
+    }
+  }
+  .schedule__form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: $p-3;
+    .form__content {
+      width: $w-100 - 55;
+      .form__item {
+        width: $w-100;
+        margin-bottom: $m-1;
+        label {
+          font-weight: $medium;
+        }
+        .form__group {
+          width: $w-100;
+          padding: $p-1 - 5;
+          border: 1px solid $grey-2;
+          border-radius: 5px;
+          .form__input {
+            width: $w-100;
+            border: 0;
+            outline: 0;
+            display: flex;
+            align-items: center;
+            input {
+              width: $w-100;
+              outline: 0;
+              border: 0;
+            }
+            .error-icon {
+              color: $tSecondary;
+              display: none;
+            }
+          }
+        }
+      }
+      .form__button {
+        margin-top: $m-2;
+        display: flex;
+        justify-content: space-evenly;
+        .button {
+          text-decoration: none;
+          &:nth-child(1) {
+            background: linear-gradient(to right, $deepBlue, $blue);
+            border: 1px solid $blue;
+            i {
+              margin-right: $m-1;
+            }
+            &:hover {
+              background: transparent;
+              color: $blue !important;
+            }
+          }
+          @include respond(tablet) {
+            font-size: $body-1;
+            padding: $p-1 - 5 $p-2;
+          }
+          @include respond(phone) {
+            font-size: $body-1;
+            padding: $p-1 - 5 $p-2;
+          }
+        }
+      }
+      @include respond(phone) {
+        width: $w-100;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+      }
+    }
+    @include respond(tablet) {
+      padding: $p-2;
+    }
+    @include respond(phone) {
+      flex-direction: column;
+      padding: $p-1;
+    }
+    @include respond(smallPhone) {
+      flex-direction: column;
+      padding: $p-1;
+    }
+    @include respond(extraSmallPhone) {
+      flex-direction: column;
+      padding: $p-1;
+    }
+  }
+  @include respond(tablet) {
+    width: $w-100;
+    padding: $p-2;
+  }
+  @include respond(phone) {
+    width: $w-100;
+    padding: $p-1;
+  }
+  @include respond(smallPhone) {
+    width: $w-100;
+    padding: $p-1;
+  }
+  @include respond(extraSmallPhone) {
+    width: $w-100;
+    padding: $p-1;
+  }
+}
 
-.userManage-wrapper {
+// USER-MANAGE-HOMEPAGE
+.userManage {
   padding: $p-2;
+  position: relative;
+  overflow: hidden;
+  h2 {
+    @include respond(smallPhone) {
+      font-size: $h3;
+    }
+    @include respond(extraSmallPhone) {
+      font-size: $h3;
+    }
+  }
   .userManage__form {
     border-bottom: 1px solid $grey-2;
     display: flex;
@@ -912,32 +1395,58 @@
       i {
         margin-right: $m-1;
         font-size: $body-1;
-        @include respond(extraTablet) {
-          margin: 0;
-          font-size: $body-1 + 5;
-        }
         @include respond(tablet) {
-          margin: 0;
+          margin-right: $m-1;
           font-size: $body-1 + 5;
         }
         @include respond(phone) {
-          margin: 0;
+          margin-right: $m-1;
           font-size: $body-1 + 5;
+        }
+        @include respond(smallPhone) {
+          margin-right: $m-1;
+          font-size: $body-1;
+        }
+        @include respond(extraSmallPhone) {
+          margin-right: $m-1;
+          font-size: $body-1;
         }
       }
       span {
-        @include respond(laptop) {
+        @include respond(phone) {
+          display: inline-block;
+          font-size: $body-1 + 5;
+        }
+        @include respond(smallPhone) {
+          display: inline-block;
           font-size: $body-1;
         }
-        @include respond(extraTablet) {
-          display: none;
+        @include respond(extraSmallPhone) {
+          display: inline-block;
+          font-size: $body-1;
         }
-        @include respond(tablet) {
-          display: none;
-        }
-        @include respond(phone) {
-          display: none;
-        }
+      }
+      @include respond(tablet) {
+        width: $w-100 - 60;
+        margin-bottom: $m-1;
+      }
+      @include respond(phone) {
+        width: $w-100 - 50;
+        margin-bottom: $m-1;
+        box-shadow: 0 0 5px $grey-2;
+        border-radius: 5px;
+      }
+      @include respond(smallPhone) {
+        width: $w-100 - 50;
+        margin-bottom: $m-1;
+        box-shadow: 0 0 5px $grey-2;
+        border-radius: 5px;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100 - 50;
+        margin-bottom: $m-1;
+        box-shadow: 0 0 5px $grey-2;
+        border-radius: 5px;
       }
     }
     .form__input {
@@ -958,12 +1467,39 @@
         margin-right: $m-2;
         opacity: 0.5;
       }
+      @include respond(phone) {
+        width: $w-100;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+      }
+    }
+    @include respond(phone) {
+      flex-direction: column;
+    }
+    @include respond(smallPhone) {
+      flex-direction: column;
+    }
+    @include respond(extraSmallPhone) {
+      flex-direction: column;
     }
   }
   .userManage__list {
     h3 {
       text-align: center;
       margin: $m-3 0;
+      @include respond(phone) {
+        font-size: $h3;
+      }
+      @include respond(smallPhone) {
+        font-size: $h3;
+      }
+      @include respond(extraSmallPhone) {
+        font-size: $h3;
+      }
     }
     .list__wrapper {
       box-shadow: 0 0 5px $dark-1;
@@ -974,6 +1510,14 @@
       .list__col-3,
       .list__col-5 {
         width: $w-100 - 75;
+      }
+      .list__col-2 {
+        @include respond(smallPhone) {
+          width: $w-100 - 60;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100 - 60;
+        }
       }
       .list__col-3 {
         @include respond(extraTablet) {
@@ -988,6 +1532,12 @@
       }
       .list__col-4 {
         width: $w-100 - 55;
+        @include respond(smallPhone) {
+          display: none;
+        }
+        @include respond(extraSmallPhone) {
+          display: none;
+        }
       }
       .list__title {
         display: flex;
@@ -1059,7 +1609,7 @@
                 }
               }
               @include respond(laptop) {
-                text-indent: 0;
+                text-indent: 7px;
               }
               @include respond(extraTablet) {
                 text-indent: 0;
@@ -1084,6 +1634,22 @@
               font-size: $body-1;
               padding: $p-1 - 5 $p-2;
               box-shadow: 0 0 5px $dark-2;
+              &:first-child {
+                display: none;
+                @include respond(tablet) {
+                  display: block;
+                }
+                @include respond(phone) {
+                  display: block;
+                }
+                @include respond(smallPhone) {
+                  display: block;
+                }
+                @include respond(extraSmallPhone) {
+                  display: block;
+                }
+              }
+              &:nth-child(1),
               &:nth-child(2) {
                 border: 1px solid $blue;
                 background: linear-gradient(to right, $deepBlue, $blue);
@@ -1125,6 +1691,14 @@
               @include respond(phone) {
                 font-size: $body-2;
               }
+              @include respond(smallPhone) {
+                width: $w-100;
+                font-size: $body-2;
+              }
+              @include respond(extraSmallPhone) {
+                width: $w-100;
+                font-size: $body-2;
+              }
             }
           }
           @include respond(extraTablet) {
@@ -1140,8 +1714,54 @@
       }
     }
   }
+  .rwdItem__user {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: $w-100;
+    height: $h-100;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding: $p-2;
+    transition: all 0.6s;
+    overflow-y: auto;
+    .rwdUser__info {
+      color: $tWhite;
+      h3 {
+        padding-bottom: $p-2;
+        margin-bottom: $m-1;
+        border-bottom: 1px solid $primary;
+      }
+      p {
+        margin-bottom: $m-1;
+        i {
+          margin-right: $m-1;
+        }
+      }
+      .button {
+        font-size: $body-1;
+        padding: $p-1 - 5 $p-3;
+      }
+    }
+  }
+  .show__user {
+    left: 0;
+  }
+  @include respond(phone) {
+    padding: $p-1;
+  }
+  @include respond(smallPhone) {
+    padding: $p-1 - 5;
+  }
+  @include respond(extraSmallPhone) {
+    padding: $p-1 - 5;
+  }
 }
 
+// AMIND-ADD-USER
 .adduser-wrapper {
   padding: $p-2;
   h3 {
@@ -1187,22 +1807,91 @@
           }
         }
       }
-    }
-    .form__button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .button {
-        padding: $p-1 - 5 $p-2;
-        font-weight: $medium;
+      @include respond(phone) {
+        min-width: $w-100;
+        margin-bottom: $m-1;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+        margin-bottom: $m-1;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+        margin-bottom: $m-1;
       }
     }
-    @include respond(phone) {
-      min-width: $w-100;
+    .form__button {
+      width: $w-100 - 55;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      .button, 
+      .btn-blue {
+        padding: $p-1 - 5 $p-2;
+        font-weight: $medium;
+        @include respond(tablet) {
+          font-size: $body-1;
+        }
+        @include respond(phone) {
+          font-size: $body-1;
+        }
+        @include respond(smallPhone) {
+          font-size: $body-1;
+        }
+        @include respond(extraSmallPhone) {
+          font-size: $body-1;
+        }
+      }
+      .btn-blue {
+        i {
+          margin-right: $m-1;
+        }
+      }
+      @include respond(phone) {
+        width: $w-100;
+        margin-top: $m-2;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+        margin-top: $m-2;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+        margin-top: $m-2;
+      }
     }
+    @include respond(tablet) {
+      width: $w-100;
+      padding: $p-2;
+    }
+    @include respond(phone) {
+      width: $w-100;
+      flex-direction: column;
+      padding: $p-1;
+    }
+    @include respond(smallPhone) {
+      width: $w-100;
+      flex-direction: column;
+      padding: $p-1;
+    }
+    @include respond(extraSmallPhone) {
+      width: $w-100;
+      flex-direction: column;
+      padding: $p-1;
+    }
+  }
+  @include respond(phone) {
+    padding: $p-2;
+  }
+  @include respond(extraSmallPhone) {
+    padding: $p-1;
+  }
+  @include respond(extraSmallPhone) {
+    padding: $p-1;
   }
 }
 
+// ADMIN-UPADATE-USER
 .updateuser-wrapper {
   padding: $p-2;
   h3 {
@@ -1247,15 +1936,67 @@
           }
         }
       }
+      @include respond(phone) {
+        width: $w-100;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+      }
     }
     .form__button {
+      width: $w-100 - 55;
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
       .button {
         padding: $p-1 - 5 $p-2;
         font-weight: $medium;
       }
+      .btn-blue {
+        i {
+          margin-right: $m-1;
+        }
+      }
+      @include respond(phone) {
+        width: $w-100;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+      }
     }
+    @include respond(tablet) {
+      width: $w-100;
+      padding: $p-2;
+    }
+    @include respond(phone) {
+      width: $w-100;
+      padding: $p-1;
+      flex-direction: column;
+    }
+    @include respond(smallPhone) {
+      width: $w-100;
+      padding: $p-1;
+      flex-direction: column;
+    }
+    @include respond(extraSmallPhone) {
+      width: $w-100;
+      padding: $p-1;
+      flex-direction: column;
+    }
+  }
+  @include respond(phone) {
+    padding: $p-2;
+  }
+  @include respond(smallPhone) {
+    padding: $p-1;
+  }
+  @include respond(extraSmallPhone) {
+    padding: $p-1;
   }
 }

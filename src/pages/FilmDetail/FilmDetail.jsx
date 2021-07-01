@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { getShowTimeDetail } from '../../redux/action/PhimAction';
 import { Link } from 'react-scroll';
 import Popup from '../../component/Popup/Popup';
+import RWD_FilmDetail from '../../component/RWD_FilmDetail/RWD_FilmDetail';
 
 
 function Detail(props) {
@@ -80,12 +81,12 @@ function Detail(props) {
                         <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Thông tin</a>
                     </li>
                 </ul>
-
+                
                 <div className="tab-content cinema__info" id="pills-tabContent">
                     <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        <div className="row">
-                            <div className="col-4">
-                                <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <div className="row cinema__inner">
+                            <div className="col-4 cinema__content">
+                                <div className="nav flex-column nav-pills cinema__item" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     {chiTietLichChieu.heThongRapChieu?.map((heThongRap, index) => {
                                         let activeClass = index === 0 ? "active" : "";
                                         return <a key={index} className={`nav-link cinema__link ${activeClass}`} id="v-pills-home-tab" data-toggle="pill" href={`#${heThongRap.maHeThongRap}`} role="tab" aria-controls="v-pills-home" aria-selected="true">
@@ -96,9 +97,8 @@ function Detail(props) {
                                 </div>
                             </div>
 
-                            <div className="col-8">
+                            <div className="col-8 cinema__content">
                                 <div className="tab-content" id="v-pills-tabContent">
-
                                     {chiTietLichChieu.heThongRapChieu?.map((heThongRap, index) => {
                                         let showActiveClass = index === 0 ? "show active" : "";
                                         return <div key={index} className={`tab-pane showtime__container fade ${showActiveClass}`} id={heThongRap.maHeThongRap} role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -146,6 +146,7 @@ function Detail(props) {
                     </div>
                 </div>
             </div>
+            {/* <RWD_FilmDetail chiTietLichChieu={chiTietLichChieu} /> */}
 
             <Popup trigger={showVideo} setTrigger={setShowVideo}>
                 <iframe className="videos-wrapper" src={chiTietLichChieu.trailer} frameborder="0" allow="autoplay" allowFullScreen={true}></iframe>

@@ -59,18 +59,22 @@ function RWD_Cinema(props) {
   return (
     <div className="rwd-cinema__wrapper">
       <div className="accordion" id="accordionExample">
+
         {danhSachRapChieu?.map((rapChieu, index) => {
           let activeClass = index === 0 ? "show" : "";
+
           return <div className="card" key={index}>
             <div className="card-header" id="headingOne">
-              <button className="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target={`#${rapChieu.maHeThongRap}`} aria-expanded="true" aria-controls="collapseOne">
+              <button className="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target={`#${rapChieu.maHeThongRap}`} aria-expanded="false" aria-controls="collapseOne">
                 <img src={rapChieu.logo} alt={rapChieu.tenHeThongRap} />
                 <span><i class="fa fa-angle-down"></i></span>
               </button>
             </div>
+
             <div id={rapChieu.maHeThongRap} className={`collapse ${activeClass}`} aria-labelledby="headingOne" data-parent="#accordionExample">
               <div className="card-body">
-                {rapChieu.lstCumRap?.map((cumRap, index) => {
+
+                {rapChieu.lstCumRap?.slice(0,4).map((cumRap, index) => {
                   return <Accordion key={index} square expanded={expanded === index} onChange={handleChange(index)}>
                     <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                       <Typography className="cinema__info">
@@ -81,7 +85,8 @@ function RWD_Cinema(props) {
                         </div>
                       </Typography>
                     </AccordionSummary>
-                    {cumRap.danhSachPhim?.map((film, index) => {
+
+                    {cumRap.danhSachPhim?.slice(0,6).map((film, index) => {
                       return <AccordionDetails className="film__body" key={index}>
                         <Typography className="film__info">
                           <img src={film.hinhAnh} alt={film.tenPhim} />
@@ -92,16 +97,19 @@ function RWD_Cinema(props) {
                                 {moment(lichChieu.ngayChieuGioChieu).format("dd hh:mm:A")}
                               </NavLink>
                             })}
+                            <NavLink to={`/film_detail/${film.maPhim}`}  className="button btn-time">Chọn giờ chiếu</NavLink>
                           </div>
                         </Typography>
                       </AccordionDetails>
                     })}
                   </Accordion>
                 })}
+
               </div>
             </div>
           </div>
         })}
+
       </div>
     </div>
   );

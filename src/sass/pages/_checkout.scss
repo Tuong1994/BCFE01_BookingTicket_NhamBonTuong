@@ -3,7 +3,7 @@
   background-attachment: fixed;
   padding: $p-5 * 2 0;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   &::after {
     content: "";
     width: $w-100;
@@ -20,7 +20,7 @@
     width: $w-100 - 10;
     margin: 0 auto;
     position: relative;
-    z-index: 100;
+    z-index: 1000;
     .checkout__theatre {
       width: $w-100 - 35;
       .theatre__info {
@@ -34,6 +34,14 @@
           text-align: center;
         }
         @include respond(phone) {
+          text-align: center;
+        }
+        @include respond(smallPhone) {
+          font-size: $body-1;
+          text-align: center;
+        }
+        @include respond(extraSmallPhone) {
+          font-size: $body-1;
           text-align: center;
         }
       }
@@ -87,11 +95,18 @@
             margin: $m-1 - 6;
           }
           @include respond(smallPhone) {
-            width: $w-2 + 3;
-            height: $h-2 + 3;
-            font-size: $body-2;
-            line-height: $h-2 + 3;
-            margin: $m-1 - 6;
+            width: $w-2;
+            height: $h-2;
+            font-size: $body-2 - 4;
+            line-height: $h-2;
+            margin: $m-1 - 7;
+          }
+          @include respond(extraSmallPhone) {
+            width: $w-1 + 7;
+            height: $h-1 + 7;
+            font-size: $body-2 - 4;
+            line-height: $h-1 + 7;
+            margin: $m-1 - 9;
           }
         }
       }
@@ -113,34 +128,66 @@
             font-size: $body-1;
           }
         }
-        .note__item {
+        .note__content {
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          font-size: $body-1;
-          font-weight: $medium;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          .vip-bg,
-          .booking-bg,
-          .booked-bg {
-            width: $w-3;
-            height: $h-3;
-            border-radius: 5px;
-            margin-right: $m-1;
-            @include respond(phone) {
-              width: $w-2;
-              height: $h-2;
+          .note__item {
+            display: flex;
+            align-items: center;
+            font-size: $body-1;
+            font-weight: $medium;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 $m-1;
+            .vip-bg,
+            .booking-bg,
+            .booked-bg {
+              width: $w-3;
+              height: $h-3;
+              border-radius: 5px;
+              margin-right: $m-1;
+              @include respond(phone) {
+                width: $w-2;
+                height: $h-2;
+              }
+              @include respond(phone) {
+                width: $w-2;
+                height: $h-2;
+              }
+              @include respond(smallPhone) {
+                width: $w-2;
+                height: $h-2;
+              }
+              @include respond(extraSmallPhone) {
+                width: $w-2;
+                height: $h-2;
+                border-radius: 0;
+              }
+            }
+            .vip-bg {
+              background: $yellow;
+            }
+            .booking-bg {
+              background: $blue;
+            }
+            .booked-bg {
+              background: $red-1;
+            }
+            span {
+              @include respond(extraSmallPhone) {
+                font-size: $body-2;
+              }
             }
           }
-          .vip-bg {
-            background: $yellow;
-          }
-          .booking-bg {
-            background: $blue;
-          }
-          .booked-bg {
-            background: $red-1;
-          }
+        }
+        @include respond(smallPhone) {
+          flex-direction: column;
+          padding: $p-1;
+        }
+        @include respond(extraSmallPhone) {
+          flex-direction: column;
+          padding: $p-1 - 5;
         }
       }
       .checkout__detail {
@@ -205,11 +252,21 @@
           }
           @include respond(tablet) {
             width: $w-100;
-            height: $h-10 * 3.8;
+            height: $h-10 * 3.5;
           }
           @include respond(phone) {
             width: $w-100;
-            height: $h-10 * 3;
+            height: $h-10 * 2;
+          }
+          @include respond(smallPhone) {
+            width: $w-100;
+            height: $h-10 * 2;
+            margin-bottom: $m-1;
+          }
+          @include respond(extraSmallPhone) {
+            width: $w-100;
+            height: $h-10 * 1.6;
+            margin-bottom: $m-1 - 5;
           }
         }
       }
@@ -219,10 +276,33 @@
             text-transform: uppercase;
             text-align: center;
             letter-spacing: 1px;
+            @include respond(phone) {
+              font-size: $h3 - 4;
+            }
+            @include respond(smallPhone) {
+              font-size: $h3 - 4;
+            }
+            @include respond(extraSmallPhone) {
+              font-size: $h3 - 4;
+            }
           }
-          span {
-            font-weight: $medium;
-            color: $tSecondary;
+          p {
+            span {
+              font-weight: $medium;
+              color: $tSecondary;
+            }
+            @include respond(phone) {
+              font-size: $body-1 + 2;
+              margin: 0;
+            }
+            @include respond(smallPhone) {
+              font-size: $body-1 + 2;
+              margin: 0;
+            }
+            @include respond(extraSmallPhone) {
+              font-size: $body-1;
+              margin: 0;
+            }
           }
           .booking-chairs {
             span {
@@ -234,6 +314,20 @@
             font-size: $h3;
             span {
               color: $tGreen;
+            } 
+            @include respond(phone) {
+              font-size: $h3 - 4;
+            }
+            @include respond(smallPhone) {
+              font-size: $h3 - 4;
+            }
+            @include respond(extraSmallPhone) {
+              font-size: $h3 - 4;
+            }
+          }
+          hr {
+            @include respond(extraSmallPhone){
+              display: none;
             }
           }
         }
@@ -253,7 +347,7 @@
             border-radius: 5px;
             background: linear-gradient(to right, $blue, $deepBlue);
             box-shadow: 0 0 5px $dark-1;
-            padding: $p-1 $p-5;
+            padding: $p-1 - 5 $p-3;
             color: $tWhite;
             font-size: $h3;
             font-weight: $medium;
@@ -268,6 +362,13 @@
             }
             @include respond(phone) {
               display: inline-block;
+            }
+            @include respond(smallPhone) {
+              display: inline-block;
+            }
+            @include respond(extraSmallPhone) {
+              display: inline-block;
+              font-size: $h3 - 4;
             }
           }
           @include respond(tablet) {
@@ -286,22 +387,16 @@
         justify-content: space-around;
       }
       @include respond(tablet) {
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translateX(120%);
-        min-width: $w-100;
-        height: $h-100;
-        flex-direction: column;
+        display: none;
       }
       @include respond(phone) {
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translateX(120%);
-        min-width: $w-100;
-        height: $h-100;
-        flex-direction: column;
+        display: none;
+      }
+      @include respond(smallPhone) {
+        display: none;
+      }
+      @include respond(extraSmallPhone) {
+        display: none;
       }
     }
     @include respond(laptop) {
@@ -316,7 +411,15 @@
       flex-direction: column;
     }
     @include respond(phone) {
-      min-width: $w-100 - 5;
+      min-width: $w-100 - 2;
+      flex-direction: column;
+    }
+    @include respond(smallPhone) {
+      min-width: $w-100 - 2;
+      flex-direction: column;
+    }
+    @include respond(extraSmallPhone) {
+      min-width: $w-100 - 2;
       flex-direction: column;
     }
   }
@@ -333,7 +436,19 @@
     background: $red-2 !important;
     color: $tWhite;
   }
-  .show-detail {
-    transform: translateX(0) !important;
+  @include respond(tablet) {
+    padding-bottom: 0;
+  }
+  @include respond(phone) {
+    padding-top: $p-5 + 5;
+    padding-bottom: 0;
+  }
+  @include respond(smallPhone) {
+    padding-top: $p-5 + 5;
+    padding-bottom: 0;
+  }
+  @include respond(extraSmallPhone) {
+    padding-top: $p-5;
+    padding-bottom: 0;
   }
 }

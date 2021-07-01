@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 function UserInfo(props) {
     let { accountInfo } = useSelector(state => state.UserReducer);
     return (
-        <div className="userInfo-wrapper">
+        <div className="userInfo">
             <div className="userInfo__content">
                 <h3>Thông tin cá nhân</h3>
                 <p>Tài khoản : <span>{accountInfo.taiKhoan}</span></p>

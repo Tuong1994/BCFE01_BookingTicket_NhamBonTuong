@@ -2,7 +2,7 @@ import React from 'react';
 
 function Feature(props) {
     return (
-        <div className="feature-wrapper">
+        <div className="feature">
             <div className="feature__card">
                 <div className="feature__title">
                     <h4>Doanh thu</h4>

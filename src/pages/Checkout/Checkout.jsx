@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import RWD_Checkout from '../../component/RWD_Checkout/RWD_Checkout';
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
-import Swal from 'sweetalert2';
 import { taiKhoan } from '../../configs/setting';
 import { bookMovieAction, getTicketAction } from '../../redux/action/PhimAction';
 
 function Checkout(props) {
-    const [showDetail, setShowDetail] = useState(true);
     const { thongTinRapChieu } = useSelector(state => state.PhimReducer);
     const { DSGheDangDat } = useSelector(state => state.BookTicketReducer);
+    const [showDetail, setShowDetail] = useState(true);
     let dispatch = useDispatch();
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -67,26 +68,30 @@ function Checkout(props) {
                     <div className="theatre__info">
                         <p>{thongTinRapChieu.thongTinPhim?.tenCumRap} - {thongTinRapChieu.thongTinPhim?.tenRap}</p>
                     </div>
+
                     <div className="theatre__screen">
                         <img src="https://tix.vn/app/assets/img/icons/screen.png" alt="" />
                     </div>
+
                     <div className="theatre__chairs">
                         {renderChair()}
                     </div>
 
                     <div className="theatre__note">
                         <p>Chú thích :</p>
-                        <div className="note__item">
-                            <div className="vip-bg"></div>
-                            <span>Ghế Vip</span>
-                        </div>
-                        <div className="note__item">
-                            <div className="booking-bg"></div>
-                            <span>Ghế đang chọn</span>
-                        </div>
-                        <div className="note__item">
-                            <div className="booked-bg"></div>
-                            <span>Ghế đã chọn</span>
+                        <div className="note__content">
+                            <div className="note__item">
+                                <div className="vip-bg"></div>
+                                <span>Ghế Vip</span>
+                            </div>
+                            <div className="note__item">
+                                <div className="booking-bg"></div>
+                                <span>Ghế đang chọn</span>
+                            </div>
+                            <div className="note__item">
+                                <div className="booked-bg"></div>
+                                <span>Ghế đã chọn</span>
+                            </div>
                         </div>
                     </div>
 
@@ -98,10 +103,11 @@ function Checkout(props) {
                     </div>
                 </div>
 
-                <div className={showDetail ? "checkout__movie show-detail" : "checkout__movie"}>
+                <div className="checkout__movie">
                     <div className="movie__img">
                         <img src={thongTinRapChieu.thongTinPhim?.hinhAnh} alt={thongTinRapChieu.thongTinPhim?.tenPhim} />
                     </div>
+
                     <div className="movie__info">
                         <div className="info">
                             <h5>{thongTinRapChieu.thongTinPhim?.tenPhim}</h5>
@@ -114,9 +120,6 @@ function Checkout(props) {
                         </div>
                         <hr />
                         <div className="checkout__button">
-                            <button className="btn-close" onClick={() => {
-                                setShowDetail(!showDetail)
-                            }}><i class="fa fa-long-arrow-alt-left"></i></button>
                             <button className="button" onClick={() => {
                                 if (localStorage.getItem(taiKhoan) && DSGheDangDat !== "") {
                                     let accLogin = JSON.parse(localStorage.getItem(taiKhoan));
@@ -139,6 +142,8 @@ function Checkout(props) {
                     </div>
                 </div>
             </div>
+
+            <RWD_Checkout thongTinRapChieu={thongTinRapChieu} DSGheDangDat={DSGheDangDat} renderTotal={renderTotal} renderBookChair={renderBookChair} setShowDetail={setShowDetail} showDetail={showDetail} />
         </div >
     );
 }

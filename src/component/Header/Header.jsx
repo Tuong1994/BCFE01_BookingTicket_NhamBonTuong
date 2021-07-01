@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-scroll';
@@ -30,7 +30,7 @@ function Header(props) {
                             <Link
                                 {...setting}
                                 to="schedule"
-                                className="nav__link">
+                                className="nav__link" onClick={() => setSubmenu(false)}>
                                 Lịch chiếu
                             </Link>
                         </div>
@@ -38,7 +38,7 @@ function Header(props) {
                             <Link
                                 {...setting}
                                 to="cinema"
-                                className="nav__link">
+                                className="nav__link" onClick={() => setSubmenu(false)}>
                                 Cụm rạp
                             </Link>
                         </div>
@@ -46,7 +46,7 @@ function Header(props) {
                             <Link
                                 {...setting}
                                 to="news"
-                                className="nav__link">
+                                className="nav__link" onClick={() => setSubmenu(false)}>
                                 Tin tức
                             </Link>
                         </div>
@@ -54,7 +54,7 @@ function Header(props) {
                             <Link
                                 {...setting}
                                 to="apps"
-                                className="nav__link">
+                                className="nav__link" onClick={() => setSubmenu(false)}>
                                 Ứng dụng
                             </Link>
                         </div>
@@ -62,7 +62,7 @@ function Header(props) {
 
                     <div className="nav__login">
                         {account !== "" ? <div className="user__login">
-                            <i class="fa fa-user-circle"></i>
+                            <img src="https://picsum.photos/200" alt="" />
                             <span>{account}</span>
                             <button className="btn-show" onClick={showUserInfo}><i class="fa fa-caret-down"></i></button>
                             <div className={userInfo ? "user__info show" : "user__info"}>

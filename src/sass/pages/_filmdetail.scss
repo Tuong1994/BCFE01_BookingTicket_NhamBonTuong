@@ -19,7 +19,6 @@
     left: 0;
     backdrop-filter: blur(10px);
   }
-
   .film__content {
     width: $w-100 - 35;
     margin: 0 auto;
@@ -119,6 +118,15 @@
           }
           @include respond(phone) {
             display: block;
+            top: -5%;
+          }
+          @include respond(smallPhone) {
+            display: block;
+            top: -5%;
+          }
+          @include respond(extraSmallPhone) {
+            display: block;
+            top: -5%;
           }
         }
         .film__desc {
@@ -129,6 +137,12 @@
             &:nth-child(2) {
               font-size: $h3;
               margin-bottom: $m-2;
+              @include respond(smallPhone) {
+                font-size: $h3 - 4;
+              }
+              @include respond(extraSmallPhone) {
+                font-size: $h3 - 4;
+              }
             }
             span {
               color: $tSecondary;
@@ -151,6 +165,14 @@
           }
           @include respond(phone) {
             margin-top: $m-2;
+          }
+          @include respond(smallPhone) {
+            margin-top: $m-1;
+            padding: 0 $p-1 - 5;
+          }
+          @include respond(extraSmallPhone) {
+            margin-top: $m-1;
+            padding: 0 $p-1 - 5;
           }
         }
         .button {
@@ -271,6 +293,12 @@
           background: rgba(0, 0, 0, 0.8);
           border-radius: 5px;
         }
+        @include respond(smallPhone) {
+          display: none;
+        }
+        @include respond(extraSmallPhone) {
+          display: none;
+        }
       }
       @include respond(extraTablet) {
         padding: 0;
@@ -304,8 +332,15 @@
       padding: 0;
       min-width: $w-100;
     }
+    @include respond(smallPhone) {
+      padding: 0;
+      min-width: $w-100;
+    }
+    @include respond(extraSmallPhone) {
+      padding: 0;
+      min-width: $w-100;
+    }
   }
-
   .detail__cinema {
     width: $w-100 - 35;
     margin: 0 auto;
@@ -326,12 +361,12 @@
         }
       }
     }
-
     .cinema__info {
       background: $primary;
       box-shadow: 0 0 10px $dark-1;
       padding: $p-1 * 0.5;
       border-radius: 5px;
+
       .cinema__link {
         color: $tPrimary;
         opacity: 0.5;
@@ -467,13 +502,11 @@
         }
       }
     }
-
     .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
       opacity: 1;
       background: transparent;
     }
-
     @include respond(laptop) {
       padding: 0;
       min-width: $w-100 - 15;
@@ -489,9 +522,18 @@
     @include respond(phone) {
       min-width: $w-100 - 5;
       padding: 0;
+      // display: none;
+    }
+    @include respond(smallPhone) {
+      min-width: $w-100 - 5;
+      padding: 0;
+      // display: none;
+    }
+    @include respond(extraSmallPhone) {
+      min-width: $w-100 - 5;
+      padding: 0;
     }
   }
-
   @include respond(extraTablet) {
     padding-top: $p-5 + 20;
     padding-bottom: $p-2;
@@ -504,7 +546,6 @@
     padding-top: $p-5 + 20;
     padding-bottom: $p-2;
   }
-
   .popup-wrapper {
     width: $w-100;
     height: $h-100;

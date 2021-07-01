@@ -12,6 +12,9 @@
         @media only screen and (max-width: 576px){@content};
     }
     @if $breakpoint == smallPhone {
+        @media only screen and (max-width: 480px){@content};
+    }
+    @if $breakpoint == extraSmallPhone {
         @media only screen and (max-width: 320px){@content};
     }
  }

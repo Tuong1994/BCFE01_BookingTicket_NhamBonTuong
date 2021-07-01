@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addUserAction } from '../../../redux/action/AdminAction';
 import { phoneRegExp } from '../../../configs/setting';
+import { NavLink } from 'react-router-dom';
 
 function AddUser(props) {
     let dispatch = useDispatch();
@@ -118,6 +119,7 @@ function AddUser(props) {
                     </div>
 
                     <div className="form__button">
+                        <NavLink className="btn-blue" to="/user_manage"><i class="fa fa-angle-double-left"></i><span>Quay lại</span></NavLink>
                         <button className="button" type="submit" disabled={!isValid}>Thêm người dùng</button>
                     </div>
                 </Form>

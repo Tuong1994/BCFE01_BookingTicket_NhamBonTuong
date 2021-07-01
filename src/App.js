@@ -1,6 +1,5 @@
 import "./App.scss";
 import "./sass/main.scss";
-import { lazy, Suspense } from "react";
 import { Route, Switch, Router } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import FilmDetail from "./pages/FilmDetail/FilmDetail";
@@ -8,8 +7,8 @@ import Checkout from "./pages/Checkout/Checkout";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import UserInfo from "./pages/User/UserInfo/UserInfo";
-import History from "./pages/User/History/History";
-import Update from "./pages/User/Update/Update";
+import History from "./pages/User/UserBooking/UserBooking";
+import Update from "./pages/User/UserUpdate/UserUpdate";
 import FilmManage from "./pages/Admin/FilmManage/FilmManage";
 import UserManage from "./pages/Admin/UserManage/UserManage";
 import AddMovie from "./pages/Admin/FilmManage/AddMovie";
@@ -21,6 +20,7 @@ import { AdminTemplate } from "./templates/AdminTemplate";
 import { UserTemplate } from "./templates/UserTemplate";
 import { createBrowserHistory } from "history";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import Schedule from "./pages/Admin/FilmManage/Schedule";
 
 export const history = createBrowserHistory();
 
@@ -41,6 +41,7 @@ function App() {
           <AdminTemplate exact path="/film_manage" Component={FilmManage} />
           <AdminTemplate exact path="/add_movie" Component={AddMovie} />
           <AdminTemplate exact path="/update_movie" Component={UpdateMovie} />
+          <AdminTemplate exact path="/schedule" Component={Schedule} />
           <AdminTemplate exact path="/user_manage" Component={UserManage} />
           <AdminTemplate exact path="/add_user" Component={AddUser} />
           <AdminTemplate exact path="/update_user" Component={UpdateUser} />

@@ -18,23 +18,23 @@ function Cinema(props) {
         dispatch(getCinemaAction())
     }, [])
     return (
-        <div className="tab-wrapper" id="cinema">
+        <div className="cinema-tab" id="cinema">
             <div className="tab__inner">
-                <div className="tabs__list">
+                <div className="tab__list">
                     {danhSachRapChieu?.map((rapChieu, index) => {
-                        return <div key={index} className={showTab === index ? "tab active-tabs" : "tab"} onClick={() => show(index)}>
+                        return <div key={index} className={showTab === index ? "tab__logo active-tab" : "tab__logo"} onClick={() => show(index)}>
                             <img src={rapChieu.logo} alt="" />
                         </div>
                     })}
                 </div>
 
-                <div className="tabs__contents">
+                <div className="tab__contents">
                     {danhSachRapChieu?.map((rapChieu, index) => {
                         return <div key={index} className={showTab === index ? "content show-content" : "content"}>
-                            <div className="subtabs-wrapper">
-                                <div className="subtabs__list">
+                            <div className="subtab">
+                                <div className="subtab__list">
                                     {rapChieu.lstCumRap?.slice(0, 7).map((cumRap, index) => {
-                                        return <div key={index} className={showSubTab === index ? "subtab active-tabs" : "subtab"} onClick={() => showSub(index)}>
+                                        return <div key={index} className={showSubTab === index ? "subtab active-tab" : "subtab"} onClick={() => showSub(index)}>
                                             <img src="../../img/rapChieu.png" alt="" />
                                             <div className="subtab__body">
                                                 {cumRap.tenCumRap.length > 30 ? <p>{cumRap.tenCumRap.substr(0, 30)}...</p> : <p>{cumRap.tenCumRap}</p>}
@@ -43,9 +43,9 @@ function Cinema(props) {
                                         </div>
                                     })}
                                 </div>
-                                <div className="subtabs__contents">
+                                <div className="subtab__content">
                                     {rapChieu.lstCumRap?.map((cumRap, index) => {
-                                        return <div className={showSubTab === index ? "subtabs__items show-content" : "subtabs__items"} key={index}>
+                                        return <div className={showSubTab === index ? "subtab__item show-content" : "subtab__item"} key={index}>
                                             {cumRap?.danhSachPhim?.slice(0, 7).map((film, index) => {
                                                 return <div key={index} className="subcontent">
                                                     <img src={film.hinhAnh} alt="" />
@@ -69,6 +69,7 @@ function Cinema(props) {
                     })}
                 </div>
             </div>
+            
             <RWD_Cinema danhSachRapChieu={danhSachRapChieu} />
         </div>
     );

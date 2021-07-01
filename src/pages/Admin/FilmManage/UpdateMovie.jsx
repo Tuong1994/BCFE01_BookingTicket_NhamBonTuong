@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateMovieAction } from '../../../redux/action/AdminAction';
+import {NavLink} from 'react-router-dom';
 
 function UpdateMovie(props) {
     const {phim} = useSelector(state => state.PhimReducer);
@@ -51,11 +52,18 @@ function UpdateMovie(props) {
         }
     })
     return (
-        <div className="updatemovie-wrapper">
+        <div className="updatemovie">
             <h3>Cập nhật phim</h3>
             <Formik>
                 <Form className="updatemovie__form" onSubmit={handleSubmit}>
                     <div className="form__content">
+                        <div className="form__item" >
+                            <label for="tenPhim">Mã phim</label>
+                            <div className="form__input">
+                                <Field id="tenPhim" type="text" name="tenPhim" className="input"value={values.maPhim} disabled={true} />
+                            </div>
+                        </div>
+                        
                         <div className={touched.tenPhim && errors.tenPhim ? "form__item animation" : "form__item"}>
                             <label for="tenPhim">Tên phim</label>
                             <div className="form__input">
@@ -129,6 +137,7 @@ function UpdateMovie(props) {
                     </div>
 
                     <div className="form__button">
+                        <NavLink to="/film_manage" className="button">Quay lại</NavLink>
                         <button className="button" type="submit" disabled={!isValid}>Cập nhật</button>
                     </div>
                 </Form>

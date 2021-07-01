@@ -1,4 +1,4 @@
-.apps-container {
+.apps {
     padding: $p-5 * 2 0;
     background-image: url('../../assets/img/posterBG.jpg');
     background-repeat: no-repeat;
@@ -37,6 +37,12 @@
             }
             h3 {
                 font-size: $h1;
+                @include respond(smallPhone) {
+                    font-size: $h2;
+                }
+                @include respond(extraSmallPhone) {
+                    font-size: $h2;
+                }
             }
             p, .button {
                 font-weight: $medium;
@@ -84,6 +90,12 @@
                     @include respond(phone) {
                         height: $h-10 + 600;
                     }
+                    @include respond(smallPhone) {
+                        height: $h-10 + 295;
+                    }
+                    @include respond(extraSmallPhone) {
+                        height: $h-10 + 295;
+                    }
                 }
             }
             @include respond(extraTablet) {
@@ -97,6 +109,14 @@
             @include respond(phone) {
                 width: $w-100 - 40;
                 height: $h-10 + 610;
+            }
+            @include respond(smallPhone) {
+                width: $w-100 - 50;
+                height: $h-10 + 310;
+            }
+            @include respond(extraSmallPhone) {
+                width: $w-100 - 40;
+                height: $h-10 + 310;
             }
         }
         @include respond(tablet) {
