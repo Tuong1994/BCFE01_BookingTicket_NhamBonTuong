@@ -278,6 +278,13 @@
     width: $w-100 - 17;
     height: $h-100;
     overflow-y: auto;
+    .admin__bar {
+      display: flex;
+      padding: $p-1 $p-3;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $grey-2;
+    }
     @include respond(extraTablet) {
       width: $w-100;
     }
@@ -312,18 +319,35 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: $m-5;
+    .feature__card-1 {
+      background: linear-gradient(to right bottom, $green, $grey-1);
+    }
+    .feature__card-2 {
+      background: linear-gradient(to right bottom, $blue, $grey-1);
+    }
+    .feature__card-3 {
+      background: linear-gradient(to right bottom, $red-1, $grey-1);
+    }
+    .feature__card-4 {
+      background: linear-gradient(to right bottom, $yellow, $grey-1);
+    }
     .feature__card {
-      width: $w-100 - 75;
+      width: $w-100 - 78;
       padding: $p-2;
-      border: 2px solid $grey-1;
-      .feature__rate {
-        color: $tGreen;
-        i {
-          margin-right: $m-2;
+      box-shadow: 0 0 5px $dark-2;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .feature__title {
+        p {
+          font-size: $h3;
         }
       }
-      .rate__down {
-        color: $tSecondary;
+      .feature__logo {
+        i {
+          font-size: $h1;
+        }
       }
       @include respond(tablet) {
         width: $w-100;
@@ -342,9 +366,11 @@
     }
   }
   .revanue-chart,
-  .cinema-chart {
+  .cinema-chart,
+  .user-chart {
     padding: $p-1;
-    border: 2px solid $grey-1;
+    border-radius: 5px;
+    box-shadow: 0 0 5px $dark-2;
     margin-bottom: $m-5;
     h4 {
       margin-bottom: $m-3;
@@ -352,6 +378,11 @@
     tspan {
       @include respond(extraSmallPhone) {
         font-size: $body-2;
+      }
+    }
+    .recharts-surface {
+      @include respond(extraSmallPhone) {
+        
       }
     }
   }
@@ -363,7 +394,6 @@
     .user-chart {
       width: $w-100 - 51;
       padding: $p-1;
-      border: 2px solid $grey-1;
       margin-bottom: $m-5;
       h4 {
         margin-bottom: $m-3;
@@ -495,6 +525,7 @@
     .list__wrapper {
       width: $w-100;
       box-shadow: 0 0 5px $dark-1;
+
       // MOVIE-LIST-COLUMN
       .list__col-1 {
         width: $w-100 - 90;
@@ -569,7 +600,7 @@
 
       // MOVIE-LIST-BODY
       .list__body {
-        height: $h-10 * 3.8;
+        height: $h-10 * 5;
         overflow-y: auto;
         overflow-x: hidden;
         &::-webkit-scrollbar {
@@ -1239,6 +1270,10 @@
           span {
             color: $tSecondary;
           }
+        }
+        .button {
+          font-size: $body-1 + 2;
+          padding: $p-1 - 5 $p-3;
         }
       }
       @include respond(phone) {

@@ -26,7 +26,13 @@
       .theatre__info {
         color: $tWhite;
         font-size: $body-1 + 4;
+        margin-bottom: $m-2;
+        padding-bottom: $p-2;
+        border-bottom: 1px solid $grey-1;
         text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         @include respond(extraTablet) {
           text-align: center;
         }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 export const AdminTemplate = (props) => {
     let { account } = useSelector(state => state.UserReducer);
     const [show, setShow] = useState(false);
+    const [title, setTitle] = useState("Dashboard");
     let showAcitve = () => setShow(!show);
     let { Component, ...restProps } = props;
     return <Route {...restProps} render={(propsRoute) => {
@@ -27,7 +28,7 @@ export const AdminTemplate = (props) => {
                         setShow(false)
                     }}>
                         <i class="fa fa-film"></i>
-                        <span>Quản lý Phim</span>
+                        <span>Quản lý phim</span>
                     </NavLink>
                     <NavLink className="admin__link" to="/user_manage" onClick={() => {
                         setShow(false)
@@ -58,6 +59,13 @@ export const AdminTemplate = (props) => {
 
             </div>
             <div className="admin__content">
+                <div className="admin__bar">
+                    <h5>{title}</h5>
+                    <div className="admin__log">
+                        <span><i class="fa fa-user"></i></span>
+                        <span>Hello, {account}</span>
+                    </div>
+                </div>
                 <Component {...propsRoute} />
             </div>
         </div>

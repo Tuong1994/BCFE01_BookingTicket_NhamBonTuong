@@ -2,12 +2,13 @@ import { Formik, Form, Field, useFormik } from 'formik';
 import * as yup from "yup"
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCinemaAction } from '../../../redux/action/PhimAction';
+import { getCinemaAction, getShowTimeDetail } from '../../../redux/action/PhimAction';
 import { createScheduleAction } from '../../../redux/action/AdminAction';
 import { NavLink } from 'react-router-dom';
 
 function Schedule(props) {
-    const { danhSachRapChieu, phim } = useSelector(state => state.PhimReducer);
+    const { danhSachRapChieu, phim, chiTietLichChieu } = useSelector(state => state.PhimReducer);
+    console.log(chiTietLichChieu);
     let dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCinemaAction())
@@ -57,6 +58,9 @@ function Schedule(props) {
                         <p>Mã nhóm : <span>{phim.maNhom}</span></p>
                         <p>Tên phim : <span>{phim.tenPhim}</span></p>
                         <p>Mô tả  : <span>{phim.moTa}</span></p>
+                        <button className="button" onClick={() => {
+                            dispatch(getShowTimeDetail(phim.maPhim))
+                        }}>Lịch chiếu</button>
                     </div>
                 </div>
             </div>
@@ -170,6 +174,12 @@ function Schedule(props) {
                     </div>
                 </Form>
             </Formik>
+            <div className="film__schedule">
+                <h3>Danh sách lịch chiếu</h3>
+                <div className="schedule__content">
+                    
+                </div>
+            </div>
         </div>
     );
 }

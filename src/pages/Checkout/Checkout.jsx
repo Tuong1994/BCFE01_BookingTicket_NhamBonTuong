@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import RWD_Checkout from '../../component/RWD_Checkout/RWD_Checkout';
+import CountDown from '../../component/CountDown/CountDown';
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
@@ -67,6 +68,7 @@ function Checkout(props) {
                 <div className="checkout__theatre">
                     <div className="theatre__info">
                         <p>{thongTinRapChieu.thongTinPhim?.tenCumRap} - {thongTinRapChieu.thongTinPhim?.tenRap}</p>
+                        <CountDown />
                     </div>
 
                     <div className="theatre__screen">

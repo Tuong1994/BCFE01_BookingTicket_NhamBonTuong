@@ -58,12 +58,12 @@ function UserChart(props) {
             <h4>Người dùng ( % )</h4>
             <ResponsiveContainer width="100%" aspect={4 / 2}>
                 <LineChart data={revanue} scaleToFit={true}>
-                    <XAxis dataKey="name" stroke="#5550bd" />
-                    <YAxis stroke="#5550bd" />
-                    <Line type="monotone" dataKey="User" stroke="#fb4226" activeDot={true} />
+                    <XAxis dataKey="name" stroke="#4a4a4a" />
+                    <YAxis stroke="#4a4a4a" />
+                    <Line type="monotone" dataKey="User" stroke="#347deb"  strokeWidth={3} activeDot={true} />
                     <Tooltip />
                     <CartesianGrid stroke="#cecaca" />
-                    <Legend style={{ color: "#5550bd" }} />
+                    <Legend style={{ color: "#4a4a4a" }} />
                 </LineChart>
             </ResponsiveContainer>
         </div>

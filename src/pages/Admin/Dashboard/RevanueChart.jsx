@@ -55,14 +55,14 @@ function RevanueChart(props) {
     return (
         <div className="revanue-chart">
             <h4>Doanh thu ( % )</h4>
-            <ResponsiveContainer width="100%" aspect={4 / 2}>
+            <ResponsiveContainer width="100%" aspect={5 / 2}>
                 <LineChart data={revanue}>
-                    <XAxis dataKey="name" stroke="#5550bd" />
-                    <YAxis stroke="#5550bd" />
-                    <Line type="monotone" dataKey="Revanue" stroke="#fb4226" activeDot={true} />
+                    <XAxis dataKey="name" stroke="#4a4a4a" />
+                    <YAxis stroke="#4a4a4a" />
+                    <Line type="monotone" dataKey="Revanue" stroke="#39b165" strokeWidth={3} activeDot={true} />
                     <Tooltip />
                     <CartesianGrid stroke="#cecaca" />
-                    <Legend style={{ color: "#5550bd" }} />
+                    <Legend style={{ color: "#4a4a4a" }} />
                 </LineChart>
             </ResponsiveContainer>
         </div>

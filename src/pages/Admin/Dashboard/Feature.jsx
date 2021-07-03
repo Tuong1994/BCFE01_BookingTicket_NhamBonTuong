@@ -3,31 +3,40 @@ import React from 'react';
 function Feature(props) {
     return (
         <div className="feature">
-            <div className="feature__card">
+            <div className="feature__card feature__card-1">
                 <div className="feature__title">
-                    <h4>Doanh thu</h4>
+                    <h5>Doanh thu</h5>
+                    <p>436.000.000 +</p>
                 </div>
-                <div className="feature__rate">
-                    <i class="fa fa-arrow-up"></i>
-                    <span>30.56%</span>
+                <div className="feature__logo">
+                    <i class="fa fa-dollar-sign"></i>
                 </div>
             </div>
-            <div className="feature__card">
+            <div className="feature__card feature__card-2">
                 <div className="feature__title">
-                    <h4>Người dùng</h4>
+                    <h5>Người dùng</h5>
+                    <p>1.055 +</p>
                 </div>
-                <div className="feature__rate">
-                    <i class="fa fa-arrow-up"></i>
-                    <span>10.5%</span>
+                <div className="feature__logo">
+                    <i class="fa fa-users"></i>
                 </div>
             </div>
-            <div className="feature__card">
+            <div className="feature__card feature__card-3">
                 <div className="feature__title">
-                    <h4>Lượng phim</h4>
+                    <h5>Cụm rạp chiếu</h5>
+                    <p>06</p>
                 </div>
-                <div className="feature__rate rate__down">
-                    <i class="fa fa-arrow-down"></i>
-                    <span>5.7%</span>
+                <div className="feature__logo">
+                    <i class="fa fa-theater-masks"></i>
+                </div>
+            </div>
+            <div className="feature__card feature__card-4">
+                <div className="feature__title">
+                    <h5>Phim</h5>
+                    <p>51 +</p>
+                </div>
+                <div className="feature__logo">
+                    <i class="fa fa-film"></i>
                 </div>
             </div>
         </div>

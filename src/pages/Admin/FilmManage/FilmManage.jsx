@@ -10,7 +10,6 @@ import Schedule from '../../Admin/FilmManage/Schedule';
 
 function FilmManage(props) {
     const { danhSachPhim, phim } = useSelector(state => state.PhimReducer);
-    const [popup, setPopup] = useState(false);
     const [searchFilm, setSearchFilm] = useState("");
     const [filmDetail, setFilmDetail] = useState(false);
     let showFilm = () => setFilmDetail(!filmDetail)

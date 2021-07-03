@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { getShowTimeDetail } from '../../redux/action/PhimAction';
 import { Link } from 'react-scroll';
 import Popup from '../../component/Popup/Popup';
-import RWD_FilmDetail from '../../component/RWD_FilmDetail/RWD_FilmDetail';
 
 
 function Detail(props) {
@@ -106,7 +105,7 @@ function Detail(props) {
                                                 return <div className="showtime__detail" key={index}>
                                                     <div className="showtime__cinema">
                                                         <img src="../../img/rapChieu.png" alt="" />
-                                                        <div className="cinema__item">
+                                                        <div className="cinema__detail">
                                                             <p>{cumRap.tenCumRap}</p>
                                                             {cumRap.lichChieuPhim?.slice(0, 4).map((lichChieu, index) => {
                                                                 return <span key={index}>
@@ -146,7 +145,6 @@ function Detail(props) {
                     </div>
                 </div>
             </div>
-            {/* <RWD_FilmDetail chiTietLichChieu={chiTietLichChieu} /> */}
 
             <Popup trigger={showVideo} setTrigger={setShowVideo}>
                 <iframe className="videos-wrapper" src={chiTietLichChieu.trailer} frameborder="0" allow="autoplay" allowFullScreen={true}></iframe>

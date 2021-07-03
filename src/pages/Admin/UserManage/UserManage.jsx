@@ -29,7 +29,7 @@ function UserManage(props) {
                 <div className="list__col-3"><p>{user.matKhau}</p></div>
                 <div className="list__col-4 item__user">
                     <p><i class="fa fa-user"></i><span>Họ tên : {user.hoTen}</span></p>
-                    <p><i class="fa fa-envelope"></i>{user.email.length > 10 ? <span>Email : {user.email.substr(0, 10)}...</span> : <span>Email : {user.email.length}</span>}</p>
+                    <p><i class="fa fa-envelope"></i>{user.email.length > 15 ? <span>Email : {user.email.substr(0, 15)}...</span> : <span>Email : {user.email.length}</span>}</p>
                     <p><i class="fa fa-phone"></i><span>Số điện thoại : {user.soDt}</span></p>
                 </div>
                 <div className="list__col-5 btn-del">

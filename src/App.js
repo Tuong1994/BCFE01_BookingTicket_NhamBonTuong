@@ -21,6 +21,8 @@ import { UserTemplate } from "./templates/UserTemplate";
 import { createBrowserHistory } from "history";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Schedule from "./pages/Admin/FilmManage/Schedule";
+import Demo from "./Demo";
+import './index.css';
 
 export const history = createBrowserHistory();
 
@@ -29,6 +31,7 @@ function App() {
     <Router history={history}>
       <Switch>
         <div className="App">
+          <Route exact path="/demo" component={Demo} />
           <HomeTemplate exact path="/" Component={Home} />
           <HomeTemplate exact path="/film_detail/:id" Component={FilmDetail} />
           <HomeTemplate exact path="/checkout/:id" Component={Checkout} />

@@ -1,0 +1,10 @@
+.countdown {
+    box-shadow: 0 0 5px $grey-1;
+    padding: $p-1 - 5 $p-3;
+    border-radius: 5px;
+    color: $tSecondary;
+    p {
+        font-size: $h2;
+        margin: 0;
+    }
+}
