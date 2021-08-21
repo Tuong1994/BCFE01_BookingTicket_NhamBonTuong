@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/BCFE01_BookingTicket_NhamBonTuong/static/css/main.e638a847.chunk.css",
+    "main.js": "/BCFE01_BookingTicket_NhamBonTuong/static/js/main.d3b3dfbf.chunk.js",
+    "main.js.map": "/BCFE01_BookingTicket_NhamBonTuong/static/js/main.d3b3dfbf.chunk.js.map",
+    "runtime-main.js": "/BCFE01_BookingTicket_NhamBonTuong/static/js/runtime-main.ce334a2c.js",
+    "runtime-main.js.map": "/BCFE01_BookingTicket_NhamBonTuong/static/js/runtime-main.ce334a2c.js.map",
+    "static/css/2.ff039816.chunk.css": "/BCFE01_BookingTicket_NhamBonTuong/static/css/2.ff039816.chunk.css",
+    "static/js/2.2ee36b86.chunk.js": "/BCFE01_BookingTicket_NhamBonTuong/static/js/2.2ee36b86.chunk.js",
+    "static/js/2.2ee36b86.chunk.js.map": "/BCFE01_BookingTicket_NhamBonTuong/static/js/2.2ee36b86.chunk.js.map",
+    "static/js/3.e32c38a8.chunk.js": "/BCFE01_BookingTicket_NhamBonTuong/static/js/3.e32c38a8.chunk.js",
+    "static/js/3.e32c38a8.chunk.js.map": "/BCFE01_BookingTicket_NhamBonTuong/static/js/3.e32c38a8.chunk.js.map",
+    "index.html": "/BCFE01_BookingTicket_NhamBonTuong/index.html",
+    "static/css/2.ff039816.chunk.css.map": "/BCFE01_BookingTicket_NhamBonTuong/static/css/2.ff039816.chunk.css.map",
+    "static/css/main.e638a847.chunk.css.map": "/BCFE01_BookingTicket_NhamBonTuong/static/css/main.e638a847.chunk.css.map",
+    "static/js/2.2ee36b86.chunk.js.LICENSE.txt": "/BCFE01_BookingTicket_NhamBonTuong/static/js/2.2ee36b86.chunk.js.LICENSE.txt",
+    "static/media/main.scss": "/BCFE01_BookingTicket_NhamBonTuong/static/media/star.c4f30a14.jpg",
+    "static/media/slick-theme.css": "/BCFE01_BookingTicket_NhamBonTuong/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ce334a2c.js",
+    "static/css/2.ff039816.chunk.css",
+    "static/js/2.2ee36b86.chunk.js",
+    "static/css/main.e638a847.chunk.css",
+    "static/js/main.d3b3dfbf.chunk.js"
+  ]
+}
