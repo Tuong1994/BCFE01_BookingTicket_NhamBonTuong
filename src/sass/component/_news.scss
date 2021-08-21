@@ -21,10 +21,12 @@
       }
       @include respond(phone) {
         font-size: $body-1 + 4;
+        font-weight: $medium;
         padding: $p-1;
       }
       @include respond(smallPhone) {
         font-size: $body-2 + 2;
+        font-weight: $medium;
         padding: $p-1;
       }
     }
@@ -35,6 +37,7 @@
       border-radius: 5px;
       margin-bottom: $m-1 * 0.5;
       box-shadow: 0 0 5px $dark-2;
+      object-fit: cover;
     }
     p {
       font-size: $body-1;
@@ -63,6 +66,7 @@
         .news__img {
           width: $w-100;
           height: $h-10 * 2.5;
+          object-fit: cover;
           @include respond(extraTablet) {
             height: $h-10 * 3;
           }

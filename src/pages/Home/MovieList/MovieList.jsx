@@ -6,14 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMovieAction } from '../../../redux/action/PhimAction';
 import { NavLink } from 'react-router-dom';
 import Popup from '../../../component/Popup/Popup';
+import RWDMovieList from '../../../component/RWD_MoveList/RWDMovieList';
 
 
 function Schedule(props) {
     const { danhSachPhim, phimTrailer } = useSelector(state => state.PhimReducer);
-    let [loadMore, setLoadMore] = useState(3);
-    let showMore = () => {
-        setLoadMore((preValue) => preValue + 3)
-    }
     let [showVideo, setShowVideo] = useState(false);
     let dispatch = useDispatch();
     useEffect(() => {
@@ -209,7 +206,7 @@ function Schedule(props) {
         cssEase: 'linear',
     }
     return (
-        <div className="movielist__container" id="schedule">
+        <div className="movielist" id="schedule">
             <div className="movielist__desktop">
                 <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li className="nav-item" role="presentation">
@@ -265,102 +262,7 @@ function Schedule(props) {
                 </div>
             </div>
 
-            <div className="movielist__responsive">
-                <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li className="nav-item" role="presentation">
-                        <a className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Đang chiếu</a>
-                    </li>
-                    <li className="nav-item" role="presentation">
-                        <a className="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Sắp chiếu</a>
-                    </li>
-                </ul>
-                <div className="tab-content" id="pills-tabContent">
-                    <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        <div className="slides">
-                            <div className="card__wrapper">
-                                {danhSachPhim?.slice(0, loadMore).map((film, index) => {
-                                    return <div className="card__item" key={index}>
-                                        <div className="card__img">
-                                            <img src={film.hinhAnh} />
-                                            <div className="card__review">
-                                                <p>{film.danhGia}/10</p>
-                                                <div className="card__star">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="card__content fade">
-                                            {film.tenPhim.length > 15 ? <span>{film.tenPhim.substr(0, 15)}...</span> : <span>{film.tenPhim}</span>}
-                                        </div>
-                                        <div className="card__booking">
-                                            <button className="btn__play" onClick={() => {
-                                                dispatch({
-                                                    type: "GET_TRAILER",
-                                                    film: {
-                                                        maPhim: film.maPhim,
-                                                        trailer: film.trailer
-                                                    },
-                                                })
-                                                setShowVideo(true)
-                                            }}><i class="fa fa-play"></i></button>
-                                            <NavLink className="button" to={`/film_detail/${film.maPhim}`}>Mua vé</NavLink>
-                                        </div>
-                                    </div>
-                                })}
-                            </div>
-                            <div className="btn-load">
-                                <button className="button" onClick={showMore}>Xem thêm</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        <div className="slides">
-                            <div className="card__wrapper">
-                                {danhSachPhim?.slice(0, loadMore).map((film, index) => {
-                                    return <div className="card__item" key={index}>
-                                        <div className="card__img">
-                                            <img src={film.hinhAnh} />
-                                            <div className="card__review">
-                                                <p>{film.danhGia}/10</p>
-                                                <div className="card__star">
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                    <span><i class="fa fa-star"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="card__content fade">
-                                            {film.tenPhim.length > 15 ? <span>{film.tenPhim.substr(0, 15)}...</span> : <span>{film.tenPhim}</span>}
-                                        </div>
-                                        <div className="card__booking">
-                                            <button className="btn__play" onClick={() => {
-                                                dispatch({
-                                                    type: "GET_TRAILER",
-                                                    film: {
-                                                        maPhim: film.maPhim,
-                                                        trailer: film.trailer
-                                                    },
-                                                })
-                                                setShowVideo(true)
-                                            }}><i class="fa fa-play"></i></button>
-                                            <NavLink className="button" to={`/film_detail/${film.maPhim}`}>Mua vé</NavLink>
-                                        </div>
-                                    </div>
-                                })}
-                            </div>
-                        </div>
-                        <div className="btn-load">
-                            <button className="button" onClick={showMore}>Xem thêm</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             <RWDMovieList danhSachPhim={danhSachPhim} setShowVideo={setShowVideo}/>
 
             <Popup trigger={showVideo} setTrigger={setShowVideo}>
                 <iframe className="videos-wrapper" src={phimTrailer.trailer} frameborder="0" allow="autoplay" allowFullScreen={true}></iframe>

@@ -58,8 +58,7 @@ export const updateAction = (user) => {
           Authorization: "Bearer " + localStorage.getItem(accessToken),
         },
       });
-      console.log(result.data);
-      localStorage.setItem(taiKhoan, result.data);
+      localStorage.setItem(taiKhoan, JSON.stringify(result.data));
       Swal.fire({
         icon: "success",
         title: "Cập nhật thành công",
@@ -90,7 +89,6 @@ export const bookHistoryAction = (user) => {
           Authorization: "Bearer " + localStorage.getItem(accessToken),
         },
       });
-      console.log(result.data);
       dispatch({
         type: "BOOK_HISTORY",
         taiKhoan: result.data,

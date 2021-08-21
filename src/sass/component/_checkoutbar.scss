@@ -1,11 +1,11 @@
-.checkout-bar__container {
-  width: $w-100 - 30;
+.checkout-bar {
+  width: $w-100 - 15;
   padding: $p-2 $p-1;
   box-shadow: 0 0 10px $dark-1;
   border-radius: 5px;
   background: $primary;
   position: absolute;
-  bottom: -10%;
+  bottom: -27%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -26,14 +26,20 @@
       &:first-child {
         min-width: $w-100 - 75;
       }
+      &:nth-child(2), 
+      &:nth-child(3) {
+        min-width: $w-100 - 80;
+      }
       .btn__list {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         width: $w-100;
         border: 0;
         outline: 0;
         background: transparent;
         span {
+          width: $w-100 - 10;
           margin-right: $m-5 * 1.5;
         }
         i {
@@ -45,12 +51,16 @@
         background: $dark-2;
         border: 1px solid $dark-2;
         transition: all 0.5s;
+        &:hover {
+          color: $tWhite !important;
+        }
       }
       .btn-buy {
         background: linear-gradient(to right, $red-2, $red-1);
         border: 1px solid $red-1;
         &:hover {
           background: $primary;
+          color: $tSecondary !important;
         }
       }
     }
@@ -85,13 +95,20 @@
         &:hover {
           background: $blue;
         }
-        .checkout__link {
+        .item__link {
           outline: 0;
           border: 0;
           text-align: left;
           background: transparent;
           color: $tPrimary;
         }
+        
+      }
+      .list__default {
+        font-size: $h3 - 2;
+        padding: $p-1 - 5 $p-3;
+        text-align: center;
+        font-style: italic;
       }
     }
     .show__list {
@@ -100,8 +117,7 @@
     }
   }
   @include respond(laptop) {
-    width: $w-100 - 10;
-    bottom: -13%;
+    display: none;
   }
   @include respond(extraTablet) {
     display: none;

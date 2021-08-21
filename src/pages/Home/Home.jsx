@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from './Carousel/Carousel';
 import Cinema from './Cinema/Cinema';
+import RWDCinema from '../../component/RWD_Cinema/RWDCinema';
 import MovieList from './MovieList/MovieList';
 import News from './News/News';
 import Apps from './Apps/Apps'
@@ -15,6 +16,7 @@ function Home(props) {
             <div className="container home-wrapper">
                 <MovieList />
                 <Cinema />
+                <RWDCinema />
                 <News />
             </div>
             <Apps />

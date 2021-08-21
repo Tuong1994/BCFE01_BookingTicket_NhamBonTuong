@@ -5,18 +5,16 @@ import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { delMovieAction } from '../../../redux/action/AdminAction';
 import { getMovieAction } from '../../../redux/action/PhimAction';
-import Popup from '../../../component/Popup/Popup';
-import Schedule from '../../Admin/FilmManage/Schedule';
 
 function FilmManage(props) {
     const { danhSachPhim, phim } = useSelector(state => state.PhimReducer);
     const [searchFilm, setSearchFilm] = useState("");
-    const [filmDetail, setFilmDetail] = useState(false);
-    let showFilm = () => setFilmDetail(!filmDetail)
+    const [filmDetail, setFilmDetail] = useState(false);    
     let dispatch = useDispatch()
     useEffect(() => {
         dispatch(getMovieAction())
     }, [])
+
     let renderFilmList = () => {
         return danhSachPhim.filter((film) => {
             if (searchFilm === "") {
@@ -43,7 +41,7 @@ function FilmManage(props) {
                             type: "GET_FILM_DETAIL",
                             film,
                         })
-                        showFilm()
+                        setFilmDetail(true)
                     }}><i class="fa fa-film"></i></button>
                     <NavLink className="button" to="/schedule" onClick={() => {
                         dispatch({
@@ -98,7 +96,7 @@ function FilmManage(props) {
     }
     return (
         <div className="filmManage">
-            <h2>Quản lý phim</h2>
+            <h3>Quản lý phim</h3>
             <hr />
             <div className="filmManage__form">
                 <NavLink to="/add_movie" className="form__link">
@@ -138,7 +136,7 @@ function FilmManage(props) {
                     <p>Ngày chiếu : <span>{phim.ngayKhoiChieu}</span></p>
                     <p>Trailer : {phim.trailer?.length > 24 ? <span>{phim.trailer?.substr(0,24)}<br />{phim.trailer?.substr(24)}</span> : <span>{phim.trailer}</span>}</p>
                 </div>
-                <button className="button" onClick={() => showFilm()}><i class="fa fa-angle-double-left"></i></button>
+                <button className="button" onClick={() => setFilmDetail(false)}><i class="fa fa-angle-double-left"></i></button>
             </div>
         </div>
     );

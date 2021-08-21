@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 function CountDown(props) {
-    const [min, setMin] = useState(1);
+    const [min, setMin] = useState(5);
     const [sec, setSec] = useState(0);
     useEffect(() => {
         let interval = setInterval(() => {

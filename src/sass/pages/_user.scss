@@ -1,4 +1,4 @@
-.userTemplate{
+.userTemplate {
   width: $w-100;
   height: $h-100;
   position: fixed;
@@ -333,6 +333,7 @@
     }
     p {
       &:nth-child(2) {
+        margin-bottom: $m-1;
         padding-bottom: $p-1;
         border-bottom: 1px solid $grey-2;
       }
@@ -426,7 +427,7 @@
   }
 }
 
-.userBooking{
+.userBooking {
   height: $h-100;
   text-align: center;
   padding: $p-3;
@@ -490,5 +491,3 @@
     padding: $p-1;
   }
 }
-
-

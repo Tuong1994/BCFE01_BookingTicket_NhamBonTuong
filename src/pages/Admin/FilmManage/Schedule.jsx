@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 
 function Schedule(props) {
     const { danhSachRapChieu, phim, chiTietLichChieu } = useSelector(state => state.PhimReducer);
-    console.log(chiTietLichChieu);
     let dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCinemaAction())

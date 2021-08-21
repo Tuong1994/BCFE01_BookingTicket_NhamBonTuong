@@ -138,7 +138,7 @@ function Detail(props) {
                     </div>
 
                     <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        <div className="film__info">
+                        <div className="film__decs">
                             <p>Giờ chiếu : <span>{moment(chiTietLichChieu.ngayKhoiChieu).format("hh:mm A")}</span></p>
                             <p>Nội dung : <br /><span>{chiTietLichChieu.moTa}</span></p>
                         </div>

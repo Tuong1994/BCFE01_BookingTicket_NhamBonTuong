@@ -7,8 +7,7 @@
   .admin__sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: $w-100 - 83;
+    width: $w-100 - 80;
     height: $h-100;
     box-shadow: 0 0 5px $dark-1;
     background: linear-gradient(to top, $primary, $grey-2);
@@ -16,16 +15,39 @@
     padding: $p-1;
     color: $tPrimary;
     font-weight: $medium;
-    .admin__login {
+    transition: all 0.4s;
+    .admin__logo {
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-evenly;
+      border-bottom: 1px solid $grey-1;
       padding: $p-1 0;
-      border-bottom: 1px solid $dark-1;
-      font-size: $h3 - 2;
-      position: relative;
-      i {
-        margin-left: $m-1;
+      img {
+        width: $w-5;
+        height: $h-5;
+        @include respond(extraTablet) {
+          width: $w-4;
+          height: $h-4;
+        }
+        @include respond(tablet) {
+          width: $w-4;
+          height: $h-4;
+        }
+        @include respond(phone) {
+          width: $w-4;
+          height: $h-4;
+          margin: $m-1;
+        }
+        @include respond(smallPhone) {
+          width: $w-4;
+          height: $h-4;
+          margin: $m-1;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-4;
+          height: $h-4;
+          margin: $m-1;
+        }
       }
       @include respond(extraTablet) {
         font-size: $body-1 + 2;
@@ -69,6 +91,14 @@
         }
         i {
           margin-right: $m-1;
+          transition: all 0.4s;
+        }
+        .icon__active {
+          margin: 0;
+          font-size: $h2;
+        }
+        .link__hide {
+          display: none;
         }
         @include respond(extraTablet) {
           margin: $m-2 $m-1;
@@ -176,51 +206,6 @@
         z-index: 1000;
       }
     }
-    .admin__return {
-      position: relative;
-      cursor: pointer;
-      &:hover .btn-return-1 {
-        width: $w-100;
-      }
-      &:hover .btn-return-2 {
-        opacity: 1;
-        visibility: visible;
-        transition-delay: 0.4s;
-      }
-      .btn-return-1,
-      .btn-return-2 {
-        text-decoration: none;
-        color: $tPrimary;
-        display: block;
-        @include respond(laptop) {
-          font-size: $body-1;
-        }
-      }
-      .btn-return-1 {
-        width: $w-4;
-        padding: $p-1;
-        border-radius: 5px;
-        background: $red-1;
-        transition: all 0.4s;
-      }
-      .btn-return-2 {
-        position: absolute;
-        top: 10px;
-        left: 30%;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.4s;
-      }
-      @include respond(extraTablet) {
-        display: none;
-      }
-      @include respond(tablet) {
-        display: none;
-      }
-      @include respond(phone) {
-        display: none;
-      }
-    }
     .btn-show {
       width: $w-4;
       height: $h-4;
@@ -254,28 +239,28 @@
     @include respond(extraTablet) {
       justify-content: space-around;
       align-items: center;
-      flex-direction: row-reverse;
+      flex-direction: row;
       width: $w-100;
       height: $h-5;
     }
     @include respond(tablet) {
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
-      flex-direction: row-reverse;
+      flex-direction: row;
       width: $w-100;
       height: $h-5;
     }
     @include respond(phone) {
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
-      flex-direction: row-reverse;
+      flex-direction: row;
       width: $w-100;
       height: $h-5;
     }
   }
   .admin__content {
     position: relative;
-    width: $w-100 - 17;
+    width: $w-100;
     height: $h-100;
     overflow-y: auto;
     .admin__bar {
@@ -284,6 +269,51 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid $grey-2;
+      .admin__btn {
+        width: $w-5;
+        height: $h-5;
+        border: 0;
+        border-radius: 5px;
+        font-size: $h2;
+        outline: 0;
+        transition: all 0.5s;
+        &:hover {
+          box-shadow: 0 0 5px $dark-2;
+        }
+        @include respond(extraTablet) {
+          display: none;
+        }
+        @include respond(tablet) {
+          display: none;
+        }
+        @include respond(phone) {
+          display: none;
+        }
+        @include respond(smallPhone) {
+          display: none;
+        }
+        @include respond(extraSmallPhone) {
+          display: none;
+        }
+      }
+      .active__btn {
+        transform: rotateY(180deg);
+      }
+      .admin__login {
+        img {
+          width: $w-3;
+          height: $h-3;
+          border-radius: 50%;
+          box-shadow: 0 0 5px $dark-2;
+          margin-right: $m-1;
+        }
+        span {
+          font-weight: $medium;
+        }
+      }
+      @include respond(extraTablet) {
+        justify-content: center;
+      }
     }
     @include respond(extraTablet) {
       width: $w-100;
@@ -294,6 +324,9 @@
     @include respond(phone) {
       width: $w-100;
     }
+  }
+  .shrink {
+    width: $w-100 - 95;
   }
   @include respond(extraTablet) {
     flex-direction: column;
@@ -318,7 +351,7 @@
   .feature {
     display: flex;
     justify-content: space-between;
-    margin-bottom: $m-5;
+    margin-bottom: $m-2;
     .feature__card-1 {
       background: linear-gradient(to right bottom, $green, $grey-1);
     }
@@ -334,8 +367,7 @@
     .feature__card {
       width: $w-100 - 78;
       padding: $p-2;
-      box-shadow: 0 0 5px $dark-2;
-      border-radius: 5px;
+      box-shadow: 0 0 10px $grey-2;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -369,9 +401,9 @@
   .cinema-chart,
   .user-chart {
     padding: $p-1;
-    border-radius: 5px;
-    box-shadow: 0 0 5px $dark-2;
-    margin-bottom: $m-5;
+    box-shadow: 0 0 10px $grey-2;
+    margin-bottom: $m-2;
+    background: linear-gradient(to right bottom, $grey-1, $primary);
     h4 {
       margin-bottom: $m-3;
     }
@@ -394,7 +426,7 @@
     .user-chart {
       width: $w-100 - 51;
       padding: $p-1;
-      margin-bottom: $m-5;
+      margin-bottom: $m-2;
       h4 {
         margin-bottom: $m-3;
       }
@@ -600,7 +632,7 @@
 
       // MOVIE-LIST-BODY
       .list__body {
-        height: $h-10 * 5;
+        height: $h-10 * 6;
         overflow-y: auto;
         overflow-x: hidden;
         &::-webkit-scrollbar {
@@ -1597,7 +1629,7 @@
         }
       }
       .list__body {
-        height: $h-10 * 3.8;
+        height: $h-10 * 5;
         overflow-y: auto;
         overflow-x: hidden;
         &::-webkit-scrollbar {

@@ -29,7 +29,7 @@ function UserUpdate(props) {
         }),
         onSubmit: (values) => {
             console.log(values);
-            dispatch(updateAction(values));
+            // dispatch(updateAction(values));
         }
     })
     return (
@@ -71,6 +71,13 @@ function UserUpdate(props) {
                         <span className={touched.email && errors.email ? "error-icon show-icon" : "error-icon"}><i class="fa fa-exclamation-circle"></i></span>
                     </div>
                     {touched.email && errors.email ? <span className="errors__message">{errors.email}</span> : ""}
+                </div>
+
+                <div className="form__item">
+                    <label for="maLoaiNguoiDung">Loại người dùng</label>
+                    <div className="form__input">
+                        <input type="text" id="maLoaiNguoiDung" name="maLoaiNguoiDung" value={values.maLoaiNguoiDung} placeholder="..." />
+                    </div>
                 </div>
 
                 <div className="form__button">

@@ -31,7 +31,7 @@ function CinemaChart(props) {
             <ResponsiveContainer width="100%" aspect={4 / 2}>
                 <BarChart data={cinema}>
                     <CartesianGrid stroke="#cecece" />
-                    <XAxis dataKey="name" stroke="#4a4a4a"/>
+                    <XAxis dataKey="name" stroke="#4a4a4a" />
                     <YAxis stroke="#4a4a4a" />
                     <Tooltip />
                     <Bar dataKey="Cinema revanue" fill="#fb4226" />

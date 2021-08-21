@@ -30,13 +30,13 @@ export const PhimReducer = (state = stateDefault, action) => {
       state.thongTinRapChieu = { ...action.thongTinRapChieu };
       return { ...state };
     }
+    case "GET_SCHEDULE": {
+      state.lichChieu = action.lichChieu;
+      return { ...state };
+    }
     case "GET_FILM_DETAIL": {
       state.phim = action.film;
       return { ...state };
-    }
-    case "GET_SCHEDULE": {
-      state.lichChieu = action.lichChieu;
-      return {...state}
     }
     default:
       return { ...state };

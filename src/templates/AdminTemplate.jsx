@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
@@ -6,35 +6,35 @@ import { NavLink } from 'react-router-dom';
 export const AdminTemplate = (props) => {
     let { account } = useSelector(state => state.UserReducer);
     const [show, setShow] = useState(false);
-    const [title, setTitle] = useState("Dashboard");
+    const [shrink, setShrink] = useState(false);
     let showAcitve = () => setShow(!show);
+    let shrinked = () => setShrink(!shrink);
     let { Component, ...restProps } = props;
     return <Route {...restProps} render={(propsRoute) => {
         return <div className="admin">
-            <div className="admin__sidebar">
-                <div className="admin__login">
-                    <span>Hello, {account}</span>
-                    <span><i class="fa fa-user"></i></span>
-                </div>
+            <div className={shrink ? "admin__sidebar shrink" : "admin__sidebar"}>
+                <NavLink to="/" className="admin__logo">
+                    <img src="../../img/logo.png" />
+                </NavLink>
 
                 <div className={show ? "admin__menu show" : "admin__menu"}>
                     <NavLink className="admin__link" to="/dashboard" onClick={() => {
                         setShow(false)
                     }}>
-                        <i class="fa fa-chart-line"></i>
-                        <span>Dashboard</span>
+                        <i class={shrink ? "fa fa-chart-line icon__active" : "fa fa-chart-line"}></i>
+                        <span className={shrink ? "link__hide" : ""}>Dashboard</span>
                     </NavLink>
                     <NavLink className="admin__link" to="/film_manage" onClick={() => {
                         setShow(false)
                     }}>
-                        <i class="fa fa-film"></i>
-                        <span>Quản lý phim</span>
+                        <i class={shrink ? "fa fa-film icon__active" : "fa fa-film"}></i>
+                        <span className={shrink ? "link__hide" : ""}>Quản lý phim</span>
                     </NavLink>
                     <NavLink className="admin__link" to="/user_manage" onClick={() => {
                         setShow(false)
                     }}>
-                        <i class="fa fa-users"></i>
-                        <span>Quản lý người dùng</span>
+                        <i class={shrink ? "fa fa-users icon__active" : "fa fa-users"}></i>
+                        <span className={shrink ? "link__hide" : ""}>Quản lý người dùng</span>
                     </NavLink>
                     <NavLink className="admin__link sub-btn" to="/" onClick={() => {
                         setShow(false)
@@ -44,25 +44,20 @@ export const AdminTemplate = (props) => {
                     </NavLink>
                 </div>
 
-                <div className="admin__return">
-                    <NavLink className="btn-return-1" to="/">
-                        <i class="fa fa-angle-double-left"></i>
-                    </NavLink>
-                    <NavLink className="btn-return-2" to="/">
-                        <span>Quay lại trang chủ</span>
-                    </NavLink>
-                </div>
-
                 <button className="btn-show" onClick={showAcitve}>
                     {show ? <i class="fa fa-times"></i> : <i class="fa fa-align-right"></i>}
                 </button>
-
             </div>
+
             <div className="admin__content">
                 <div className="admin__bar">
-                    <h5>{title}</h5>
-                    <div className="admin__log">
-                        <span><i class="fa fa-user"></i></span>
+                    <button className={shrink ? "admin__btn active__btn" : "admin__btn"} onClick={() => {
+                        shrinked()
+                    }}>
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <div className="admin__login">
+                        <img src="https://picsum.photos/200" />
                         <span>Hello, {account}</span>
                     </div>
                 </div>

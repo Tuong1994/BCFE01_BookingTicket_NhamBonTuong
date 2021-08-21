@@ -10,7 +10,10 @@ import { bookMovieAction, getTicketAction } from '../../redux/action/PhimAction'
 
 function Checkout(props) {
     const { thongTinRapChieu } = useSelector(state => state.PhimReducer);
+    console.log(thongTinRapChieu);
+
     const { DSGheDangDat } = useSelector(state => state.BookTicketReducer);
+    
     const [showDetail, setShowDetail] = useState(true);
     let dispatch = useDispatch();
     useEffect(() => {
@@ -123,7 +126,13 @@ function Checkout(props) {
                         <hr />
                         <div className="checkout__button">
                             <button className="button" onClick={() => {
-                                if (localStorage.getItem(taiKhoan) && DSGheDangDat !== "") {
+                                if (!localStorage.getItem(taiKhoan) && DSGheDangDat === "") {
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Bạn chưa chọn ghế"
+                                    })
+                                    console.log("warning");
+                                } else {
                                     let accLogin = JSON.parse(localStorage.getItem(taiKhoan));
                                     let thongTinVe = {
                                         maLichChieu: props.match.params.id,
@@ -131,11 +140,6 @@ function Checkout(props) {
                                         taiKhoanNguoiDung: accLogin.taiKhoan,
                                     };
                                     dispatch(bookMovieAction(thongTinVe));
-                                } else {
-                                    Swal.fire({
-                                        icon: "error",
-                                        title: "Bạn chưa chọn ghế"
-                                    })
                                 }
                             }}>
                                 Đặt vé

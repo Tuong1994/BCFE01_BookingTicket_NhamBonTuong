@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { delUserAction, getUserListAction } from '../../../redux/action/AdminAction';
 
 function UserManage(props) {
-    let { userList, user } = useSelector(state => state.AdminReducer);
+    const { userList, user } = useSelector(state => state.AdminReducer);
     const [userDetail, setUserDetail] = useState(false);
-    let showDetail = () => setUserDetail(!userDetail)
     const [searchUser, setSearchUser] = useState("");
+    let showDetail = () => setUserDetail(!userDetail);
     let dispatch = useDispatch();
     useEffect(() => {
         dispatch(getUserListAction())
@@ -36,15 +36,7 @@ function UserManage(props) {
                     <button className="button" onClick={() => {
                         dispatch({
                             type: "USER_DETAIL",
-                            user: {
-                                taiKhoan: user.taiKhoan,
-                                matKhau: user.matKhau,
-                                hoTen: user.hoTen,
-                                email: user.email,
-                                soDt: user.soDt,
-                                maNhom: user.maNhom,
-                                maLoaiNguoiDung: user.maLoaiNguoiDung
-                            }
+                            user,
                         })
                         showDetail()
                     }}><i class="fa fa-user-plus"></i></button>
@@ -92,7 +84,7 @@ function UserManage(props) {
     }
     return (
         <div className="userManage">
-            <h2>Quản lý người dùng</h2>
+            <h3>Quản lý người dùng</h3>
             <hr />
             <div className="userManage__form">
                 <NavLink to="/add_user" className="form__link">
@@ -140,4 +132,4 @@ function UserManage(props) {
     );
 }
 
-export default UserManage;
+export default memo(UserManage);

@@ -1,10 +1,19 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  &::-webkit-scrollbar {
+    width: $w-1 * 0.5;
+    background: $primary;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $grey-2;
+    border-radius: 2px;
+  }
 }

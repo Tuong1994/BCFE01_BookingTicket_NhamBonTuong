@@ -511,14 +511,6 @@
             }
           }
         }
-        .film__info {
-          padding: $p-2;
-          text-align: justify;
-          font-weight: $medium;
-          span {
-            color: $tSecondary;
-          }
-        }
         .cinema__content {
           .cinema__item {
             @include respond(phone) {
@@ -558,6 +550,14 @@
         @include respond(extraSmallPhone) {
           display: flex;
           flex-direction: column;
+        }
+      }
+      .film__decs {
+        padding: $p-2;
+        text-align: justify;
+        font-weight: $medium;
+        span {
+          color: $tSecondary;
         }
       }
     }

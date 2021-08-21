@@ -7,8 +7,8 @@ import Checkout from "./pages/Checkout/Checkout";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import UserInfo from "./pages/User/UserInfo/UserInfo";
-import History from "./pages/User/UserBooking/UserBooking";
-import Update from "./pages/User/UserUpdate/UserUpdate";
+import UserBooking from "./pages/User/UserBooking/UserBooking";
+import UserUpdate from "./pages/User/UserUpdate/UserUpdate";
 import FilmManage from "./pages/Admin/FilmManage/FilmManage";
 import UserManage from "./pages/Admin/UserManage/UserManage";
 import AddMovie from "./pages/Admin/FilmManage/AddMovie";
@@ -22,7 +22,6 @@ import { createBrowserHistory } from "history";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Schedule from "./pages/Admin/FilmManage/Schedule";
 import Demo from "./Demo";
-import './index.css';
 
 export const history = createBrowserHistory();
 
@@ -38,8 +37,8 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <UserTemplate exact path="/user_info" Component={UserInfo} />
-          <UserTemplate exact path="/history" Component={History} />
-          <UserTemplate exact path="/update" Component={Update} />
+          <UserTemplate exact path="/user_booking" Component={UserBooking} />
+          <UserTemplate exact path="/user_update" Component={UserUpdate} />
           <AdminTemplate exact path="/dashboard" Component={Dashboard} />
           <AdminTemplate exact path="/film_manage" Component={FilmManage} />
           <AdminTemplate exact path="/add_movie" Component={AddMovie} />

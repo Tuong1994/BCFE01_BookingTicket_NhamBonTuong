@@ -7,6 +7,8 @@ import Feature from './Feature';
 function Dashboard(props) {
     return (
         <div className="dashboard">
+            <h3>Dashboard</h3>
+            <hr />
             <Feature />
             <RevanueChart />
             <div className="sub-chart">

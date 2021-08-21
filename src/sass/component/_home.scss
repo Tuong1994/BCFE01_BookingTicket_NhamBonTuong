@@ -12,4 +12,10 @@
     @include respond(phone) {
         min-width: $w-100;
     }
+    @include respond(smallPhone) {
+        min-width: $w-100;
+    }
+    @include respond(extraSmallPhone) {
+        min-width: $w-100;
+    }
 }

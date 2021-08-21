@@ -13,7 +13,7 @@ function UserInfo(props) {
                 <p>Số điện thoại : <span>{accountInfo.soDT}</span></p>
                 <p>Email : <span>{accountInfo.email}</span></p>
             </div>
-            <NavLink className="button" to="/update">
+            <NavLink className="button" to="/user_update">
                 <i class="fa fa-user-edit"></i>
                 <span>Cập nhật</span>
             </NavLink>

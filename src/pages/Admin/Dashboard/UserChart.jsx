@@ -60,7 +60,7 @@ function UserChart(props) {
                 <LineChart data={revanue} scaleToFit={true}>
                     <XAxis dataKey="name" stroke="#4a4a4a" />
                     <YAxis stroke="#4a4a4a" />
-                    <Line type="monotone" dataKey="User" stroke="#347deb"  strokeWidth={3} activeDot={true} />
+                    <Line type="monotone" dataKey="User" stroke="#347deb" strokeWidth={3} activeDot={true} />
                     <Tooltip />
                     <CartesianGrid stroke="#cecaca" />
                     <Legend style={{ color: "#4a4a4a" }} />

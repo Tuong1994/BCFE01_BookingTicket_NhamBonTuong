@@ -1,18 +1,18 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import RWD_Cinema from '../../../component/RWD_Cinema/RWD_Cinema';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getCinemaAction } from '../../../redux/action/PhimAction';
 
 function Cinema(props) {
+    const { danhSachRapChieu } = useSelector(state => state.PhimReducer);
+    
     const [showTab, setShowTab] = useState(0);
     let show = (index) => setShowTab(index);
 
     const [showSubTab, setShowSubTab] = useState(0);
     let showSub = (index) => setShowSubTab(index);
 
-    const { danhSachRapChieu } = useSelector(state => state.PhimReducer);
     let dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCinemaAction())
@@ -69,8 +69,6 @@ function Cinema(props) {
                     })}
                 </div>
             </div>
-            
-            <RWD_Cinema danhSachRapChieu={danhSachRapChieu} />
         </div>
     );
 }

@@ -24,7 +24,7 @@ export const UserTemplate = (props) => {
                         <i class="fa fa-user-circle"></i>
                         <span>Thông tin cá nhân</span>
                     </NavLink>
-                    <NavLink className="user__link" to="/history" onClick={() => {
+                    <NavLink className="user__link" to="/user_booking" onClick={() => {
                         let accLogin = JSON.parse(localStorage.getItem(taiKhoan)).taiKhoan;
                         let userObject = {
                             taiKhoan: accLogin

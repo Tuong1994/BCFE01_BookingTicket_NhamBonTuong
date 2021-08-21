@@ -3,12 +3,10 @@
   margin-bottom: $m-5;
   .slide {
     width: $w-100;
-    height: $h-10 * 6;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    height: $h-10 * 7;
     cursor: pointer;
     position: relative;
+    box-shadow: 0 0 5px $dark-2;
     &:hover .btn__play {
       opacity: 1;
       visibility: visible;
@@ -16,6 +14,7 @@
     .slides__img {
       width: $w-100;
       height: $h-100;
+      object-fit: cover;
     }
     .btn__play {
       width: $w-7;

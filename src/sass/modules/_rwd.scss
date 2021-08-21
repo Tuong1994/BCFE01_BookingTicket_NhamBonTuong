@@ -1,163 +1,3 @@
-.rwd-cinema__wrapper {
-  display: none;
-  .card {
-    .card-header {
-      .btn {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        img {
-          width: $w-6;
-          height: $h-6;
-          @include respond(phone) {
-            width: $w-4 + 5;
-            height: $h-4 + 5;
-          }
-          @include respond(smallPhone) {
-            width: $w-4 + 5;
-            height: $h-4 + 5;
-          }
-        }
-        i {
-          text-decoration: none;
-          color: $tPrimary;
-          font-size: $h3;
-        }
-      }
-      @include respond(phone) {
-        padding: $p-1 - 5 $p-2;
-      }
-      @include respond(smallPhone) {
-        padding: $p-1 - 5;
-      }
-    }
-    .card-body {
-      cursor: pointer;
-      padding: $p-1 - 8;
-      .cinema__info {
-        display: flex;
-        margin-bottom: $m-1;
-        img {
-          width: $w-5 + 5;
-          height: $h-5 + 5;
-          margin-right: $m-1;
-          border-radius: 5px;
-          box-shadow: 0 0 5px $dark-1;
-          @include respond(phone) {
-            width: $w-5;
-            height: $h-5;
-          }
-          @include respond(smallPhone) {
-            width: $w-5;
-            height: $h-5;
-          }
-        }
-        .cinema__name {
-          p {
-            margin-bottom: $m-1 - 5;
-            font-weight: $medium;
-            &:nth-child(2) {
-              font-size: $body-1;
-              font-weight: $regular;
-              @include respond(phone) {
-                font-size: $body-2;
-              }
-              @include respond(smallPhone) {
-                font-size: $body-2;
-              }
-            }
-            @include respond(phone) {
-              font-size: $body-1;
-              margin: 0;
-            }
-            @include respond(smallPhone) {
-              font-size: $body-1;
-              margin: 0;
-            }
-          }
-        }
-        @include respond(phone) {
-          margin-bottom: $m-1 - 5;
-        }
-        @include respond(smallPhone) {
-          margin-bottom: $m-1 - 5;
-        }
-      }
-      .film__body {
-        margin: 0;
-        padding: $p-1 - 5 $p-2;
-        .film__info {
-          display: flex;
-          img {
-            width: $w-5;
-            height: $h-5;
-            margin-right: $m-2;
-            @include respond(phone) {
-              width: $w-100 - 75;
-              height: $h-6;
-            }
-            @include respond(smallPhone) {
-              width: $w-100 - 70;
-              height: $h-6;
-            }
-          }
-        }
-        .film__name {
-          p {
-            margin: 0;
-            font-weight: $medium;
-            text-transform: uppercase;
-            @include respond(phone) {
-              font-size: $body-2;
-            }
-            @include respond(smallPhone) {
-              font-size: $body-2;
-            }
-          }
-          .button {
-            text-decoration: none;
-            font-size: $body-2;
-            padding: $p-1 - 5;
-            margin-right: $m-1 - 5;
-            @include respond(phone) {
-              display: none;
-            }
-            @include respond(smallPhone) {
-              display: none;
-            }
-          }
-          .btn-time {
-            display: none;
-            @include respond(phone) {
-              display: inline-block;
-              font-size: $body-2 - 2;
-            }
-            @include respond(smallPhone) {
-              display: inline-block;
-              font-size: $body-2 - 2;
-            }
-          }
-          @include respond(phone) {
-            width: $w-100 - 35;
-          }
-          @include respond(smallPhone) {
-            width: $w-100 - 35;
-          }
-        }
-      }
-    }
-  }
-  @include respond(extraTablet) {
-    display: block;
-  }
-  @include respond(tablet) {
-    display: block;
-  }
-  @include respond(phone) {
-    display: block;
-  }
-}
-
 .rwd-checkout__wrapper {
   .rwd-checkout__info {
     width: $w-100;
@@ -332,5 +172,439 @@
   }
   .show-detail {
     left: 0;
+  }
+}
+
+.rwd-movielist {
+  padding: $p-1;
+  display: none;
+  .rwd-movielist__tab {
+    display: flex;
+    justify-content: center;
+    margin: 0 $m-3;
+    .tab__item {
+      height: $h-4;
+      margin: 0 $m-3;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: $h3 - 2;
+      font-weight: $medium;
+      &:hover {
+        font-size: $h3 + 2;
+        color: $tSecondary;
+        @include respond(extraSmallPhone) {
+          font-size: $body-1 + 2;
+        }
+      }
+      @include respond(extraSmallPhone) {
+        font-size: $body-1;
+        height: $h-3;
+        margin: 0 $m-1;
+      }
+    }
+    .active-color {
+      font-size: $h3 + 2;
+      color: $tSecondary;
+      @include respond(extraSmallPhone) {
+        font-size: $body-1 + 2;
+      }
+    }
+  }
+  .rwd-movielist__tabContent {
+    .tabContent__item {
+      width: $w-100;
+      background: $primary;
+      display: none;
+      transition: all 0.5s;
+      .slides {
+        overflow-x: visible;
+        .card__wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          width: $w-100;
+          .card__item {
+            position: relative;
+            margin: $m-1 0;
+            padding: $p-1 - 5;
+            border-radius: 5px;
+            &:hover .card__img img {
+              transform: scale(1.5,1.5);
+            }
+            &:hover .card__booking,
+            &:hover .card__img::after {
+              opacity: 1;
+              visibility: visible;
+            }
+            &:hover .fade {
+              opacity: 0;
+            }
+            .card__img {
+              width: $w-10 * 2;
+              height: $h-10 * 2.8;
+              margin-bottom: $m-2;
+              position: relative;
+              border-radius: 5px;
+              box-shadow: 0 0 5px $dark-2;
+              overflow: hidden;
+              img {
+                width: $w-100;
+                height: $h-100;
+                border-radius: 5px;
+                transition: all 0.4s;
+                transform: scale(1,1);
+              }
+              .card__review {
+                position: absolute;
+                top: 2%;
+                right: 2%;
+                z-index: 100;
+                background: rgba(0, 0, 0, 0.7);
+                width: $w-5;
+                height: $h-4;
+                font-size: $body-1;
+                font-weight: $medium;
+                padding: $p-1 - 5;
+                border-radius: 5px;
+                color: $tSecondary;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                p {
+                  margin: 0;
+                  @include respond(smallPhone) {
+                    font-size: $body-2 - 2;
+                  }
+                }
+                .card__star {
+                  width: $w-100;
+                  display: flex;
+                  justify-content: center;
+                  span {
+                    margin: 0;
+                    i {
+                      font-size: $body-2 - 5;
+                      @include respond(smallPhone) {
+                        font-size: $body-2 - 7;
+                      }
+                    }
+                  }
+                }
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: 5px;
+                width: $w-100;
+                height: $h-100;
+                background: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: visible;
+                z-index: 10;
+                transition: all 0.3s;
+              }
+              @include respond(laptop) {
+                width: $w-100;
+                height: $h-10 * 2.8;
+              }
+              @include respond(extraTablet) {
+                width: $w-100;
+                height: $h-10 * 3;
+              }
+              @include respond(tablet) {
+                width: $w-100;
+                height: $h-10 * 3;
+              }
+              @include respond(phone) {
+                width: $w-100;
+                height: $h-10 * 3;
+              }
+              @include respond(smallPhone) {
+                width: $w-100;
+                height: $h-10 * 2;
+              }
+              @include respond(extraSmallPhone) {
+                width: $w-100;
+                height: $h-10 * 1.5;
+              }
+            }
+            .card__content {
+              opacity: 1;
+              transition: all 0.3s;
+              font-size: $body-1;
+              letter-spacing: 1px;
+              text-align: center;
+              span {
+                text-transform: uppercase;
+                font-weight: $medium;
+                font-size: $body-1;
+              }
+              p {
+                color: $tSecondary;
+                margin: 0
+              }
+            }
+            .card__booking {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: $w-100;
+              height: $h-100;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              z-index: 1000;
+              opacity: 0;
+              visibility: hidden;
+              transition: all 0.3s;
+              .btn__play {
+                width: $w-5;
+                height: $h-5;
+                border: 1px solid $primary;
+                border-radius: 50%;
+                font-size: $body-2;
+                text-align: center;
+                line-height: $h-5;
+                color: $tWhite;
+                background: rgba(0, 0, 0, 0.5);
+                outline: 0;
+                position: absolute;
+                top: 30%;
+                left: 50%;
+                transform: translateX(-50%);
+                transition: all 0.3s;
+                &:hover {
+                  border: 1px solid $grey-2;
+                  color: $tGrey-1;
+                }
+              }
+              .button {
+                text-decoration: none;
+                color: $tWhite;
+                text-align: center;
+                width: $w-100;
+                position: absolute;
+                bottom: -3%;
+                left: 50%;
+                transform: translateX(-50%);
+                box-shadow: 0 0 5px $dark-2;
+                @include respond (laptop) {
+                  width: $w-100 - 5;
+                }
+                @include respond (extraTablet) {
+                  width: $w-100 - 5;
+                }
+                @include respond (tablet) {
+                  width: $w-100 - 5;
+                }
+              }
+            }
+            @include respond (laptop) {
+              width: $w-100 - 75;
+              padding: 0 $p-1;
+            }
+            @include respond (extraTablet) {
+              width: $w-100 - 75;
+              padding: 0 $p-1;
+            }
+            @include respond (tablet) {
+              width: $w-100 - 50;
+              padding: 0 $p-1;
+            }
+            @include respond(phone) {
+              width: $w-100;
+            }
+            @include respond(smallPhone) {
+              width: $w-100;
+              margin-bottom: $m-2;
+            }
+            @include respond(extraSmallPhone) {
+              width: $w-100;
+              margin-bottom: $m-1;
+            }
+          }
+        }
+        .btn-load {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: $m-1 0;
+          width: $w-100;
+          .button {
+            display: block;
+            font-size: $body-1;
+            padding: $p-1 - 5 $p-3;
+          }
+        }
+      }
+    }
+    .show-tab {
+      display: block;
+      animation: fadeTab 0.3s linear 1;
+    }
+  }
+  @keyframes fadeTab {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @include respond(phone) {
+    display: block;
+  }
+}
+
+.rwd-cinema {
+  margin: $m-5 0;
+  padding: $p-1;
+  box-shadow: 0 0 5px $dark-2;
+  border-radius: 5px;
+  display: none;
+  .cinema__item {
+    .cinema__logo {
+      cursor: pointer;
+      padding: $p-1;
+      border-bottom: 1px solid $grey-2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+      img {
+        width: $w-5;
+        height: $h-5;
+      }
+      .logo__icon {
+        transition: all 0.3s;
+        i {
+          font-size: $h3;
+          color: $tGrey-1;
+        }
+      }
+      .rotate {
+        transform: rotate(180deg);
+      }
+    }
+    .cinema__content {
+      height: 0;
+      overflow: hidden;
+      transition: height 0.5s ease;
+      .content__subtitle {
+        .subtitle__img {
+          padding: $p-1;
+          display: flex;
+          margin-bottom: $m-1;
+          cursor: pointer;
+          border-bottom: 1px solid $grey-2;
+          img {
+            width: $w-5;
+            height: $h-5;
+            margin-right: $m-1;
+            border-radius: 2px;
+            box-shadow: 0 0 5px $dark-2;
+            @include respond(smallPhone) {
+              display: none;
+            }
+            @include respond(extraSmallPhone) {
+              display: none;
+            }
+          }
+          .subtitle__info {
+            p {
+              margin: 0;
+              &:nth-child(2) {
+                color: $tGrey-1;
+                font-size: $body-1;
+              }
+            }
+          }
+        }
+        .subtitle__content {
+          padding: 0 $p-2;
+          height: 0;
+          overflow: hidden;
+          transition: all 0.5s ease;
+          .content {
+            display: flex;
+            margin-bottom: $m-1;
+            .content__img {
+              width: $w-100 - 90;
+              height: $h-5;
+              margin-right: $m-2;
+              img {
+                width: $w-100;
+                height: $h-100;
+                border-radius: 2px;
+                box-shadow: 0 0 5px $dark-2;
+              }
+              @include respond(phone) {
+                width: $w-100 - 80;
+              }
+              @include respond(smallPhone) {
+                width: $w-100 - 75;
+              }
+              @include respond(extraSmallPhone) {
+                width: $w-100 - 75;
+              }
+            }
+            .content__item {
+              width: $w-100;
+              p {
+                margin: 0;
+                @include respond(phone) {
+                  font-size: $body-1;
+                }
+                @include respond(smallPhone) {
+                  font-size: $body-1;
+                }
+                @include respond(extraSmallPhone) {
+                  font-size: $body-1;
+                }
+              }
+              .button {
+                font-size: $body-1;
+                padding: $p-1 - 5 $p-1;
+                margin-right: $m-1 - 5;
+                @include respond(phone) {
+                  font-size: $body-2;
+                }
+                @include respond(smallPhone) {
+                  font-size: $body-2;
+                }
+                @include respond(extraSmallPhone) {
+                  font-size: $body-2;
+                }
+              }
+            }
+          }
+          @include respond(extraSmallPhone) {
+            padding: 0 $p-1;
+          }
+        }
+      }
+    }
+    .show {
+      height: $h-10 * 4 !important;
+      overflow-y: auto !important;
+    }
+  }
+  @include respond(extraTablet) {
+    display: block;
+  }
+  @include respond(tablet) {
+    display: block;
+  }
+  @include respond(phone) {
+    display: block;
+  }
+  @include respond(smallPhone) {
+    display: block;
+  }
+  @include respond(extraSmallPhone) {
+    display: block;
   }
 }

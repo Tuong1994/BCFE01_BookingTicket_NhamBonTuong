@@ -1,4 +1,4 @@
-.movielist__container {
+.movielist {
   margin-bottom: $m-5 * 2;
   border-radius: 5px;
   position: relative;
@@ -51,6 +51,9 @@
       position: absolute;
       z-index: 10000;
       top: -50px;
+    }
+    @include respond(laptop) {
+      display: none !important;
     }
     @include respond(extraTablet) {
       display: none !important;
@@ -295,12 +298,6 @@
   .movielist__desktop {
     @include respond(phone) {
       display: none;
-    }
-  }
-  .movielist__responsive {
-    display: none;
-    @include respond(phone) {
-      display: block;
     }
   }
   
