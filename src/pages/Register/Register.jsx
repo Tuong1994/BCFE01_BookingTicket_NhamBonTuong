@@ -1,12 +1,14 @@
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from "yup";
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signUpAction } from '../../redux/action/UserAction';
 import { phoneRegExp } from '../../configs/setting';
 
 function Register(props) {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
     const dispatch = useDispatch()
     const { handleChange, handleBlur, handleSubmit, touched, errors, isValid } = useFormik({
         initialValues: {
@@ -66,8 +68,13 @@ function Register(props) {
                     <label for="password"><i class="fa fa-lock"></i></label>
                     <div className="form__group">
                         <div className="form__input">
-                            <input type="password" id="password" name="matKhau" placeholder="Mật khẩu..." onChange={handleChange} onBlur={handleBlur} />
+                            <input type={showPassword ? "text" : "password"} id="password" name="matKhau" placeholder="Mật khẩu..." onChange={handleChange} onBlur={handleBlur} />
                             <span className={touched.matKhau && errors.matKhau ? "error-icon show-icon" : "error-icon"}><i class="fa fa-exclamation-circle"></i></span>
+                            <div className="password__btn" title="Show password" onClick={() => {
+                                setShowPassword(!showPassword)
+                            }}>
+                                {showPassword ? <i class="fa fa-eye-slash"></i> : <i class="fa fa-eye"></i>}
+                            </div>
                         </div>
                         {touched.matKhau && errors.matKhau ? <span className="error__message">{errors.matKhau}</span> : ""}
                     </div>
@@ -77,8 +84,13 @@ function Register(props) {
                     <label for="passwordConfirm"><i class="fa fa-key"></i></label>
                     <div className="form__group">
                         <div className="form__input">
-                            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Xác nhận mật khẩu..." onChange={handleChange} onBlur={handleBlur} />
+                            <input type={showPasswordConfirm ? "text" : "password"} id="passwordConfirm" name="passwordConfirm" placeholder="Xác nhận mật khẩu..." onChange={handleChange} onBlur={handleBlur} />
                             <span className={touched.passwordConfirm && errors.passwordConfirm ? "error-icon show-icon" : "error-icon"}><i class="fa fa-exclamation-circle"></i></span>
+                            <div className="password__btn" title="Show password" onClick={() => {
+                                setShowPasswordConfirm(!showPasswordConfirm)
+                            }}>
+                                {showPasswordConfirm ? <i class="fa fa-eye-slash"></i> : <i class="fa fa-eye"></i>}
+                            </div>
                         </div>
                         {touched.passwordConfirm && errors.passwordConfirm ? <span className="error__message">{errors.passwordConfirm}</span> : ""}
                     </div>

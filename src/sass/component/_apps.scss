@@ -98,6 +98,10 @@
                     }
                 }
             }
+            @include respond(laptop) {
+                width: $w-100 - 80;
+                height: $h-10 + 325;
+            }
             @include respond(extraTablet) {
                 width: $w-100 - 80;
                 height: $h-10 + 312;

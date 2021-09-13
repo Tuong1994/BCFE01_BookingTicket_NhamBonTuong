@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
 
 function CountDown(props) {
+    let dispatch = useDispatch();
     const [min, setMin] = useState(5);
     const [sec, setSec] = useState(0);
     useEffect(() => {
@@ -14,9 +14,8 @@ function CountDown(props) {
             } else if (sec === 0) {
                 if (min === 0) {
                     clearInterval(interval);
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Bạn đã hết thời gian đặt vé",
+                    dispatch({
+                        type: "TIME_OUT"
                     });
                 } else {
                     setMin(min - 1);
@@ -30,6 +29,7 @@ function CountDown(props) {
     })
     return (
         <div className="countdown">
+            <p>Thời gian giữ vé</p>
             <p>{min < 10 ? `0${min}` : min} : {sec < 10 ? `0${sec}` : sec}</p>
         </div>
     );

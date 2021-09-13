@@ -1,10 +1,21 @@
 .countdown {
+    width: $w-100 - 45;
     box-shadow: 0 0 5px $grey-1;
     padding: $p-1 - 5 $p-3;
     border-radius: 5px;
-    color: $tSecondary;
     p {
         font-size: $h2;
+        font-weight: $medium;
+        text-align: center;
+        color: $tSecondary;
         margin: 0;
+        &:nth-child(1) {
+            font-size: $body-2;
+            color: $tGrey-2;
+            text-shadow: 0 10px 10px $dark-2;
+        }
+        @include respond(smallPhone) {
+            font-size: $h3 - 2;
+        }
     }
 }

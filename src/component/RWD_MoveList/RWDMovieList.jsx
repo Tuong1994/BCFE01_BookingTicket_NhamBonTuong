@@ -22,6 +22,7 @@ function RWDMovieList({ danhSachPhim, setShowVideo }) {
                     showTab(2)
                 }}>Sắp chiếu</div>
             </div>
+
             <div className="rwd-movielist__tabContent">
                 <div className={tabActive === 1 ? "tabContent__item show-tab" : "tabContent__item"}>
                     <div className="slides">
@@ -29,7 +30,7 @@ function RWDMovieList({ danhSachPhim, setShowVideo }) {
                             {danhSachPhim?.slice(0, loadMore).map((film, index) => {
                                 return <div className="card__item" key={index}>
                                     <div className="card__img">
-                                        <img src={film.hinhAnh} />
+                                        <img src={film.hinhAnh} alt={film.tenPhim} />
                                         <div className="card__review">
                                             <p>{film.danhGia}/10</p>
                                             <div className="card__star">
@@ -61,7 +62,7 @@ function RWDMovieList({ danhSachPhim, setShowVideo }) {
                             })}
                         </div>
                         {loadMore >= 6 ? null : <div className="btn-load">
-                            <button className="button" onClick={showMore}>Xem thêm</button>
+                            <div className="button" onClick={showMore}>Xem thêm</div>
                         </div>}
                     </div>
                 </div>
@@ -72,7 +73,7 @@ function RWDMovieList({ danhSachPhim, setShowVideo }) {
                             {danhSachPhim.slice(9, 15).map((film, index) => {
                                 return <div className="card__item" key={index}>
                                     <div className="card__img">
-                                        <img src={film.hinhAnh} />
+                                        <img src={film.hinhAnh} alt={film.tenPhim} />
                                     </div>
                                     <div className="card__content">
                                         {film.tenPhim.length > 15 ? <span>{film.tenPhim.substr(0, 15)}...</span> : <span>{film.tenPhim}</span>}

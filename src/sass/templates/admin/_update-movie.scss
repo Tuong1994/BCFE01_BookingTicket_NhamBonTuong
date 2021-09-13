@@ -1,0 +1,220 @@
+.update-movie {
+  width: $w-100;
+  padding: $p-2 $p-1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .update-movie__wrapper {
+    width: $w-100 - 30;
+    border: 1px solid $dark-2;
+    background: $primary;
+    padding: $p-2;
+    border-radius: 5px;
+    h5 {
+      text-align: center;
+      text-transform: uppercase;
+      padding-bottom: $p-1 - 5;
+      border-bottom: 1px solid $grey-2;
+    }
+    .wrapper__movie {
+      width: $w-100;
+      height: $h-10 * 3;
+      margin-bottom: $m-2;
+      display: flex;
+      justify-content: space-between;
+      .movie__img {
+        width: $w-100 - 40;
+        height: $h-100;
+        margin-right: $m-2;
+        padding-right: $p-2;
+        border-right: 1px solid $grey-2;
+        img {
+          width: $w-100;
+          height: $h-100;
+          border-radius: 5px;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+      .movie__info {
+        width: $w-100 - 40;
+        height: $h-100;
+        p {
+          margin: 0;
+          span {
+            font-weight: $medium;
+          }
+        }
+      }
+      @include respond(phone) {
+        display: none;
+      }
+    }
+    .wrapper__form {
+      .form__group {
+        width: $w-100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $m-1;
+        .form__item {
+          width: $w-100;
+          height: $h-5;
+          margin: $m-1 - 2 $m-1;
+          .form__content {
+            width: $w-100;
+            position: relative;
+            label {
+              font-size: $body-1;
+              font-weight: $medium;
+              margin: 0;
+            }
+            .form__label {
+              position: absolute;
+              top: 50%;
+              left: 20px;
+              transform: translateY(-50%);
+              user-select: none;
+              pointer-events: none;
+              color: $tGrey-2;
+              transition: all 0.3s ease;
+            }
+            .form__input {
+              border: 1px solid $dark-2;
+              border-radius: 5px;
+              padding: $p-1 $p-2;
+              width: $w-100;
+              outline: none;
+              &:focus {
+                border-color: $red-1;
+              }
+
+              &:focus + .form__label,
+              &:not(:placeholder-shown) + .form__label {
+                top: 0;
+                color: $tPrimary;
+                background: $primary;
+                display: inline-block;
+                padding: 0 $p-1 - 5;
+              }
+              @include respond(phone) {
+                padding: $p-1 - 5 $p-2;
+              }
+              @include respond(smallPhone) {
+                padding: $p-1 - 5 $p-2;
+              }
+              @include respond(extraSmallPhone) {
+                padding: $p-1 - 5 $p-2;
+              }
+            }
+            .form__label-file {
+              display: block;
+              width: auto;
+              cursor: pointer;
+              padding: $p-1;
+              color: $tPrimary;
+              pointer-events: visible;
+              user-select: auto;
+              border: 1px solid $dark-2;
+              border-radius: 5px;
+              top: 45%;
+              left: 0;
+              text-align: center;
+              i {
+                margin-right: $m-2;
+                font-size: $h3;
+              }
+              @include respond(phone) {
+                width: $w-100;
+                padding: $p-1 - 5;
+              }
+              @include respond(smallPhone) {
+                width: $w-100;
+                padding: $p-1 - 5;
+              }
+              @include respond(extraSmallPhone) {
+                width: $w-100;
+                padding: $p-1 - 5;
+              }
+            }
+            .form__input-file {
+              border: 0;
+              visibility: hidden;
+            }
+          }
+          @include respond(phone) {
+            height: $h-4 + 5;
+          }
+          @include respond(smallPhone) {
+            height: $h-4 + 5;
+          }
+          @include respond(extraSmallPhone) {
+            height: $h-4 + 5;
+          }
+        }
+        @include respond(phone) {
+          flex-direction: column;
+          margin: 0;
+        }
+        @include respond(smallPhone) {
+          flex-direction: column;
+          margin: 0;
+        }
+        @include respond(extraSmallPhone) {
+          flex-direction: column;
+          margin: 0;
+        }
+      }
+      .form__textarea {
+        width: $w-100;
+      }
+      .form__button {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: $m-1;
+        margin-top: $m-5 + 10;
+        position: relative;
+        .button,
+        .btn-blue {
+          width: auto;
+          display: flex;
+          align-items: center;
+          font-size: $body-1;
+          font-weight: $medium;
+          padding: $p-1 - 5 $p-2;
+          i {
+            margin-right: $m-1;
+          }
+        }
+      }
+    }
+    @include respond(laptop) {
+      width: $w-100 - 15;
+    }
+    @include respond(extraTablet) {
+      width: $w-100 - 15;
+    }
+    @include respond(tablet) {
+      width: $w-100;
+    }
+    @include respond(phone) {
+      width: $w-100;
+      border: 0;
+      border-radius: 0;
+      padding: $p-1;
+    }
+    @include respond(smallPhone) {
+      width: $w-100;
+      border: 0;
+      border-radius: 0;
+      padding: $p-1;
+    }
+    @include respond(extraSmallPhone) {
+      width: $w-100;
+      border: 0;
+      border-radius: 0;
+      padding: $p-1;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { NavLink } from 'react-router-dom';
@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux';
 import { signInAction } from '../../redux/action/UserAction';
 
 
-function Login(props) {
+function Login() {
+    const [showPassword, setShowPassword] = useState(false);
     let dispatch = useDispatch();
     const { handleChange, handleSubmit, handleBlur, touched, errors, isValid } = useFormik({
         initialValues: {
@@ -40,8 +41,13 @@ function Login(props) {
                     <label className="form__icon" for="matKhau"><i class="fa fa-lock"></i></label>
                     <div className="form__group">
                         <div className="form__input">
-                            <input type="password" id="matKhau" name="matKhau" placeholder="Nhập mật khẩu" onChange={handleChange} onBlur={handleBlur} />
+                            <input type={showPassword ? "text" : "password"} id="matKhau" name="matKhau" placeholder="Nhập mật khẩu" onChange={handleChange} onBlur={handleBlur} />
                             <span className={touched.matKhau && errors.matKhau ? "error-icon show-icon" : "error-icon"}><i class="fa fa-exclamation-circle"></i></span>
+                            <div className="password__btn" title="Show password" onClick={() => {
+                                setShowPassword(!showPassword)
+                            }}>
+                                {showPassword ? <i class="fa fa-eye-slash"></i> : <i class="fa fa-eye"></i>}
+                            </div>
                         </div>
                         {touched.matKhau && errors.matKhau ? <span className="error__message">{errors.matKhau}</span> : ""}
                     </div>

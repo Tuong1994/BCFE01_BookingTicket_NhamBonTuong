@@ -1,0 +1,86 @@
+.user-booked-history__wrapper {
+  width: $w-100;
+  overflow: hidden;
+  margin-top: $m-2;
+  .wrapper__table {
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    font-size: $body-1;
+    box-shadow: 0 0 5px $dark-1;
+    .col {
+      padding: $p-1 - 5 $p-1;
+      p {
+        margin: 0;
+      }
+      .col__btn {
+        border: 0;
+        background: transparent;
+        font-size: $body-2;
+      }
+    }
+    .col__0 {
+      width: $w-100 - 90;
+      display: none;
+      .col__btn {
+        outline: none;
+      }
+    }
+    .table__title {
+      display: flex;
+      background: $red-1;
+      .title__col {
+        font-weight: $medium;
+      }
+    }
+    .table__content {
+      height: $h-10 * 4;
+      overflow: auto;
+      font-size: $body-2;
+      .content__rows {
+        display: flex;
+        align-items: center;
+        &:nth-child(odd) {
+          background: $grey-2;
+        }
+        .col__4,
+        .col__5,
+        .col__6 {
+          height: $h-6;
+          overflow-y: auto;
+          text-align: initial;
+          p {
+            span {
+              font-weight: $medium;
+            }
+          }
+        }
+      }
+    }
+
+    // Responsive
+    .col__0 {
+      @include respond(extraTablet) {
+        display: block;
+      }
+    }
+    .col__1 {
+      @include respond(smallPhone) {
+        display: none;
+      }
+    }
+    .col__3,
+    .col__8 {
+      @include respond(tablet) {
+        display: none;
+      }
+    }
+    .col__4,
+    .col__5,
+    .col__6 {
+      @include respond(extraTablet) {
+        display: none;
+      }
+    }
+  }
+}

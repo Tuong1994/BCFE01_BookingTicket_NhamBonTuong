@@ -1,63 +1,70 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { delUserAction, getUserListAction } from '../../../redux/action/AdminAction';
+import Swal from 'sweetalert2';
+import { NavLink } from 'react-router-dom';
+import AdminLoading from '../../../component/Loading/AdminLoading';
+import UserInfo from './UserInfo';
+import AddUser from './AddUser';
+import Pagination from '../../../component/Pagination/Pagination';
 
 function UserManage(props) {
-    const { userList, user } = useSelector(state => state.AdminReducer);
-    const [userDetail, setUserDetail] = useState(false);
+    const { userList } = useSelector(state => state.AdminReducer);
+    const { loading } = useSelector(state => state.LoadingReducer);
+
+    const [userInfo, setUserInfo] = useState(false);
+    const [addUser, setAddUser] = useState(false);
     const [searchUser, setSearchUser] = useState("");
-    let showDetail = () => setUserDetail(!userDetail);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [userPerPage] = useState(50);
+
+    const indexOfLastUser = currentPage * userPerPage;
+    const indexOfFirstUser = indexOfLastUser - userPerPage;
+
+    let changePage = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    }
+
     let dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getUserListAction())
+        dispatch({
+            type: "openLoading"
+        })
+        dispatch(getUserListAction());
     }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch({
+                type: "closeLoading"
+            })
+        }, 1000);
+    }, loading)
+
     let renderUserList = () => {
         return userList?.filter((user) => {
             if (searchUser === "") {
                 return user
-            } else if (
-                user.taiKhoan.toLowerCase().includes(searchUser.toLowerCase()) &&
-                user.hoTen.toLowerCase().includes(searchUser.toLowerCase())) {
+            } else if (user.hoTen.toLowerCase().includes(searchUser.toLowerCase())) {
                 return user
             }
-        }).map((user, index) => {
-            return <div className="body__item" key={index}>
-                <div className="list__col-1"><p>{(index + 1)}</p></div>
-                <div className="list__col-2"><p>{user.taiKhoan}</p></div>
-                <div className="list__col-3"><p>{user.matKhau}</p></div>
-                <div className="list__col-4 item__user">
-                    <p><i class="fa fa-user"></i><span>Họ tên : {user.hoTen}</span></p>
-                    <p><i class="fa fa-envelope"></i>{user.email.length > 15 ? <span>Email : {user.email.substr(0, 15)}...</span> : <span>Email : {user.email.length}</span>}</p>
-                    <p><i class="fa fa-phone"></i><span>Số điện thoại : {user.soDt}</span></p>
-                </div>
-                <div className="list__col-5 btn-del">
-                    <button className="button" onClick={() => {
+        }).slice(indexOfFirstUser,indexOfLastUser).map((user, index) => {
+            return <div className="table__list-row" key={index}>
+                <div className="table__col table__col-0">
+                    <p className="table__btn table__btn-rwd" onClick={() => {
                         dispatch({
                             type: "USER_DETAIL",
-                            user,
+                            user: user
                         })
-                        showDetail()
-                    }}><i class="fa fa-user-plus"></i></button>
-                    <NavLink className="button" to="/update_user" onClick={() => {
+                        setUserInfo(true);
+                    }}><i class="fa fa-bars"></i></p>
+                    <NavLink to="/update_user" className="table__btn" title="Chỉnh sửa" onClick={() => {
                         dispatch({
                             type: "USER_DETAIL",
-                            user: {
-                                taiKhoan: user.taiKhoan,
-                                matKhau: user.matKhau,
-                                hoTen: user.hoTen,
-                                email: user.email,
-                                soDt: user.soDt,
-                                maNhom: user.maNhom,
-                                maLoaiNguoiDung: user.maLoaiNguoiDung
-                            }
+                            user: user,
                         })
-                    }}>
-                        <i class="fa fa-edit"></i>
-                        <span>Sửa</span>
-                    </NavLink>
-                    <button className="button" onClick={() => {
+                    }}><i class="fa fa-edit"></i></NavLink>
+                    <p className="table__btn" title="Xóa" onClick={() => {
                         Swal.fire({
                             title: "Bạn có muốn xóa người dùng này",
                             icon: "warning",
@@ -74,60 +81,78 @@ function UserManage(props) {
                                 dispatch(delUserAction(user.taiKhoan));
                             }
                         });
-                    }}>
-                        <i class="fa fa-trash-alt"></i>
-                        <span>Xóa</span>
-                    </button>
+                    }}><i class="fa fa-trash-alt"></i></p>
+                </div>
+                <div className="table__col table__col-1">{index + 1}</div>
+                <div className="table__col table__col-2" title={user.taiKhoan}>
+                    {user.taiKhoan.length > 15 ? <p>{user.taiKhoan.substr(0, 15)}...</p> : <p>{user.taiKhoan}</p>}
+                </div>
+                <div className="table__col table__col-3" title={user.email}>
+                    {user.email.length > 15 ? <p>{user.email.substr(0, 15)}...</p> : <p>{user.email}</p>}
+                </div>
+                <div className="table__col table__col-4">
+                    <p>{user.matKhau}</p>
+                </div>
+                <div className="table__col table__col-5">
+                    <p>{user.hoTen}</p>
+                </div>
+                <div className="table__col table__col-6">
+                    <p>{user.soDt}</p>
+                </div>
+                <div className="table__col table__col-7">
+                    <p>{user.maLoaiNguoiDung}</p>
                 </div>
             </div>
         })
     }
+
     return (
-        <div className="userManage">
-            <h3>Quản lý người dùng</h3>
-            <hr />
-            <div className="userManage__form">
-                <NavLink to="/add_user" className="form__link">
-                    <i class="fa fa-user-plus"></i>
-                    <span>Thêm người dùng</span>
-                </NavLink>
-                <div className="form__input">
-                    <input type="text" name="timKiem" placeholder="Tìm kiếm..." onChange={(event) => {
-                        setSearchUser(event.target.value);
-                    }} />
-                    <i class="fa fa-search"></i>
+        <div className="user-manage">
+            <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
+
+            <div className="user-manage__title">
+                <h4>Quản Lý Người Dùng</h4>
+                <div className="title__form">
+                    <div className="form__search">
+                        <input type="text" placeholder="Tìm kiếm phim..." onChange={(e) => {
+                            setSearchUser(e.target.value);
+                        }} />
+                        <div className="search__btn"><i class="fa fa-search"></i></div>
+                    </div>
+                    <div className="button form__btn" onClick={() => {
+                        setAddUser(true)
+                    }}>
+                        <i class="fa fa-plus"></i>
+                        <span>Thêm Người Dùng</span>
+                    </div>
                 </div>
             </div>
-            <div className="userManage__list">
-                <h3>Danh sách người dùng</h3>
-                <div className="list__wrapper">
-                    <div className="list__title">
-                        <div className="list__col-1"><p>STT</p></div>
-                        <div className="list__col-2"><p>Tài khoản</p></div>
-                        <div className="list__col-3"><p>Mật khẩu</p></div>
-                        <div className="list__col-4"><p>Thông tin cá nhân</p></div>
-                        <div className="list__col-5"><p>Chức năng</p></div>
+
+            <hr />
+
+            <div className="user-manage__list">
+                <h5>Danh Sách Người Dùng</h5>
+                <div className="list__table">
+                    <div className="table__title">
+                        <div className="table__col table__col-0"><i class="fa fa-cog"></i></div>
+                        <div className="table__col table__col-1">STT</div>
+                        <div className="table__col table__col-2">Tài Khoản</div>
+                        <div className="table__col table__col-3">Email</div>
+                        <div className="table__col table__col-4">Mật Khẩu</div>
+                        <div className="table__col table__col-5">Họ Tên</div>
+                        <div className="table__col table__col-6">Điện Thoại</div>
+                        <div className="table__col table__col-7">Người Dùng</div>
                     </div>
-                    <div className="list__body">
+
+                    <div className="table__item">
+                        <AdminLoading />
                         {renderUserList()}
                     </div>
                 </div>
+                <Pagination perPage={userPerPage} total={userList.length} changePage={changePage} />
             </div>
-            <div className={userDetail ? "rwdItem__user show__user" : "rwdItem__user"}>
-                <div className="rwdUser__info">
-                    <h3>Thông tin người dùng</h3>
-                    <p><i class="fa fa-ad"></i><span>Tài Khoản : {user.taiKhoan}</span></p>
-                    <p><i class="fa fa-key"></i><span>Mật khẩu : {user.matKhau}</span></p>
-                    <p><i class="fa fa-user"></i><span>Họ tên : {user.hoTen}</span></p>
-                    <p><i class="fa fa-envelope"></i>Email: {user.email}</p>
-                    <p><i class="fa fa-phone"></i><span>Số điện thoại : {user.soDt} </span></p>
-                    <p><i class="fa fa-users"></i><span>Mã nhóm : {user.maNhom} </span></p>
-                    <p><i class="fa fa-user-tie"></i><span>Loại người dùng : {user.maLoaiNguoiDung} </span></p>
-                    <button className="button" onClick={() => showDetail()}>
-                        <i class="fa fa-angle-double-left"></i>
-                    </button>
-                </div>
-            </div>
+            
+            <AddUser addUser={addUser} setAddUser={setAddUser} />
         </div>
     );
 }

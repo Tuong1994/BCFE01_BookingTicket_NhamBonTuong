@@ -1,0 +1,109 @@
+.dashboard {
+    padding: $p-2;
+    h3 {
+      font-size: $h3;
+      text-transform: uppercase;
+    }
+    .feature {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: $m-2;
+      .feature__card-1 {
+        background: linear-gradient(to right bottom, $green, $grey-1);
+      }
+      .feature__card-2 {
+        background: linear-gradient(to right bottom, $blue, $grey-1);
+      }
+      .feature__card-3 {
+        background: linear-gradient(to right bottom, $red-1, $grey-1);
+      }
+      .feature__card-4 {
+        background: linear-gradient(to right bottom, $yellow, $grey-1);
+      }
+      .feature__card {
+        width: $w-100 - 76;
+        padding: $p-2;
+        box-shadow: 0 0 10px $grey-2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .feature__title {
+          p {
+            font-size: $h3;
+          }
+        }
+        .feature__logo {
+          i {
+            font-size: $h1;
+          }
+        }
+        @include respond(tablet) {
+          width: $w-100;
+          margin-bottom: $m-2;
+        }
+        @include respond(phone) {
+          width: $w-100;
+          margin-bottom: $m-2;
+        }
+      }
+      @include respond(tablet) {
+        flex-direction: column;
+      }
+      @include respond(phone) {
+        flex-direction: column;
+      }
+    }
+    .revanue-chart,
+    .cinema-chart,
+    .user-chart {
+      padding: $p-1;
+      box-shadow: 0 0 10px $grey-2;
+      margin-bottom: $m-2;
+      background: linear-gradient(to right bottom, $grey-1, $primary);
+      h4 {
+        margin-bottom: $m-3;
+      }
+      tspan {
+        @include respond(extraSmallPhone) {
+          font-size: $body-2;
+        }
+      }
+      .recharts-surface {
+        @include respond(extraSmallPhone) {
+          
+        }
+      }
+    }
+    .sub-chart {
+      width: $w-100;
+      display: flex;
+      justify-content: space-between;
+      .cinema-chart,
+      .user-chart {
+        width: $w-100 - 51;
+        padding: $p-1;
+        margin-bottom: $m-2;
+        h4 {
+          margin-bottom: $m-3;
+        }
+        @include respond(tablet) {
+          width: $w-100;
+        }
+        @include respond(phone) {
+          width: $w-100;
+        }
+      }
+      @include respond(tablet) {
+        flex-direction: column;
+      }
+      @include respond(phone) {
+        flex-direction: column;
+      }
+    }
+    @include respond(smallPhone) {
+      padding: $p-1;
+    }
+    @include respond(extraSmallPhone) {
+      padding: $p-1;
+    }
+  }

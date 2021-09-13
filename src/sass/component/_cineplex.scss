@@ -1,0 +1,139 @@
+.cineplex__tabs {
+  display: flex;
+  box-shadow: 0 0 5px $dark-2;
+  border-radius: 5px;
+  padding: $p-1 $p-1 - 5;
+  height: $h-10 * 5;
+  margin-bottom: $m-5 * 2;
+  .tabs__title {
+    width: $w-100 - 80;
+    padding: $p-1;
+    .title {
+      width: $w-100;
+      border-radius: 5px;
+      padding: $p-1;
+      cursor: pointer;
+      background: $primary;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      img {
+        width: $w-5;
+        height: $h-5;
+      }
+    }
+    .active-cineplex {
+      opacity: 1;
+      background: $grey-2;
+    }
+  }
+  .tabs__content {
+    width: $w-100 - 20;
+    position: relative;
+    .content__subtabs {
+      width: $w-100;
+      height: $h-100;
+      padding: $p-1;
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      .subtabs__cinema {
+        width: $w-100 - 52;
+        overflow-y: scroll;
+        .cinema {
+          display: flex;
+          cursor: pointer;
+          padding: $p-1;
+          border-radius: 5px;
+          background: $primary;
+          opacity: 0.6;
+          transition: all 0.3s ease;
+          img {
+            width: $w-5;
+            height: $h-5;
+            margin-right: $m-1;
+            border-radius: 3px;
+          }
+          .cinema__info {
+            p {
+              font-size: $body-1;
+              font-weight: $medium;
+              margin: 0;
+              &:nth-child(2) {
+                font-size: $body-2;
+                font-weight: $regular;
+                opacity: 0.9;
+              }
+            }
+          }
+        }
+        .active-cinema {
+          opacity: 1;
+          background: $grey-2;
+        }
+      }
+      .subtabs__movie {
+        width: $w-100 - 50;
+        height: $h-10 * 4.5;
+        border-left: 1px solid $grey-2;
+        position: relative;
+        z-index: 999;
+        .movie__inner {
+          width: $w-100;
+          height: $h-100;
+          overflow-y: auto;
+          padding-left: $p-1;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          .movie {
+            display: flex;
+            padding: $p-1;
+            .movie__img {
+              width: $w-5;
+              height: $h-5;
+              margin-right: $m-1;
+              img {
+                width: inherit;
+                height: $h-100;
+                border-radius: 3px;
+              }
+            }
+            .movie__info {
+              p {
+                font-size: $body-1;
+                font-weight: $medium;
+                margin: 0;
+              }
+              .button {
+                font-size: $body-2;
+                padding: $p-1 - 5 $p-1 + 5;
+                i {
+                  margin-right: $m-1 - 5;
+                }
+              }
+            }
+          }
+        }
+        .show-movie {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+    .show-cinema {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  @include respond(tablet) {
+    display: none;
+  }
+}

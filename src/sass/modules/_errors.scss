@@ -1,7 +1,10 @@
 .error__message {
   color: $tSecondary;
   font-weight: $medium;
-  font-size: $body-1;
+  font-size: $body-2;
+  @include respond(phone) {
+    font-size: $body-2 - 2;
+  }
 }
 
 .show-icon {

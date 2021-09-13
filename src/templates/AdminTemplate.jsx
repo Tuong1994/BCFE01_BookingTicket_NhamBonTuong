@@ -5,11 +5,15 @@ import { NavLink } from 'react-router-dom';
 
 export const AdminTemplate = (props) => {
     let { account } = useSelector(state => state.UserReducer);
+
     const [show, setShow] = useState(false);
     const [shrink, setShrink] = useState(false);
+
     let showAcitve = () => setShow(!show);
     let shrinked = () => setShrink(!shrink);
+
     let { Component, ...restProps } = props;
+
     return <Route {...restProps} render={(propsRoute) => {
         return <div className="admin">
             <div className={shrink ? "admin__sidebar shrink" : "admin__sidebar"}>
@@ -24,7 +28,7 @@ export const AdminTemplate = (props) => {
                         <i class={shrink ? "fa fa-chart-line icon__active" : "fa fa-chart-line"}></i>
                         <span className={shrink ? "link__hide" : ""}>Dashboard</span>
                     </NavLink>
-                    <NavLink className="admin__link" to="/film_manage" onClick={() => {
+                    <NavLink className="admin__link" to="/movie_manage" onClick={() => {
                         setShow(false)
                     }}>
                         <i class={shrink ? "fa fa-film icon__active" : "fa fa-film"}></i>
@@ -54,7 +58,7 @@ export const AdminTemplate = (props) => {
                     <button className={shrink ? "admin__btn active__btn" : "admin__btn"} onClick={() => {
                         shrinked()
                     }}>
-                        <i class="fa fa-arrow-left"></i>
+                        <i class="fa fa-expand"></i>
                     </button>
                     <div className="admin__login">
                         <img src="https://picsum.photos/200" />

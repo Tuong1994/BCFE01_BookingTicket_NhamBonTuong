@@ -1,0 +1,384 @@
+.user-manage {
+  padding: $p-1;
+  overflow: hidden;
+  position: relative;
+  .user-manage__title {
+    width: $w-100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h4 {
+      width: $w-100 - 70;
+      text-align: center;
+      border-right: 1px solid $dark-2;
+      font-size: $body-1 + 8;
+      margin: 0;
+      margin-left: $m-5;
+      text-transform: uppercase;
+      @include respond(extraTablet) {
+        width: $w-100;
+        margin: $m-1 - 5 0;
+        border: 0;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+        margin: $m-1 - 5 0;
+        font-size: $body-1 + 5;
+        border: 0;
+      }
+      @include respond(phone) {
+        width: $w-100;
+        margin: $m-1 - 5 0;
+        font-size: $body-1 + 5;
+        border: 0;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+        margin: $m-1 - 5 0;
+        font-size: $body-1 + 5;
+        border: 0;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+        margin: $m-1 - 5 0;
+        font-size: $body-1 + 4;
+        border: 0;
+      }
+    }
+    .title__form {
+      width: $w-100 - 25;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .form__search {
+        width: $w-100 - 40;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid $dark-2;
+        border-radius: 50px;
+        padding: $p-1 - 5 $p-2;
+        margin-right: $m-2;
+        cursor: pointer;
+        input {
+          width: $w-100;
+          border: 0;
+          outline: none;
+        }
+        .search__btn {
+          outline: none;
+          border: 0;
+          background: transparent;
+          font-size: $body-1;
+        }
+        @include respond(tablet) {
+          width: $w-100 - 30;
+        }
+        @include respond(phone) {
+          width: $w-100 - 30;
+        }
+        @include respond(smallPhone) {
+          width: $w-100 - 30;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-100 - 30;
+        }
+      }
+      .form__btn {
+        color: $tWhite;
+        font-size: $body-1;
+        font-weight: 600;
+        padding: $p-1 - 5 $p-2;
+        i {
+          margin-right: $m-1;
+          @include respond(phone) {
+            text-align: center;
+            margin-right: 0;
+            color: $tPrimary;
+          }
+          @include respond(smallPhone) {
+            text-align: center;
+            margin-right: 0;
+            color: $tPrimary;
+          }
+          @include respond(extraSmallPhone) {
+            text-align: center;
+            margin-right: 0;
+            color: $tPrimary;
+          }
+        }
+        span {
+          @include respond(smallPhone) {
+            display: none;
+          }
+          @include respond(extraSmallPhone) {
+            display: none;
+          }
+        }
+        @include respond(tablet) {
+          font-size: $body-2;
+        }
+        @include respond(phone) {
+          width: $w-3;
+          height: $h-3;
+          padding: $p-1 - 5;
+          background: transparent;
+          border-color: transparent;
+        }
+        @include respond(smallPhone) {
+          width: $w-3;
+          height: $h-3;
+          padding: $p-1 - 5;
+          background: transparent;
+          border-color: transparent;
+        }
+        @include respond(extraSmallPhone) {
+          width: $w-3;
+          height: $h-3;
+          padding: $p-1 - 5;
+          background: transparent;
+          border-color: transparent;
+        }
+      }
+      @include respond(extraTablet) {
+        width: $w-100;
+      }
+      @include respond(tablet) {
+        width: $w-100;
+      }
+      @include respond(phone) {
+        width: $w-100;
+      }
+      @include respond(smallPhone) {
+        width: $w-100;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+      }
+    }
+    @include respond(extraTablet) {
+      flex-direction: column;
+    }
+    @include respond(tablet) {
+      flex-direction: column;
+    }
+    @include respond(phone) {
+      flex-direction: column;
+    }
+    @include respond(smallPhone) {
+      flex-direction: column;
+    }
+    @include respond(extraSmallPhone) {
+      flex-direction: column;
+    }
+  }
+  .user-manage__list {
+    width: $w-100;
+    h5 {
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .list__table {
+      width: $w-100;
+      background: $primary;
+      border-radius: 5px;
+      box-shadow: 0 0 5px $grey-2;
+      font-size: $body-1;
+      overflow: hidden;
+      .table__col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0 $m-1 - 8;
+        padding: $p-1 - 5 $p-1 - 8;
+      }
+      .table__col-0,
+      .table__col-1 {
+        width: 15%;
+      }
+      .table__col-2 {
+        width: 20%;
+      }
+      .table__col-3 {
+        width: 40%;
+      }
+      .table__col-4,
+      .table__col-5,
+      .table__col-6,
+      .table__col-7 {
+        width: 30%;
+      }
+      .table__title {
+        width: $w-100;
+        display: flex;
+        align-items: center;
+        background: $red-1;
+        padding: $p-1 0;
+        font-weight: $medium;
+      }
+      .table__item {
+        width: $w-100;
+        height: $h-10 * 4;
+        overflow-y: auto;
+        background: $primary;
+        position: relative;
+        .table__list-row {
+          width: $w-100;
+          font-size: $body-2;
+          display: flex;
+          .table__col {
+            .table__btn {
+              text-decoration: none;
+              color: $tPrimary;
+              border: 0;
+              text-align: center;
+              margin: 0 $m-1 - 5;
+              outline: none;
+              background: transparent;
+              transition: all 0.3s;
+              cursor: pointer;
+              &:hover {
+                color: $red-1;
+              }
+            }
+            img {
+              width: $w-6;
+              height: $h-6;
+              border-radius: 5px;
+              object-fit: cover;
+              object-position: center;
+            }
+            p {
+              margin: 0;
+            }
+          }
+          &:nth-child(odd) {
+            background: $grey-2;
+          }
+        }
+      }
+
+      // Responsive table
+      .table__col-0 {
+        @include respond(laptop) {
+          flex-direction: column;
+        }
+        @include respond(extraTablet) {
+          flex-direction: column;
+        }
+        @include respond(tablet) {
+          flex-direction: column;
+        }
+        @include respond(phone) {
+          flex-direction: column;
+        }
+        @include respond(smallPhone) {
+          flex-direction: column;
+        }
+        @include respond(extraSmallPhone) {
+          flex-direction: column;
+        }
+        .table__btn-rwd {
+          display: none;
+          @include respond(extraTablet) {
+            display: inline-block;
+          }
+          @include respond(tablet) {
+            display: inline-block;
+          }
+          @include respond(phone) {
+            display: inline-block;
+          }
+          @include respond(smallPhone) {
+            display: inline-block;
+          }
+          @include respond(extraSmallPhone) {
+            display: inline-block;
+          }
+        }
+      }
+      .table__col-3 {
+        @include respond(tablet) {
+          display: block;
+        }
+        @include respond(phone) {
+          display: none;
+        }
+        @include respond(smallPhone) {
+          display: none;
+        }
+        @include respond(extraSmallPhone) {
+          display: none;
+        }
+      }
+      .table__col-4,
+      .table__col-5,
+      .table__col-6 {
+        @include respond(extraTablet) {
+          display: none;
+        }
+        @include respond(tablet) {
+          display: none;
+        }
+        @include respond(phone) {
+          display: none;
+        }
+        @include respond(smallPhone) {
+          display: none;
+        }
+        @include respond(extraSmallPhone) {
+          display: none;
+        }
+      }
+      .table__col-2 {
+        @include respond(phone) {
+          width: 40%;
+        }
+        @include respond(smallPhone) {
+          width: 40%;
+        }
+        @include respond(extraSmallPhone) {
+          width: 40%;
+        }
+      }
+    }
+  }
+  
+  // Responsive User Info
+  .user-info {
+    width: $w-100;
+    height: $h-100;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: $primary;
+    padding: $p-2 $p-1;
+    z-index: 999;
+    transition: all 0.3s;
+    h5 {
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .user-info__content {
+      p {
+        font-size: $body-1;
+        font-weight: $medium;
+        span {
+          font-weight: initial;
+        }
+        @include respond(extraTablet) {
+          font-size: $body-1 + 5;
+        }
+      }
+    }
+    .user-info__btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .user-info.active {
+    left: 0;
+  }
+}

@@ -1,50 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
 import RWD_Checkout from '../../component/RWD_Checkout/RWD_Checkout';
-import CountDown from '../../component/CountDown/CountDown';
 import { Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { taiKhoan } from '../../configs/setting';
-import { bookMovieAction, getTicketAction } from '../../redux/action/PhimAction';
+import { getTicketAction } from '../../redux/action/PhimAction';
+import Theatre from './Theatre';
+import MovieBooking from './MovieBooking';
+import Loading from '../../component/Loading/Loading';
+import BookInfo from './BookInfo';
+import TimeOut from './TimeOut';
+import ProgressStepBar from './ProgressStepBar';
 
 function Checkout(props) {
-    const { thongTinRapChieu } = useSelector(state => state.PhimReducer);
-    console.log(thongTinRapChieu);
-
-    const { DSGheDangDat } = useSelector(state => state.BookTicketReducer);
-    
-    const [showDetail, setShowDetail] = useState(true);
     let dispatch = useDispatch();
+    let { id } = props.match.params;
+    let { loading } = useSelector(state => state.LoadingReducer);
+
+    const { thongTinRapChieu } = useSelector(state => state.PhimReducer);
+    const { DSGheDangDat } = useSelector(state => state.BookTicketReducer);
+    const { account } = useSelector(state => state.UserReducer);
+
+    const [showDetail, setShowDetail] = useState(true);
+    const [stepOne, setStepOne] = useState(false);
+    const [stepTwo, setStepTwo] = useState(false);
+    const [stepThree, setStepThree] = useState(false);
+
     useEffect(() => {
+        dispatch({
+            type: "openLoading"
+        })
         window.scrollTo(0, 0);
-        let { id } = props.match.params;
+        setShowDetail(false);
         dispatch(getTicketAction(id));
     }, [])
-
-    let renderChair = () => {
-        return thongTinRapChieu.danhSachGhe?.map((chair, index) => {
-            let indexBook = DSGheDangDat.findIndex(bookChair => bookChair.maGhe === chair.maGhe);
-            let classBook = indexBook !== -1 ? "booking-chair" : "";
-            let classBooked = chair.daDat === true ? "booked-chair" : "";
-            let classVip = chair.loaiGhe === "Vip" ? "vip-chair" : "";
-            return <Fragment key={index}>
-                <button className={`chair ${classVip} ${classBook} ${classBooked}`} disabled={chair.daDat} onClick={() => {
-                    dispatch({
-                        type: "BOOKING",
-                        chair: {
-                            maGhe: chair.maGhe,
-                            giaVe: chair.giaVe,
-                            stt: chair.stt
-                        }
-                    })
-                }}>
-                    {chair.daDat ? "X" : chair.stt}
-                </button>
-                {(index + 1) % 16 === 0 ? <br /> : ""}
-            </Fragment>
-        })
-    }
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch({
+                type: "closeLoading"
+            })
+        }, 1000)
+    }, [loading])
 
     let renderBookChair = () => {
         return DSGheDangDat.map((chair, index) => {
@@ -55,7 +52,6 @@ function Checkout(props) {
             </Fragment>
         })
     }
-
     let renderTotal = () => {
         return DSGheDangDat.reduce((total, chair, index) => {
             return total += chair.giaVe;
@@ -65,91 +61,45 @@ function Checkout(props) {
     if (!localStorage.getItem(taiKhoan)) {
         return <Redirect to="/login" />
     }
+
     return (
-        <div className="checkout__bg">
-            <div className="checkout__container">
-                <div className="checkout__theatre">
-                    <div className="theatre__info">
-                        <p>{thongTinRapChieu.thongTinPhim?.tenCumRap} - {thongTinRapChieu.thongTinPhim?.tenRap}</p>
-                        <CountDown />
-                    </div>
+        <div className="checkout">
+            <Loading />
+            <BookInfo thongTinRapChieu={thongTinRapChieu} renderTotal={renderTotal}/>
+            <TimeOut />
 
-                    <div className="theatre__screen">
-                        <img src="https://tix.vn/app/assets/img/icons/screen.png" alt="" />
-                    </div>
+            <div className="checkout__nav">
+                <NavLink to="/" className="nav__logo">
+                    <img src="../img/logo2.png" alt="logo" />
+                </NavLink>
+                <NavLink className="nav__user" to="/user">
+                    <img src="https://i.pravatar.cc/300" alt="avatar" />
+                    <p>{account}</p>
+                </NavLink>
+            </div>
 
-                    <div className="theatre__chairs">
-                        {renderChair()}
-                    </div>
+            <ProgressStepBar stepOne={stepOne} stepTwo={stepTwo} stepThree={stepThree} />
 
-                    <div className="theatre__note">
-                        <p>Chú thích :</p>
-                        <div className="note__content">
-                            <div className="note__item">
-                                <div className="vip-bg"></div>
-                                <span>Ghế Vip</span>
-                            </div>
-                            <div className="note__item">
-                                <div className="booking-bg"></div>
-                                <span>Ghế đang chọn</span>
-                            </div>
-                            <div className="note__item">
-                                <div className="booked-bg"></div>
-                                <span>Ghế đã chọn</span>
-                            </div>
-                        </div>
-                    </div>
+            <div className="checkout__content">
+                <Theatre thongTinRapChieu={thongTinRapChieu} stepOne={stepOne} setStepOne={setStepOne} />
+                <MovieBooking thongTinRapChieu={thongTinRapChieu} paramsId={id} setStepTwo={setStepTwo} setStepThree={setStepThree}/>
+            </div>
 
-                    <div className="checkout__detail">
-                        <p className="price">Tổng tiền : <span>{renderTotal().toLocaleString()} VNĐ</span></p>
+            <div className="checkout__responsive">
+                <div className="responsive">
+                    <div className="responsive__info">
+                        <p>Ghế : {renderBookChair()}</p>
+                        <p>{renderTotal().toLocaleString()} VNĐ</p>
+                    </div>
+                    <div className="responsive__button">
                         <button className="button" onClick={() => {
-                            setShowDetail(!showDetail)
+                            setShowDetail(true)
                         }}>Đặt vé</button>
-                    </div>
-                </div>
-
-                <div className="checkout__movie">
-                    <div className="movie__img">
-                        <img src={thongTinRapChieu.thongTinPhim?.hinhAnh} alt={thongTinRapChieu.thongTinPhim?.tenPhim} />
-                    </div>
-
-                    <div className="movie__info">
-                        <div className="info">
-                            <h5>{thongTinRapChieu.thongTinPhim?.tenPhim}</h5>
-                            <hr />
-                            <p>Địa chỉ : <span>{thongTinRapChieu.thongTinPhim?.diaChi}</span></p>
-                            <p>Ngày chiếu : <span>{thongTinRapChieu.thongTinPhim?.ngayChieu}</span></p>
-                            <hr />
-                            <p className="booking-chairs">Ghế : {renderBookChair()}</p>
-                            <p className="price">Tổng tiền : <span>{renderTotal().toLocaleString()} VNĐ</span></p>
-                        </div>
-                        <hr />
-                        <div className="checkout__button">
-                            <button className="button" onClick={() => {
-                                if (!localStorage.getItem(taiKhoan) && DSGheDangDat === "") {
-                                    Swal.fire({
-                                        icon: "error",
-                                        title: "Bạn chưa chọn ghế"
-                                    })
-                                    console.log("warning");
-                                } else {
-                                    let accLogin = JSON.parse(localStorage.getItem(taiKhoan));
-                                    let thongTinVe = {
-                                        maLichChieu: props.match.params.id,
-                                        danhSachVe: DSGheDangDat,
-                                        taiKhoanNguoiDung: accLogin.taiKhoan,
-                                    };
-                                    dispatch(bookMovieAction(thongTinVe));
-                                }
-                            }}>
-                                Đặt vé
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <RWD_Checkout thongTinRapChieu={thongTinRapChieu} DSGheDangDat={DSGheDangDat} renderTotal={renderTotal} renderBookChair={renderBookChair} setShowDetail={setShowDetail} showDetail={showDetail} />
+            <RWD_Checkout thongTinRapChieu={thongTinRapChieu} DSGheDangDat={DSGheDangDat} renderTotal={renderTotal} renderBookChair={renderBookChair} setShowDetail={setShowDetail} showDetail={showDetail} paramsId={id} />
         </div >
     );
 }

@@ -1,0 +1,172 @@
+.add-user {
+  width: $w-100;
+  height: $h-100;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  .add-user__bg {
+    width: $w-100;
+    height: $h-100;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .add-user__wrapper {
+      width: $w-100 - 30;
+      background: $primary;
+      padding: $p-2;
+      border-radius: 5px;
+      position: relative;
+      .wrapper__btn {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        border: 0;
+        background: transparent;
+        font-size: $h3;
+        color: $tSecondary;
+        outline: none;
+      }
+      h5 {
+        text-align: center;
+        text-transform: uppercase;
+        padding-bottom: $p-1 - 5;
+        border-bottom: 1px solid $grey-2;
+      }
+      .wrapper__form {
+        .form__group {
+          width: $w-100;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: $m-1;
+          .form__item {
+            width: $w-100;
+            height: $h-5;
+            margin: $m-1;
+            .form__content {
+              width: $w-100;
+              position: relative;
+              label {
+                font-size: $body-1;
+                font-weight: $medium;
+                margin: 0;
+                @include respond(phone) {
+                  font-size: $body-2;
+                }
+              }
+              .form__label {
+                position: absolute;
+                top: 50%;
+                left: 20px;
+                transform: translateY(-50%);
+                user-select: none;
+                pointer-events: none;
+                color: $tGrey-2;
+                transition: all 0.3s ease;
+              }
+              .form__input {
+                border: 1px solid $dark-2;
+                border-radius: 5px;
+                padding: $p-1 $p-2;
+                width: $w-100;
+                outline: none;
+                &:focus {
+                  border-color: $red-1;
+                }
+
+                &:focus + .form__label,
+                &:not(:placeholder-shown) + .form__label {
+                  top: 0;
+                  color: $tPrimary;
+                  background: $primary;
+                  display: inline-block;
+                  padding: 0 $p-1 - 5;
+                }
+                @include respond(phone) {
+                  padding: $p-1 - 5 $p-2;
+                }
+                @include respond(smallPhone) {
+                  padding: $p-1 - 5 $p-2;
+                }
+                @include respond(extraSmallPhone) {
+                  padding: $p-1 - 5 $p-2;
+                }
+              }
+              .password__btn {
+                width: $w-2;
+                height: $h-2;
+                position: absolute;
+                top: 22%;
+                right: 15px;
+                border: 0;
+                outline: none;
+                background: transparent;
+              }
+            }
+            @include respond(phone) {
+              height: $h-4 + 3;
+            }
+            @include respond(smallPhone) {
+              height: $h-4 + 3;
+            }
+            @include respond(extraSmallPhone) {
+              height: $h-4 + 3;
+            }
+          }
+          @include respond(phone) {
+            flex-direction: column;
+            margin: 0;
+          }
+          @include respond(smallPhone) {
+            flex-direction: column;
+            margin: 0;
+          }
+          @include respond(extraSmallPhone) {
+            flex-direction: column;
+            margin: 0;
+          }
+        }
+        .form__button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: $m-1;
+          .button {
+            display: flex;
+            align-items: center;
+            font-size: $body-1;
+            font-weight: $medium;
+          }
+        }
+      }
+      @include respond(laptop) {
+        width: $w-100 - 15;
+      }
+      @include respond(extraTablet) {
+        width: $w-100 - 15;
+      }
+      @include respond(tablet) {
+        width: $w-100 - 10;
+      }
+      @include respond(phone) {
+        width: $w-100 - 10;
+      }
+      @include respond(smallPhone) {
+        width: $w-100 - 10;
+      }
+      @include respond(extraSmallPhone) {
+        width: $w-100;
+        border-radius: 0;
+      }
+    }
+  }
+}
+.add-user.active {
+  opacity: 1;
+  visibility: visible;
+}

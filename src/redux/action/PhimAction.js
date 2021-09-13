@@ -5,8 +5,8 @@ import { accessToken, domain, maNhom } from "../../configs/setting";
 export const getMovieAction = () => {
   return (dispatch) => {
     dispatch({
-      type: "openLoading"
-    })
+      type: "openLoading",
+    });
     setTimeout(async () => {
       try {
         const result = await axios({
@@ -18,12 +18,12 @@ export const getMovieAction = () => {
           danhSachPhim: result.data,
         });
         dispatch({
-          type: "closeLoading"
-        })
+          type: "closeLoading",
+        });
       } catch (error) {
         console.log(error.response?.data);
       }
-    }, 1000)
+    }, 1000);
   };
 };
 
@@ -55,9 +55,6 @@ export const getShowTimeDetail = (maPhim) => {
         type: "GET_SHOWTIME_DETAIL",
         chiTietLichChieu: result.data,
       });
-      dispatch({
-        type: "closeLoading"
-      })
     } catch (error) {
       console.log("showTime", error.response.data);
     }
@@ -75,9 +72,6 @@ export const getTicketAction = (maLichChieu) => {
         type: "GET_TICKET",
         thongTinRapChieu: result.data,
       });
-      dispatch({
-        type: "closeLoading"
-      })
     } catch (error) {
       console.log("error", error.response.data);
     }
@@ -87,7 +81,7 @@ export const getTicketAction = (maLichChieu) => {
 export const bookMovieAction = (thongTinVe) => {
   return async (dispatch) => {
     try {
-      const result = await axios({
+      await axios({
         url: `${domain}/api/QuanLyDatVe/DatVe`,
         method: "POST",
         data: thongTinVe,
@@ -95,11 +89,10 @@ export const bookMovieAction = (thongTinVe) => {
           Authorization: "Bearer " + localStorage.getItem(accessToken),
         },
       });
-      Swal.fire({
-        icon: "success",
-        title: "Đặt vé thành công",
-      });
       dispatch(getTicketAction(thongTinVe.maLichChieu));
+      dispatch({
+        type: "openBookInfo",
+      });
     } catch (error) {
       Swal.fire({
         icon: "error",

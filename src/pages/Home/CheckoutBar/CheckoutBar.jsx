@@ -43,40 +43,42 @@ function CheckoutBar(props) {
         <div className="container checkout-bar">
             <div className="checkout__bar" ref={menuRef}>
                 <div className="checkout__item" onClick={() => showList1()}>
-                    <button className="btn__list" href="#" >
+                    <p className="btn__list">
                         <span>{tenPhim}</span>
                         <i class="fa fa-angle-down"></i>
-                    </button>
+                    </p>
                     <div className={list1 ? "checkout__list show__list" : "checkout__list"}>
                         {danhSachPhim.map((film, index) => {
                             return <div className="list__item" key={index}>
-                                <button className="item__link" onClick={() => {
+                                <p className="item__link" onClick={() => {
                                     dispatch(getShowTimeDetail(film.maPhim))
                                     setTenPhim(film.tenPhim)
+                                    setList2(true);
                                 }}>
                                     {film.tenPhim}
-                                </button>
+                                </p>
                             </div>
                         })}
                     </div>
                 </div>
 
                 <div className="checkout__item" onClick={() => showList2()}>
-                    <button className="btn__list">
+                    <p className="btn__list">
                         <span>{rapChieu}</span>
                         <i class="fa fa-angle-down"></i>
-                    </button>
+                    </p>
                     <div className={list2 ? "checkout__list show__list" : "checkout__list"}>
                         {tenPhim !== "Phim" ?
                             chiTietLichChieu.heThongRapChieu?.map((rapChieu) => {
                                 return <>
                                     {rapChieu.cumRapChieu?.map((cumRap, index) => {
                                         return <div className="list__item" key={index}>
-                                            <button className="item__link" onClick={() => {
+                                            <p className="item__link" onClick={() => {
                                                 setRapChieu(cumRap.tenCumRap)
+                                                setList3(true)
                                             }}>
                                                 {cumRap.tenCumRap}
-                                            </button>
+                                            </p>
                                         </div>
                                     })}
                                 </>
@@ -86,10 +88,10 @@ function CheckoutBar(props) {
                 </div>
 
                 <div className="checkout__item" onClick={() => showList3()}>
-                    <button className="btn__list">
+                    <p className="btn__list">
                         <span>{ngayXem}</span>
                         <i class="fa fa-angle-down"></i>
-                    </button>
+                    </p>
                     <div className={list3 ? "checkout__list show__list" : "checkout__list"}>
                         {rapChieu !== "Rạp" ?
                             chiTietLichChieu.heThongRapChieu?.map((heThongRap) => {
@@ -98,12 +100,13 @@ function CheckoutBar(props) {
                                         return <>
                                             {cumRap.lichChieuPhim?.map((lichChieu, index) => {
                                                 return <div className="list__item" key={index}>
-                                                    <button className="item__link" onClick={() => {
+                                                    <p className="item__link" onClick={() => {
                                                         let lichChieuFormat = moment(lichChieu.ngayChieuGioChieu).format("dddd mm yyyy");
                                                         setNgayXem(lichChieuFormat);
+                                                        setList4(true);
                                                     }}>
                                                         {moment(lichChieu.ngayChieuGioChieu).format("dddd mm yyyy")}
-                                                    </button>
+                                                    </p>
                                                 </div>
                                             })}
                                         </>
@@ -114,10 +117,10 @@ function CheckoutBar(props) {
                 </div>
 
                 <div className="checkout__item" onClick={() => showList4()}>
-                    <button className="btn__list">
+                    <p className="btn__list">
                         <span>{gioXem}</span>
                         <i class="fa fa-angle-down"></i>
-                    </button>
+                    </p>
                     <div className={list4 ? "checkout__list show__list" : "checkout__list"}>
                         {ngayXem !== "Ngày xem" ?
                             chiTietLichChieu.heThongRapChieu?.map((heThongRap) => {
@@ -126,7 +129,7 @@ function CheckoutBar(props) {
                                         return <>
                                             {cumRap.lichChieuPhim?.map((lichChieu, index) => {
                                                 return <div className="list__item" key={index}>
-                                                    <button className="item__link" onClick={() => {
+                                                    <p className="item__link" onClick={() => {
                                                         let lichChieuFormat = moment(lichChieu.ngayChieuGioChieu).format("hh:mm:A");
                                                         setGioXem(lichChieuFormat);
                                                         dispatch({
@@ -137,7 +140,7 @@ function CheckoutBar(props) {
                                                         })
                                                     }}>
                                                         {moment(lichChieu.ngayChieuGioChieu).format("hh:mm:A")}
-                                                    </button>
+                                                    </p>
                                                 </div>
                                             })}
                                         </>
@@ -148,7 +151,7 @@ function CheckoutBar(props) {
                 </div>
 
                 <div className="checkout__item">
-                    {gioXem === "Suất chiếu" ? <button class="button" disabled={true}>Mua vé ngay</button> : <NavLink to={`/checkout/${lichChieu.maLichChieu}`} className="button btn-buy">Mua vé ngay</NavLink>}
+                    {gioXem === "Suất chiếu" ? <div class="button">Mua vé ngay</div> : <NavLink to={`/checkout/${lichChieu.maLichChieu}`} className="button btn-buy">Mua vé ngay</NavLink>}
                 </div>
             </div>
         </div>

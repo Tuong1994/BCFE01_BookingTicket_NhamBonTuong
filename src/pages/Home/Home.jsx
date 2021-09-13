@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Carousel from './Carousel/Carousel';
-import Cinema from './Cinema/Cinema';
+import Cineplex from './Cineplex/Cineplex';
 import RWDCinema from '../../component/RWD_Cinema/RWDCinema';
 import MovieList from './MovieList/MovieList';
 import News from './News/News';
@@ -9,13 +9,16 @@ import CheckoutBar from './CheckoutBar/CheckoutBar';
 import { Fragment } from 'react';
 
 function Home(props) {
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
     return (
         <Fragment>
             <Carousel />
             <CheckoutBar />
             <div className="container home-wrapper">
                 <MovieList />
-                <Cinema />
+                <Cineplex />
                 <RWDCinema />
                 <News />
             </div>

@@ -5,7 +5,7 @@
   border-radius: 5px;
   background: $primary;
   position: absolute;
-  bottom: -27%;
+  bottom: -20%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -34,10 +34,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin: 0;
         width: $w-100;
         border: 0;
         outline: 0;
         background: transparent;
+        cursor: pointer;
         span {
           width: $w-100 - 10;
           margin-right: $m-5 * 1.5;
@@ -85,19 +87,20 @@
         border-radius: 5px;
       }
       &::-webkit-scrollbar-thumb {
-        background: $grey-2;
-        border-radius: 2px;
+        background: $red-1;
       }
       .list__item {
         padding: $p-1 - 5 $p-3;
         transition: all 0.3s;
         border-bottom: 1px solid $grey-2;
+        cursor: pointer;
         &:hover {
-          background: $blue;
+          background: $red-1;
         }
         .item__link {
-          outline: 0;
+          width: $w-100;
           border: 0;
+          margin: 0;
           text-align: left;
           background: transparent;
           color: $tPrimary;

@@ -1,460 +1,683 @@
-.checkout__bg {
-  background: url("../../assets/img/star.jpg");
-  background-attachment: fixed;
-  padding: $p-5 * 2 0;
-  position: relative;
-  overflow-x: hidden;
-  &::after {
-    content: "";
+.checkout {
+  .checkout__nav {
+    background: linear-gradient(to right, $dark-2 28%, $dark-1 92%);
     width: $w-100;
-    height: $h-100;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(225, 225, 225, 0.3);
-    backdrop-filter: blur(2px);
-  }
-  .checkout__container {
+    border-bottom: 1px solid $grey-2;
+    padding: $p-1 $p-5;
     display: flex;
     justify-content: space-between;
-    width: $w-100 - 10;
+    .nav__logo {
+      width: $w-100 - 93;
+      img {
+        width: $w-100;
+      }
+      @include respond(laptop) {
+        width: $w-100 - 85;
+      }
+      @include respond(phone) {
+        width: $w-100 - 80;
+      }
+    }
+    .nav__user {
+      color: $tWhite;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      img {
+        width: $w-3;
+        height: $h-3;
+        border-radius: 50%;
+        margin-right: $m-1;
+        box-shadow: 0 0 5px $grey-1;
+      }
+      p {
+        margin: 0;
+        @include respond(tablet) {
+          font-size: $body-1;
+        }
+      }
+    }
+  }
+  .checkout__progress {
+    width: $w-100;
+    height: $h-10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .progress__step {
+      position: relative;
+      width: $w-100 / 3;
+      height: $h-100;
+      border-bottom: 1px solid $grey-2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 $p-1;
+      .step__info {
+        text-align: center;
+        color: $tGrey-2;
+        font-size: $h3;
+        margin: 0;
+        transition: all 0.2 linear;
+      }
+      .step__bar {
+        width: 0;
+        height: 7px;
+        background: $green;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transition: all 0.2s linear;
+      }
+      .step__bar.step__active {
+        width: $w-100;
+      }
+      .step__info.info__active {
+        color: $tGreen;
+      }
+    }
+  }
+  .checkout__content {
+    width: $w-100;
+    display: flex;
+    justify-content: space-between;
     margin: 0 auto;
-    position: relative;
-    z-index: 1000;
+    padding-left: $p-3;
     .checkout__theatre {
-      width: $w-100 - 35;
+      width: $w-100 - 30;
+      padding-right: $p-5;
+      margin-bottom: $m-2;
       .theatre__info {
-        color: $tWhite;
-        font-size: $body-1 + 4;
-        margin-bottom: $m-2;
-        padding-bottom: $p-2;
-        border-bottom: 1px solid $grey-1;
-        text-transform: uppercase;
+        padding: $p-1 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        @include respond(extraTablet) {
-          text-align: center;
-        }
-        @include respond(tablet) {
-          text-align: center;
-        }
-        @include respond(phone) {
-          text-align: center;
-        }
-        @include respond(smallPhone) {
-          font-size: $body-1;
-          text-align: center;
-        }
-        @include respond(extraSmallPhone) {
-          font-size: $body-1;
-          text-align: center;
+        .info {
+          width: $w-100;
+          p {
+            margin: 0;
+            font-weight: $medium;
+            font-size: $body-1;
+            color: $tGreen;
+            &:nth-child(2) {
+              font-size: $body-2;
+              color: $tGrey-2;
+            }
+          }
         }
       }
       .theatre__screen {
-        margin-bottom: $m-3;
-        img {
-          width: $w-100;
+        width: $w-100;
+        height: $h-2 - 5;
+        margin-bottom: $m-5;
+        background: $dark-2;
+        border-radius: 3px;
+        box-shadow: 0 20px 30px $dark-2;
+        p {
+          font-size: $body-2 - 2;
+          line-height: $h-2 - 5;
+          text-align: center;
+          color: $tWhite;
+          @include respond(phone) {
+            font-size: $body-2 - 4;
+            line-height: $h-1;
+          }
+        }
+        @include respond(phone) {
+          height: $h-1;
+          margin-bottom: $m-4;
         }
       }
       .theatre__chairs {
         width: $w-100;
-        text-align: center;
-        margin-bottom: $m-3;
-        .chair {
-          width: $w-3;
-          height: $h-3;
-          border: 1px solid $dark-1;
-          border-radius: 5px;
-          font-size: $body-1;
-          text-align: center;
-          line-height: $h-3;
-          margin: $m-1 - 3;
-          outline: 0;
-          background: transparent;
-          box-shadow: 0 0 5px $dark-1;
-          transition: all 0.3s;
-          &:hover {
-            background: $red-1;
-            border: 1px solid transparent;
-            color: $tWhite;
+        margin: $m-2 auto;
+        padding-bottom: $p-1;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $grey-2;
+        .chairs__line {
+          margin-right: $m-3;
+          .line {
+            width: $w-4;
+            height: $h-3;
+            text-align: center;
+            line-height: $h-3;
+            font-weight: $medium;
+            margin-bottom: $m-1 - 5;
           }
-          @include respond(extraTablet) {
-            width: $w-3 + 5;
-            height: $h-3 + 5;
-            font-size: $body-1;
-            line-height: $h-3 + 5;
-            margin: $m-1 - 4;
+          @include respond(laptop) {
+            margin-right: $m-1;
           }
           @include respond(tablet) {
-            width: $w-2 + 7;
-            height: $h-2 + 7;
-            font-size: $body-2;
-            line-height: $h-2 + 7;
-            margin: $m-1 - 4;
+            display: none;
           }
-          @include respond(phone) {
-            width: $w-2 + 5;
-            height: $h-2 + 5;
-            font-size: $body-2;
-            line-height: $h-2 + 5;
-            margin: $m-1 - 6;
-          }
-          @include respond(smallPhone) {
-            width: $w-2;
-            height: $h-2;
-            font-size: $body-2 - 4;
-            line-height: $h-2;
+        }
+        .chairs__number {
+          .chair__btn {
+            width: $w-4;
+            height: $h-3;
             margin: $m-1 - 7;
+            padding: $p-1 - 7;
+            background: $blue;
+            color: $tWhite;
+            border: transparent;
+            border-radius: 3px;
+            font-size: $body-2;
+            transition: background 0.3s linear;
+            outline: none;
+            p {
+              margin: 0;
+              @include respond(tablet) {
+                display: none;
+              }
+            }
+            .btn__line {
+              width: $w-100;
+              height: $h-1 - 5;
+              background: $primary;
+              border-radius: 50px;
+              @include respond(tablet) {
+                margin-top: $m-1 - 2;
+                height: $h-1 - 8;
+              }
+            }
+            &:hover {
+              background: $red-1 !important;
+            }
+            @include respond(laptop) {
+              width: $w-3 + 5;
+              height: $h-3;
+              margin: $m-1 - 8;
+            }
+            @include respond(tablet) {
+              width: $w-2 + 5;
+              height: $h-2;
+              margin: $m-1 - 8;
+            }
+            @include respond(smallPhone) {
+              width: $w-1 + 5;
+              height: $h-1 + 5;
+              margin: $m-1 - 8;
+            }
           }
-          @include respond(extraSmallPhone) {
-            width: $w-1 + 7;
-            height: $h-1 + 7;
-            font-size: $body-2 - 4;
-            line-height: $h-1 + 7;
-            margin: $m-1 - 9;
-          }
+        }
+        @include respond(laptop) {
+          justify-content: center;
         }
       }
       .theatre__note {
-        background: $primary;
-        box-shadow: 0 0 5px $dark-1;
-        border-radius: 5px;
-        padding: $p-2;
+        margin-top: $m-4;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
+        font-size: $body-1;
+        font-weight: $medium;
         p {
           margin: 0;
-          font-size: $h3;
-          @include respond(tablet) {
-            font-size: $body-1;
-          }
-          @include respond(phone) {
-            font-size: $body-1;
-          }
+          margin-right: $m-2;
         }
-        .note__content {
+        .note {
           display: flex;
-          justify-content: space-between;
           align-items: center;
           .note__item {
             display: flex;
             align-items: center;
+            .note__chair {
+              width: $w-4;
+              height: $h-3;
+              margin: $m-1 - 7;
+              padding: $p-1 - 7;
+              background: $blue;
+              color: $tWhite;
+              border: transparent;
+              border-radius: 3px;
+              font-size: $body-2;
+              text-align: center;
+              p {
+                margin: 0;
+                i {
+                  @include respond(phone) {
+                    display: none;
+                  }
+                }
+              }
+              .btn__line {
+                width: $w-100;
+                height: $h-1 - 5;
+                background: $primary;
+                border-radius: 50px;
+                @include respond(phone) {
+                  margin-top: $m-1 + 5;
+                  height: $h-1 - 7;
+                }
+              }
+              @include respond(phone) {
+                width: $w-3;
+                height: $h-2 + 5;
+              }
+            }
+          }
+        }
+        @include respond(phone) {
+          font-size: $body-2 - 2;
+          flex-direction: column;
+        }
+      }
+      .vip-chair {
+        border: transparent;
+        background: $vip !important;
+      }
+      .booking-chair {
+        border: transparent;
+        background: $green !important;
+      }
+      .booked-chair {
+        border: transparent;
+        background: $red-2 !important;
+      }
+      @include respond(laptop) {
+        width: $w-100 - 10;
+        height: $h-100;
+        padding: 0 $p-1;
+      }
+      @include respond(extraTablet) {
+        width: $w-100;
+        height: $h-100;
+        padding: 0;
+      }
+    }
+    .checkout__movie {
+      width: $w-100 - 70;
+      height: $h-10 * 7.2;
+      padding: $p-1 $p-3;
+      border-left: 1px solid $grey-2;
+      overflow-y: auto;
+      .movie__total {
+        font-size: $h1;
+        font-weight: $medium;
+        text-align: center;
+        color: $tGreen;
+        padding: $p-1 - 5 0;
+        border-bottom: 1px solid $grey-2;
+      }
+      .movie__info {
+        font-size: $body-1;
+        padding: $p-1 0;
+        border-bottom: 1px solid $grey-2;
+        .info__item {
+          display: flex;
+          justify-content: space-between;
+          p {
+            margin: 0;
+            &:nth-child(2) {
+              font-weight: $medium;
+            }
+          }
+        }
+        @include respond(laptop) {
+          font-size: $body-2 - 2;
+        }
+        @include respond(extraTablet) {
+          font-size: $body-1;
+        }
+      }
+      .movie__bookchairs {
+        width: $w-100;
+        padding: $p-1 0;
+        font-size: $h3 - 2;
+        font-weight: $medium;
+        display: flex;
+        justify-content: space-between;
+        p {
+          width: $w-100 - 50;
+          color: $tSecondary;
+          &:nth-child(2) {
+            color: $tGreen;
+            text-align: right;
+          }
+        }
+      }
+      .movie__user {
+        border-bottom: 1px solid $grey-2;
+        padding: $p-1 0;
+        .user__input {
+          border-bottom: 1px solid $grey-1;
+          padding: $p-1 - 5 0;
+          label {
+            width: $w-100;
+            margin: 0;
+            font-size: $body-1;
+            color: $tGrey-2;
+            display: block;
+          }
+          input {
+            width: $w-100;
+            border: 0;
+            padding: $p-1 - 5 0;
+            outline: 0;
+          }
+          .input__inner {
+            display: flex;
+            input {
+              width: $w-100 - 25;
+            }
+            .inner__button {
+              color: $tWhite;
+              font-size: $body-1;
+              border: 0;
+              border-radius: 5px;
+              padding: $p-1 - 5 $p-1;
+              background: $dark-2;
+              @include respond(laptop) {
+                font-size: $body-2;
+                padding: $p-1 - 5;
+              }
+            }
+          }
+        }
+      }
+      .movie__paycheck {
+        padding: $p-1 0;
+        .paycheck__title {
+          color: $tGrey-2;
+        }
+        .paycheck__warning {
+          display: block;
+          color: $tSecondary;
+        }
+        .paycheck__form {
+          display: none;
+          .form__checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: $m-1;
+            input {
+              width: $w-2;
+              height: $h-2;
+            }
+            .checkbox__info {
+              width: $w-100 - 25;
+              display: flex;
+              align-items: center;
+              img {
+                width: $w-4;
+                height: $h-4;
+                margin-right: $m-1;
+                border-radius: 3px;
+              }
+              p {
+                margin: 0;
+              }
+            }
+          }
+        }
+        .paycheck__note {
+          text-align: center;
+          p {
             font-size: $body-1;
             font-weight: $medium;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 $m-1;
-            .vip-bg,
-            .booking-bg,
-            .booked-bg {
-              width: $w-3;
-              height: $h-3;
-              border-radius: 5px;
-              margin-right: $m-1;
-              @include respond(phone) {
-                width: $w-2;
-                height: $h-2;
-              }
-              @include respond(phone) {
-                width: $w-2;
-                height: $h-2;
-              }
-              @include respond(smallPhone) {
-                width: $w-2;
-                height: $h-2;
-              }
-              @include respond(extraSmallPhone) {
-                width: $w-2;
-                height: $h-2;
-                border-radius: 0;
-              }
-            }
-            .vip-bg {
-              background: $yellow;
-            }
-            .booking-bg {
-              background: $blue;
-            }
-            .booked-bg {
-              background: $red-1;
+            margin: 0;
+            i {
+              color: $tSecondary;
             }
             span {
-              @include respond(extraSmallPhone) {
+              color: $tContact;
+            }
+            @include respond(laptop) {
+              font-size: $body-2;
+            }
+          }
+        }
+        .hide-warning {
+          display: none !important;
+        }
+        .show-pay {
+          display: block;
+        }
+      }
+      .movie__button {
+        width: $w-100;
+        .button {
+          font-size: $h3;
+          width: $w-100;
+        }
+        .button-disabled {
+          background: $dark-2;
+          border-color: $dark-2;
+          color: $tWhite;
+          opacity: 0.6;
+          &:hover {
+            background: $dark-2;
+            border-color: $dark-2;
+            color: $tWhite !important;
+          }
+        }
+      }
+      @include respond(laptop) {
+        width: $w-100 - 65;
+        padding: $p-1;
+      }
+      @include respond(extraTablet) {
+        display: none;
+      }
+    }
+    @include respond(laptop) {
+      padding: $p-1;
+    }
+    @include respond(tablet) {
+      padding: $p-1 $p-2;
+    }
+    @include respond(smallPhone) {
+      padding: $p-1 - 5;
+    }
+  }
+  .checkout__responsive {
+    display: none;
+    padding: $p-1 $p-2;
+    .responsive {
+      width: $w-100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: $m-2;
+      padding: $p-1 0;
+      border-top: 1px solid $grey-2;
+      .responsive__info {
+        width: $w-100 - 35;
+        display: flex;
+        justify-content: space-between;
+        font-size: $body-1;
+        font-weight: $medium;
+        p {
+          margin: 0;
+          color: $tSecondary;
+          &:nth-child(2) {
+            color: $tGreen;
+          }
+        }
+      }
+      .responsive__button {
+        width: $w-100 - 70;
+        display: flex;
+        .button {
+          width: $w-100;
+          font-size: $body-1;
+          padding: $p-1 - 5 $p-2;
+        }
+      }
+    }
+    @include respond(extraTablet) {
+      display: block;
+    }
+  }
+  .checkout__bookinfo {
+    width: $w-100;
+    height: $h-100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    .bookinfo {
+      width: $w-100 - 60;
+      height: $h-10 * 5.5;
+      overflow-y: auto;
+      background: $primary;
+      border-radius: 5px;
+      padding: $p-3 $p-2;
+      h3 {
+        text-align: center;
+        border-bottom: 1px solid $grey-2;
+        margin-bottom: $m-2;
+        padding-bottom: $p-2;
+      }
+      .bookinfo__movie {
+        display: flex;
+        font-weight: $medium;
+        margin-bottom: $m-2;
+        padding-bottom: $p-1;
+        border-bottom: 1px solid $grey-2;
+        img {
+          width: $w-100 - 70;
+          margin-right: $m-2;
+          border-radius: 5px;
+          object-fit: cover;
+          object-position: center;
+          @include respond(smallPhone) {
+            display: none;
+          }
+        }
+        .movie__detail {
+          width: $w-100;
+          p {
+            margin: $m-1 - 5;
+            &:first-child {
+              font-size: $h3;
+            }
+            &:nth-child(2) {
+              color: $tGreen;
+            }
+            &:nth-child(3) {
+              color: $tGrey-2;
+            }
+          }
+          .detail__item {
+            margin-top: $m-2;
+            .item {
+              display: flex;
+              height: auto;
+              p {
+                &:first-child {
+                  font-size: inherit;
+                }
+                &:nth-child(1) {
+                  width: $w-100 - 65;
+                }
+                &:nth-child(2) {
+                  color: $tSecondary;
+                }
+              }
+            }
+          }
+        }
+      }
+      .bookinfo__user {
+        width: $w-100;
+        padding-bottom: $p-1;
+        .user__info {
+          margin-bottom: $m-2;
+          .info__item {
+            display: flex;
+            padding: $p-1 0;
+            border-bottom: 1px solid $grey-2;
+            p {
+              width: $w-100 - 70;
+              margin: 0;
+              &:nth-child(2) {
+                width: $w-100 - 30;
+                @include respond(phone) {
+                  width: $w-100 - 35;
+                }
+              }
+              @include respond(smallPhone) {
+                width: $w-100 - 60;
                 font-size: $body-2;
               }
             }
           }
         }
-        @include respond(smallPhone) {
-          flex-direction: column;
-          padding: $p-1;
-        }
-        @include respond(extraSmallPhone) {
-          flex-direction: column;
-          padding: $p-1 - 5;
-        }
-      }
-      .checkout__detail {
-        background: $primary;
-        margin-top: $m-2;
-        padding: $p-1;
-        border-radius: 5px;
-        box-shadow: 0 0 5px $dark-1;
-        display: none;
-        p {
-          margin: 0;
-          color: $tGreen;
+        .user__note {
+          text-align: center;
           font-weight: $medium;
+          font-style: italic;
         }
+      }
+      .bookinfo__button {
+        width: $w-100;
+        display: flex;
+        justify-content: space-evenly;
         .button {
+          text-decoration: none;
+          text-align: center;
+          color: $tWhite;
+          width: $w-100 - 65;
           padding: $p-1 - 5 $p-2;
-        }
-        @include respond(tablet) {
-          display: block;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-        }
-        @include respond(phone) {
-          display: block;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-        }
-      }
-      @include respond(extraTablet) {
-        min-width: $w-100;
-        margin-bottom: $m-3;
-      }
-      @include respond(tablet) {
-        min-width: $w-100;
-        margin-bottom: $m-3;
-      }
-      @include respond(phone) {
-        min-width: $w-100;
-        margin-bottom: $m-3;
-      }
-    }
-    .checkout__movie {
-      width: $w-100 - 70;
-      background: $primary;
-      padding: $p-1;
-      border-radius: 5px;
-      box-shadow: 0 0 5px $dark-1;
-      transition: all 0.4s;
-      .movie__img {
-        img {
-          width: $w-100;
-          height: $h-10 * 2.5;
-          border-radius: 5px;
-          margin-bottom: $m-2;
-          box-shadow: 0 0 5px $dark-1;
-          @include respond(extraTablet) {
-            width: $w-10 * 3;
-            height: $h-10 * 3.2;
-            margin-right: $m-1;
-          }
-          @include respond(tablet) {
-            width: $w-100;
-            height: $h-10 * 3.5;
-          }
-          @include respond(phone) {
-            width: $w-100;
-            height: $h-10 * 2;
+          font-size: $body-1;
+          @include respond(laptop) {
+            width: $w-100 - 55;
+            font-size: $body-2;
           }
           @include respond(smallPhone) {
-            width: $w-100;
-            height: $h-10 * 2;
-            margin-bottom: $m-1;
-          }
-          @include respond(extraSmallPhone) {
-            width: $w-100;
-            height: $h-10 * 1.6;
-            margin-bottom: $m-1 - 5;
+            width: $w-100 - 52;
+            font-size: $body-2 - 2;
           }
         }
-      }
-      .movie__info {
-        .info {
-          h5 {
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 1px;
-            @include respond(phone) {
-              font-size: $h3 - 4;
-            }
-            @include respond(smallPhone) {
-              font-size: $h3 - 4;
-            }
-            @include respond(extraSmallPhone) {
-              font-size: $h3 - 4;
-            }
-          }
-          p {
-            span {
-              font-weight: $medium;
-              color: $tSecondary;
-            }
-            @include respond(phone) {
-              font-size: $body-1 + 2;
-              margin: 0;
-            }
-            @include respond(smallPhone) {
-              font-size: $body-1 + 2;
-              margin: 0;
-            }
-            @include respond(extraSmallPhone) {
-              font-size: $body-1;
-              margin: 0;
-            }
-          }
-          .booking-chairs {
-            span {
-              color: $tGreen;
-              font-size: $h3 - 2;
-            }
-          }
-          .price {
-            font-size: $h3;
-            span {
-              color: $tGreen;
-            } 
-            @include respond(phone) {
-              font-size: $h3 - 4;
-            }
-            @include respond(smallPhone) {
-              font-size: $h3 - 4;
-            }
-            @include respond(extraSmallPhone) {
-              font-size: $h3 - 4;
-            }
-          }
-          hr {
-            @include respond(extraSmallPhone){
-              display: none;
-            }
-          }
-        }
-        .checkout__button {
-          .button {
-            width: $w-100;
-            box-shadow: 0 0 5px $dark-1;
-            @include respond(tablet) {
-              width: $w-100 - 50;
-            }
-            @include respond(phone) {
-              width: $w-100 - 50;
-            }
-          }
-          .btn-close {
-            border: 1px solid $blue;
-            border-radius: 5px;
-            background: linear-gradient(to right, $blue, $deepBlue);
-            box-shadow: 0 0 5px $dark-1;
-            padding: $p-1 - 5 $p-3;
-            color: $tWhite;
-            font-size: $h3;
-            font-weight: $medium;
-            display: none;
-            transition: all 0.4s;
-            &:hover {
-              background: transparent;
-            color: $tBlue;
-            }
-            @include respond(tablet) {
-              display: inline-block;
-            }
-            @include respond(phone) {
-              display: inline-block;
-            }
-            @include respond(smallPhone) {
-              display: inline-block;
-            }
-            @include respond(extraSmallPhone) {
-              display: inline-block;
-              font-size: $h3 - 4;
-            }
-          }
-          @include respond(tablet) {
-            display: flex;
-            justify-content: space-evenly;
-          }
-          @include respond(phone) {
-            display: flex;
-            justify-content: space-evenly;
-          }
+        @include respond(smallPhone) {
+          justify-content: space-between;
         }
       }
-      @include respond(extraTablet) {
-        min-width: $w-100;
-        display: flex;
-        justify-content: space-around;
-      }
-      @include respond(tablet) {
-        display: none;
+      @include respond(laptop) {
+        width: $w-100 - 40;
       }
       @include respond(phone) {
-        display: none;
-      }
-      @include respond(smallPhone) {
-        display: none;
-      }
-      @include respond(extraSmallPhone) {
-        display: none;
+        width: $w-100;
+        height: $h-100;
+        border-radius: 0;
       }
     }
-    @include respond(laptop) {
-      min-width: $w-100 - 5;
+  }
+  .checkout__timeout {
+    width: $w-100;
+    height: $h-100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .timeout__note {
+      background: $primary;
+      padding: $p-1 $p-2;
+      border-radius: 5px;
+      h4 {
+        text-align: center;
+      }
+      p {
+        color: $tSecondary;
+      }
+      .note__button {
+        display: flex;
+        justify-content: center;
+        .button {
+          font-size: $body-1;
+          padding: $p-1 - 5 $p-2;
+        }
+      }
     }
-    @include respond(extraTablet) {
-      min-width: $w-100 - 5;
-      flex-direction: column;
-    }
-    @include respond(tablet) {
-      min-width: $w-100 - 5;
-      flex-direction: column;
-    }
-    @include respond(phone) {
-      min-width: $w-100 - 2;
-      flex-direction: column;
-    }
-    @include respond(smallPhone) {
-      min-width: $w-100 - 2;
-      flex-direction: column;
-    }
-    @include respond(extraSmallPhone) {
-      min-width: $w-100 - 2;
-      flex-direction: column;
-    }
-  }
-  .vip-chair {
-    background: $yellow !important;
-    color: $tPrimary;
-  }
-  .booking-chair {
-    background: $blue !important;
-    border: 1px solid transparent !important;
-    color: $tWhite;
-  }
-  .booked-chair {
-    background: $red-2 !important;
-    color: $tWhite;
-  }
-  @include respond(tablet) {
-    padding-bottom: 0;
-  }
-  @include respond(phone) {
-    padding-top: $p-5 + 5;
-    padding-bottom: 0;
-  }
-  @include respond(smallPhone) {
-    padding-top: $p-5 + 5;
-    padding-bottom: 0;
-  }
-  @include respond(extraSmallPhone) {
-    padding-top: $p-5;
-    padding-bottom: 0;
   }
 }

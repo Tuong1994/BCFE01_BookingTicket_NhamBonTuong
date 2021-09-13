@@ -1,0 +1,53 @@
+.user__content {
+  width: $w-100;
+  height: $h-100;
+  padding-left: $p-2;
+  .content__tabs {
+    width: $w-100;
+    height: $h-5;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid $grey-2;
+    .tabs__title {
+      font-size: $body-1 + 2;
+      font-weight: $medium;
+      cursor: pointer;
+      transition: all 0.3s linear;
+      &:hover {
+        color: $tSecondary;
+        font-size: $h3 - 2;
+        @include respond(phone) {
+          font-size: $body-1 !important;
+        }
+      }
+      @include respond(phone) {
+        font-size: $body-1;
+      }
+    }
+  }
+  .content__items {
+    position: relative;
+    height: $h-100;
+    .items {
+      width: $w-100;
+      height: $h-100;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.1s linear;
+    }
+    .show-content {
+     opacity: 1;
+     visibility: visible;
+    }
+  }
+  .active {
+    color: $tSecondary;
+    font-size: $h3 !important;
+  }
+  @include respond(extraTablet) {
+    padding: 0;
+  }
+}

@@ -111,6 +111,9 @@
               margin-right: $m-1;
             }
           }
+          .password__btn {
+            color: $tSecondary;
+          }
           @include respond(tablet) {
             border: 1px solid $primary;
           }

@@ -6,7 +6,7 @@ function RWDCinema(props) {
     const {danhSachRapChieu} = useSelector(state => state.PhimReducer)
 
     return (
-        <div className="rwd-cinema">
+        <div className="rwd-cinema" id="cineplex">
             {danhSachRapChieu?.map(({logo, tenHeThongRap, lstCumRap }) => {
                return <CinemaTitle logo={logo} tenHeThongRap={tenHeThongRap} lstCumRap={lstCumRap} />
             })}

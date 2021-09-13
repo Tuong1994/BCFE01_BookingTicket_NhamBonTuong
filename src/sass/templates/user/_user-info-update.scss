@@ -1,0 +1,79 @@
+.user-info-update__wrapper {
+  padding: 0 $p-2;
+  .wrapper__form {
+    .form__item {
+      width: $w-100;
+      height: $h-5;
+      margin: $m-3 0;
+      .form__content {
+        width: $w-100;
+        position: relative;
+        label {
+          font-size: $body-1;
+          font-weight: $medium;
+          margin: 0;
+        }
+        .form__label {
+          position: absolute;
+          top: 50%;
+          left: 20px;
+          transform: translateY(-50%);
+          user-select: none;
+          pointer-events: none;
+          color: $tGrey-2;
+          transition: all 0.3s ease;
+        }
+        .form__input {
+          border: 1px solid $dark-2;
+          border-radius: 5px;
+          padding: $p-1 $p-2;
+          width: $w-100;
+          outline: none;
+          &:focus {
+            border-color: $red-1;
+          }
+
+          &:focus + .form__label,
+          &:not(:placeholder-shown) + .form__label {
+            top: 0;
+            color: $tPrimary;
+            background: $primary;
+            display: inline-block;
+            padding: 0 $p-1 - 5;
+          }
+          @include respond(extraTablet) {
+            padding: $p-1 - 5 $p-1 + 5;
+          }
+        }
+        .password__btn {
+          width: $w-2;
+          height: $h-2;
+          position: absolute;
+          top: 22%;
+          right: 15px;
+          border: 0;
+          outline: none;
+          background: transparent;
+        }
+      }
+      @include respond(extraTablet) {
+        height: $h-4;
+      }
+    }
+    .form__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: $m-1;
+      .button {
+        display: flex;
+        align-items: center;
+        font-size: $body-1;
+        font-weight: $medium;
+      }
+      @include respond(extraTablet) {
+        margin-bottom: $m-2;
+      }
+    }
+  }
+}

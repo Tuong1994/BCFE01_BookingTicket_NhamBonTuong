@@ -142,8 +142,8 @@
         width: $w-100 - 30;
         display: flex;
         .zion__logo {
-          width: $w-8;
-          height: $h-4;
+          width: $w-6;
+          height: $h-3;
           margin-right: $m-2;
           border-radius: 5px;
           @include respond(tablet) {
@@ -186,7 +186,7 @@
       .footer__img {
         width: $w-100 - 80;
         img {
-          width: $w-100;
+          width: $w-100 - 20;
         }
         @include respond(tablet) {
           width: $w-100 - 60;

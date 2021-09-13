@@ -1,0 +1,55 @@
+.rwd-booked-history {
+  width: $w-100;
+  height: $h-100;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: -100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s linear;
+  .booked-detail {
+    width: $w-100 - 5;
+    height: $h-10 * 3;
+    padding: $p-2 $p-1;
+    font-size: $body-2;
+    background: $primary;
+    border-radius: 5px;
+    position: relative;
+    overflow-y: auto;
+    button {
+      border: 0;
+      outline: none;
+      background: transparent;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: $body-1 + 2;
+      color: $tSecondary;
+    }
+    h4 {
+      text-align: center;
+    }
+    .booked-detail__cinema {
+      .cinema__inner {
+        p {
+          margin: 0;
+          font-weight: $medium;
+          span {
+            color: $tGreen;
+          }
+        }
+      }
+    }
+    @include respond(extraTablet) {
+      width: $w-100 - 20;
+    }
+    @include respond(phone) {
+      width: $w-100 - 5;
+    }
+  }
+}
+.rwd-booked-history.show-booked-detail {
+  left: 0;
+}

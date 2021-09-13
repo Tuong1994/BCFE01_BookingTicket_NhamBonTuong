@@ -1,182 +1,201 @@
-.rwd-checkout__wrapper {
-  .rwd-checkout__info {
+.rwd-checkout {
+  width: $w-100;
+  overflow-y: scroll;
+  .checkout__movie {
     width: $w-100;
-    height: $h-100;
-    background: $primary;
-    box-shadow: 0 0 5px $dark-1;
-    transition: all 0.4s;
-    position: fixed;
+    padding: $p-1;
+    position: absolute;
     top: 0;
-    left: -105%;
-    z-index: 10000;
-    display: none;
-    overflow-y: auto;
-    .movie__img {
-      img {
-        width: $w-100;
-        height: $h-10 * 2.5;
-        border-radius: 5px;
-        margin-bottom: $m-2;
-        box-shadow: 0 0 5px $dark-1;
-        @include respond(extraTablet) {
-          width: $w-10 * 3;
-          height: $h-10 * 3.2;
-          margin-right: $m-1;
-        }
-        @include respond(tablet) {
-          width: $w-100;
-          height: $h-10 * 4;
-        }
-        @include respond(phone) {
-          width: $w-100;
-          height: $h-10 * 3;
-        }
-        @include respond(smallPhone) {
-          width: $w-100;
-          height: $h-10 * 3;
-          margin-bottom: $m-1;
-        }
-        @include respond(extraSmallPhone) {
-          width: $w-100;
-          height: $h-10 * 2.8;
-          margin-bottom: $m-1 - 5;
-        }
+    left: 0;
+    background: $primary;
+    transform: translateX(-100%);
+    z-index: 999;
+    transition: all 0.3s linear;
+    .movie__backward {
+      border-bottom: 1px solid $grey-2;
+      padding: $p-1 - 5 $p-2;
+      button {
+        border: 0;
+        background: transparent;
+        font-size: $h3 - 2;
+        color: $tGrey-2;
+        outline: none;
       }
+    }
+    .movie__total {
+      font-size: $h1;
+      font-weight: $medium;
+      text-align: center;
+      color: $tGreen;
+      padding: $p-1 - 5 0;
+      border-bottom: 1px solid $grey-2;
     }
     .movie__info {
-      .info {
-        h5 {
-          text-transform: uppercase;
-          text-align: center;
-          letter-spacing: 1px;
-          @include respond(phone) {
-            font-size: $h3 - 4;
-          }
-          @include respond(smallPhone) {
-            font-size: $h3 - 4;
-          }
-          @include respond(extraSmallPhone) {
-            font-size: $h3 - 4;
+      font-size: $body-1;
+      padding: $p-1 0;
+      border-bottom: 1px solid $grey-2;
+      .info__item {
+        display: flex;
+        justify-content: space-between;
+        p {
+          margin: 0;
+          &:nth-child(2) {
+            font-weight: $medium;
           }
         }
+      }
+      @include respond(smallPhone) {
+        font-size: $body-2;
+      }
+    }
+    .movie__bookchairs {
+      width: $w-100;
+      padding: $p-1 0;
+      font-size: $h3 - 2;
+      font-weight: $medium;
+      display: flex;
+      justify-content: space-between;
+      p {
+        width: $w-100 - 50;
+        color: $tSecondary;
+        &:nth-child(2) {
+          color: $tGreen;
+          text-align: right;
+        }
+      }
+    }
+    .movie__user {
+      border-bottom: 1px solid $grey-2;
+      padding: $p-1 0;
+      .user__input {
+        border-bottom: 1px solid $grey-1;
+        padding: $p-1 - 5 0;
+        label {
+          width: $w-100;
+          margin: 0;
+          font-size: $body-1;
+          color: $tGrey-2;
+          display: block;
+        }
+        input {
+          width: $w-100;
+          border: 0;
+          padding: $p-1 - 5 0;
+          outline: 0;
+        }
+        .input__inner {
+          display: flex;
+          input {
+            width: $w-100 - 25;
+          }
+          .inner__button {
+            color: $tWhite;
+            font-size: $body-1;
+            border: 0;
+            border-radius: 5px;
+            padding: $p-1 - 5 $p-1;
+            background: $dark-2;
+          }
+        }
+      }
+    }
+    .movie__paycheck {
+      padding: $p-1 0;
+      .paycheck__title {
+        color: $tGrey-2;
+      }
+      .paycheck__warning {
+        display: block;
+        color: $tSecondary;
+      }
+      .paycheck__form {
+        display: none;
+        .form__checkbox {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: $m-1;
+          input {
+            width: $w-2;
+            height: $h-2;
+          }
+          .checkbox__info {
+            width: $w-100 - 25;
+            display: flex;
+            align-items: center;
+            img {
+              width: $w-4;
+              height: $h-4;
+              margin-right: $m-1;
+              border-radius: 3px;
+            }
+            p {
+              margin: 0;
+            }
+          }
+        }
+      }
+      .paycheck__note {
+        text-align: center;
         p {
-          span {
-            font-weight: $medium;
+          font-size: $body-1;
+          font-weight: $medium;
+          margin: 0;
+          i {
             color: $tSecondary;
           }
-          @include respond(tablet) {
-            font-size: $h3 - 2;
-            margin: 0;
-          }
-          @include respond(phone) {
-            font-size: $h3 - 2;
-            margin: 0;
-          }
-          @include respond(smallPhone) {
-            font-size: $body-1 + 2;
-            margin: 0;
-          }
-          @include respond(extraSmallPhone) {
-            font-size: $body-1;
-            margin: 0;
-          }
-        }
-        .booking-chairs {
           span {
-            color: $tGreen;
-            font-size: $h3 - 2;
-          }
-        }
-        .price {
-          font-size: $h3;
-          span {
-            color: $tGreen;
-          }
-          @include respond(phone) {
-            font-size: $h3 - 4;
-          }
-          @include respond(smallPhone) {
-            font-size: $h3 - 4;
-          }
-          @include respond(extraSmallPhone) {
-            font-size: $h3 - 4;
+            color: $tContact;
           }
         }
       }
-      .checkout__button {
-        .button {
-          width: $w-100;
-          box-shadow: 0 0 5px $dark-1;
-          @include respond(tablet) {
-            width: $w-100 - 50;
-          }
-          @include respond(phone) {
-            width: $w-100 - 50;
-          }
-        }
-        .btn-close {
-          border: 1px solid $blue;
-          border-radius: 5px;
-          background: linear-gradient(to right, $blue, $deepBlue);
-          box-shadow: 0 0 5px $dark-1;
-          padding: $p-1 - 5 $p-3;
-          color: $tWhite;
-          font-size: $h3;
-          font-weight: $medium;
-          display: none;
-          transition: all 0.4s;
-          &:hover {
-            background: transparent;
-            color: $tBlue;
-          }
-          @include respond(tablet) {
-            display: inline-block;
-          }
-          @include respond(phone) {
-            display: inline-block;
-          }
-          @include respond(smallPhone) {
-            display: inline-block;
-          }
-          @include respond(extraSmallPhone) {
-            display: inline-block;
-            font-size: $h3 - 4;
-          }
-        }
-        @include respond(tablet) {
-          display: flex;
-          justify-content: space-evenly;
-        }
-        @include respond(phone) {
-          display: flex;
-          justify-content: space-evenly;
+      .hide-warning {
+        display: none !important;
+      }
+      .show-pay {
+        display: block;
+      }
+    }
+    .movie__button {
+      width: $w-100;
+      .button {
+        font-size: $h3;
+        width: $w-100;
+      }
+      .button-disabled {
+        background: $dark-2;
+        border-color: $dark-2;
+        color: $tWhite;
+        opacity: 0.6;
+        &:hover {
+          background: $dark-2;
+          border-color: $dark-2;
+          color: $tWhite !important;
         }
       }
     }
-    @include respond(tablet) {
-      padding: $p-3;
-      display: block;
+    @include respond(extraTablet) {
+      padding: $p-2 $p-5;
     }
     @include respond(phone) {
-      padding: $p-3;
-      display: block;
+      padding: $p-1 $p-2;
     }
     @include respond(smallPhone) {
       padding: $p-1;
-      display: block;
-    }
-    @include respond(extraSmallPhone) {
-      padding: $p-1;
-      display: block;
     }
   }
   .show-detail {
-    left: 0;
+    transform: translateX(0);
+  }
+  @include respond(laptop) {
+    display: none;
+  }
+  @include respond(extraTablet) {
+    display: block;
   }
 }
 
 .rwd-movielist {
-  padding: $p-1;
   display: none;
   .rwd-movielist__tab {
     display: flex;
@@ -229,7 +248,7 @@
             padding: $p-1 - 5;
             border-radius: 5px;
             &:hover .card__img img {
-              transform: scale(1.5,1.5);
+              transform: scale(1.5, 1.5);
             }
             &:hover .card__booking,
             &:hover .card__img::after {
@@ -250,9 +269,11 @@
               img {
                 width: $w-100;
                 height: $h-100;
+                object-fit: cover;
+                object-position: center;
                 border-radius: 5px;
                 transition: all 0.4s;
-                transform: scale(1,1);
+                transform: scale(1, 1);
               }
               .card__review {
                 position: absolute;
@@ -344,7 +365,7 @@
               }
               p {
                 color: $tSecondary;
-                margin: 0
+                margin: 0;
               }
             }
             .card__booking {
@@ -391,26 +412,26 @@
                 left: 50%;
                 transform: translateX(-50%);
                 box-shadow: 0 0 5px $dark-2;
-                @include respond (laptop) {
+                @include respond(laptop) {
                   width: $w-100 - 5;
                 }
-                @include respond (extraTablet) {
+                @include respond(extraTablet) {
                   width: $w-100 - 5;
                 }
-                @include respond (tablet) {
+                @include respond(tablet) {
                   width: $w-100 - 5;
                 }
               }
             }
-            @include respond (laptop) {
+            @include respond(laptop) {
               width: $w-100 - 75;
               padding: 0 $p-1;
             }
-            @include respond (extraTablet) {
+            @include respond(extraTablet) {
               width: $w-100 - 75;
               padding: 0 $p-1;
             }
-            @include respond (tablet) {
+            @include respond(tablet) {
               width: $w-100 - 50;
               padding: 0 $p-1;
             }
@@ -592,9 +613,6 @@
       overflow-y: auto !important;
     }
   }
-  @include respond(extraTablet) {
-    display: block;
-  }
   @include respond(tablet) {
     display: block;
   }
@@ -606,5 +624,151 @@
   }
   @include respond(extraSmallPhone) {
     display: block;
+  }
+}
+
+.rwd-header {
+  .rwd-header__bg {
+    width: $w-100;
+    height: $h-100;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    z-index: 99999999;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s linear;
+    .rwd-header__nav {
+      width: $w-100 - 35;
+      height: $h-100;
+      overflow-y: auto;
+      padding: $p-1;
+      background: $primary;
+      position: relative;
+      top: 0;
+      right: -100%;
+      transition: all 0.3s linear;
+      .nav__user {
+        border-bottom: 1px solid $grey-2;
+        padding: $p-1 0;
+        display: flex;
+        justify-content: center;
+        .user__login {
+          width: $w-100;
+          position: relative;
+          .login__info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+              width: $w-5;
+              height: $h-5;
+              border-radius: 50%;
+              margin-right: $m-2;
+            }
+            .login__acc {
+              color: $tGrey-2;
+              font-weight: $medium;
+              margin: 0;
+              padding-right: $p-2;
+              border-right: 1px solid $grey-2;
+            }
+            .login__button {
+              font-size: $body-1 + 4;
+              outline: none;
+              border: 0;
+              padding-left: $p-2;
+              background: transparent;
+            }
+          }
+          .login__submenu {
+            width: $w-100 - 35;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: $grey-2;
+            border-radius: 5px;
+            box-shadow: 0 0 5px $dark-2;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s linear;
+            .submenu__link,
+            .submenu__button {
+              display: block;
+              width: $w-100;
+              text-align: center;
+              text-decoration: none;
+              font-size: $body-1;
+              color: $tPrimary;
+              transition: all 0.2s linear;
+              padding: $p-1 - 5 0;
+              &:hover {
+                background: $red-1;
+              }
+            }
+            .submenu__button {
+              border: 0;
+              background: transparent;
+            }
+          }
+          .login__submenu.show {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+        .user__link {
+          display: flex;
+          align-items: center;
+          color: $tPrimary;
+          padding: $p-1 - 5;
+          border-radius: 5px;
+          transition: all 0.4s;
+          i {
+            font-size: $h2;
+            margin-right: $m-1;
+          }
+          &:hover {
+            box-shadow: 0 0 5px $dark-2;
+            color: $tSecondary;
+          }
+        }
+      }
+      .nav__bar {
+        width: $w-100;
+        height: $h-100;
+        padding: $p-5 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .bar__list {
+          font-size: $body-1;
+          font-weight: $medium;
+          margin: $m-1 0;
+          .bar__link {
+            color: $tPrimary;
+          }
+        }
+      }
+    }
+    .rwd-header__nav.active {
+      right: 0;
+    }
+  }
+  .rwd-header__bg.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  @include respond(laptop) {
+    display: none !important;
+  }
+  @include respond(extraTablet) {
+    display: block !important;
   }
 }

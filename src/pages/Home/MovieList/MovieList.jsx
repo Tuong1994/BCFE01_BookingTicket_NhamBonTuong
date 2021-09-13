@@ -196,15 +196,7 @@ function Schedule(props) {
             })
         }
     }
-
-    let setting = {
-        dot: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        cssEase: 'linear',
-    }
+    
     return (
         <div className="movielist" id="schedule">
             <div className="movielist__desktop">
@@ -218,7 +210,7 @@ function Schedule(props) {
                 </ul>
                 <div className="tab-content" id="pills-tabContent">
                     <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        <Slider {...setting}>
+                        <Slider >
                             <div className="slides">
                                 <div className="card__wrapper">
                                     {renderPhimDangChieu(1)}
@@ -239,7 +231,7 @@ function Schedule(props) {
                         </Slider>
                     </div>
                     <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        <Slider {...setting}>
+                        <Slider >
                             <div className="slides">
                                 <div className="card__wrapper">
                                     {renderPhimSapChieu(1)}
@@ -262,10 +254,10 @@ function Schedule(props) {
                 </div>
             </div>
 
-             <RWDMovieList danhSachPhim={danhSachPhim} setShowVideo={setShowVideo}/>
+            <RWDMovieList danhSachPhim={danhSachPhim} setShowVideo={setShowVideo} />
 
             <Popup trigger={showVideo} setTrigger={setShowVideo}>
-                <iframe className="videos-wrapper" src={phimTrailer.trailer} frameborder="0" allow="autoplay" allowFullScreen={true}></iframe>
+                <iframe className="videos-wrapper" src={phimTrailer.trailer} frameBorder="0" allow="autoplay" allowFullScreen={true}></iframe>
             </Popup>
         </div>
     );

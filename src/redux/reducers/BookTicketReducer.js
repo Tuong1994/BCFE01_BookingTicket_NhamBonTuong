@@ -1,5 +1,8 @@
 const stateDefault = {
   DSGheDangDat: [],
+  hinhThucThanhToan: "",
+  thanhCong: false,
+  hetGio: false,
 };
 
 export const BookTicketReducer = (state = stateDefault, action) => {
@@ -15,6 +18,21 @@ export const BookTicketReducer = (state = stateDefault, action) => {
       }
       state.DSGheDangDat = [...state.DSGheDangDat];
       return { ...state };
+    }
+    case "PAY_CHECK": {
+      state.hinhThucThanhToan = action.pay;
+      return { ...state };
+    }
+    case "TIME_OUT": {
+      state.hetGio = true;
+      return { ...state };
+    }
+    case "openBookInfo": {
+      state.thanhCong = true;
+      return { ...state };
+    }
+    case "closeBookInfo": {
+      state.thanhCong = false;
     }
     default:
       return { ...state };

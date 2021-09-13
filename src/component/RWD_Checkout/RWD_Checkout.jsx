@@ -1,53 +1,120 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
-import { taiKhoan } from '../../configs/setting';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { bookMovieAction } from '../../redux/action/PhimAction';
 
 function RWD_Checkout(props) {
-    const { thongTinRapChieu, DSGheDangDat, renderBookChair, renderTotal, setShowDetail, showDetail } = props;
+    const { thongTinRapChieu, DSGheDangDat, renderBookChair, renderTotal, setShowDetail, showDetail, paramsId } = props;
+    const { thongTinPhim } = thongTinRapChieu
+    const { accountInfo } = useSelector(state => state.UserReducer);
+    const { hinhThucThanhToan } = useSelector(state => state.BookTicketReducer);
     let dispatch = useDispatch();
+    let handleChange = (e) => {
+        dispatch({
+            type: "PAY_CHECK",
+            pay: e.target.value
+        })
+    }
     return (
-        <div className="rwd-checkout__wrapper">
-            <div className={showDetail ? "rwd-checkout__info show-detail" : "rwd-checkout__info"}>
-                <div className="movie__img">
-                    <img src={thongTinRapChieu.thongTinPhim?.hinhAnh} alt={thongTinRapChieu.thongTinPhim?.tenPhim} />
+        <div className="rwd-checkout">
+            <div className={showDetail ? "checkout__movie show-detail" : "checkout__movie"}>
+                <div className="movie__backward">
+                    <button onClick={() => {
+                        setShowDetail(false);
+                    }}><i class="fa fa-arrow-left"></i></button>
                 </div>
-
+                <div className="movie__total">
+                    <p>{renderTotal().toLocaleString()} đ</p>
+                </div>
                 <div className="movie__info">
-                    <div className="info">
-                        <h5>{thongTinRapChieu.thongTinPhim?.tenPhim}</h5>
-                        <hr />
-                        <p>Địa chỉ : <span>{thongTinRapChieu.thongTinPhim?.diaChi}</span></p>
-                        <p>Ngày chiếu : <span>{thongTinRapChieu.thongTinPhim?.ngayChieu}</span></p>
-                        <hr />
-                        <p className="booking-chairs">Ghế : {renderBookChair()}</p>
-                        <p className="price">Tổng tiền : <span>{renderTotal().toLocaleString()} VNĐ</span></p>
+                    <div className="info__item">
+                        <p>Tên phim :</p>
+                        <p>{thongTinPhim?.tenPhim}</p>
                     </div>
-                    <hr />
-                    <div className="checkout__button">
-                        <button className="btn-close" onClick={() => {
-                            setShowDetail(!showDetail)
-                        }}><i class="fa fa-long-arrow-alt-left"></i></button>
-                        <button className="button" onClick={() => {
-                            if (localStorage.getItem(taiKhoan) && DSGheDangDat !== "") {
-                                let accLogin = JSON.parse(localStorage.getItem(taiKhoan));
-                                let thongTinVe = {
-                                    maLichChieu: props.match.params.id,
-                                    danhSachVe: DSGheDangDat,
-                                    taiKhoanNguoiDung: accLogin.taiKhoan,
-                                };
-                                dispatch(bookMovieAction(thongTinVe));
-                            } else {
-                                Swal.fire({
-                                    icon: "error",
-                                    title: "Bạn chưa chọn ghế"
-                                })
-                            }
-                        }}>
-                            Đặt vé
-                        </button>
+                    <div className="info__item">
+                        <p>Tên rạp :</p>
+                        <p>{thongTinPhim?.tenCumRap}</p>
                     </div>
+                    <div className="info__item">
+                        <p>Địa chỉ :</p>
+                        <p>{thongTinPhim?.diaChi}</p>
+                    </div>
+                    <div className="info__item">
+                        <p>Ngày chiếu :</p>
+                        <p>{thongTinPhim?.ngayChieu} - {thongTinPhim?.gioChieu} - {thongTinPhim?.tenRap}</p>
+                    </div>
+                </div>
+                <div className="movie__bookchairs">
+                    <p>Ghế : {renderBookChair()}</p>
+                    <p>{renderTotal().toLocaleString()} đ</p>
+                </div>
+                <div className="movie__user">
+                    <div className="user__input">
+                        <label htmlFor="email">Email</label>
+                        <input type="text" id="email" value={accountInfo.email} />
+                    </div>
+                    <div className="user__input">
+                        <label htmlFor="soDT">Số điện thoại</label>
+                        <input type="text" id="soDT" value={accountInfo.soDT} />
+                    </div>
+                    <div className="user__input">
+                        <label htmlFor="maGiamGia">Mã giảm giá</label>
+                        <div className="input__inner">
+                            <input type="text" id="maGiamGia" value="Tạm thời không hỗ trợ..." />
+                            <button className="inner__button" disabled={true}>Áp dụng</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="movie__paycheck">
+                    <p className="paycheck__title">Hình thức thanh toán</p>
+                    <div className={DSGheDangDat.length !== 0 ? "paycheck__warning hide-warning" : "paycheck__warning"}>
+                        <p>Vui lòng chọn ghế để hiển thị hình thức thanh toán phù hợp</p>
+                    </div>
+                    <form className={DSGheDangDat.length !== 0 ? "paycheck__form show-pay" : "paycheck__form"}>
+                        <div className="form__checkbox">
+                            <input type="radio" name="paycheck" value="ZaloPay" onChange={handleChange} />
+                            <div className="checkbox__info">
+                                <img src="../img/zalo.jpg" alt="zalopay" />
+                                <p>Thanh toán qua ZaloPay</p>
+                            </div>
+                        </div>
+                        <div className="form__checkbox">
+                            <input type="radio" name="paycheck" value="Visa, Master, JCB" onChange={handleChange} />
+                            <div className="checkbox__info">
+                                <img src="../img/visa.png" alt="visapay" />
+                                <p>Visa, Master, JCB</p>
+                            </div>
+                        </div>
+                        <div className="form__checkbox">
+                            <input type="radio" name="paycheck" value="ATM" onChange={handleChange} />
+                            <div className="checkbox__info">
+                                <img src="../img/atm.png" alt="atm" />
+                                <p>Thẻ ATM nội địa</p>
+                            </div>
+                        </div>
+                        <div className="form__checkbox">
+                            <input type="radio" name="paycheck" value="Store tiện ích" onChange={handleChange} />
+                            <div className="checkbox__info">
+                                <img src="../img/cuahang.png" alt="cuahang" />
+                                <p>Thanh toán tại cửa hàng tiện ích</p>
+                            </div>
+                        </div>
+                    </form>
+                    <div className="paycheck__note">
+                        <p><i class="fa fa-exclamation-circle"></i> Vé đã mua không thể đổi hoặc hoàn tiền</p>
+                        <p>Mã vé sẽ được gửi qua tin nhắn <span>ZMS</span> (tin nhắn qua Zalo) và <span>Email</span> đã nhập</p>
+                    </div>
+                </div>
+                <div className="movie__button">
+                    {DSGheDangDat.length !== 0 && hinhThucThanhToan !== "" ? 
+                    <button className="button" onClick={() => {
+                        let bookDetail = {
+                            maLichChieu: paramsId,
+                            danhSachVe: DSGheDangDat,
+                            taiKhoanNguoiDung: accountInfo.taiKhoan
+                        }
+                        dispatch(bookMovieAction(bookDetail));
+                    }}>Đặt vé</button> 
+                    : <button className="button button-disabled" disabled={true}>Đặt vé</button>}
                 </div>
             </div>
         </div>

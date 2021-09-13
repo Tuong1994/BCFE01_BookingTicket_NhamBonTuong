@@ -1,4 +1,4 @@
-.filmdetail-wrapper {
+.detail {
   padding: $p-5 * 2 0;
   background-repeat: no-repeat;
   background-position: center;
@@ -19,11 +19,11 @@
     left: 0;
     backdrop-filter: blur(10px);
   }
-  .film__content {
+  .detail__film {
     width: $w-100 - 35;
     margin: 0 auto;
     padding: $p-1;
-    .film__body {
+    .film {
       display: flex;
       justify-content: space-between;
       padding: $p-1;
@@ -159,12 +159,15 @@
           }
           @include respond(extraTablet) {
             margin-top: $m-2;
+            padding: 0 $p-1;
           }
           @include respond(tablet) {
             margin-top: $m-2;
+            padding: 0 $p-1;
           }
           @include respond(phone) {
             margin-top: $m-2;
+            padding: 0 $p-1 - 5;
           }
           @include respond(smallPhone) {
             margin-top: $m-1;
@@ -205,7 +208,7 @@
           padding: 0;
         }
       }
-      .detail__review {
+      .film__review {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -347,312 +350,335 @@
     padding: $p-5 + 20 $p-1;
     position: relative;
     z-index: 10;
-    .detail__title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: $h-7;
-      .nav-link {
-        color: $tWhite;
-        font-size: $body-1 + 4;
-        transition: all 0.3s;
-        &:hover {
+    .cinema__tabs {
+      color: $tWhite;
+      .tabs__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: $m-2;
+        height: $h-5;
+        .title {
+          margin: 0 $m-2;
+          cursor: pointer;
+          p {
+            font-weight: $medium;
+            margin: 0;
+            transition: all 0.2s linear;
+            @include respond(phone) {
+              font-size: $body-1;
+            }
+          }
+        }
+        .active {
           font-size: $h3;
-        }
-      }
-    }
-    .cinema__info {
-      background: $primary;
-      box-shadow: 0 0 10px $dark-1;
-      padding: $p-1 * 0.5;
-      border-radius: 5px;
-      .cinema__inner {
-        .cinema__link {
-          color: $tPrimary;
-          opacity: 0.5;
-          transition: all 0.3s;
-          border-bottom: 1px solid $grey-1;
-          border-radius: 0;
-          .cinema__logo {
-            width: $w-5;
-            height: $h-5;
-            margin-right: $m-2;
-            @include respond(extraTablet) {
-              margin-right: 0;
-            }
-            @include respond(tablet) {
-              margin-right: 0;
-            }
-            @include respond(phone) {
-              width: $w-5;
-              height: $h-5;
-            }
-            @include respond(smallPhone) {
-              width: $w-4;
-              height: $h-4;
-            }
-            @include respond(extraSmallPhone) {
-              width: $w-4;
-              height: $h-4;
-            }
-          }
-          .cinema__name {
-            @include respond(phone) {
-              display: none;
-            }
-            @include respond(smallPhone) {
-              display: none;
-            }
-            @include respond(extraSmallPhone) {
-              display: none;
-            }
-          }
-          @include respond(extraTablet) {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-          }
-          @include respond(tablet) {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-          }
-        }
-        .showtime__container {
-          background: $primary;
-          padding: $p-1;
-          height: $h-10 * 4;
-          overflow-y: scroll;
-          &::-webkit-scrollbar {
-            width: $w-1 * 0.5;
-            background: $primary;
-            border-radius: 5px;
-          }
-          &::-webkit-scrollbar-thumb {
-            background: $grey-2;
-            border-radius: 2px;
-          }
-          .showtime__detail {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            margin-bottom: $m-1;
-            .showtime__cinema {
-              display: flex;
-              margin-bottom: $m-1;
-              img {
-                width: $w-6;
-                height: $h-6;
-                margin-right: $m-1;
-              }
-              .cinema__detail {
-                font-weight: $medium;
-                p {
-                  margin-bottom: $m-1 - 5;
-                }
-                span {
-                  margin-right: $m-1;
-                  font-size: $body-1;
-                  color: $tGrey-2;
-                }
-              }
-            }
-            .showtime__list {
-              p {
-                font-size: $h3;
-                text-shadow: 0 0 2px $dark-2;
-              }
-              .button {
-                display: inline-block;
-                text-decoration: none;
-                color: $tWhite;
-                font-size: $body-2;
-                padding: $p-1 - 5 $p-1;
-                margin-right: $m-1;
-                margin-bottom: $m-1;
-                @include respond(laptop) {
-                  font-size: $body-1;
-                }
-                @include respond(extraTablet) {
-                  font-size: $body-2;
-                }
-                @include respond(tablet) {
-                  font-size: $body-2;
-                }
-                @include respond(phone) {
-                  font-size: $body-2;
-                }
-              }
-            }
-            @include respond(laptop) {
-              display: flex;
-              flex-wrap: wrap;
-            }
-            @include respond(extraTablet) {
-              display: flex;
-              flex-wrap: wrap;
-            }
-            @include respond(tablet) {
-              display: flex;
-              flex-wrap: wrap;
-            }
-            @include respond(phone) {
-              flex-wrap: wrap;
-            }
-            @include respond(smallPhone) {
-              flex-wrap: wrap;
-            }
-            @include respond(extraSmallPhone) {
-              flex-wrap: wrap;
-            }
-          }
-        }
-        .cinema__content {
-          .cinema__item {
-            @include respond(phone) {
-              display: flex;
-              justify-content: center;
-              flex-direction: row !important;
-            }
-            @include respond(smallPhone) {
-              display: flex;
-              justify-content: center;
-              flex-direction: row !important;
-            }
-            @include respond(extraSmallPhone) {
-              display: flex;
-              justify-content: center;
-              flex-direction: row !important;
-            }
-          }
-          @include respond(phone) {
-            max-width: $w-100;
-          }
-          @include respond(smallPhone) {
-            max-width: $w-100;
-          }
-          @include respond(extraSmallPhone) {
-            max-width: $w-100;
-          }
-        }
-        @include respond(phone) {
-          display: flex;
-          flex-direction: column;
-        }
-        @include respond(smallPhone) {
-          display: flex;
-          flex-direction: column;
-        }
-        @include respond(extraSmallPhone) {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-      .film__decs {
-        padding: $p-2;
-        text-align: justify;
-        font-weight: $medium;
-        span {
           color: $tSecondary;
         }
       }
-    }
-    .nav-pills .nav-link.active,
-    .nav-pills .show > .nav-link {
-      opacity: 1;
-      background: transparent;
-    }
-    @include respond(laptop) {
-      padding: 0;
-      min-width: $w-100 - 15;
-    }
-    @include respond(extraTablet) {
-      min-width: $w-100;
-      padding: 0 $p-2;
-    }
-    @include respond(tablet) {
-      min-width: $w-100 - 5;
-      padding: 0;
-    }
-    @include respond(phone) {
-      min-width: $w-100 - 5;
-      padding: 0;
-      // display: none;
-    }
-    @include respond(smallPhone) {
-      min-width: $w-100 - 5;
-      padding: 0;
-      // display: none;
-    }
-    @include respond(extraSmallPhone) {
-      min-width: $w-100 - 5;
-      padding: 0;
-    }
-  }
-  @include respond(extraTablet) {
-    padding-top: $p-5 + 20;
-    padding-bottom: $p-2;
-  }
-  @include respond(tablet) {
-    padding-top: $p-5 + 20;
-    padding-bottom: $p-2;
-  }
-  @include respond(phone) {
-    padding-top: $p-5 + 20;
-    padding-bottom: $p-2;
-  }
-  .popup-wrapper {
-    width: $w-100;
-    height: $h-100;
-    background: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    .popup__inner {
-      width: $w-100;
-      height: $h-100;
-      position: relative;
-      .popup__item {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        flex-direction: column;
-        .btn-close {
-          width: $w-4;
-          height: $h-4;
-          font-size: $h3;
-          background: transparent;
-          text-align: center;
-          line-height: $h-4;
-          border: 0;
-          border-radius: 50%;
-          outline: 0;
-          i {
-            color: $tSecondary;
+      .tabs__content {
+        height: $h-10 * 4;
+        overflow: hidden;
+        position: relative;
+        z-index: 999;
+        .content {
+          width: $w-100;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.1s linear;
+        }
+        .movie-schedule {
+          height: $h-100;
+          background: $primary;
+          color: $tPrimary;
+          padding: 0 $p-1;
+          border-radius: 5px;
+          .schedule {
+            display: flex;
+            justify-content: space-between;
+            .schedule__cineplex {
+              width: $w-100 - 75;
+              height: $h-10 * 4;
+              border-right: 1px solid $grey-2;
+              padding-top: $p-1;
+              padding-bottom: $p-1;
+              padding-right: $p-1;
+              overflow: auto;
+              .cineplex__logo {
+                width: $w-100;
+                padding: $p-1;
+                margin-bottom: $m-1;
+                border-radius: 5px;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                opacity: 0.6;
+                transition: all 0.2s linear;
+                img {
+                  width: $w-5;
+                  height: $h-5;
+                  @include respond(phone) {
+                    width: $w-4 - 5;
+                    height: $h-4 - 5;
+                  }
+                }
+                @include respond(phone) {
+                  width: $w-100 - 85;
+                }
+              }
+              .logo-active {
+                opacity: 1;
+                background: $grey-2;
+              }
+              @include respond(phone) {
+                width: $w-100;
+                height: auto;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                border-right: 0;
+                border-bottom: 1px solid $grey-2;
+                padding: $p-1;
+              }
+            }
+            .schedule__showtime {
+              width: $w-100 - 25;
+              height: $h-10 * 4;
+              position: relative;
+              .showtime__content {
+                width: $w-100;
+                height: $h-10 * 4;
+                border-radius: 5px;
+                padding: $p-1;
+                height: inherit;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 999;
+                overflow-y: auto;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                .content__inner {
+                  margin-bottom: $m-2;
+                  padding-bottom: $p-1;
+                  border-bottom: 1px solid $grey-2;
+                  .content__info {
+                    display: flex;
+                    img {
+                      width: $w-5;
+                      height: $h-5;
+                      margin-right: $m-1;
+                      border-radius: 3px;
+                      box-shadow: 0 0 5px $dark-2;
+                    }
+                    .info {
+                      p {
+                        margin: 0;
+                        font-weight: $medium;
+                        &:nth-child(2) {
+                          font-size: $h3;
+                          margin-bottom: $m-1;
+                          opacity: 0.8;
+                          text-shadow: 0 0 5px $dark-2;
+                        }
+                      }
+                    }
+                  }
+                  .content__button {
+                    .button {
+                      width: $w-10 + 80;
+                      text-align: center;
+                      padding: $p-1 - 5 $p-1 + 5;
+                      font-size: $body-2;
+                      margin-right: $m-1;
+                      margin-bottom: $m-1;
+                      p {
+                        margin: 0;
+                        &:nth-child(2) {
+                          font-size: $body-2 - 4;
+                        }
+                      }
+                      @include respond(smallPhone) {
+                        font-size: $body-2 - 2;
+                        width: $w-10 + 65;
+                      } 
+                    }
+                  }
+                }
+              }
+              .show-schedule {
+                opacity: 1;
+                visibility: visible;
+              }
+              @include respond(phone) {
+                width: $w-100;
+              }
+            }
+            @include respond(phone) {
+              flex-direction: column;
+            }
           }
         }
-        .videos-wrapper {
-          width: $w-10 * 7;
+        .movie-detail {
           height: $h-10 * 4;
-          border-radius: 5px;
+          overflow-y: auto;
+          .movie {
+            display: flex;
+            justify-content: space-between;
+            font-size: $body-1;
+            text-align: justify;
+            .movie__inner-1 {
+              width: $w-100 - 60;
+              .inner__item {
+                display: flex;
+                justify-content: space-between;
+                p {
+                  margin: $m-1;
+                  font-weight: $medium;
+                  &:nth-child(2) {
+                    font-weight: $light;
+                  }
+                }
+              }
+              @include respond(phone) {
+                width: $w-100;
+              }
+            }
+            .movie__inner-2 {
+              width: $w-100 - 45;
+              p {
+                margin: $m-1;
+                font-weight: $medium;
+                span {
+                  font-weight: $light;
+                }
+              }
+              @include respond(phone) {
+                width: $w-100;
+              }
+            }
+            @include respond(phone) {
+              flex-direction: column;
+            }
+          }
+        }
+        .movie-rating {
+          .rating {
+            display: flex;
+            justify-content: center;
+            .rating__input {
+              width: $w-100 - 30;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              background: $primary;
+              padding: $p-1 - 5 $p-1 + 5;
+              border-radius: 5px;
+              color: $tPrimary;
+              cursor: pointer;
+              .input__acc {
+                display: flex;
+                align-items: center;
+                img {
+                  width: $w-3;
+                  height: $h-3;
+                  margin: $m-1;
+                  border-radius: 50%;
+                }
+                p {
+                  margin: 0;
+                  font-size: $body-1;
+                  color: $tGrey-2;
+                  @include respond(smallPhone) {
+                    font-size: $body-2;
+                  }
+                }
+                @include respond(smallPhone) {
+                  font-size: $body-2;
+                }
+              }
+              .input__stars {
+                font-size: $body-1 + 6;
+                color: $red-1;
+                opacity: 0.6;
+                @include respond(tablet) {
+                  font-size: $body-1;
+                }
+              }
+              @include respond(tablet) {
+                width: $w-100;
+              }
+              @include respond(smallPhone) {
+                width: $w-100;
+                padding: $p-1 - 5;
+              }
+            }
+          }
+        }
+        .show {
+          opacity: 1;
+          visibility: visible;
         }
       }
     }
-    @include respond(extraTablet) {
-      display: none;
+    .popup-wrapper {
+      width: $w-100;
+      height: $h-100;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      .popup__inner {
+        width: $w-100;
+        height: $h-100;
+        position: relative;
+        .popup__item {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          flex-direction: column;
+          .btn-close {
+            width: $w-4;
+            height: $h-4;
+            font-size: $h3;
+            background: transparent;
+            text-align: center;
+            line-height: $h-4;
+            border: 0;
+            border-radius: 50%;
+            outline: 0;
+            i {
+              color: $tSecondary;
+            }
+          }
+          .videos-wrapper {
+            width: $w-10 * 7;
+            height: $h-10 * 4;
+            border-radius: 5px;
+          }
+        }
+      }
+      @include respond(extraTablet) {
+        display: none;
+      }
+      @include respond(tablet) {
+        display: none;
+      }
+      @include respond(phone) {
+        display: none;
+      }
     }
-    @include respond(tablet) {
-      display: none;
+    @include respond(extraTablet) {
+      width: $w-100 - 15;
     }
     @include respond(phone) {
-      display: none;
+      width: $w-100;
     }
   }
 }

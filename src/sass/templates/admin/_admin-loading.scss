@@ -1,0 +1,34 @@
+.admin-loading {
+    width: $w-100;
+    height: $h-100;
+    position: sticky;
+    top: 0;
+    background: $primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.5s;
+    z-index: 999;
+    .admin-loading__icon  {
+        i {
+            font-size: $h1 + 30;
+            animation: rotate 2s linear infinite;
+        }
+    }
+}
+
+.admin-loading.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

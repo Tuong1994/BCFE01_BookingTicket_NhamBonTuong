@@ -1,0 +1,46 @@
+.rwd-user-detail {
+  width: $w-100;
+  height: $h-100;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: -100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s linear;
+  .detail__info {
+    width: $w-100 - 20;
+    .info__table {
+      width: $w-100;
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: $body-1;
+      tr {
+        .table__title {
+          font-size: $h3 - 2;
+          .title__btn {
+            border: 0;
+            background: transparent;
+          }
+        }
+        td {
+          padding: $p-1;
+          &:nth-child(1) {
+            font-weight: $medium;
+          }
+        }
+        &:nth-child(odd) {
+          background: $grey-2;
+        }
+        &:nth-child(even) {
+          background: $grey-1;
+        }
+      }
+    }
+  }
+}
+.rwd-user-detail.show-active {
+  left: 0;
+}
+

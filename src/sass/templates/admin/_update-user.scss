@@ -1,0 +1,150 @@
+.update-user {
+  width: $w-100;
+  padding-top: $p-5 * 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .update-user__wrapper {
+    width: $w-100 - 30;
+    border: 1px solid $dark-2;
+    background: $primary;
+    padding: $p-2;
+    border-radius: 5px;
+    h5 {
+      text-align: center;
+      text-transform: uppercase;
+      padding-bottom: $p-1 - 5;
+      border-bottom: 1px solid $grey-2;
+    }
+    .wrapper__form {
+      .form__group {
+        width: $w-100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $m-1;
+        .form__item {
+          width: $w-100;
+          height: $h-5;
+          margin: $m-1;
+          .form__content {
+            position: relative;
+            label {
+              font-size: $body-1;
+              font-weight: $medium;
+              margin: 0;
+            }
+            .form__label {
+              position: absolute;
+              top: 50%;
+              left: 20px;
+              transform: translateY(-50%);
+              user-select: none;
+              pointer-events: none;
+              color: $tGrey-2;
+              transition: all 0.3s ease;
+            }
+            .form__input {
+              border: 1px solid $dark-2;
+              border-radius: 5px;
+              padding: $p-1 $p-2;
+              width: $w-100;
+              outline: none;
+              &:focus {
+                border-color: $red-1;
+              }
+
+              &:focus + .form__label,
+              &:not(:placeholder-shown) + .form__label {
+                top: 0;
+                color: $tPrimary;
+                background: $primary;
+                display: inline-block;
+                padding: 0 $p-1 - 5;
+              }
+              @include respond(phone) {
+                padding: $p-1 - 5 $p-2;
+              }
+              @include respond(smallPhone) {
+                padding: $p-1 - 5 $p-2;
+              }
+              @include respond(extraSmallPhone) {
+                padding: $p-1 - 5 $p-2;
+              }
+            }
+            .password__btn {
+              width: $w-2;
+              height: $h-2;
+              position: absolute;
+              top: 22%;
+              right: 15px;
+              border: 0;
+              outline: none;
+              background: transparent;
+            }
+          }
+        }
+        @include respond(phone) {
+          flex-direction: column;
+        }
+        @include respond(smallPhone) {
+          flex-direction: column;
+        }
+        @include respond(extraSmallPhone) {
+          flex-direction: column;
+         
+        }
+      }
+      .form__button {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: $m-1;
+        .button,
+        .btn-blue {
+          display: flex;
+          align-items: center;
+          font-size: $body-1;
+          font-weight: $medium;
+          padding: $p-1 - 5 $p-1;
+          i {
+            margin-right: $m-1;
+          }
+        }
+      }
+    }
+    @include respond(laptop) {
+      width: $w-100 - 15;
+    }
+    @include respond(extraTablet) {
+      width: $w-100 - 15;
+    }
+    @include respond(tablet) {
+      width: $w-100 - 10;
+    }
+    @include respond(phone) {
+      width: $w-100;
+      border: 0;
+      border-radius: 0;
+    }
+    @include respond(smallPhone) {
+      width: $w-100;
+      border: 0;
+      border-radius: 0;
+    }
+    @include respond(extraSmallPhone) {
+      width: $w-100;
+      border: 0;
+      border-radius: 0;
+    }
+  }
+  @include respond(extraTablet) {
+    padding-top: $p-4 * 2;
+  }
+  @include respond(tablet) {
+    padding-top: $p-4 * 2;
+  }
+  @include respond(phone) {
+    padding-top: $p-1;
+  }
+}

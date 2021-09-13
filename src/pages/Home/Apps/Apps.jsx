@@ -4,18 +4,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function Apps(props) {
-    let setting = {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        pauseOnHover: true,
-    }
-
     return (
         <div className="apps" id="apps">
             <div className="apps__content">
@@ -27,7 +15,7 @@ function Apps(props) {
                 </div>
                 
                 <div className="apps__phone">
-                    <Slider {...setting}>
+                    <Slider >
                         <div className="apps__slide">
                             <img src="../../img/slide1.jpg" />
                         </div>

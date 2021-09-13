@@ -31,7 +31,7 @@ export const signInAction = (user) => {
 export const signUpAction = (user) => {
   return async (dispatch) => {
     try {
-      const result = await axios({
+      await axios({
         url: `${domain}/api/QuanLyNguoiDung/DangKy`,
         method: "POST",
         data: user,
@@ -48,33 +48,41 @@ export const signUpAction = (user) => {
 };
 
 export const updateAction = (user) => {
-  return async (dispatch) => {
-    try {
-      const result = await axios({
-        url: `${domain}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
-        method: "PUT",
-        data: user,
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem(accessToken),
-        },
-      });
-      localStorage.setItem(taiKhoan, JSON.stringify(result.data));
-      Swal.fire({
-        icon: "success",
-        title: "Cập nhật thành công",
-      });
-      history.push("/userinfo");
-      dispatch({
-        type: "UPDATE_ACC",
-        taiKhoan: result.data,
-      });
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: error.response.data,
-      });
-      console.log("update", error);
-    }
+  return (dispatch) => {
+    setTimeout(async () => {
+      try {
+        const result = await axios({
+          url: `${domain}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+          method: "PUT",
+          data: user,
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem(accessToken),
+          },
+        });
+        localStorage.setItem(taiKhoan, JSON.stringify(result.data));
+        Swal.fire({
+          icon: "success",
+          title: "Cập nhật thành công",
+        });
+        history.push("/user");
+        dispatch({
+          type: "UPDATE_ACC",
+          taiKhoan: result.data,
+        });
+        dispatch({
+          type: "closeBtnLoading",
+        });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: error.response.data,
+        });
+        dispatch({
+          type: "closeBtnLoading",
+        });
+        console.log("update", error);
+      }
+    }, 1000);
   };
 };
 
