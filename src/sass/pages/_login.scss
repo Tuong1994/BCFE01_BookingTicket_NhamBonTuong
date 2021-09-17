@@ -1,4 +1,4 @@
-.login-container {
+.login {
   padding: $p-5 0;
   height: 100vh;
   background: url("../../assets/img/posterBG.jpg");
@@ -105,7 +105,8 @@
     }
     .form__button {
       text-align: center;
-      .button {
+      .button,
+      .button__disabled {
         width: $w-100;
         box-shadow: 0 0 5px $dark-1;
         margin-bottom: $m-3;

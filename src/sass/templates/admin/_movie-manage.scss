@@ -59,9 +59,12 @@
           outline: none;
         }
         .search__btn {
+          width: auto;
+          height: auto;
           outline: none;
           border: 0;
           background: transparent;
+          color: $tGrey-2;
           font-size: $body-1;
         }
         @include respond(phone) {
@@ -76,6 +79,7 @@
       }
       .form__btn {
         color: $tWhite;
+        text-align: center;
         font-size: $body-1;
         font-weight: 600;
         padding: $p-1 - 5 $p-2;
@@ -163,9 +167,41 @@
   }
   .movie-manage__list {
     width: $w-100;
-    h5 {
-      text-align: center;
-      text-transform: uppercase;
+    .list__title {
+      display: flex;
+      margin-bottom: $m-1;
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: $p-1 - 5 $p-1 + 5;
+        font-size: $body-2;
+        i {
+          margin-right: $m-1;
+          @include  respond(tablet) {
+            margin: 0;
+          }
+        }
+        span {
+          @include respond(tablet) {
+            display: none;
+          }
+        }
+        @include respond(laptop) {
+          width: $w-100 - 80;
+        }
+        @include respond(tablet) {
+          width: auto;
+          background: $primary;
+          border-color: $primary;
+          color: $tPrimary;
+        }
+      }
+      h5 {
+        width: $w-100 - 15;
+        text-align: center;
+        text-transform: uppercase;
+      }
     }
     .list__table {
       width: $w-100;
@@ -185,7 +221,8 @@
       .table__col-0,
       .table__col-1,
       .table__col-2,
-      .table__col-3 {
+      .table__col-3,
+      .table__col-6 {
         width: 15%;
       }
       .table__col-4,
@@ -193,7 +230,6 @@
       .table__col-7 {
         width: 25%;
       }
-      .table__col-6,
       .table__col-8 {
         width: 30%;
       }
@@ -251,6 +287,16 @@
             }
             p {
               margin: 0;
+            }
+            .col__icon {
+              width: $w-3;
+              height: $h-3;
+              text-align: center;
+              line-height: $h-3;
+              border-radius: 50%;
+              border: 1px solid $dark-1;
+              font-size: $body-2 - 2;
+              cursor: pointer;
             }
             textarea {
               padding: $p-1 0;
@@ -415,6 +461,11 @@
           margin: 0;
           span {
             font-weight: initial;
+          }
+          a {
+            text-decoration: none;
+            color: $tPrimary;
+            cursor: pointer;
           }
         }
         @include respond(extraTablet) {

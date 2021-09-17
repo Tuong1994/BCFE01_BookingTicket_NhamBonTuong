@@ -15,10 +15,6 @@
       transition: all 0.3s linear;
       &:hover {
         color: $tSecondary;
-        font-size: $h3 - 2;
-        @include respond(phone) {
-          font-size: $body-1 !important;
-        }
       }
       @include respond(phone) {
         font-size: $body-1;
@@ -46,6 +42,9 @@
   .active {
     color: $tSecondary;
     font-size: $h3 !important;
+    @include respond(phone) {
+      font-size: $body-1 + 2 !important;
+    }
   }
   @include respond(extraTablet) {
     padding: 0;

@@ -18,9 +18,10 @@ function RWD_Checkout(props) {
         <div className="rwd-checkout">
             <div className={showDetail ? "checkout__movie show-detail" : "checkout__movie"}>
                 <div className="movie__backward">
-                    <button onClick={() => {
+                    <span onClick={() => {
                         setShowDetail(false);
-                    }}><i class="fa fa-arrow-left"></i></button>
+                    }}><i class="fa fa-arrow-left"></i>
+                    </span>
                 </div>
                 <div className="movie__total">
                     <p>{renderTotal().toLocaleString()} đ</p>
@@ -60,7 +61,7 @@ function RWD_Checkout(props) {
                         <label htmlFor="maGiamGia">Mã giảm giá</label>
                         <div className="input__inner">
                             <input type="text" id="maGiamGia" value="Tạm thời không hỗ trợ..." />
-                            <button className="inner__button" disabled={true}>Áp dụng</button>
+                            <div className="inner__button">Áp dụng</div>
                         </div>
                     </div>
                 </div>

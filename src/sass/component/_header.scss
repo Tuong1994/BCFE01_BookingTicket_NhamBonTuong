@@ -167,10 +167,7 @@
       &:hover {
         color: $tSecondary;
       }
-      @include respond(tablet) {
-        display: block;
-      }
-      @include respond(phone) {
+      @include respond(extraTablet) {
         display: block;
       }
     }
@@ -180,7 +177,10 @@
       visibility: visible !important;
     }
     @include respond(extraTablet) {
-      justify-content: space-between;
+      top: 0;
+      height: $h-6;
+      background: $primary;
+      box-shadow: 0 0 5px $grey-1;
     }
     @include respond(tablet) {
       top: 0;

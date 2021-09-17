@@ -8,8 +8,9 @@ import ButtonLoading from '../../../component/Loading/ButtonLoading';
 
 function AddUser({ addUser, setAddUser }) {
     const [showPassword, setShowPassword] = useState(false);
+    
     let dispatch = useDispatch();
-    const { handleChange, handleBlur, handleSubmit, handleReset, touched, errors, isValid } = useFormik({
+    const { handleChange, handleBlur, handleSubmit, touched, errors, isValid } = useFormik({
         initialValues: {
             taiKhoan: "",
             matKhau: "",
@@ -42,7 +43,7 @@ function AddUser({ addUser, setAddUser }) {
         onSubmit: (values) => {
             dispatch(addUserAction(values));
         }
-    })
+    });
 
     return (
         <div className={addUser ? "add-user active" : "add-user"}>
@@ -131,7 +132,7 @@ function AddUser({ addUser, setAddUser }) {
                             </div>
 
                             <div className="form__button">
-                                <button className="button" type="submit" disabled={!isValid} onReset={handleReset} onClick={() => {
+                                <button className="button" type="submit" disabled={!isValid} onClick={() => {
                                     dispatch({
                                         type: "openBtnLoading",
                                     });

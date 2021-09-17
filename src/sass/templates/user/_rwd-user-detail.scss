@@ -18,9 +18,10 @@
       font-size: $body-1;
       tr {
         .table__title {
-          font-size: $h3 - 2;
+          font-size: $h3 - 4;
           .title__btn {
             border: 0;
+            outline: none;
             background: transparent;
           }
         }
@@ -37,6 +38,9 @@
           background: $grey-1;
         }
       }
+    }
+    @include respond(tablet) {
+      width: $w-100 - 10;
     }
   }
 }

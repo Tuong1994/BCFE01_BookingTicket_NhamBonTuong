@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMovieAction } from '../../../redux/action/PhimAction';
+import { getMovieAction, getMovieDetailAction } from '../../../redux/action/PhimAction';
 import { delMovieAction } from '../../../redux/action/AdminAction';
 import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -8,11 +8,13 @@ import AdminLoading from '../../../component/Loading/AdminLoading';
 import AddMovie from './AddMovie';
 import MovieInfo from './MovieInfo';
 import Pagination from '../../../component/Pagination/Pagination';
+import MovieTrailer from '../../../component/MovieTrailer/MovieTrailer';
 
 function MovieManage(props) {
-    const { danhSachPhim } = useSelector(state => state.PhimReducer);
+    const { danhSachPhim, phimTrailer } = useSelector(state => state.PhimReducer);
     const { loading } = useSelector(state => state.LoadingReducer);
 
+    const [showTrailer, setShowTrailer] = useState(false);
     const [addMovie, setAddMovie] = useState(false);
     const [movieInfo, setMovieInfo] = useState(false);
     const [searchMovie, setSearchMovie] = useState("");
@@ -25,15 +27,14 @@ function MovieManage(props) {
     let changePage = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-    let dispatch = useDispatch();
 
+    let dispatch = useDispatch();
     useEffect(() => {
         dispatch({
             type: "openLoading"
         })
         dispatch(getMovieAction());
     }, [])
-
     useEffect(() => {
         setTimeout(() => {
             dispatch({
@@ -59,7 +60,6 @@ function MovieManage(props) {
                             film: movie,
                         })
                     }}><i class="fa fa-bars"></i></p>
-                    <p className="table__btn" title="Lịch chiếu"><i class="fa fa-clock"></i></p>
                     <NavLink to="/update_movie" className="table__btn" title="Chỉnh sửa" onClick={() => {
                         dispatch({
                             type: "GET_FILM_DETAIL",
@@ -99,7 +99,18 @@ function MovieManage(props) {
                     <p>{movie.biDanh}</p>
                 </div>
                 <div className="table__col table__col-6">
-                    {movie.trailer.length > 25 ? <p>{movie.trailer.substr(0, 25)}...</p> : <p>{movie.trailer}</p>}
+                    <span className="col__icon" onClick={() => {
+                        dispatch({
+                            type: "GET_TRAILER",
+                            film: {
+                                maPhim: movie.maPhim,
+                                trailer: movie.trailer
+                            },
+                        })
+                        setShowTrailer(true);
+                    }}>
+                        <i className="fas fa-play"></i>
+                    </span>
                 </div>
                 <div className="table__col table__col-7">
                     <img src={`${movie.hinhAnh}`} alt={`${movie.tenPhim}`} />
@@ -117,6 +128,7 @@ function MovieManage(props) {
     return (
         <div className="movie-manage">
             <MovieInfo movieInfo={movieInfo} setMovieInfo={setMovieInfo} />
+            <MovieTrailer showTrailer={showTrailer} setShowTrailer={setShowTrailer} phimTrailer={phimTrailer} />
 
             <div className="movie-manage__title">
                 <h4>Quản Lý Phim</h4>
@@ -125,10 +137,12 @@ function MovieManage(props) {
                         <input type="text" placeholder="Tìm kiếm phim..." onChange={(e) => {
                             setSearchMovie(e.target.value);
                         }} />
-                        <div className="search__btn"><i class="fa fa-search"></i></div>
+                        <button className="search__btn">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
                     <div className="button form__btn" onClick={() => {
-                        setAddMovie(true)
+                        setAddMovie(true);
                     }}>
                         <i class="fa fa-plus"></i>
                         <span>Thêm Phim</span>
@@ -139,7 +153,13 @@ function MovieManage(props) {
             <hr />
 
             <div className="movie-manage__list">
-                <h5>Danh Sách Phim</h5>
+                <div className="list__title">
+                    <NavLink to="/movie_schedules" className="button">
+                        <i class="fa fa-film"></i>
+                        <span>Tạo lịch chiếu</span>
+                    </NavLink>
+                    <h5>Danh Sách Phim</h5>
+                </div>
                 <div className="list__table">
                     <div className="table__title">
                         <div className="table__col table__col-0"><i class="fa fa-cog"></i></div>

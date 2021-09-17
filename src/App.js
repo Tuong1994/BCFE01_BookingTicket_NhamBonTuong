@@ -11,13 +11,14 @@ import Checkout from "./pages/Checkout/Checkout";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
-import MovieManage from "./pages/Admin/MovieManage/MovieManage";
-import UpdateMovie from "./pages/Admin/MovieManage/UpdateMovie";
-import UserManage from "./pages/Admin/UserManage/UserManage";
-import UpdateUser from "./pages/Admin/UserManage/UpdateUser";
-import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import User from "./pages/User/User";
 
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import MovieManage from "./pages/Admin/MovieManage/MovieManage";
+import UpdateMovie from "./pages/Admin/MovieManage/UpdateMovie";
+import MovieSchedules from './pages/Admin/CreateSchedules/MovieSchedules';
+import UserManage from "./pages/Admin/UserManage/UserManage";
+import UpdateUser from "./pages/Admin/UserManage/UpdateUser";
 
 export const history = createBrowserHistory();
 
@@ -37,6 +38,7 @@ function App() {
           <AdminTemplate exact path="/dashboard" Component={Dashboard} />
           <AdminTemplate exact path="/movie_manage" Component={MovieManage} />
           <AdminTemplate exact path="/update_movie" Component={UpdateMovie} />
+          <AdminTemplate exact path="/movie_schedules" Component={MovieSchedules} />
           <AdminTemplate exact path="/user_manage" Component={UserManage} />
           <AdminTemplate exact path="/update_user" Component={UpdateUser} />
         </div>

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 function RWD_BookedHistory({ showBookedDetail, setShowBookedDetail }) {
     const { bookDetail } = useSelector(state => state.UserReducer);
-    console.log(bookDetail);
+    
     return (
         <div className={showBookedDetail ? "rwd-booked-history show-booked-detail" : "rwd-booked-history"}>
             <div className="booked-detail">

@@ -36,7 +36,7 @@ function CinemaDetail({ chiTietLichChieu }) {
                         <div className="movie__inner-1">
                             <div className="inner__item">
                                 <p>Ngày khởi chiếu :</p>
-                                <p>{moment(chiTietLichChieu.ngayKhoiChieu).format("dddd/mm/yyyy")}</p>
+                                <p>{moment(chiTietLichChieu.ngayKhoiChieu).format("DD/MM/YYYY")}</p>
                             </div>
                             <div className="inner__item">
                                 <p>Đạo diễn :</p>
@@ -65,7 +65,7 @@ function CinemaDetail({ chiTietLichChieu }) {
                     </div>
                 </div>
 
-                <div className={show == 3 ? "content movie-rating show" : "content"}>
+                <div className={show == 3 ? "content movie-post show" : "content"}>
                     <Posts />
                 </div>
             </div>

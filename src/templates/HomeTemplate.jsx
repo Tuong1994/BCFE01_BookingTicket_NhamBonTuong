@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import Loading from '../component/Loading/Loading';
 import Footer from '../component/Footer/Footer';
 import Header from '../component/Header/Header';
+import ButtonScrollTop from '../component/ButtonScrollTop/ButtonScrollTop';
 
 const HomeTemplate = (props) => {
     let { Component, ...restRoute } = props;
@@ -12,6 +13,7 @@ const HomeTemplate = (props) => {
             <Header />
             <Component {...propsRoute} />
             <Footer />
+            <ButtonScrollTop />
         </div>
     }} />
 }

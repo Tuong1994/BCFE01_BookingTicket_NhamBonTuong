@@ -31,6 +31,7 @@
       }
     }
     .detail__btn {
+      width: auto;
       border: 0;
       background: transparent;
       display: none;
@@ -42,6 +43,34 @@
       @include respond(phone) {
         display: block;
         font-size: $body-1;
+      }
+    }
+    .admin__btn {
+      text-decoration: none;
+      color: $tWhite;
+      background: $blue;
+      padding: $p-1 - 5 $p-1;
+      border-radius: 50px;
+      font-size: $body-1;
+      transition: all 0.2s linear;
+      &:hover {
+        box-shadow: 0 0 5px $dark-2;
+      }
+      i {
+        margin-right: $m-1 - 5;
+        @include respond(extraTablet) {
+          margin: 0;
+        }
+      } 
+      span {
+        @include respond(extraTablet) {
+          display: none;
+        }
+      }
+      @include respond(extraTablet) {
+        background: transparent;
+        color: $tPrimary;
+        margin: $m-1;
       }
     }
     @include respond(extraTablet) {

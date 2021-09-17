@@ -2,13 +2,31 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signInAction } from '../../redux/action/UserAction';
+import { useEffect } from 'react';
+import Loading from '../../component/Loading/Loading';
+import { useRef } from 'react';
 
 
 function Login() {
     const [showPassword, setShowPassword] = useState(false);
+    const { loading } = useSelector(state => state.LoadingReducer);
+
     let dispatch = useDispatch();
+    useEffect(() => {
+        dispatch({
+            type: "openLoading",
+        })
+    }, []);
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch({
+                type: "closeLoading",
+            })
+        }, 1000)
+    }, [loading]);
+
     const { handleChange, handleSubmit, handleBlur, touched, errors, isValid } = useFormik({
         initialValues: {
             taiKhoan: "",
@@ -22,8 +40,10 @@ function Login() {
             dispatch(signInAction(values));
         }
     });
+
     return (
-        <div className="login-container">
+        <div className="login">
+            <Loading />
             <form className="login__form" onSubmit={handleSubmit}>
                 <h3>Đăng nhập</h3>
                 <div className={touched.taiKhoan && errors.taiKhoan ? "form__item animation" : "form__item"}>
@@ -55,9 +75,12 @@ function Login() {
 
 
                 <div className="form__button">
-                    <button className="button" type="submit" disabled={!isValid}>
-                        Đăng nhập
-                    </button>
+                    {errors.taiKhoan || errors.matKhau ?
+                        <button className="button__disabled" disabled={true}>Đăng nhập</button> :
+                        <button className="button" type="submit" disabled={!isValid}>
+                            Đăng nhập
+                        </button>
+                    }
                     <hr />
                     <p>Bạn chưa có tài khoản ? {" "}
                         <span>

@@ -69,6 +69,7 @@
           outline: none;
           border: 0;
           background: transparent;
+          color: $tGrey-2;
           font-size: $body-1;
         }
         @include respond(tablet) {
@@ -86,6 +87,7 @@
       }
       .form__btn {
         color: $tWhite;
+        text-align: center;
         font-size: $body-1;
         font-weight: 600;
         padding: $p-1 - 5 $p-2;
@@ -376,6 +378,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    @include respond(extraTablet) {
+      padding: $p-3;
+    }
+    @include respond(phone) {
+      padding: $p-2 $p-1;
     }
   }
   .user-info.active {

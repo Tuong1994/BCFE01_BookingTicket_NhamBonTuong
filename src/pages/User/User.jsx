@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { bookHistoryAction } from '../../redux/action/UserAction';
 import UserDetail from './UserDetail';
 import UserContent from './UserContent';
 import RWD_UserDetail from './RWD_UserDetail';
@@ -11,7 +10,6 @@ import Loading from '../../component/Loading/Loading';
 
 function User(props) {
     const { loading } = useSelector(state => state.LoadingReducer);
-    const { accountInfo } = useSelector(state => state.UserReducer);
     const [showActive, setShowActive] = useState(false);
     const [showBookedDetail, setShowBookedDetail] = useState(false);
     
@@ -20,7 +18,6 @@ function User(props) {
         dispatch({
             type: "openLoading"
         })
-        dispatch(bookHistoryAction(accountInfo));
     }, [])
     useEffect(() => {
         setTimeout(() => {

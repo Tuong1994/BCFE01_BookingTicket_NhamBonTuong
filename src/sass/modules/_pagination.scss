@@ -8,9 +8,18 @@
   align-items: center;
   .pagination__list {
     display: flex;
+    align-items: center;
+    font-size: $body-1;
+    font-weight: $medium;
+    p {
+      margin: 0 $m-1;
+      @include respond(tablet) {
+        display: none;
+      }
+    }
     .list__item {
-      width: $w-3;
-      height: $h-3;
+      width: $w-2 + 5;
+      height: $h-2 + 5 ;
       list-style: none;
       margin: 0 $m-1 - 5;
       border-radius: 5px;

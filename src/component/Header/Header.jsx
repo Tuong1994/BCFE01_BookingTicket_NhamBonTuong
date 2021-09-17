@@ -2,20 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
+import { bookHistoryAction } from '../../redux/action/UserAction';
 import RWD_Header from '../RWD_Header/RWD_Header';
 
 function Header(props) {
     const dispatch = useDispatch();
-    let { account, accountInfo } = useSelector(state => state.UserReducer);
+    const { account, accountInfo } = useSelector(state => state.UserReducer);
 
     const [subMenu, setSubmenu] = useState(false);
-    let showSubmenu = () => setSubmenu(!subMenu);
-
     const [userInfo, setUserInfo] = useState(false);
+    const [background, setBackground] = useState(false);
+    
+    let showSubmenu = () => setSubmenu(!subMenu);
     let showUserInfo = () => setUserInfo(!userInfo);
 
-    const [background, setBackground] = useState(false);
-
+    useEffect(() => {
+        dispatch(bookHistoryAction(accountInfo));
+    }, [])
     useEffect(() => {
         let scrollPosition = 0;
         let handleScroll = () => {
@@ -73,7 +76,7 @@ function Header(props) {
                     <div className="nav__login">
                         {account !== "" ? <div className="user__login">
                             <img src="https://i.pravatar.cc/300" alt="avatar" />
-                            <span>{account}</span>
+                            <span>{accountInfo.hoTen}</span>
                             <div className="btn-show" onClick={showUserInfo}><i class="fa fa-caret-down"></i></div>
                             <div className={userInfo ? "user__info show" : "user__info"}>
                                 {accountInfo.maLoaiNguoiDung !== "KhachHang" ? 

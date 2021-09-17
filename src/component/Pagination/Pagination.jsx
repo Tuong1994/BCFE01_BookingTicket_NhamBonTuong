@@ -11,6 +11,7 @@ function Pagination({ perPage, total, changePage }) {
     return (
         <div className="pagination">
             <ul className="pagination__list">
+                <p>Trang : </p>
                 {pageNumber?.map((page, index) => {
                     return <li key={index} className={currentBtn == index ? "list__item active-btn" : "list__item"}>
                         <button type="button" className="item__btn" onClick={() => {

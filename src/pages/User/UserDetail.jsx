@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
+import { NavLink } from 'react-router-dom';
 
 function UserDetail({ setShowActive }) {
     const { accountInfo, userBookedInfo } = useSelector(state => state.UserReducer);
@@ -19,7 +19,14 @@ function UserDetail({ setShowActive }) {
                 <p>Hello, {accountInfo.taiKhoan}</p>
                 <button className="detail__btn" onClick={() => {
                     setShowActive(true)
-                }}><i class="fa fa-align-right"></i></button>
+                }}>
+                    <i class="fa fa-align-right"></i>
+                </button>
+                {accountInfo.loaiNguoiDung === "Quản trị" ?
+                    <NavLink className="admin__btn" to="/movie_manage">
+                        <i class="fa fa-user-cog"></i>
+                        <span>Tới trang quản trị</span>
+                    </NavLink> : null}
             </div>
 
             <div className="detail__info">

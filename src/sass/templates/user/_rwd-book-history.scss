@@ -27,9 +27,17 @@
       right: 5px;
       font-size: $body-1 + 2;
       color: $tSecondary;
+      @include respond(tablet) {
+        top: 0;
+        right: 0;
+      }
     }
     h4 {
       text-align: center;
+      text-transform: uppercase;
+      @include respond(tablet) {
+        font-size: $body-1 + 2;
+      }
     }
     .booked-detail__cinema {
       .cinema__inner {

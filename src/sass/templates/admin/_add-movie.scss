@@ -31,6 +31,10 @@
         font-size: $h3;
         color: $tSecondary;
         outline: none;
+        @include respond(tablet) {
+          top: 0;
+          right: 0;
+        }
       }
       h5 {
         text-align: center;

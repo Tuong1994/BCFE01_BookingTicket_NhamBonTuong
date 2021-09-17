@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from "yup";
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUpAction } from '../../redux/action/UserAction';
 import { phoneRegExp } from '../../configs/setting';
+import Loading from '../../component/Loading/Loading';
 
 function Register(props) {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-    const dispatch = useDispatch()
+    const { loading } = useSelector(state => state.LoadingReducer);
+
+    useEffect(() => {
+        dispatch({
+            type: "openLoading",
+        })
+    }, []);
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch({
+                type: "closeLoading"
+            })
+        }, 1000)
+    }, [loading])
+
+    let dispatch = useDispatch()
     const { handleChange, handleBlur, handleSubmit, touched, errors, isValid } = useFormik({
         initialValues: {
             hoTen: "",
@@ -51,6 +67,7 @@ function Register(props) {
 
     return (
         <div className="register-container">
+            <Loading />
             <form className="register__form" onSubmit={handleSubmit}>
                 <h3>Đăng ký</h3>
                 <div className={touched.taiKhoan && errors.taiKhoan ? "form__item animation" : "form__item group-1"}>

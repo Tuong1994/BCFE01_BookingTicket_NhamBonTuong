@@ -14,7 +14,7 @@ function MovieInFo({ movieInfo, setMovieInfo }) {
                 <div className="movie-info__content">
                     <p>Tên Phim : <span>{phim.tenPhim}</span></p>
                     <p>Bí Danh : <span>{phim.biDanh}</span></p>
-                    <p>Trailer : <span>{phim.trailer}</span></p>
+                    <p>Trailer : <a href={phim.trailer}>{phim.trailer}</a></p>
                     <p>Đánh Giá : <span>{phim.danhGia}</span></p>
                     <p>Mô Tả : <br />{phim.moTa?.length > 200 ? <span>{phim.moTa.substr(0, 200)}...</span> : <span>{phim.moTa}</span>}</p>
                 </div>

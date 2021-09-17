@@ -5,11 +5,15 @@ import { Formik, Form, Field, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import ButtonLoading from '../../component/Loading/ButtonLoading';
 import { useState } from 'react';
-import { updateAction } from '../../redux/action/UserAction';
+import { bookHistoryAction, updateAction } from '../../redux/action/UserAction';
+import { useEffect } from 'react';
 
 function UserInfoUpdate() {
     const [showPassword, setShowPassword] = useState(false);
     const { accountInfo, userBookedInfo } = useSelector(state => state.UserReducer);
+    useEffect(() => {
+        dispatch(bookHistoryAction(accountInfo));
+    }, [])
   
     let dispatch = useDispatch();
     const { handleChange, handleBlur, handleSubmit, handleReset, touched, errors, isValid, values } = useFormik({

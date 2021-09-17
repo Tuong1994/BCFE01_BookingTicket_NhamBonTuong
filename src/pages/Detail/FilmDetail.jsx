@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getShowTimeDetail } from '../../redux/action/PhimAction';
 import { Link } from 'react-scroll';
 import CinemaDetail from './CinemaDetail';
-import Popup from '../../component/Popup/Popup';
+import MovieTrailer from '../../component/MovieTrailer/MovieTrailer';
 
 function Detail(props) {
     let dispatch = useDispatch();
-    
-    const { chiTietLichChieu } = useSelector(state => state.PhimReducer);  
+
+    const { chiTietLichChieu, phimTrailer } = useSelector(state => state.PhimReducer);
     const { loading } = useSelector(state => state.LoadingReducer)
 
-    const [showVideo, setShowVideo] = useState(false);
+    const [showTrailer, setShowTrailer] = useState(false);
 
     useEffect(() => {
         dispatch({
@@ -48,7 +48,7 @@ function Detail(props) {
                                             trailer: chiTietLichChieu.trailer
                                         }
                                     });
-                                    setShowVideo(true)
+                                    setShowTrailer(true)
                                 }}>
                                     <i class="fa fa-play"></i>
                                 </button>
@@ -94,9 +94,7 @@ function Detail(props) {
                 <CinemaDetail chiTietLichChieu={chiTietLichChieu} />
             </div>
 
-            <Popup trigger={showVideo} setTrigger={setShowVideo}>
-                <iframe className="videos-wrapper" src={chiTietLichChieu.trailer} frameborder="0" allow="autoplay" allowFullScreen={true}></iframe>
-            </Popup>
+            <MovieTrailer showTrailer={showTrailer} setShowTrailer={setShowTrailer} phimTrailer={phimTrailer}/>
         </div >
     );
 }

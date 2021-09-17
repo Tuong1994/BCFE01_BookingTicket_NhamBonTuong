@@ -40,7 +40,7 @@
   }
   .checkout__progress {
     width: $w-100;
-    height: $h-10;
+    height: $h-6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,13 +56,13 @@
       .step__info {
         text-align: center;
         color: $tGrey-2;
-        font-size: $h3;
+        font-size: $h3 - 4;
         margin: 0;
         transition: all 0.2 linear;
       }
       .step__bar {
         width: 0;
-        height: 7px;
+        height: 5px;
         background: $green;
         position: absolute;
         left: 0;
@@ -76,6 +76,9 @@
         color: $tGreen;
       }
     }
+    @include respond(laptop) {
+      display: none;
+    }
   }
   .checkout__content {
     width: $w-100;
@@ -85,6 +88,8 @@
     padding-left: $p-3;
     .checkout__theatre {
       width: $w-100 - 30;
+      height: $h-10 * 4.8;
+      overflow-y: auto;
       padding-right: $p-5;
       margin-bottom: $m-2;
       .theatre__info {
@@ -206,7 +211,6 @@
         }
       }
       .theatre__note {
-        margin-top: $m-4;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -288,7 +292,7 @@
     }
     .checkout__movie {
       width: $w-100 - 70;
-      height: $h-10 * 7.2;
+      height: $h-10 * 4.8;
       padding: $p-1 $p-3;
       border-left: 1px solid $grey-2;
       overflow-y: auto;

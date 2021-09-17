@@ -21,9 +21,8 @@ export const signInAction = (user) => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        text: error.response.data,
+        title: error.response.data,
       });
-      console.log(error);
     }
   };
 };

@@ -1,15 +1,13 @@
 import { taiKhoan } from "../../configs/setting";
 
-let signInAccount = "";
 let accountInfo = "";
 if (localStorage.getItem(taiKhoan)) {
   let userLogin = localStorage.getItem(taiKhoan);
   accountInfo = JSON.parse(userLogin);
-  signInAccount = JSON.parse(userLogin).taiKhoan;
 }
 
 const stateDefault = {
-  account: signInAccount,
+  account: accountInfo.hoTen,
   accountInfo: accountInfo,
   userBookedInfo: {},
   bookDetail: [],
@@ -18,8 +16,8 @@ const stateDefault = {
 export const UserReducer = (state = stateDefault, action) => {
   switch (action.type) {
     case "SIGN_IN": {
-      state.accountInfo = action.taiKhoan;
       state.account = action.taiKhoan;
+      state.accountInfo = action.taiKhoan;
       return { ...state };
     }
     case "LOG_OUT": {

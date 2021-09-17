@@ -26,6 +26,7 @@ function UserManage(props) {
     }
 
     let dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch({
             type: "openLoading"

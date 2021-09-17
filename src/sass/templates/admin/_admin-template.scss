@@ -305,6 +305,8 @@
           transform: rotateY(180deg);
         }
         .admin__login {
+          text-decoration: none;
+          color: $tPrimary;
           img {
             width: $w-3;
             height: $h-3;

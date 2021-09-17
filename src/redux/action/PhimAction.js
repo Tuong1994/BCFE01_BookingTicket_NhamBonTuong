@@ -2,6 +2,57 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { accessToken, domain, maNhom } from "../../configs/setting";
 
+export const getCineplexAction = () => {
+  return async (dispatch) => {
+    try {
+      const result = await axios({
+        url: `${domain}/api/QuanLyRap/LayThongTinHeThongRap`,
+        method: "GET",
+      });
+      dispatch({
+        type: "GET_CINEPLEX",
+        danhSachHeThongRap: result.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCinemaByCinplexAction = (maHeThongRap) => {
+  return async (dispatch) => {
+    try {
+      const result = await axios({
+        url: `${domain}/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`,
+        method: "GET",
+      });
+      dispatch({
+        type: "GET_CINEMA_BY_CINEPLEX",
+        danhSachRapTheoHeThong: result.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCinemaAction = () => {
+  return async (dispatch) => {
+    try {
+      const result = await axios({
+        url: `${domain}/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${maNhom}`,
+        method: "GET",
+      });
+      dispatch({
+        type: "GET_CINEMA",
+        danhSachRapChieu: result.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const getMovieAction = () => {
   return (dispatch) => {
     dispatch({
@@ -27,19 +78,20 @@ export const getMovieAction = () => {
   };
 };
 
-export const getCinemaAction = () => {
+export const getMovieDetailAction = (tenPhim) => {
   return async (dispatch) => {
     try {
       const result = await axios({
-        url: `${domain}/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=${maNhom}`,
+        url: `${domain}/api/QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}&tenPhim=${tenPhim}`,
         method: "GET",
       });
       dispatch({
-        type: "GET_CINEMA",
-        danhSachRapChieu: result.data,
+        type: "GET_MOVIE_DETAIL_BY_SEARCH",
+        phim: result.data,
       });
+      console.log(result.data);
     } catch (error) {
-      console.log(error);
+      console.log(error.response?.data);
     }
   };
 };

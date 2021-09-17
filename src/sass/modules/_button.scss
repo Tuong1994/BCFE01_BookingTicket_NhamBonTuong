@@ -37,3 +37,34 @@
         color: $blue !important;
     }
 }
+
+.button-scroll {
+    width: $w-5;
+    height: $h-5;
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+    border: 0;
+    border-radius: 50%;
+    background: $red-1;
+    font-size: $h3 - 4;
+    color: $tWhite;
+    outline: 0 !important;
+    z-index: 999;
+    @include respond(extraTablet) {
+        width: $w-4;
+        height: $h-4;
+    }
+}
+
+.button__disabled {
+    width: auto;
+    height: auto;
+    opacity: 0.8;
+    border-radius: 5px;
+    border: 1px solid $dark-2;
+    background: $dark-2;
+    color: $tWhite;
+    padding: $p-1 - 5 $p-2;
+    pointer-events: none;
+  }

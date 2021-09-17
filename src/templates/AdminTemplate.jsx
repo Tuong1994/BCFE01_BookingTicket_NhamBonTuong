@@ -4,7 +4,7 @@ import { Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 export const AdminTemplate = (props) => {
-    let { account } = useSelector(state => state.UserReducer);
+    const { account } = useSelector(state => state.UserReducer);
 
     const [show, setShow] = useState(false);
     const [shrink, setShrink] = useState(false);
@@ -60,10 +60,10 @@ export const AdminTemplate = (props) => {
                     }}>
                         <i class="fa fa-expand"></i>
                     </button>
-                    <div className="admin__login">
+                    <NavLink className="admin__login" to="/user">
                         <img src="https://picsum.photos/200" />
                         <span>Hello, {account}</span>
-                    </div>
+                    </NavLink>
                 </div>
                 <Component {...propsRoute} />
             </div>
