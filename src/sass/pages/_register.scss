@@ -123,25 +123,34 @@
         }
       }
     }
-    .button {
-      width: $w-100;
-    }
-    p {
+    .form__button {
       text-align: center;
-      color: $tGrey-1;
-      .form__link {
-        text-decoration: underline;
-        font-weight: $medium;
-        color: $tPrimary;
-        transition: all 0.3s;
-        &:hover {
-          color: $tSecondary;
-        }
-        @include respond(tablet) {
-          color: $tWhite;
-        }
-        @include respond(phone) {
-          color: $tWhite;
+      .button, 
+      .button__disabled {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $w-100;
+        box-shadow: 0 0 5px $dark-1;
+        margin-bottom: $m-3;
+      }
+      p {
+        color: $tGrey-2;
+        .form__link {
+          text-decoration: underline;
+          color: $tPrimary;
+          font-weight: $medium;
+          transition: all 0.3s;
+          &:hover {
+            color: $tSecondary;
+          }
+          @include respond(tablet) {
+            color: $tWhite;
+          }
+          @include respond(phone) {
+            color: $tWhite;
+            font-size: $body-1;
+          }
         }
       }
     }

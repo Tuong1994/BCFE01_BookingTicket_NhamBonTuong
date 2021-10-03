@@ -119,16 +119,9 @@
           }
           @include respond(phone) {
             display: block;
-            top: -5%;
+            top: -13%;
           }
-          @include respond(smallPhone) {
-            display: block;
-            top: -5%;
-          }
-          @include respond(extraSmallPhone) {
-            display: block;
-            top: -5%;
-          }
+          
         }
         .film__desc {
           font-size: $body-1;
@@ -389,7 +382,7 @@
           left: 0;
           opacity: 0;
           visibility: hidden;
-          transition: all 0.1s linear;
+          transition: opacity 0.15s linear;
         }
         .movie-schedule {
           width: $w-100;
@@ -508,7 +501,7 @@
                       }
                       @include respond(smallPhone) {
                         font-size: $body-2 - 2;
-                        width: $w-10 + 65;
+                        width: $w-100;
                       }
                     }
                   }
@@ -671,11 +664,14 @@
                     font-size: $body-2;
                   }
                 }
+                @include respond(tablet) {
+                  margin-top: $m-2;
+                  width: $w-100 - 15;
+                }
+                @include respond(smallPhone) {
+                  width: $w-100 - 10;
+                }
               }
-            }
-            .post__input.show-input {
-              opacity: 1;
-              visibility: visible;
             }
             .post__list {
               width: $w-100;
@@ -736,6 +732,59 @@
               @include respond(extraTablet) {
                 padding: 0;
               }
+            }
+            .post__alert {
+              width: $w-100;
+              height: $h-100;
+              position: fixed;
+              top: 0;
+              left: 0;
+              background: rgba(0, 0, 0, 0.5);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              opacity: 0;
+              visibility: hidden;
+              transition: all 0.2s linear;
+              .alert__inner {
+                width: $w-100 - 65;
+                background: $primary;
+                padding: $p-1;
+                border-radius: 5px;
+                color: $tPrimary;
+                font-size: $h3;
+                text-align: center;
+                position: relative;
+                .fa {
+                  font-size: $body-1 + 4;
+                  color: $tSecondary;
+                  position: absolute;
+                  top: 5px;
+                  right: 10px;
+                  cursor: pointer;
+                }
+                p {
+                  margin: 0;
+                }
+                .inner__button {
+                  width: $w-100;
+                  display: flex;
+                  justify-content: flex-end;
+                  .button {
+                    padding: $p-1 - 5 $p-1 + 5;
+                    font-size: $body-1;
+                  }
+                }
+                @include respond(tablet) {
+                  width: $w-100 - 20;
+                  font-size: $body-1 + 4;
+                }
+              }
+            }
+            .post__input.show-input,
+            .post__alert.show-alert {
+              opacity: 1;
+              visibility: visible;
             }
           }
         }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -6,8 +6,7 @@ function BookInfo({ thongTinRapChieu, renderTotal }) {
     const { accountInfo } = useSelector(state => state.UserReducer);
     const { DSGheDangDat, thanhCong, hinhThucThanhToan } = useSelector(state => state.BookTicketReducer);
     const { thongTinPhim } = thongTinRapChieu;
-    let dispatch = useDispatch();
-
+    const dispatch = useDispatch();
     let renderBookInfo = () => {
         if (thanhCong) {
             return <div className="checkout__bookinfo">
@@ -45,7 +44,7 @@ function BookInfo({ thongTinRapChieu, renderTotal }) {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="bookinfo__user">
                         <h4>Thông tin đặt vé</h4>
                         <div className="user__info">
@@ -79,15 +78,22 @@ function BookInfo({ thongTinRapChieu, renderTotal }) {
                             })
                             window.location.reload(true);
                         }}>Mua thêm vé</button>
-                        <NavLink  to="/" className="button">Quay lại trang chủ</NavLink>
+                        <NavLink to="/" className="button">Quay lại trang chủ</NavLink>
                     </div>
                 </div>
             </div>
         } else {
-           return null
+            return null
         }
     }
-
+    useEffect(() => {
+        if (thanhCong) {
+            document.body.style.overflow = "hidden"
+        }
+        return () => {
+            document.body.style.overflow = "unset"
+        }
+    }, [thanhCong])
     return (
         <>
             {renderBookInfo()}

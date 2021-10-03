@@ -13,11 +13,16 @@ export const signInAction = (user) => {
       });
       localStorage.setItem(accessToken, result.data.accessToken);
       localStorage.setItem(taiKhoan, JSON.stringify(result.data));
-      history.push("/");
       dispatch({
         type: "SIGN_IN",
-        taiKhoan: taiKhoan,
+        taiKhoan: result.data,
       });
+      setTimeout(() => {
+        history.push("/");
+        dispatch({
+          type: "closeBtnLoading"
+        })
+      }, 2000)
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -36,6 +41,12 @@ export const signUpAction = (user) => {
         data: user,
       });
       dispatch(signInAction(user));
+      setTimeout(() => {
+        history.push("/");
+        dispatch({
+          type: "closeBtnLoading"
+        })
+      }, 2000)
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -79,7 +90,6 @@ export const updateAction = (user) => {
         dispatch({
           type: "closeBtnLoading",
         });
-        console.log("update", error);
       }
     }, 1000);
   };

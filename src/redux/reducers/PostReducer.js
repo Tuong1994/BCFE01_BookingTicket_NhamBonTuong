@@ -21,7 +21,7 @@ const stateDefault = {
 export const PostReducer = (state = stateDefault, action) => {
     switch (action.type) {
         case "USER_POST": {
-            state.postList.shift(action.post);
+            state.postList.push(action.post);
             return {...state}
         }
         default:

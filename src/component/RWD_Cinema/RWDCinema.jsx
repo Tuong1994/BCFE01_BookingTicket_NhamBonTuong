@@ -7,8 +7,8 @@ function RWDCinema(props) {
 
     return (
         <div className="rwd-cinema" id="cineplex">
-            {danhSachRapChieu?.map(({logo, tenHeThongRap, lstCumRap }) => {
-               return <CinemaTitle logo={logo} tenHeThongRap={tenHeThongRap} lstCumRap={lstCumRap} />
+            {danhSachRapChieu?.map(({logo, tenHeThongRap, lstCumRap }, index) => {
+               return <CinemaTitle logo={logo} tenHeThongRap={tenHeThongRap} lstCumRap={lstCumRap}  key={index} />
             })}
         </div>
     );

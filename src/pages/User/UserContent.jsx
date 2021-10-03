@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import UserInfoUpdate from './UserInfoUpdate';
+import UserAccInfo from './UserAccInfo';
 import UserBookedHistory from './UserBookedHistory';
 
-function UserContent({ setShowBookedDetail }) {
+function UserContent({ setShowBookedDetail, setShowForm }) {
     const [showContent, setShowContent] = useState(1);
 
     return (
@@ -17,7 +17,7 @@ function UserContent({ setShowBookedDetail }) {
             </div>
             <div className="content__items">
                 <div className={showContent == 1 ? "items show-content" : "items"}>
-                    <UserInfoUpdate />
+                    <UserAccInfo setShowForm={setShowForm} />
                 </div>
                 <div className={showContent == 2 ? "items show-content" : "items"}>
                     <UserBookedHistory setShowBookedDetail={setShowBookedDetail} />

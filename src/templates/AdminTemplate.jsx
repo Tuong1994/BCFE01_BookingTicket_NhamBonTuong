@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route } from 'react-router';
+import { NavHashLink as Link } from 'react-router-hash-link';
 import { NavLink } from 'react-router-dom';
 
 export const AdminTemplate = (props) => {
-    const { account } = useSelector(state => state.UserReducer);
+    const { accountInfo } = useSelector(state => state.UserReducer);
 
     const [show, setShow] = useState(false);
     const [shrink, setShrink] = useState(false);
@@ -22,30 +23,30 @@ export const AdminTemplate = (props) => {
                 </NavLink>
 
                 <div className={show ? "admin__menu show" : "admin__menu"}>
-                    <NavLink className="admin__link" to="/dashboard" onClick={() => {
+                    <Link className="admin__link" to="/dashboard" activeName="selected" activeStyle={{color: "#fb4226"}} onClick={() => {
                         setShow(false)
                     }}>
                         <i class={shrink ? "fa fa-chart-line icon__active" : "fa fa-chart-line"}></i>
                         <span className={shrink ? "link__hide" : ""}>Dashboard</span>
-                    </NavLink>
-                    <NavLink className="admin__link" to="/movie_manage" onClick={() => {
+                    </Link>
+                    <Link className="admin__link" to="/movie_manage" activeName="selected" activeStyle={{color: "#fb4226"}} onClick={() => {
                         setShow(false)
                     }}>
                         <i class={shrink ? "fa fa-film icon__active" : "fa fa-film"}></i>
                         <span className={shrink ? "link__hide" : ""}>Quản lý phim</span>
-                    </NavLink>
-                    <NavLink className="admin__link" to="/user_manage" onClick={() => {
+                    </Link>
+                    <Link className="admin__link" to="/user_manage" activeName="selected" activeStyle={{color: "#fb4226"}} onClick={() => {
                         setShow(false)
                     }}>
                         <i class={shrink ? "fa fa-users icon__active" : "fa fa-users"}></i>
                         <span className={shrink ? "link__hide" : ""}>Quản lý người dùng</span>
-                    </NavLink>
-                    <NavLink className="admin__link sub-btn" to="/" onClick={() => {
+                    </Link>
+                    <Link className="admin__link sub-btn" to="/" onClick={() => {
                         setShow(false)
                     }}>
                         <i class="fa fa-angle-double-left"></i>
                         <span>Về trang chủ</span>
-                    </NavLink>
+                    </Link>
                 </div>
 
                 <button className="btn-show" onClick={showAcitve}>
@@ -62,7 +63,7 @@ export const AdminTemplate = (props) => {
                     </button>
                     <NavLink className="admin__login" to="/user">
                         <img src="https://picsum.photos/200" />
-                        <span>Hello, {account}</span>
+                        <span>Hello, {accountInfo.hoTen}</span>
                     </NavLink>
                 </div>
                 <Component {...propsRoute} />

@@ -1,5 +1,5 @@
-import './index.css'
 import "./sass/main.scss";
+import { Fragment } from "react";
 import { Route, Switch, Router } from "react-router-dom";
 import { AdminTemplate } from "./templates/AdminTemplate";
 import { createBrowserHistory } from "history";
@@ -26,7 +26,7 @@ function App() {
   return (
     <Router history={history}>
       <Switch>
-        <div className="App">
+        <Fragment className="App">
           <HomeTemplate exact path="/" Component={Home} />
           <HomeTemplate exact path="/film_detail/:id" Component={FilmDetail} />
 
@@ -41,7 +41,7 @@ function App() {
           <AdminTemplate exact path="/movie_schedules" Component={MovieSchedules} />
           <AdminTemplate exact path="/user_manage" Component={UserManage} />
           <AdminTemplate exact path="/update_user" Component={UpdateUser} />
-        </div>
+        </Fragment>
       </Switch>
     </Router>
   );

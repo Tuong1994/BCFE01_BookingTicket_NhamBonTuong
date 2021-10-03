@@ -1,12 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import moment from 'moment';
 
 function Movie({ cineplex, showMovie }) {
     return (
         <div className="subtabs__movie">
             {cineplex.lstCumRap?.map((cinema, index) => {
-                return <div className={showMovie == index ? "movie__inner show-movie" : "movie__inner"}>
+                return <div className={showMovie == index ? "movie__inner show-movie" : "movie__inner"} key={index}>
                     {cinema.danhSachPhim?.map((movie, index) => {
                         return <div className="movie" key={index}>
                             <div className="movie__img">

@@ -7,13 +7,9 @@ import CinemaDetail from './CinemaDetail';
 import MovieTrailer from '../../component/MovieTrailer/MovieTrailer';
 
 function Detail(props) {
-    let dispatch = useDispatch();
-
     const { chiTietLichChieu, phimTrailer } = useSelector(state => state.PhimReducer);
-    const { loading } = useSelector(state => state.LoadingReducer)
-
     const [showTrailer, setShowTrailer] = useState(false);
-
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch({
             type: "openLoading"
@@ -22,15 +18,21 @@ function Detail(props) {
         let { id } = props.match.params;
         dispatch(getShowTimeDetail(id));
     }, [])
-
     useEffect(() => {
         setTimeout(() => {
             dispatch({
                 type: "closeLoading"
             })
         }, 1000)
-    }, [loading])
-
+    }, [])
+    useEffect(() => {
+        if (showTrailer) {
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        }
+    }, [showTrailer])
     return (
         <div className="detail" style={{ backgroundImage: `url(${chiTietLichChieu.hinhAnh})` }}>
             <div className="detail__film">
@@ -38,7 +40,7 @@ function Detail(props) {
                     <div className="film__info">
 
                         <div className="film__img">
-                            <img src={chiTietLichChieu.hinhAnh} />
+                            <img src={chiTietLichChieu.hinhAnh} alt={chiTietLichChieu.tenPhim} />
                             <div className="play__trailer">
                                 <button className="play__button" onClick={() => {
                                     dispatch({
@@ -55,10 +57,10 @@ function Detail(props) {
                             </div>
                         </div>
 
-                        <iframe className="film__trailer" src={chiTietLichChieu.trailer} frameborder="0"></iframe>
+                        <iframe className="film__trailer" src={chiTietLichChieu.trailer} frameBorder="0" allowFullScreen={true}></iframe>
 
                         <div className="film__desc">
-                            <p>Ngày giờ chiếu : <span>{moment(chiTietLichChieu.ngayKhoiChieu).format("dddd hh mm: A")}</span></p>
+                            <p>Ngày giờ chiếu : <span>{moment(chiTietLichChieu.ngayKhoiChieu).format("DD/MM/YYYY - hh mm: A")}</span></p>
                             <p>Tên phim : <span>{chiTietLichChieu.tenPhim}</span></p>
                             <Link
                                 activeClass="active"
@@ -94,7 +96,7 @@ function Detail(props) {
                 <CinemaDetail chiTietLichChieu={chiTietLichChieu} />
             </div>
 
-            <MovieTrailer showTrailer={showTrailer} setShowTrailer={setShowTrailer} phimTrailer={phimTrailer}/>
+            <MovieTrailer showTrailer={showTrailer} setShowTrailer={setShowTrailer} phimTrailer={phimTrailer} />
         </div >
     );
 }

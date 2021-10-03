@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -8,9 +8,9 @@ import Popup from '../../../component/Popup/Popup';
 
 function Carousel(props) {
     const { danhSachPhim, phimTrailer } = useSelector(state => state.PhimReducer);
-    let dispatch = useDispatch()
-    let [showVideo, setShowVideo] = useState(false);
-    let renderFilm = () => {
+    const dispatch = useDispatch()
+    const [showVideo, setShowVideo] = useState(false);
+    const renderFilm = () => {
         return danhSachPhim?.slice(0, 5).map((film, index) => {
             return <div className="slide" key={index}>
                 <img className="slides__img" src={film.hinhAnh} />
@@ -30,7 +30,7 @@ function Carousel(props) {
             </div>
         })
     }
-    let settings = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -40,7 +40,14 @@ function Carousel(props) {
         slidesToScroll: 1,
         pauseOnHover: true,
     }
-
+    useEffect(() => {
+        if (showVideo) {
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = "unset"
+        }
+    }, [showVideo])
     return (
         <div className="carousel">
             <Slider {...settings}>

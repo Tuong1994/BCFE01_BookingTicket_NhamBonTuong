@@ -188,6 +188,9 @@
             }
             &:hover {
               background: $red-1 !important;
+              @include respond(extraTablet) {
+                background: $green !important;
+              }
             }
             @include respond(laptop) {
               width: $w-3 + 5;
@@ -443,6 +446,8 @@
       .movie__button {
         width: $w-100;
         .button {
+          display: flex;
+          justify-content: center;
           font-size: $h3;
           width: $w-100;
         }

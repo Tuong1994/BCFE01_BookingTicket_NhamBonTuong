@@ -7,7 +7,7 @@ function Cinema({ danhSachRapChieu, showCinema }) {
     return (
         <div className="tabs__content">
             {danhSachRapChieu?.map((cineplex, index) => {
-                return <div className={showCinema == index ? "content__subtabs show-cinema" : "content__subtabs"}>
+                return <div className={showCinema == index ? "content__subtabs show-cinema" : "content__subtabs"} key={index}>
                     <div className="subtabs__cinema">
                         {cineplex.lstCumRap?.map((cinema, index) => {
                             return <div className={showMovie == index ? "cinema active-cinema" : "cinema"} key={index} onClick={() => {

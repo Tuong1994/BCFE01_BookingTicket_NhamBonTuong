@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookMovieAction } from '../../redux/action/PhimAction';
+import ButtonLoading from '../Loading/ButtonLoading';
 
 function RWD_Checkout(props) {
     const { thongTinRapChieu, DSGheDangDat, renderBookChair, renderTotal, setShowDetail, showDetail, paramsId } = props;
@@ -106,16 +107,25 @@ function RWD_Checkout(props) {
                     </div>
                 </div>
                 <div className="movie__button">
-                    {DSGheDangDat.length !== 0 && hinhThucThanhToan !== "" ? 
-                    <button className="button" onClick={() => {
-                        let bookDetail = {
-                            maLichChieu: paramsId,
-                            danhSachVe: DSGheDangDat,
-                            taiKhoanNguoiDung: accountInfo.taiKhoan
-                        }
-                        dispatch(bookMovieAction(bookDetail));
-                    }}>Đặt vé</button> 
-                    : <button className="button button-disabled" disabled={true}>Đặt vé</button>}
+                    {DSGheDangDat.length !== 0 && hinhThucThanhToan !== "" ?
+                        <button className="button" onClick={() => {
+                            let bookDetail = {
+                                maLichChieu: paramsId,
+                                danhSachVe: DSGheDangDat,
+                                taiKhoanNguoiDung: accountInfo.taiKhoan
+                            }
+                            dispatch(bookMovieAction(bookDetail));
+                            dispatch({
+                                type: "openBtnLoading"
+                            })
+                            setTimeout(() => {
+                                setShowDetail(false);
+                            }, 1000)
+                        }}>
+                            <ButtonLoading />
+                            <span>Đặt vé</span>
+                        </button>
+                        : <button className="button button-disabled" disabled={true}>Đặt vé</button>}
                 </div>
             </div>
         </div>

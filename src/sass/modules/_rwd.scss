@@ -157,6 +157,8 @@
     .movie__button {
       width: $w-100;
       .button {
+        display: flex;
+        justify-content: center;
         font-size: $h3;
         width: $w-100;
       }
@@ -707,6 +709,7 @@
               color: $tPrimary;
               transition: all 0.2s linear;
               padding: $p-1 - 5 0;
+              cursor: pointer;
               &:hover {
                 background: $red-1;
               }

@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function RWD_UserDetail({ showActive, setShowActive }) {
+    useEffect(() => {
+        if (showActive) {
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        }
+    }, [showActive])
     return (
         <div className={showActive ? "rwd-user-detail show-active" : "rwd-user-detail"}>
             <div className="detail__info">

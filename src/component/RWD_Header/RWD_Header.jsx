@@ -5,18 +5,18 @@ import { NavLink } from 'react-router-dom';
 
 
 function RWD_Header(props) {
-    const { setSubmenu, account, accountInfo, showUserInfo, userInfo, subMenu } = props;
+    const { setSubmenu, accountInfo, showUserInfo, userInfo, subMenu } = props;
     let dispatch = useDispatch();
     return (
         <div className="rwd-header">
-            <div className={subMenu ?  "rwd-header__bg active" : "rwd-header__bg"}>
+            <div className={subMenu ? "rwd-header__bg active" : "rwd-header__bg"}>
                 <div className={subMenu ? 'rwd-header__nav active' : 'rwd-header__nav'}>
                     <div className="nav__user">
-                        {account !== "" ?
+                        {accountInfo !== "" ?
                             <div className="user__login">
                                 <div className="login__info">
                                     <img src="https://i.pravatar.cc/300" alt="avatar" />
-                                    <span className="login__acc">{account}</span>
+                                    <span className="login__acc">{accountInfo.hoTen}</span>
                                     <div className="login__button" onClick={showUserInfo}><i class="fa fa-caret-down"></i></div>
                                 </div>
                                 <div className={userInfo ? "login__submenu show" : "login__submenu"}>

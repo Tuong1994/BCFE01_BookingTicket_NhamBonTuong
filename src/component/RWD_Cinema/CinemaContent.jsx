@@ -15,8 +15,8 @@ function CinemaContent({ tenCumRap, diaChi, danhSachPhim }) {
                 </div>
             </div>
             <div className={isActive ? "subtitle__content show" : "subtitle__content"}>
-                {danhSachPhim?.slice(0, 10).map(({ tenPhim, hinhAnh, maPhim }) => {
-                    return <CinemaSubContent tenPhim={tenPhim} hinhAnh={hinhAnh} maPhim={maPhim} />
+                {danhSachPhim?.slice(0, 10).map(({ tenPhim, hinhAnh, maPhim }, index) => {
+                    return <CinemaSubContent tenPhim={tenPhim} hinhAnh={hinhAnh} maPhim={maPhim} key={index} />
                 })}
             </div>
         </div>

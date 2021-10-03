@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import ButtonLoading from '../../component/Loading/ButtonLoading';
 import { bookMovieAction } from '../../redux/action/PhimAction';
 
 function MovieBooking({ thongTinRapChieu, paramsId, setStepTwo, setStepThree }) {
     const { thongTinPhim } = thongTinRapChieu;
     const { accountInfo } = useSelector(state => state.UserReducer);
     const { DSGheDangDat, hinhThucThanhToan } = useSelector(state => state.BookTicketReducer);
-    
+
     let dispatch = useDispatch();
     let renderTotal = () => {
         return DSGheDangDat.reduce((total, chair) => {
@@ -85,7 +86,7 @@ function MovieBooking({ thongTinRapChieu, paramsId, setStepTwo, setStepThree }) 
                     <div className="form__checkbox">
                         <input type="radio" name="paycheck" value="ZaloPay" onChange={handleChange} onClick={() => {
                             setStepTwo(true);
-                        }}/>
+                        }} />
                         <div className="checkbox__info">
                             <img src="../img/zalo.jpg" alt="zalopay" />
                             <p>Thanh toán qua ZaloPay</p>
@@ -94,7 +95,7 @@ function MovieBooking({ thongTinRapChieu, paramsId, setStepTwo, setStepThree }) 
                     <div className="form__checkbox">
                         <input type="radio" name="paycheck" value="Visa, Master, JCB" onChange={handleChange} onClick={() => {
                             setStepTwo(true);
-                        }}/>
+                        }} />
                         <div className="checkbox__info">
                             <img src="../img/visa.png" alt="visapay" />
                             <p>Visa, Master, JCB</p>
@@ -103,7 +104,7 @@ function MovieBooking({ thongTinRapChieu, paramsId, setStepTwo, setStepThree }) 
                     <div className="form__checkbox">
                         <input type="radio" name="paycheck" value="ATM" onChange={handleChange} onClick={() => {
                             setStepTwo(true);
-                        }}/>
+                        }} />
                         <div className="checkbox__info">
                             <img src="../img/atm.png" alt="atm" />
                             <p>Thẻ ATM nội địa</p>
@@ -112,7 +113,7 @@ function MovieBooking({ thongTinRapChieu, paramsId, setStepTwo, setStepThree }) 
                     <div className="form__checkbox">
                         <input type="radio" name="paycheck" value="Store tiện ích" onChange={handleChange} onClick={() => {
                             setStepTwo(true);
-                        }}/>
+                        }} />
                         <div className="checkbox__info">
                             <img src="../img/cuahang.png" alt="cuahang" />
                             <p>Thanh toán tại cửa hàng tiện ích</p>
@@ -125,17 +126,23 @@ function MovieBooking({ thongTinRapChieu, paramsId, setStepTwo, setStepThree }) 
                 </div>
             </div>
             <div className="movie__button">
-                {DSGheDangDat.length !== 0 && hinhThucThanhToan !== "" ? 
-                <button className="button" onClick={() => {
-                    setStepThree(true);
-                    let bookDetail = {
-                        maLichChieu: paramsId,
-                        danhSachVe: DSGheDangDat,
-                        taiKhoanNguoiDung: accountInfo.taiKhoan
-                    }
-                    dispatch(bookMovieAction(bookDetail));
-                }}>Đặt vé</button> 
-                : <button className="button button-disabled" disabled={true}>Đặt vé</button>}
+                {DSGheDangDat.length !== 0 && hinhThucThanhToan !== "" ?
+                    <button className="button" onClick={() => {
+                        setStepThree(true);
+                        let bookDetail = {
+                            maLichChieu: paramsId,
+                            danhSachVe: DSGheDangDat,
+                            taiKhoanNguoiDung: accountInfo.taiKhoan
+                        }
+                        dispatch({
+                            type: "openBtnLoading"
+                        })
+                        dispatch(bookMovieAction(bookDetail));
+                    }}>
+                        <ButtonLoading />
+                        <span>Đặt vé</span>
+                    </button>
+                    : <button className="button button-disabled" disabled={true}>Đặt vé</button>}
             </div>
         </div>
     );

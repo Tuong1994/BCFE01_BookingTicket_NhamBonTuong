@@ -1,6 +1,7 @@
 .login {
+  width: $w-100;
+  height: $h-100;
   padding: $p-5 0;
-  height: 100vh;
   background: url("../../assets/img/posterBG.jpg");
   background-attachment: fixed;
   display: flex;
@@ -24,20 +25,15 @@
     padding: $p-5;
     position: relative;
     z-index: 10;
-    @include respond(extraTablet) {
-      width: $w-100 - 20;
-    }
-    @include respond(tablet) {
+    .login__logo {
       width: $w-100;
-      height: $h-100;
-      border-radius: 0;
-      background: rgba(0, 0, 0, 0.3);
-    }
-    @include respond(phone) {
-      width: $w-100;
-      height: $h-100;
-      border-radius: 0;
-      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: $m-3 + 4;
+      img {
+        height: $h-7;
+      }
     }
     h3 {
       font-size: $h2;
@@ -105,8 +101,11 @@
     }
     .form__button {
       text-align: center;
-      .button,
+      .button, 
       .button__disabled {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: $w-100;
         box-shadow: 0 0 5px $dark-1;
         margin-bottom: $m-3;
@@ -126,9 +125,26 @@
           }
           @include respond(phone) {
             color: $tWhite;
+            font-size: $body-1;
           }
         }
       }
+    }
+    @include respond(extraTablet) {
+      width: $w-100 - 20;
+    }
+    @include respond(tablet) {
+      width: $w-100;
+      height: $h-100;
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    @include respond(phone) {
+      width: $w-100;
+      height: $h-100;
+      padding: $p-5 $p-2;
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.3);
     }
   }
   .return-button {
@@ -156,13 +172,8 @@
       font-size: $h2;
     }
   }
-  @include respond(extraTablet) {
-    padding: 0;
-  }
-  @include respond(tablet) {
-    padding: 0;
-  }
   @include respond(phone) {
     padding: 0;
+    height: 100%;
   }
 }

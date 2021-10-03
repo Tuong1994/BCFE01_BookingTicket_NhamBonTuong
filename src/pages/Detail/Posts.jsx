@@ -2,12 +2,19 @@ import React from 'react';
 import { useState } from 'react';
 import PostInput from './PostInput';
 import PostList from './PostList';
+import PostAlert from './PostAlert';
+import { taiKhoan } from '../../configs/setting';
 
 function Posts(props) {
     const [showInput, setShowInput] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     return (
         <div className="post">
             <div className="post__button" onClick={() => {
+                if(!localStorage.getItem(taiKhoan)) {
+                    setShowAlert(true);
+                    return
+                }
                 setShowInput(true);
             }}>
                 <div className="button__acc">
@@ -24,6 +31,7 @@ function Posts(props) {
             </div>
             <PostInput showInput={showInput} setShowInput={setShowInput}/>
             <PostList />
+            <PostAlert showAlert={showAlert} setShowAlert={setShowAlert}/>
         </div>
     );
 }

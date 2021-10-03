@@ -14,8 +14,8 @@ function CinemaTitle({logo, tenHeThongRap, lstCumRap}) {
                 </span>
             </div>
             <div className={isActive ? "cinema__content show" : "cinema__content"}>
-               {lstCumRap?.slice(0,8).map(({tenCumRap, diaChi, danhSachPhim}) => {
-                   return <CinemaContent tenCumRap={tenCumRap} diaChi={diaChi} danhSachPhim={danhSachPhim} />
+               {lstCumRap?.slice(0,8).map(({tenCumRap, diaChi, danhSachPhim}, index) => {
+                   return <CinemaContent tenCumRap={tenCumRap} diaChi={diaChi} danhSachPhim={danhSachPhim} key={index}/>
                })}
             </div>
         </div>

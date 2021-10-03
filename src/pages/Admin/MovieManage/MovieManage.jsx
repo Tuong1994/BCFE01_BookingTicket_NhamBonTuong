@@ -42,7 +42,14 @@ function MovieManage(props) {
             })
         }, 1000);
     }, [loading])
-
+    useEffect(() => {
+        if (showTrailer) {
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        }
+    }, [showTrailer])
     let renderMovieList = () => {
         return danhSachPhim?.filter((movie) => {
             if (searchMovie === "") {

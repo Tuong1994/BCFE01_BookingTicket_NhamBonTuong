@@ -32,7 +32,8 @@ function PostInput({ showInput, setShowInput }) {
                         dispatch({
                             type: "USER_POST",
                             post,
-                        })
+                        });
+                        setShowInput(false);
                     }}>Đăng</button>
                 </div>
             </div>

@@ -10,7 +10,7 @@ function MovieTrailer({ showTrailer, setShowTrailer, phimTrailer }) {
                     }}>
                         <i class="fa fa-times"></i>
                     </span>
-                    <iframe className="video" src={phimTrailer.trailer} frameBorder="0" allow="autoplay" allowFullScreen={true}></iframe>
+                    <iframe className="video" src={phimTrailer.trailer} frameBorder="0" allow="autoplay" allowFullScreen={true} title="trailer"></iframe>
                 </div>
             </div>
         </div>

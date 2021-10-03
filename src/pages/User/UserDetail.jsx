@@ -1,11 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { bookHistoryAction } from '../../redux/action/UserAction';
 
 function UserDetail({ setShowActive }) {
     const { accountInfo, userBookedInfo } = useSelector(state => state.UserReducer);
     const { thongTinDatVe } = userBookedInfo;
-
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(bookHistoryAction(accountInfo))
+    }, [])
     let renderTotal = () => {
         return thongTinDatVe?.reduce((total, ticket) => {
             return total += ticket.giaVe
@@ -16,14 +21,14 @@ function UserDetail({ setShowActive }) {
 
             <div className="detail__acc">
                 <img src="https://i.pravatar.cc/300" alt="avatar" />
-                <p>Hello, {accountInfo.taiKhoan}</p>
+                <p>Hello, {accountInfo.hoTen}</p>
                 <button className="detail__btn" onClick={() => {
                     setShowActive(true)
                 }}>
                     <i class="fa fa-align-right"></i>
                 </button>
-                {accountInfo.loaiNguoiDung === "Quản trị" ?
-                    <NavLink className="admin__btn" to="/movie_manage">
+                {accountInfo.maLoaiNguoiDung === "QuanTri" ?
+                    <NavLink className="admin__btn" to="/dashboard">
                         <i class="fa fa-user-cog"></i>
                         <span>Tới trang quản trị</span>
                     </NavLink> : null}

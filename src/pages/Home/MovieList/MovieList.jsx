@@ -9,20 +9,27 @@ import Popup from '../../../component/Popup/Popup';
 import RWDMovieList from '../../../component/RWD_MoveList/RWDMovieList';
 
 
-function Schedule(props) {
+function MovieList(props) {
     const { danhSachPhim, phimTrailer } = useSelector(state => state.PhimReducer);
-    let [showVideo, setShowVideo] = useState(false);
-    let dispatch = useDispatch();
+    const [showVideo, setShowVideo] = useState(false);
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getMovieAction());
     }, [])
-
-    let renderPhimDangChieu = (index) => {
+    useEffect(() => {
+        if (showVideo) {
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = "unset"
+        }
+    }, [showVideo])
+    const renderPhimDangChieu = (index) => {
         if (index === 1) {
             return danhSachPhim.slice(18, 26).map((film, index) => {
                 return <div className="card__item" key={index}>
                     <div className="card__img">
-                        <img src={film.hinhAnh} />
+                        <img src={film.hinhAnh} type={film.tenPhim} />
                         <div className="card__review">
                             <p>{film.danhGia}/10</p>
                             <div className="card__star">
@@ -56,7 +63,7 @@ function Schedule(props) {
             return danhSachPhim.slice(26, 34).map((film, index) => {
                 return <div className="card__item" key={index}>
                     <div className="card__img">
-                        <img src={film.hinhAnh} />
+                        <img src={film.hinhAnh} alt={film.tenPhim} />
                         <div className="card__review">
                             <p>{film.danhGia}/10</p>
                             <div className="card__star">
@@ -90,7 +97,7 @@ function Schedule(props) {
             return danhSachPhim.slice(34, 42).map((film, index) => {
                 return <div className="card__item" key={index}>
                     <div className="card__img">
-                        <img src={film.hinhAnh} />
+                        <img src={film.hinhAnh} alt={film.tenPhim} />
                         <div className="card__review">
                             <p>{film.danhGia}/10</p>
                             <div className="card__star">
@@ -124,7 +131,7 @@ function Schedule(props) {
 
     }
 
-    let renderPhimSapChieu = (index) => {
+    const renderPhimSapChieu = (index) => {
         if (index === 1) {
             return danhSachPhim.slice(9, 17).map((film, index) => {
                 return <div className="card__item" key={index}>
@@ -196,7 +203,7 @@ function Schedule(props) {
             })
         }
     }
-    
+
     return (
         <div className="movielist" id="schedule">
             <div className="movielist__desktop">
@@ -263,4 +270,4 @@ function Schedule(props) {
     );
 }
 
-export default Schedule;
+export default MovieList;

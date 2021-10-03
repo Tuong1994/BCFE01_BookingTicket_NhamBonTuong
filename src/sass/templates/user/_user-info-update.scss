@@ -1,63 +1,113 @@
 .user-info-update__wrapper {
-  padding: 0 $p-2;
+  width: $w-100;
+  height: $h-100;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s linear;
   .wrapper__form {
-    .form__item {
+    width: $w-100 - 50;
+    background: $primary;
+    padding: $p-2 $p-1;
+    border-radius: 5px;
+    position: relative;
+    .form__closebtn {
+      position: absolute;
+      top: 0;
+      right: 5px;
+      border: 0;
+      background: transparent;
+      outline: none;
+      cursor: pointer;
+      color: $tSecondary;
+      font-size: $body-1 + 4;
+    }
+    h4 {
+      text-align: center;
+      text-transform: uppercase;
+      @include respond(tablet) {
+        font-size: $body-1 + 4;
+      }
+    }
+    .form__group {
       width: $w-100;
-      height: $h-5;
-      margin: $m-3 0;
-      .form__content {
-        width: $w-100;
-        position: relative;
-        label {
-          font-size: $body-1;
-          font-weight: $medium;
-          margin: 0;
-        }
-        .form__label {
-          position: absolute;
-          top: 50%;
-          left: 20px;
-          transform: translateY(-50%);
-          user-select: none;
-          pointer-events: none;
-          color: $tGrey-2;
-          transition: all 0.3s ease;
-        }
-        .form__input {
-          border: 1px solid $dark-2;
-          border-radius: 5px;
-          padding: $p-1 $p-2;
+      display: flex;
+      .form__item {
+        width: $w-100 - 40;
+        padding: 0 $p-1;
+        height: $h-5;
+        margin: $m-2 0;
+        .form__content {
           width: $w-100;
-          outline: none;
-          &:focus {
-            border-color: $red-1;
+          position: relative;
+          label {
+            font-size: $body-1;
+            font-weight: $medium;
+            margin: 0;
           }
+          .form__label {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            user-select: none;
+            pointer-events: none;
+            color: $tGrey-2;
+            transition: all 0.3s ease;
+          }
+          .form__input {
+            width: $w-100;
+            border: 1px solid $dark-2;
+            border-radius: 5px;
+            padding: $p-1 $p-2;
+            font-size: $body-1;
+            outline: none;
+            &:focus {
+              border-color: $red-1;
+            }
 
-          &:focus + .form__label,
-          &:not(:placeholder-shown) + .form__label {
-            top: 0;
-            color: $tPrimary;
-            background: $primary;
-            display: inline-block;
-            padding: 0 $p-1 - 5;
+            &:focus + .form__label,
+            &:not(:placeholder-shown) + .form__label {
+              top: 0;
+              color: $tPrimary;
+              background: $primary;
+              display: inline-block;
+              padding: 0 $p-1 - 5;
+            }
+            @include respond(extraTablet) {
+              padding: $p-1 - 5 $p-1 + 5;
+            }
           }
-          @include respond(extraTablet) {
-            padding: $p-1 - 5 $p-1 + 5;
+          .password__btn {
+            width: $w-2;
+            height: $h-2;
+            cursor: pointer;
+            position: absolute;
+            top: 22%;
+            right: 15px;
+            border: 0;
+            outline: none;
+            background: transparent;
           }
         }
-        .password__btn {
-          width: $w-2;
-          height: $h-2;
-          position: absolute;
-          top: 22%;
-          right: 15px;
-          border: 0;
-          outline: none;
-          background: transparent;
+        @include respond(tablet) {
+          width: $w-100;
+          height: $h-3;
+        }
+        @include respond(smallPhone) {
+          width: $w-100;
+          height: $h-3;
         }
       }
-      @include respond(extraTablet) {
-        height: $h-4;
+      @include respond(smallPhone) {
+        flex-direction: column;
       }
     }
     .form__button {
@@ -75,5 +125,15 @@
         margin-bottom: $m-2;
       }
     }
+    @include respond(extraTablet) {
+      width: $w-100 - 15;
+    }
+    @include respond(tablet) {
+      width: $w-100 - 10;
+    }
   }
+}
+.user-info-update__wrapper.show-form {
+  opacity: 1;
+  visibility: visible;
 }

@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
-import { bookHistoryAction } from '../../redux/action/UserAction';
 import RWD_Header from '../RWD_Header/RWD_Header';
 
 function Header(props) {
     const dispatch = useDispatch();
-    const { account, accountInfo } = useSelector(state => state.UserReducer);
+    const { accountInfo } = useSelector(state => state.UserReducer);
 
     const [subMenu, setSubmenu] = useState(false);
     const [userInfo, setUserInfo] = useState(false);
     const [background, setBackground] = useState(false);
-    
+
+    const userRef = useRef()
+
     let showSubmenu = () => setSubmenu(!subMenu);
     let showUserInfo = () => setUserInfo(!userInfo);
 
-    useEffect(() => {
-        dispatch(bookHistoryAction(accountInfo));
-    }, [])
     useEffect(() => {
         let scrollPosition = 0;
         let handleScroll = () => {
@@ -33,7 +32,17 @@ function Header(props) {
             window.removeEventListener("scroll", handleScroll)
         }
     })
-
+    useEffect(() => {
+        let handleClickOutside = (e) => {
+            if (userRef.current && !userRef.current.contains(e.target)) {
+                setUserInfo(false);
+            }
+        }
+        window.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            window.removeEventListener("mousedown", handleClickOutside)
+        }
+    })
     return (
         <div className="header">
             <nav className={background ? "header__nav header__background" : "header__nav"}>
@@ -74,13 +83,13 @@ function Header(props) {
                     </div>
 
                     <div className="nav__login">
-                        {account !== "" ? <div className="user__login">
+                        {accountInfo !== "" ? <div className="user__login">
                             <img src="https://i.pravatar.cc/300" alt="avatar" />
                             <span>{accountInfo.hoTen}</span>
                             <div className="btn-show" onClick={showUserInfo}><i class="fa fa-caret-down"></i></div>
-                            <div className={userInfo ? "user__info show" : "user__info"}>
-                                {accountInfo.maLoaiNguoiDung !== "KhachHang" ? 
-                                <NavLink className="user__link bg-link" to="/dashboard">Admin</NavLink> : null}
+                            <div className={userInfo ? "user__info show" : "user__info"} ref={userRef}>
+                                {accountInfo.maLoaiNguoiDung !== "KhachHang" ?
+                                    <NavLink className="user__link bg-link" to="/dashboard">Admin</NavLink> : null}
                                 <NavLink className="user__link bg-link" to="/user">Thông tin cá nhân</NavLink>
                                 <div className="btn-logout bg-link" onClick={() => {
                                     dispatch({
@@ -88,11 +97,11 @@ function Header(props) {
                                     });
                                 }}>Đăng xuất</div>
                             </div>
-                        </div> : 
-                        <NavLink className="nav__link link" to="/login">
-                            <i class="fa fa-user-circle"></i>
-                            <span>Đăng nhập</span>
-                        </NavLink>}
+                        </div> :
+                            <NavLink className="nav__link link" to="/login">
+                                <i class="fa fa-user-circle"></i>
+                                <span>Đăng nhập</span>
+                            </NavLink>}
                     </div>
                 </div>
 
@@ -100,7 +109,7 @@ function Header(props) {
                     {subMenu ? <i class="fa fa-times"></i> : <i class="fa fa-align-right"></i>}
                 </button>
             </nav>
-            <RWD_Header setSubmenu={setSubmenu} account={account} accountInfo={accountInfo} showUserInfo={showUserInfo} userInfo={userInfo} subMenu={subMenu} />
+            <RWD_Header setSubmenu={setSubmenu} accountInfo={accountInfo} showUserInfo={showUserInfo} userInfo={userInfo} subMenu={subMenu} />
         </div>
     );
 }

@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { phoneRegExp } from '../../configs/setting';
 import { Formik, Form, Field, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import ButtonLoading from '../../component/Loading/ButtonLoading';
-import { useState } from 'react';
 import { bookHistoryAction, updateAction } from '../../redux/action/UserAction';
-import { useEffect } from 'react';
+import ButtonLoading from '../../component/Loading/ButtonLoading';
 
-function UserInfoUpdate() {
-    const [showPassword, setShowPassword] = useState(false);
+function UserInfoUpdate({ showForm, setShowForm }) {
     const { accountInfo, userBookedInfo } = useSelector(state => state.UserReducer);
+    const [password, setPassword] = useState(false);
+    const [passwordConfirm, setPasswordConfirm] = useState(false);
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(bookHistoryAction(accountInfo));
     }, [])
-  
-    let dispatch = useDispatch();
-    const { handleChange, handleBlur, handleSubmit, handleReset, touched, errors, isValid, values } = useFormik({
+    useEffect(() => {
+        if (showForm) {
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        }
+    }, [showForm])
+    const { handleChange, handleBlur, handleSubmit, touched, errors, isValid, values } = useFormik({
         initialValues: {
-            taiKhoan: accountInfo.taiKhoan,
+            taiKhoan: userBookedInfo.taiKhoan,
             matKhau: userBookedInfo.matKhau,
-            email: accountInfo.email,
-            hoTen: accountInfo.hoTen,
-            soDt: accountInfo.soDT,
-            maNhom: accountInfo.maNhom,
+            xacNhanMatKhau: userBookedInfo.matKhau,
+            email: userBookedInfo.email,
+            hoTen: userBookedInfo.hoTen,
+            soDT: userBookedInfo.soDT,
+            maNhom: userBookedInfo.maNhom,
             maLoaiNguoiDung: accountInfo.maLoaiNguoiDung,
         },
         validationSchema: yup.object().shape({
@@ -32,15 +39,16 @@ function UserInfoUpdate() {
                 .max(15, "Dài nhất 20 ký tự")
                 .required("Vui lòng không để trống"),
             matKhau: yup.string()
-                .min(2, "Nhập ít nhất 2 ký tự")
-                .max(20, "Dài nhất 20 ký tự")
+                .required("Vui lòng không để trống"),
+            xacNhanMatKhau: yup.string()
+                .oneOf([yup.ref("matKhau")], "Mật khẩu không đúng")
                 .required("Vui lòng không để trống"),
             email: yup.string()
                 .email("Không hợp lệ")
                 .required("Vui lòng không để trống"),
             hoTen: yup.string()
                 .required("Vui lòng không để trống"),
-            soDt: yup.string()
+            soDT: yup.string()
                 .matches(phoneRegExp, "Không hợp lệ")
                 .min(2, "Nhập ít nhất 2 ký tự")
                 .max(10, "Dài nhất 10 ký tự")
@@ -52,58 +60,87 @@ function UserInfoUpdate() {
     })
 
     return (
-        <div className="user-info-update__wrapper">
+        <div className={showForm ? "user-info-update__wrapper show-form" : "user-info-update__wrapper"}>
             <Formik>
                 <Form className="wrapper__form" onSubmit={handleSubmit} autoComplete="off">
-                    <div className="form__item">
-                        <div className="form__content">
-                            <Field className="form__input" type="text" placeholder=" " name="taiKhoan" value={values.taiKhoan} onChange={handleChange} onBlur={handleBlur} disabled={true} />
-                            <label className="form__label">Tài Khoản</label>
+                    <button type="button" className="form__closebtn" onClick={() => {
+                        setShowForm(false);
+                    }}>
+                        <i className="fa fa-times"></i>
+                    </button>
+                    <h4>Cập nhật thông tin</h4>
+
+                    <div className="form__group">
+                        <div className="form__item">
+                            <div className="form__content">
+                                <Field className="form__input" type="text" placeholder=" " name="taiKhoan" value={values.taiKhoan} onChange={handleChange} onBlur={handleBlur} disabled={true} />
+                                <label className="form__label">Tài Khoản</label>
+                            </div>
+                            {touched.taiKhoan && errors.taiKhoan ? <span className="error__message">{errors.taiKhoan}</span> : null}
                         </div>
-                        {touched.taiKhoan && errors.taiKhoan ? <span className="error__message">{errors.taiKhoan}</span> : null}
-                    </div>
-                    <div className="form__item">
-                        <div className="form__content">
-                            <Field className="form__input" type={showPassword ? "text" : "password"} placeholder=" " name="matKhau" value={values.matKhau} onChange={handleChange} onBlur={handleBlur} />
-                            <label className="form__label">Mật Khẩu</label>
-                            <button type="button" className="password__btn" title="Show password" onClick={() => {
-                                setShowPassword(!showPassword)
-                            }}>
-                                {showPassword ? <i class="fa fa-eye-slash"></i> : <i class="fa fa-eye"></i>}
-                            </button>
+                        <div className="form__item">
+                            <div className="form__content">
+                                <Field className="form__input" type={password ? "text" : "password"} placeholder=" " name="matKhau" value={values.matKhau} onChange={handleChange} onBlur={handleBlur} />
+                                <label className="form__label">Mật khẩu</label>
+                                <span className="password__btn" onClick={() => {
+                                    setPassword(!password)
+                                }}>
+                                    <i className={password ? "fa fa-eye-slash" : "fa fa-eye"}></i>
+                                </span>
+                            </div>
+                            {touched.matKhau && errors.matKhau ? <span className="error__message">{errors.matKhau}</span> : null}
                         </div>
-                        {touched.matKhau && errors.matKhau ? <span className="error__message">{errors.matKhau}</span> : null}
-                    </div>
-                    <div className="form__item">
-                        <div className="form__content">
-                            <Field className="form__input" type="text" placeholder=" " name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
-                            <label className="form__label">Email</label>
+                        <div className="form__item">
+                            <div className="form__content">
+                                <Field className="form__input" type={passwordConfirm ? "text" : "password"} placeholder=" " name="xacNhanMatKhau" value={values.matKhau} onChange={handleChange} onBlur={handleBlur} />
+                                <label className="form__label">Nhập lại mật khẩu</label>
+                                <span className="password__btn" onClick={() => {
+                                    setPasswordConfirm(!passwordConfirm)
+                                }}>
+                                    <i className={passwordConfirm ? "fa fa-eye-slash" : "fa fa-eye"}></i>
+                                </span>
+                            </div>
+                            {touched.xacNhanMatKhau && errors.xacNhanMatKhau ? <span className="error__message">{errors.xacNhanMatKhau}</span> : null}
                         </div>
-                        {touched.email && errors.email ? <span className="error__message">{errors.email}</span> : null}
                     </div>
-                    <div className="form__item">
-                        <div className="form__content">
-                            <Field className="form__input" type="text" placeholder=" " name="hoTen" value={values.hoTen} onChange={handleChange} onBlur={handleBlur} />
-                            <label className="form__label">Họ Tên</label>
+
+                    <div className="form__group">
+                        <div className="form__item">
+                            <div className="form__content">
+                                <Field className="form__input" type="text" placeholder=" " name="hoTen" value={values.hoTen} onChange={handleChange} onBlur={handleBlur} />
+                                <label className="form__label">Họ Tên</label>
+                            </div>
+                            {touched.hoTen && errors.hoTen ? <span className="error__message">{errors.hoTen}</span> : null}
                         </div>
-                        {touched.hoTen && errors.hoTen ? <span className="error__message">{errors.hoTen}</span> : null}
-                    </div>
-                    <div className="form__item">
-                        <div className="form__content">
-                            <Field className="form__input" type="phone" placeholder=" " name="soDt" value={values.soDt} onChange={handleChange} onBlur={handleBlur} />
-                            <label className="form__label">Số Điện Thoại</label>
+                        <div className="form__item">
+                            <div className="form__content">
+                                <Field className="form__input" type="phone" placeholder=" " name="soDT" value={values.soDT} onChange={handleChange} onBlur={handleBlur} />
+                                <label className="form__label">Số Điện Thoại</label>
+                            </div>
+                            {touched.soDT && errors.soDT ? <span className="error__message">{errors.soDT}</span> : null}
                         </div>
-                        {touched.soDt && errors.soDt ? <span className="error__message">{errors.soDt}</span> : null}
+                        <div className="form__item">
+                            <div className="form__content">
+                                <Field className="form__input" type="text" placeholder=" " name="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+                                <label className="form__label">Email</label>
+                            </div>
+                            {touched.email && errors.email ? <span className="error__message">{errors.email}</span> : null}
+                        </div>
                     </div>
+
                     <div className="form__button">
-                        <button className="button" type="submit" disabled={!isValid} onReset={handleReset} onClick={() => {
-                            dispatch({
-                                type: "openBtnLoading",
-                            });
-                        }}>
-                            <ButtonLoading />
-                            <span>Cập nhật</span>
-                        </button>
+                        {!isValid ?
+                            <button className="button__disabled" disabled={true}>Cập nhật</button>
+                            :
+                            <button className="button" type="submit" disabled={!isValid} onClick={() => {
+                                dispatch({
+                                    type: "openBtnLoading",
+                                });
+                            }}>
+                                <ButtonLoading />
+                                <span>Cập nhật</span>
+                            </button>
+                        }
                     </div>
                 </Form>
             </Formik>

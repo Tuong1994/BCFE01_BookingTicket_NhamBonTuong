@@ -16,11 +16,10 @@ import ProgressStepBar from './ProgressStepBar';
 function Checkout(props) {
     let dispatch = useDispatch();
     let { id } = props.match.params;
-    let { loading } = useSelector(state => state.LoadingReducer);
 
     const { thongTinRapChieu } = useSelector(state => state.PhimReducer);
     const { DSGheDangDat } = useSelector(state => state.BookTicketReducer);
-    const { account } = useSelector(state => state.UserReducer);
+    const { accountInfo } = useSelector(state => state.UserReducer);
 
     const [showDetail, setShowDetail] = useState(true);
     const [stepOne, setStepOne] = useState(false);
@@ -41,7 +40,7 @@ function Checkout(props) {
                 type: "closeLoading"
             })
         }, 1000)
-    }, [loading])
+    }, [])
 
     let renderBookChair = () => {
         return DSGheDangDat.map((chair, index) => {
@@ -74,7 +73,7 @@ function Checkout(props) {
                 </NavLink>
                 <NavLink className="nav__user" to="/user">
                     <img src="https://i.pravatar.cc/300" alt="avatar" />
-                    <p>{account}</p>
+                    <p>{accountInfo.hoTen}</p>
                 </NavLink>
             </div>
 

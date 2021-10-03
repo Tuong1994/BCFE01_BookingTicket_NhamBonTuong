@@ -1,0 +1,34 @@
+.user-acc-info__wrapper {
+    min-width: $w-100;
+    margin-top: $m-2;
+    background: $grey-1;
+    padding: $p-1;
+    border-radius: 5px;
+    .wrapper__content {
+        width: $w-100;
+        margin-bottom: $m-2;
+        .content__group {
+            width: $w-100;
+            padding: $p-1 - 5 0;
+            border-bottom: 1px solid $grey-2;
+            display: flex;
+            p {
+                width: $w-100 - 50;
+                margin: 0;
+            }
+            &:last-child {
+                border: 0;
+            }
+        }
+    }
+    .wrapper__button {
+        .button {
+            padding: $p-1 - 5 $p-1 + 5;
+            font-size: $body-1;
+        }
+    }
+    @include respond(extraTablet) {
+        min-width: $w-100;
+        font-size: $body-2;
+    }
+}

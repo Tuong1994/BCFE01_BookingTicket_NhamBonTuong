@@ -8,7 +8,7 @@ import { addMovieAction } from '../../../redux/action/AdminAction';
 function AddMovie({ addMovie, setAddMovie }) {
     let dispatch = useDispatch();
 
-    const { handleChange, handleBlur, handleSubmit, setFieldValue, handleReset, touched, errors, isValid } = useFormik({
+    const { handleChange, handleBlur, handleSubmit, setFieldValue, touched, errors, isValid } = useFormik({
         initialValues: {
             maPhim: (Math.floor(Math.random() * 1000)).toString(),
             tenPhim: "",
@@ -59,7 +59,7 @@ function AddMovie({ addMovie, setAddMovie }) {
                     }}><i class="fa fa-times"></i></button>
                     <h5>Thêm Phim</h5>
                     <Formik>
-                        <Form className="wrapper__form" autoComplete="off" onSubmit={handleSubmit} onReset={handleReset}>
+                        <Form className="wrapper__form" autoComplete="off" onSubmit={handleSubmit}>
                             <div className="form__group">
                                 <div className="form__item">
                                     <div className="form__content">
@@ -135,11 +135,10 @@ function AddMovie({ addMovie, setAddMovie }) {
                             </div>
 
                             <div className="form__button">
-                                <button className="button" type="submit" onClick={() => {
+                                <button className="button" type="submit" disabled={!isValid} onClick={() => {
                                     dispatch({
                                         type: "openBtnLoading"
                                     });
-                                    handleReset()
                                 }}>
                                     <ButtonLoading />
                                     <span>Thêm Phim</span>

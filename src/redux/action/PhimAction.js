@@ -131,25 +131,30 @@ export const getTicketAction = (maLichChieu) => {
 };
 
 export const bookMovieAction = (thongTinVe) => {
-  return async (dispatch) => {
-    try {
-      await axios({
-        url: `${domain}/api/QuanLyDatVe/DatVe`,
-        method: "POST",
-        data: thongTinVe,
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem(accessToken),
-        },
-      });
-      dispatch(getTicketAction(thongTinVe.maLichChieu));
-      dispatch({
-        type: "openBookInfo",
-      });
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        text: error.response?.data,
-      });
-    }
+  return (dispatch) => {
+    setTimeout(async () => {
+      try {
+        await axios({
+          url: `${domain}/api/QuanLyDatVe/DatVe`,
+          method: "POST",
+          data: thongTinVe,
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem(accessToken),
+          },
+        });
+        dispatch(getTicketAction(thongTinVe.maLichChieu));
+        dispatch({
+          type: "closeBtnLoading"
+        })
+        dispatch({
+          type: "openBookInfo",
+        });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          text: error.response?.data,
+        });
+      }
+    }, 1000)
   };
 };

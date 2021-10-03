@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from "yup";
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signUpAction } from '../../redux/action/UserAction';
 import { phoneRegExp } from '../../configs/setting';
 import Loading from '../../component/Loading/Loading';
+import ButtonLoading from '../../component/Loading/ButtonLoading';
 
 function Register(props) {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-    const { loading } = useSelector(state => state.LoadingReducer);
 
     useEffect(() => {
         dispatch({
@@ -23,7 +23,7 @@ function Register(props) {
                 type: "closeLoading"
             })
         }, 1000)
-    }, [loading])
+    }, [])
 
     let dispatch = useDispatch()
     const { handleChange, handleBlur, handleSubmit, touched, errors, isValid } = useFormik({
@@ -149,15 +149,26 @@ function Register(props) {
                 </div>
 
                 <hr />
-                <button type="submit" className="button" disabled={!isValid}>
-                    Đăng ký
-                </button>
-                <hr />
-                <p>Bạn đã có tài khoản ? {" "}
-                    <span>
-                        <NavLink className="form__link" to="/login">Đăng nhập tại đây</NavLink>
-                    </span>
-                </p>
+                <div className="form__button">
+                    {!isValid ?
+                        <button className="button__disabled" disabled={true}>Đăng ký</button>
+                        :
+                        <button type="submit" className="button" disabled={!isValid} onClick={() => {
+                            dispatch({
+                                type: "openBtnLoading",
+                            })
+                        }}>
+                            <ButtonLoading />
+                            <span>Đăng ký</span>
+                        </button>
+                    }
+                    <hr />
+                    <p>Bạn đã có tài khoản ? {" "}
+                        <span>
+                            <NavLink className="form__link" to="/login">Đăng nhập tại đây</NavLink>
+                        </span>
+                    </p>
+                </div>
                 <NavLink className="return-button" to="/">
                     <i class="fa fa-times"></i>
                 </NavLink>

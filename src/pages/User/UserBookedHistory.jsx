@@ -6,8 +6,12 @@ import { bookHistoryAction } from '../../redux/action/UserAction';
 
 function UserBookedHistory({ setShowBookedDetail }) {
     let dispatch = useDispatch();
-    const { userBookedInfo } = useSelector(state => state.UserReducer);
-    const {thongTinDatVe} = userBookedInfo
+    const { accountInfo, userBookedInfo } = useSelector(state => state.UserReducer);
+    const { thongTinDatVe } = userBookedInfo
+
+    useEffect(() => {
+        dispatch(bookHistoryAction(accountInfo));
+    }, [])
 
     let renderTableContent = () => {
         return thongTinDatVe?.map((ticket, index) => {

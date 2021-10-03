@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 function RWD_BookedHistory({ showBookedDetail, setShowBookedDetail }) {
     const { bookDetail } = useSelector(state => state.UserReducer);
-    
+    useEffect(() => {
+        if (showBookedDetail) {
+            document.body.style.overflow = "hidden";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        }
+    }, [showBookedDetail])
     return (
         <div className={showBookedDetail ? "rwd-booked-history show-booked-detail" : "rwd-booked-history"}>
             <div className="booked-detail">

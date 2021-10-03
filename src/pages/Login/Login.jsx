@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signInAction } from '../../redux/action/UserAction';
 import { useEffect } from 'react';
 import Loading from '../../component/Loading/Loading';
-import { useRef } from 'react';
-
+import ButtonLoading from '../../component/Loading/ButtonLoading';
 
 function Login() {
     const [showPassword, setShowPassword] = useState(false);
-    const { loading } = useSelector(state => state.LoadingReducer);
-
     let dispatch = useDispatch();
+
     useEffect(() => {
         dispatch({
             type: "openLoading",
@@ -25,7 +23,7 @@ function Login() {
                 type: "closeLoading",
             })
         }, 1000)
-    }, [loading]);
+    }, []);
 
     const { handleChange, handleSubmit, handleBlur, touched, errors, isValid } = useFormik({
         initialValues: {
@@ -45,6 +43,10 @@ function Login() {
         <div className="login">
             <Loading />
             <form className="login__form" onSubmit={handleSubmit}>
+                <div className="login__logo">
+                    <img src="../img/logo2.png" alt="logo" />
+                </div>
+                <hr />
                 <h3>Đăng nhập</h3>
                 <div className={touched.taiKhoan && errors.taiKhoan ? "form__item animation" : "form__item"}>
                     <label className="form__icon" for="taiKhoan"><i class="fa fa-user"></i></label>
@@ -75,10 +77,16 @@ function Login() {
 
 
                 <div className="form__button">
-                    {errors.taiKhoan || errors.matKhau ?
-                        <button className="button__disabled" disabled={true}>Đăng nhập</button> :
-                        <button className="button" type="submit" disabled={!isValid}>
-                            Đăng nhập
+                    {!isValid ?
+                        <button className="button__disabled" disabled={true}>Đăng nhập</button>
+                        :
+                        <button className="button" type="submit" disabled={!isValid} onClick={() => {
+                            dispatch({
+                                type: "openBtnLoading"
+                            })
+                        }}>
+                            <ButtonLoading />
+                            <span>Đăng nhập</span>
                         </button>
                     }
                     <hr />
