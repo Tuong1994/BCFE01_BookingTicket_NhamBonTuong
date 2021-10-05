@@ -11,7 +11,7 @@ function Carousel(props) {
     const dispatch = useDispatch()
     const [showVideo, setShowVideo] = useState(false);
     const renderFilm = () => {
-        return danhSachPhim?.slice(0, 5).map((film, index) => {
+        return danhSachPhim?.slice(1, 5).map((film, index) => {
             return <div className="slide" key={index}>
                 <img className="slides__img" src={film.hinhAnh} />
                 <button className="btn__play" onClick={() => {

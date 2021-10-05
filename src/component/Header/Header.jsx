@@ -83,7 +83,7 @@ function Header(props) {
                     </div>
 
                     <div className="nav__login">
-                        {accountInfo !== "" ? <div className="user__login">
+                        {accountInfo !== "" ? <div className="user__login" ref={userRef}>
                             <img src="https://i.pravatar.cc/300" alt="avatar" />
                             <span>{accountInfo.hoTen}</span>
                             <div className="btn-show" onClick={showUserInfo}><i class="fa fa-caret-down"></i></div>
