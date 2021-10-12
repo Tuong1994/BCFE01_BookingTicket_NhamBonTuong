@@ -110,6 +110,11 @@
         box-shadow: 0 0 5px $dark-1;
         margin-bottom: $m-3;
       }
+      .button-loading {
+        opacity: 0.5;
+        user-select: none;
+        pointer-events: none;
+      }
       p {
         color: $tGrey-2;
         .form__link {

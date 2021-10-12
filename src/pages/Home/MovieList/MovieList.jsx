@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovieAction } from '../../../redux/action/PhimAction';
 import { NavLink } from 'react-router-dom';
+import useOverFlow from "../../../hooks/useOverFlow";
 import Popup from '../../../component/Popup/Popup';
 import RWDMovieList from '../../../component/RWD_MoveList/RWDMovieList';
 
@@ -16,14 +17,7 @@ function MovieList(props) {
     useEffect(() => {
         dispatch(getMovieAction());
     }, [])
-    useEffect(() => {
-        if (showVideo) {
-            document.body.style.overflow = "hidden";
-        }
-        return () => {
-            document.body.style.overflow = "unset"
-        }
-    }, [showVideo])
+    useOverFlow(showVideo)
     const renderPhimDangChieu = (index) => {
         if (index === 1) {
             return danhSachPhim.slice(18, 26).map((film, index) => {

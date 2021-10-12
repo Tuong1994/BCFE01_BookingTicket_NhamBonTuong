@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Field, Formik, Form, useFormik } from "formik";
 import * as yup from "yup";
+import ButtonLoading from '../../../component/Loading/ButtonLoading';
+import { Field, Formik, Form, useFormik } from "formik";
 import { phoneRegExp } from '../../../configs/setting';
 import { useDispatch } from 'react-redux';
 import { addUserAction } from '../../../redux/action/AdminAction';
-import ButtonLoading from '../../../component/Loading/ButtonLoading';
+import { useSelector } from 'react-redux';
 
 function AddUser({ addUser, setAddUser }) {
+    const { btnLoading } = useSelector(state => state.LoadingReducer);
     const [showPassword, setShowPassword] = useState(false);
-    
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
     const { handleChange, handleBlur, handleSubmit, touched, errors, isValid } = useFormik({
         initialValues: {
             taiKhoan: "",
@@ -39,6 +40,10 @@ function AddUser({ addUser, setAddUser }) {
                 .min(2, "Nhập ít nhất 2 ký tự")
                 .max(10, "Dài nhất 10 ký tự")
                 .required("Vui lòng không để trống"),
+            maNhom: yup.string()
+                .required("Bạn chưa chọn mã nhóm"),
+            maLoaiNguoiDung: yup.string()
+                .required("Bạn chưa chọn loại người dùng")
         }),
         onSubmit: (values) => {
             dispatch(addUserAction(values));
@@ -119,6 +124,7 @@ function AddUser({ addUser, setAddUser }) {
                                             <option value="GP09">GP09</option>
                                         </Field>
                                     </div>
+                                    {touched.maNhom && errors.maNhom ? <span className="error__message">{errors.maNhom}</span> : null}
                                 </div>
                                 <div className="form__item">
                                     <div className="form__content">
@@ -128,18 +134,23 @@ function AddUser({ addUser, setAddUser }) {
                                             <option value="QuanTri">Quản Trị Viên</option>
                                         </Field>
                                     </div>
+                                    {touched.maLoaiNguoiDung && errors.maLoaiNguoiDung ? <span className="error__message">{errors.maLoaiNguoiDung}</span> : null}
                                 </div>
                             </div>
 
                             <div className="form__button">
-                                <button className="button" type="submit" disabled={!isValid} onClick={() => {
-                                    dispatch({
-                                        type: "openBtnLoading",
-                                    });
-                                }}>
-                                    <ButtonLoading />
-                                    <span>Thêm Người Dùng</span>
-                                </button>
+                                {!isValid ?
+                                    <button className="button__disabled" disabled={true}>Thêm người dùng</button>
+                                    :
+                                    <button className={btnLoading ? "button button-loading" : "button"} type="submit" disabled={!isValid} onClick={() => {
+                                        dispatch({
+                                            type: "openBtnLoading",
+                                        });
+                                    }}>
+                                        <ButtonLoading />
+                                        <span>Thêm Người Dùng</span>
+                                    </button>
+                                }
                             </div>
                         </Form>
                     </Formik>

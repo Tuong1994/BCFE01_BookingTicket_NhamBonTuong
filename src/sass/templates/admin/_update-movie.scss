@@ -176,7 +176,8 @@
         margin-top: $m-5 + 10;
         position: relative;
         .button,
-        .btn-blue {
+        .btn-blue,
+        .button__disabled {
           width: auto;
           display: flex;
           align-items: center;
@@ -186,6 +187,11 @@
           i {
             margin-right: $m-1;
           }
+        }
+        .button-loading {
+          opacity: 0.5;
+          user-select: none;
+          pointer-events: none;
         }
       }
     }

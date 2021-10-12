@@ -1,9 +1,9 @@
-import moment from 'moment';
 import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import { getShowTimeDetail } from '../../../redux/action/PhimAction';
+import moment from 'moment';
 
 function CheckoutBar(props) {
     const { danhSachPhim, chiTietLichChieu, lichChieu } = useSelector(state => state.PhimReducer);

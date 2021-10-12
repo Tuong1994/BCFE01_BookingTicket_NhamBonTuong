@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { useDispatch, useSelector } from 'react-redux';
 import Popup from '../../../component/Popup/Popup';
+import useOverFlow from '../../../hooks/useOverFlow';
 
 
 function Carousel(props) {
@@ -40,14 +41,7 @@ function Carousel(props) {
         slidesToScroll: 1,
         pauseOnHover: true,
     }
-    useEffect(() => {
-        if (showVideo) {
-            document.body.style.overflow = "hidden";
-        }
-        return () => {
-            document.body.style.overflow = "unset"
-        }
-    }, [showVideo])
+    useOverFlow(showVideo);
     return (
         <div className="carousel">
             <Slider {...settings}>

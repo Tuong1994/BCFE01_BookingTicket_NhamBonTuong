@@ -4,9 +4,11 @@ import ButtonLoading from '../../../component/Loading/ButtonLoading';
 import { Formik, Form, Field, useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { addMovieAction } from '../../../redux/action/AdminAction';
+import { useSelector } from 'react-redux';
 
 function AddMovie({ addMovie, setAddMovie }) {
-    let dispatch = useDispatch();
+    const { btnLoading } = useSelector(state => state.LoadingReducer);
+    const dispatch = useDispatch();
 
     const { handleChange, handleBlur, handleSubmit, setFieldValue, touched, errors, isValid } = useFormik({
         initialValues: {
@@ -110,6 +112,7 @@ function AddMovie({ addMovie, setAddMovie }) {
                                             <option value="GP09">GP09</option>
                                         </Field>
                                     </div>
+                                    {touched.maNhom && errors.maNhom ? <span className="error__message">{errors.maNhom}</span> : null}
                                 </div>
                                 <div className="form__item">
                                     <div className="form__content">
@@ -121,6 +124,7 @@ function AddMovie({ addMovie, setAddMovie }) {
                                             setFieldValue("hinhAnh", e.target.files[0])
                                         }} onBlur={handleBlur} />
                                     </div>
+                                    {touched.hinhAnh && errors.hinhAnh ? <span className="error__message">{errors.hinhAnh}</span> : null}
                                 </div>
                             </div>
 
@@ -135,14 +139,18 @@ function AddMovie({ addMovie, setAddMovie }) {
                             </div>
 
                             <div className="form__button">
-                                <button className="button" type="submit" disabled={!isValid} onClick={() => {
-                                    dispatch({
-                                        type: "openBtnLoading"
-                                    });
-                                }}>
-                                    <ButtonLoading />
-                                    <span>Thêm Phim</span>
-                                </button>
+                                {!isValid ?
+                                    <button className="button__disabled" disabled={true}>Thêm Phim</button>
+                                    :
+                                    <button className={btnLoading ? "button button-loading" : "button"} type="submit" disabled={!isValid} onClick={() => {
+                                        dispatch({
+                                            type: "openBtnLoading"
+                                        });
+                                    }}>
+                                        <ButtonLoading />
+                                        <span>Thêm Phim</span>
+                                    </button>
+                                }
                             </div>
                         </Form>
                     </Formik>

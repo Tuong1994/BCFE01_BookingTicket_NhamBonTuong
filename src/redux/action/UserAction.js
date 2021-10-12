@@ -20,13 +20,16 @@ export const signInAction = (user) => {
       setTimeout(() => {
         history.push("/");
         dispatch({
-          type: "closeBtnLoading"
-        })
-      }, 2000)
+          type: "closeBtnLoading",
+        });
+      }, 2000);
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: error.response.data,
+      });
+      dispatch({
+        type: "closeBtnLoading",
       });
     }
   };
@@ -44,15 +47,17 @@ export const signUpAction = (user) => {
       setTimeout(() => {
         history.push("/");
         dispatch({
-          type: "closeBtnLoading"
-        })
-      }, 2000)
+          type: "closeBtnLoading",
+        });
+      }, 2000);
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: error.response.data,
       });
-      console.log(error.response.data);
+      dispatch({
+        type: "closeBtnLoading",
+      });
     }
   };
 };
@@ -115,7 +120,6 @@ export const bookHistoryAction = (user) => {
         icon: "error",
         title: error,
       });
-      console.log(error);
     }
   };
 };

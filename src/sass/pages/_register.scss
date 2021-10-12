@@ -125,7 +125,7 @@
     }
     .form__button {
       text-align: center;
-      .button, 
+      .button,
       .button__disabled {
         display: flex;
         justify-content: center;
@@ -133,6 +133,11 @@
         width: $w-100;
         box-shadow: 0 0 5px $dark-1;
         margin-bottom: $m-3;
+      }
+      .button-loading {
+        opacity: 0.5;
+        user-select: none;
+        pointer-events: none;
       }
       p {
         color: $tGrey-2;

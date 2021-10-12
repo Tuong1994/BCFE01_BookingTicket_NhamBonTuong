@@ -7,8 +7,10 @@ import { signInAction } from '../../redux/action/UserAction';
 import { useEffect } from 'react';
 import Loading from '../../component/Loading/Loading';
 import ButtonLoading from '../../component/Loading/ButtonLoading';
+import { useSelector } from 'react-redux';
 
 function Login() {
+    const { btnLoading } = useSelector(state => state.LoadingReducer)
     const [showPassword, setShowPassword] = useState(false);
     let dispatch = useDispatch();
 
@@ -80,7 +82,7 @@ function Login() {
                     {!isValid ?
                         <button className="button__disabled" disabled={true}>Đăng nhập</button>
                         :
-                        <button className="button" type="submit" disabled={!isValid} onClick={() => {
+                        <button className={btnLoading ? "button button-loading" : "button"} type="submit" disabled={!isValid} onClick={() => {
                             dispatch({
                                 type: "openBtnLoading"
                             })

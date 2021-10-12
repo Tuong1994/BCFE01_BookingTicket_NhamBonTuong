@@ -39,7 +39,7 @@ export const addMovieAction = (film) => {
 export const createScheduleAction = (film) => {
   return async (dispatch) => {
     try {
-      const result = await axios({
+       await axios({
         url: `${domain}/api/QuanLyDatVe/TaoLichChieu`,
         method: "POST",
         data: film,

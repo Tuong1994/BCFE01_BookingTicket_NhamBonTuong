@@ -8,9 +8,10 @@ import { phoneRegExp } from '../../../configs/setting';
 import { updateUserAction } from '../../../redux/action/AdminAction';
 
 function UpdateUser(props) {
-    let dispatch = useDispatch();
     const { user } = useSelector(state => state.AdminReducer);
+    const { btnLoading } = useSelector(state => state.LoadingReducer);
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
     const { handleChange, handleBlur, handleSubmit, touched, errors, isValid, values } = useFormik({
         initialValues: {
             taiKhoan: user.taiKhoan,
@@ -40,6 +41,10 @@ function UpdateUser(props) {
                 .min(2, "Nhập ít nhất 2 ký tự")
                 .max(10, "Dài nhất 10 ký tự")
                 .required("Vui lòng không để trống"),
+            maNhom: yup.string()
+                .required("Bạn chưa chọn mã nhóm"),
+            maLoaiNguoiDung: yup.string()
+                .required("Bạn chưa chọn loại người dùng")
         }),
         onSubmit: (values) => {
             dispatch(updateUserAction(values));
@@ -116,6 +121,7 @@ function UpdateUser(props) {
                                         <option value="GP09">GP09</option>
                                     </Field>
                                 </div>
+                                {touched.maNhom && errors.maNhom ? <span className="error__message">{errors.maNhom}</span> : null}
                             </div>
                             <div className="form__item">
                                 <div className="form__content">
@@ -125,6 +131,7 @@ function UpdateUser(props) {
                                         <option value="QuanTri">Quản Trị Viên</option>
                                     </Field>
                                 </div>
+                                {touched.maLoaiNguoiDung && errors.maLoaiNguoiDung ? <span className="error__message">{errors.maLoaiNguoiDung}</span> : null}
                             </div>
                         </div>
 
@@ -132,14 +139,18 @@ function UpdateUser(props) {
                             <NavLink to="/user_manage" className="btn-blue">
                                 <i class="fa fa-angle-double-left"></i><span>Quay lại</span>
                             </NavLink>
-                            <button className="button" type="submit" disabled={!isValid} onClick={() => {
-                                dispatch({
-                                    type: "openBtnLoading"
-                                })
-                            }}>
-                                <ButtonLoading />
-                                <span>Cập Nhật Người Dùng</span>
-                            </button>
+                            {!isValid ?
+                                <button className="button__disabled" disabled={true}>Cập Nhật Người Dùng</button>
+                                :
+                                <button className={btnLoading ? "button button-loading" : "button"} type="submit" disabled={!isValid} onClick={() => {
+                                    dispatch({
+                                        type: "openBtnLoading"
+                                    })
+                                }}>
+                                    <ButtonLoading />
+                                    <span>Cập Nhật Người Dùng</span>
+                                </button>
+                            }
                         </div>
                     </Form>
                 </Formik>

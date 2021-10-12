@@ -136,11 +136,17 @@
           justify-content: center;
           align-items: center;
           margin-top: $m-1;
-          .button {
+          .button,
+          .button__disabled {
             display: flex;
             align-items: center;
             font-size: $body-1;
             font-weight: $medium;
+          }
+          .button-loading {
+            opacity: 0.5;
+            user-select: none;
+            pointer-events: none;
           }
         }
       }

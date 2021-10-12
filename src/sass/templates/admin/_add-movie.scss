@@ -141,7 +141,6 @@
           }
           .form__item-textarea {
             @include respond(phone) {
-              
             }
           }
           @include respond(phone) {
@@ -163,12 +162,18 @@
           align-items: center;
           margin-top: $m-5 + 10;
           position: relative;
-          .button {
+          .button,
+          .button__disabled {
             width: auto;
             display: flex;
             align-items: center;
             font-size: $body-1;
             font-weight: $medium;
+          }
+          .button-loading {
+            opacity: 0.5;
+            user-select: none;
+            pointer-events: none;
           }
         }
       }

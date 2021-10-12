@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateMovieAction } from '../../../redux/action/AdminAction';
 
 function UpdateMovie(props) {
-    const { phim } = useSelector(state => state.PhimReducer)
-    let dispatch = useDispatch();
+    const { phim } = useSelector(state => state.PhimReducer);
+    const { btnLoading } = useSelector(state => state.LoadingReducer);
+    const dispatch = useDispatch();
     const { handleChange, handleBlur, handleSubmit, setFieldValue, touched, errors, isValid, values } = useFormik({
         initialValues: {
             maPhim: phim.maPhim,
@@ -118,6 +119,7 @@ function UpdateMovie(props) {
                                         <option value="GP09">GP09</option>
                                     </Field>
                                 </div>
+                                {touched.maNhom && errors.maNhom ? <span className="error__message">{errors.maNhom}</span> : null}
                             </div>
                             <div className="form__item">
                                 <div className="form__content">
@@ -129,6 +131,7 @@ function UpdateMovie(props) {
                                         setFieldValue("hinhAnh", e.target.files[0])
                                     }} onBlur={handleBlur} />
                                 </div>
+                                {touched.hinhAnh && errors.hinhAnh ? <span className="error__message">{errors.hinhAnh}</span> : null}
                             </div>
                         </div>
 
@@ -146,14 +149,18 @@ function UpdateMovie(props) {
                             <NavLink to="/movie_manage" className="btn-blue">
                                 <i class="fa fa-angle-double-left"></i><span>Quay lại</span>
                             </NavLink>
-                            <button className="button" type="submit" disabled={!isValid} onClick={() => {
-                                dispatch({
-                                    type: "openBtnLoading"
-                                })
-                            }}>
-                                <ButtonLoading />
-                                <span>Cập nhật phim</span>
-                            </button>
+                            {!isValid ?
+                                <button className="button__disabled">Cập nhật phim</button>
+                                :
+                                <button className={btnLoading ? "button button-loading" : "button"} type="submit" disabled={!isValid} onClick={() => {
+                                    dispatch({
+                                        type: "openBtnLoading"
+                                    })
+                                }}>
+                                    <ButtonLoading />
+                                    <span>Cập nhật phim</span>
+                                </button>
+                            }
                         </div>
                     </Form>
                 </Formik>

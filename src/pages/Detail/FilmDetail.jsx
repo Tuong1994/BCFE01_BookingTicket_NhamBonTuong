@@ -1,8 +1,9 @@
-import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getShowTimeDetail } from '../../redux/action/PhimAction';
 import { Link } from 'react-scroll';
+import useOverFlow from "../../hooks/useOverFlow";
+import moment from 'moment';
 import CinemaDetail from './CinemaDetail';
 import MovieTrailer from '../../component/MovieTrailer/MovieTrailer';
 
@@ -25,14 +26,8 @@ function Detail(props) {
             })
         }, 1000)
     }, [])
-    useEffect(() => {
-        if (showTrailer) {
-            document.body.style.overflow = "hidden";
-        }
-        return () => {
-            document.body.style.overflow = "unset";
-        }
-    }, [showTrailer])
+    useOverFlow(showTrailer);
+    
     return (
         <div className="detail" style={{ backgroundImage: `url(${chiTietLichChieu.hinhAnh})` }}>
             <div className="detail__film">
