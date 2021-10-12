@@ -3,17 +3,14 @@ import * as yup from 'yup';
 import { phoneRegExp } from '../../configs/setting';
 import { Formik, Form, Field, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { bookHistoryAction, updateAction } from '../../redux/action/UserAction';
+import { updateAction } from "../../redux/action/UserAction";
 import ButtonLoading from '../../component/Loading/ButtonLoading';
 
-function UserInfoUpdate({ showForm, setShowForm }) {
-    const { accountInfo, userBookedInfo } = useSelector(state => state.UserReducer);
+function UserInfoUpdate({ showForm, setShowForm, userBookedInfo }) {
+    const { accountInfo } = useSelector(state => state.UserReducer);
     const [password, setPassword] = useState(false);
     const [passwordConfirm, setPasswordConfirm] = useState(false);
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(bookHistoryAction(accountInfo));
-    }, [])
     useEffect(() => {
         if (showForm) {
             document.body.style.overflow = "hidden";
@@ -24,13 +21,13 @@ function UserInfoUpdate({ showForm, setShowForm }) {
     }, [showForm])
     const { handleChange, handleBlur, handleSubmit, touched, errors, isValid, values } = useFormik({
         initialValues: {
-            taiKhoan: userBookedInfo.taiKhoan,
+            taiKhoan: accountInfo.taiKhoan,
             matKhau: userBookedInfo.matKhau,
             xacNhanMatKhau: userBookedInfo.matKhau,
-            email: userBookedInfo.email,
-            hoTen: userBookedInfo.hoTen,
-            soDT: userBookedInfo.soDT,
-            maNhom: userBookedInfo.maNhom,
+            email: accountInfo.email,
+            hoTen: accountInfo.hoTen,
+            soDT: accountInfo.soDT,
+            maNhom: accountInfo.maNhom,
             maLoaiNguoiDung: accountInfo.maLoaiNguoiDung,
         },
         validationSchema: yup.object().shape({

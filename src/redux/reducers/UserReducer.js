@@ -8,7 +8,7 @@ if (localStorage.getItem(taiKhoan)) {
 
 const stateDefault = {
   accountInfo: accountInfo,
-  userBookedInfo: "",
+  userBookedInfo: {},
   bookDetail: [],
 };
 
@@ -29,8 +29,9 @@ export const UserReducer = (state = stateDefault, action) => {
       return { ...state };
     }
     case "BOOK_HISTORY": {
-      state.userBookedInfo = action.taiKhoan;
-      return { ...state };
+      let newUserBookedInfo = {...state.userBookedInfo};
+      newUserBookedInfo = action.taiKhoan;
+      return { ...state, userBookedInfo: newUserBookedInfo };
     }
     case "GET_BOOKED_DETAIL": {
       state.bookDetail = action.bookDetail;

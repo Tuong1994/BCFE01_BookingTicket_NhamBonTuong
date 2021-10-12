@@ -3,7 +3,7 @@ import UserAccInfo from './UserAccInfo';
 import UserBookedHistory from './UserBookedHistory';
 
 function UserContent({ setShowBookedDetail, setShowForm }) {
-    const [showContent, setShowContent] = useState(1);
+    const [showContent, setShowContent] = useState(1); 
 
     return (
         <div className="user__content">
