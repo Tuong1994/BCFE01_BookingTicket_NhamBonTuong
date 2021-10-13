@@ -2,11 +2,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { HashLink as Link } from 'react-router-hash-link';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import ButtonLoading from "../Loading/ButtonLoading";
 
 
 function RWD_Header(props) {
     const { setSubmenu, accountInfo, showUserInfo, userInfo, subMenu } = props;
-    let dispatch = useDispatch();
+    const { btnLoading } = useSelector(state => state.LoadingReducer);
+    const dispatch = useDispatch();
     return (
         <div className="rwd-header">
             <div className={subMenu ? "rwd-header__bg active" : "rwd-header__bg"}>
@@ -29,9 +32,19 @@ function RWD_Header(props) {
                                     </NavLink>
                                     <div className="submenu__button" onClick={() => {
                                         dispatch({
-                                            type: "LOG_OUT"
-                                        });
-                                    }}>Đăng xuất</div>
+                                            type: "openBtnLoading"
+                                        })
+                                        setTimeout(() => {
+                                            dispatch({
+                                                type: "LOG_OUT"
+                                            });
+                                            dispatch({
+                                                type: "closeBtnLoading"
+                                            })
+                                        }, 1000)
+                                    }}>
+                                        {btnLoading ? <ButtonLoading /> : "Đăng xuất"}
+                                    </div>
                                 </div>
                             </div> :
                             <NavLink className="user__link link" to="/login">

@@ -451,6 +451,11 @@
           font-size: $h3;
           width: $w-100;
         }
+        .button-loading {
+          opacity: 0.5;
+          user-select: none;
+          pointer-events: none;
+        }
         .button-disabled {
           background: $dark-2;
           border-color: $dark-2;

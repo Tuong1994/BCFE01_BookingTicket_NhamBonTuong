@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 import RWD_Header from '../RWD_Header/RWD_Header';
+import ButtonLoading from "../Loading/ButtonLoading";
 
 function Header(props) {
-    const dispatch = useDispatch();
     const { accountInfo } = useSelector(state => state.UserReducer);
+    const { btnLoading } = useSelector(state => state.LoadingReducer);
 
     const [subMenu, setSubmenu] = useState(false);
     const [userInfo, setUserInfo] = useState(false);
     const [background, setBackground] = useState(false);
-
+    const dispatch = useDispatch();
     const userRef = useRef()
 
-    let showSubmenu = () => setSubmenu(!subMenu);
-    let showUserInfo = () => setUserInfo(!userInfo);
+    const showSubmenu = () => setSubmenu(!subMenu);
+    const showUserInfo = () => setUserInfo(!userInfo);
 
     useEffect(() => {
         let scrollPosition = 0;
@@ -89,13 +89,26 @@ function Header(props) {
                             <div className="btn-show" onClick={showUserInfo}><i class="fa fa-caret-down"></i></div>
                             <div className={userInfo ? "user__info show" : "user__info"} ref={userRef}>
                                 {accountInfo.maLoaiNguoiDung !== "KhachHang" ?
-                                    <NavLink className="user__link bg-link" to="/dashboard">Admin</NavLink> : null}
+                                    <NavLink className="user__link bg-link" to="/dashboard">Admin</NavLink>
+                                    :
+                                    null
+                                }
                                 <NavLink className="user__link bg-link" to="/user">Thông tin cá nhân</NavLink>
                                 <div className="btn-logout bg-link" onClick={() => {
                                     dispatch({
-                                        type: "LOG_OUT"
-                                    });
-                                }}>Đăng xuất</div>
+                                        type: "openBtnLoading"
+                                    })
+                                    setTimeout(() => {
+                                        dispatch({
+                                            type: "LOG_OUT"
+                                        });
+                                        dispatch({
+                                            type: "closeBtnLoading"
+                                        })
+                                    }, 1000)
+                                }}>
+                                    {btnLoading ? <ButtonLoading /> : "Đăng xuất"}
+                                </div>
                             </div>
                         </div> :
                             <NavLink className="nav__link link" to="/login">

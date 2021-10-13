@@ -4,9 +4,10 @@ import ButtonLoading from '../../component/Loading/ButtonLoading';
 import { bookMovieAction } from '../../redux/action/PhimAction';
 
 function MovieBooking({ thongTinRapChieu, paramsId, setStepTwo, setStepThree }) {
-    const { thongTinPhim } = thongTinRapChieu;
     const { accountInfo } = useSelector(state => state.UserReducer);
     const { DSGheDangDat, hinhThucThanhToan } = useSelector(state => state.BookTicketReducer);
+    const { btnLoading } = useSelector(state => state.LoadingReducer);
+    const { thongTinPhim } = thongTinRapChieu;
 
     let dispatch = useDispatch();
     let renderTotal = () => {
@@ -127,7 +128,7 @@ function MovieBooking({ thongTinRapChieu, paramsId, setStepTwo, setStepThree }) 
             </div>
             <div className="movie__button">
                 {DSGheDangDat.length !== 0 && hinhThucThanhToan !== "" ?
-                    <button className="button" onClick={() => {
+                    <button className={btnLoading ? "button button-loading" : "button"} onClick={() => {
                         setStepThree(true);
                         let bookDetail = {
                             maLichChieu: paramsId,
